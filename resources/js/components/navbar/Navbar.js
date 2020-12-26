@@ -62,13 +62,13 @@ const Navbar = () => {
                         </NavLink>
                     </div>
                     <div className="login">
-                        <Link to="/login">Login</Link>
-                        <Link
+                        <NavLink to="/login">Login</NavLink>
+                        <NavLink
                             to="/create-account"
                             className="btn btn-danger btn-lg ml-3"
                         >
                             Create my account
-                        </Link>
+                        </NavLink>
                     </div>
                 </div>
             </div>
