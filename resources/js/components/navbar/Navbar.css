@@ -4,3 +4,15 @@
 .flag-select__btn:focus {
     outline: none;
 }
+
+@media screen and (max-width: 768px) {
+    #navbar {
+        position: absolute;
+        top: 89px;
+        right: 0;
+        z-index: 999;
+        background-color: #fff;
+        padding: 25px;
+        width: 100%;
+    }
+}

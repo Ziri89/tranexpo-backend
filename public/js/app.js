@@ -6433,7 +6433,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".flag-select__option__label {\n    top: 7px;\n}\n.flag-select__btn:focus {\n    outline: none;\n}\n", ""]);
+exports.push([module.i, ".flag-select__option__label {\n    top: 7px;\n}\n.flag-select__btn:focus {\n    outline: none;\n}\n\n@media screen and (max-width: 768px) {\n    #navbar {\n        position: absolute;\n        top: 89px;\n        right: 0;\n        z-index: 999;\n        background-color: #fff;\n        padding: 25px;\n        width: 100%;\n    }\n}\n", ""]);
 
 // exports
 
