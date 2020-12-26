@@ -6402,6 +6402,131 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/react-flags-select/css/react-flags-select.css":
+/*!****************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/react-flags-select/css/react-flags-select.css ***!
+  \****************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "/*!\n * react-flags-select v1.1.13 - https://github.com/ekwonye-richard/react-flags-select#readme\n * MIT Licensed\n */\n.flag-select{position:relative;display:inline-block;vertical-align:inherit;padding-bottom:5px;text-align:left}.flag-select__btn{padding:0 8px;color:#4d4d4d;border:none;background:transparent}.flag-select__btn:after,.flag-select__btn[aria-expanded=\"true\"]:after{content:\" \";width:0;height:0;display:inline-block;vertical-align:middle;margin-left:5px}.flag-select__btn:after{border-top:5px solid #4d4d4d;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:0}.flag-select__btn[aria-expanded=\"true\"]:after{border-top:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:5px solid #4d4d4d}.flag-select__btn:before{content:\" \";display:block;width:100%;height:100%;position:absolute;z-index:999}.flag-select__option{cursor:pointer;padding:0 8px 3px 8px;margin:4px 0;white-space:nowrap}.flag-select__options{position:absolute;z-index:999999;border:1px solid #bdbbbb;border-radius:3px;background:#fff;margin-top:8px;padding:8px 0;max-height:160px;overflow:auto}.flag-select__options.to--left{right:10px}.flag-select__option--placeholder{height:inherit;width:inherit;display:inline-block;vertical-align:middle}.flag-select__option:not(.flag-select__option--placeholder):hover,.flag-select__option:not(.flag-select__option--placeholder):focus{outline:none;background:#eaeaea}.flag-select__option.has-label{padding:0 20px 3px 8px}.flag-select__option__label{font-size:1em;position:relative;padding-left:9px}.flag-select__option__icon{width:1.3em;height:1.3em;position:relative;top:0.3em}.flag-select .filterBox{width:100%}.flag-select .filterBox input{width:90%;margin:0 4%}.flag-select .filterBox input:focus{outline:none}.flag-select .hidden{display:none}.flag-select .no--focus{pointer-events:none}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/navbar/Navbar.css":
+/*!***********************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/components/navbar/Navbar.css ***!
+  \***********************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".flag-select__option__label {\n    top: 7px;\n}\n.flag-select__btn:focus {\n    outline: none;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/lib/css-base.js":
+/*!*************************************************!*\
+  !*** ./node_modules/css-loader/lib/css-base.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/history/esm/history.js":
 /*!*********************************************!*\
   !*** ./node_modules/history/esm/history.js ***!
@@ -64469,6 +64594,3249 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/react-flags-select/css/react-flags-select.css":
+/*!********************************************************************!*\
+  !*** ./node_modules/react-flags-select/css/react-flags-select.css ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./react-flags-select.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/react-flags-select/css/react-flags-select.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/es/countries.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/react-flags-select/es/countries.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+    "AF": "Afghanistan",
+    "AL": "Albania",
+    "DZ": "Algeria",
+    "AS": "American Samoa",
+    "AD": "Andorra",
+    "AO": "Angola",
+    "AI": "Anguilla",
+    "AG": "Antigua and Barbuda",
+    "AR": "Argentina",
+    "AM": "Armenia",
+    "AW": "Aruba",
+    "AU": "Australia",
+    "AT": "Austria",
+    "AZ": "Azerbaijan",
+    "BS": "Bahamas",
+    "BH": "Bahrain",
+    "BD": "Bangladesh",
+    "BB": "Barbados",
+    "BY": "Belarus",
+    "BE": "Belgium",
+    "BZ": "Belize",
+    "BJ": "Benin",
+    "BM": "Bermuda",
+    "BT": "Bhutan",
+    "BO": "Bolivia, Plurinational State of",
+    "BA": "Bosnia and Herzegovina",
+    "BW": "Botswana",
+    "BR": "Brazil",
+    "IO": "British Indian Ocean Territory",
+    "BG": "Bulgaria",
+    "BF": "Burkina Faso",
+    "BI": "Burundi",
+    "KH": "Cambodia",
+    "CM": "Cameroon",
+    "CA": "Canada",
+    "CV": "Cape Verde",
+    "KY": "Cayman Islands",
+    "CF": "Central African Republic",
+    "TD": "Chad",
+    "CL": "Chile",
+    "CN": "China",
+    "CO": "Colombia",
+    "KM": "Comoros",
+    "CG": "Congo",
+    "CD": "Democratic Republic of the Congo",
+    "CK": "Cook Islands",
+    "CR": "Costa Rica",
+    "CI": "Côte d'Ivoire",
+    "HR": "Croatia",
+    "CU": "Cuba",
+    "CW": "Curaçao",
+    "CY": "Cyprus",
+    "CZ": "Czech Republic",
+    "DK": "Denmark",
+    "DJ": "Djibouti",
+    "DM": "Dominica",
+    "DO": "Dominican Republic",
+    "EC": "Ecuador",
+    "EG": "Egypt",
+    "SV": "El Salvador",
+    "GQ": "Equatorial Guinea",
+    "ER": "Eritrea",
+    "EE": "Estonia",
+    "ET": "Ethiopia",
+    "FK": "Falkland Islands (Malvinas)",
+    "FO": "Faroe Islands",
+    "FJ": "Fiji",
+    "FI": "Finland",
+    "FR": "France",
+    "PF": "French Polynesia",
+    "GA": "Gabon",
+    "GM": "Gambia",
+    "GE": "Georgia",
+    "DE": "Germany",
+    "GH": "Ghana",
+    "GI": "Gibraltar",
+    "GR": "Greece",
+    "GL": "Greenland",
+    "GD": "Grenada",
+    "GU": "Guam",
+    "GT": "Guatemala",
+    "GG": "Guernsey",
+    "GN": "Guinea",
+    "GW": "Guinea-Bissau",
+    "HT": "Haiti",
+    "HN": "Honduras",
+    "HK": "Hong Kong",
+    "HU": "Hungary",
+    "IS": "Iceland",
+    "IN": "India",
+    "ID": "Indonesia",
+    "IR": "Iran, Islamic Republic of",
+    "IQ": "Iraq",
+    "IE": "Ireland",
+    "IM": "Isle of Man",
+    "IL": "Israel",
+    "IT": "Italy",
+    "JM": "Jamaica",
+    "JP": "Japan",
+    "JE": "Jersey",
+    "JO": "Jordan",
+    "KZ": "Kazakhstan",
+    "KE": "Kenya",
+    "KI": "Kiribati",
+    "KP": "North Korea",
+    "KR": "South Korea",
+    "KW": "Kuwait",
+    "KG": "Kyrgyzstan",
+    "LA": "Lao People's Democratic Republic",
+    "LV": "Latvia",
+    "LB": "Lebanon",
+    "LS": "Lesotho",
+    "LR": "Liberia",
+    "LY": "Libya",
+    "LI": "Liechtenstein",
+    "LT": "Lithuania",
+    "LU": "Luxembourg",
+    "MO": "Macao",
+    "MK": "Republic of Macedonia",
+    "MG": "Madagascar",
+    "MW": "Malawi",
+    "MY": "Malaysia",
+    "MV": "Maldives",
+    "ML": "Mali",
+    "MT": "Malta",
+    "MH": "Marshall Islands",
+    "MQ": "Martinique",
+    "MR": "Mauritania",
+    "MU": "Mauritius",
+    "MX": "Mexico",
+    "FM": "Micronesia, Federated States of",
+    "MD": "Republic of Moldova",
+    "MC": "Monaco",
+    "MN": "Mongolia",
+    "ME": "Montenegro",
+    "MS": "Montserrat",
+    "MA": "Morocco",
+    "MZ": "Mozambique",
+    "MM": "Myanmar",
+    "NA": "Namibia",
+    "NR": "Nauru",
+    "NP": "Nepal",
+    "NL": "Netherlands",
+    "NZ": "New Zealand",
+    "NI": "Nicaragua",
+    "NE": "Niger",
+    "NG": "Nigeria",
+    "NU": "Niue",
+    "NF": "Norfolk Island",
+    "MP": "Northern Mariana Islands",
+    "NO": "Norway",
+    "OM": "Oman",
+    "PK": "Pakistan",
+    "PW": "Palau",
+    "PS": "Palestinian Territory",
+    "PA": "Panama",
+    "PG": "Papua New Guinea",
+    "PY": "Paraguay",
+    "PE": "Peru",
+    "PH": "Philippines",
+    "PN": "Pitcairn",
+    "PL": "Poland",
+    "PT": "Portugal",
+    "PR": "Puerto Rico",
+    "QA": "Qatar",
+    "RO": "Romania",
+    "RU": "Russian",
+    "RW": "Rwanda",
+    "KN": "Saint Kitts and Nevis",
+    "WS": "Samoa",
+    "SM": "San Marino",
+    "ST": "Sao Tome and Principe",
+    "SA": "Saudi Arabia",
+    "SN": "Senegal",
+    "RS": "Serbia",
+    "SC": "Seychelles",
+    "SL": "Sierra Leone",
+    "SG": "Singapore",
+    "SX": "Sint Maarten",
+    "SK": "Slovakia",
+    "SI": "Slovenia",
+    "SB": "Solomon Islands",
+    "SO": "Somalia",
+    "ZA": "South Africa",
+    "SS": "South Sudan",
+    "ES": "Spain",
+    "LK": "Sri Lanka",
+    "SD": "Sudan",
+    "SR": "Suriname",
+    "SZ": "Swaziland",
+    "SE": "Sweden",
+    "CH": "Switzerland",
+    "SY": "Syria",
+    "TW": "Taiwan, Province of China",
+    "TJ": "Tajikistan",
+    "TZ": "Tanzania",
+    "TH": "Thailand",
+    "TG": "Togo",
+    "TK": "Tokelau",
+    "TO": "Tonga",
+    "TT": "Trinidad and Tobago",
+    "TN": "Tunisia",
+    "TR": "Turkey",
+    "TM": "Turkmenistan",
+    "TC": "Turks and Caicos Islands",
+    "TV": "Tuvalu",
+    "UG": "Uganda",
+    "UA": "Ukraine",
+    "AE": "United Arab Emirates",
+    "GB": "United Kingdom",
+    "US": "United States",
+    "UY": "Uruguay",
+    "UZ": "Uzbekistan",
+    "VU": "Vanuatu",
+    "VE": "Venezuela, Bolivarian Republic of",
+    "VN": "Viet Nam",
+    "VI": "Virgin Islands",
+    "YE": "Yemen",
+    "ZM": "Zambia",
+    "ZW": "Zimbabwe"
+});
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/es/index.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/react-flags-select/es/index.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _countries__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./countries */ "./node_modules/react-flags-select/es/countries.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+var ReactFlagsSelect = function (_Component) {
+	_inherits(ReactFlagsSelect, _Component);
+
+	function ReactFlagsSelect(props) {
+		_classCallCheck(this, ReactFlagsSelect);
+
+		var _this = _possibleConstructorReturn(this, _Component.call(this, props));
+
+		var defaultCountry = _countries__WEBPACK_IMPORTED_MODULE_2__["default"][_this.props.defaultCountry] && _this.props.defaultCountry;
+
+		_this.state = {
+			openOptions: false,
+			defaultCountry: defaultCountry,
+			filteredCountries: []
+		};
+
+		_this.toggleOptions = _this.toggleOptions.bind(_this);
+		_this.closeOptions = _this.closeOptions.bind(_this);
+		_this.onSelect = _this.onSelect.bind(_this);
+		_this.filterSearch = _this.filterSearch.bind(_this);
+		_this.setCountries = _this.setCountries.bind(_this);
+		return _this;
+	}
+
+	ReactFlagsSelect.prototype.toggleOptions = function toggleOptions() {
+		!this.state.disabled && this.setState({
+			openOptions: !this.state.openOptions
+		});
+	};
+
+	ReactFlagsSelect.prototype.toggleOptionsWithKeyboard = function toggleOptionsWithKeyboard(evt) {
+		evt.preventDefault();
+		if (evt.keyCode === 27) {
+			//esc key: hide options
+			!this.state.disabled && this.setState({
+				openOptions: false
+			});
+		}
+	};
+
+	ReactFlagsSelect.prototype.closeOptions = function closeOptions(event) {
+		if (event.target !== this.refs.selectedFlag && event.target !== this.refs.flagOptions && event.target !== this.refs.filterText) {
+			this.setState({
+				openOptions: false
+			});
+		}
+	};
+
+	ReactFlagsSelect.prototype.onSelect = function onSelect(countryCode) {
+		this.setState({
+			selected: countryCode,
+			filter: ''
+		});
+		this.props.onSelect && this.props.onSelect(countryCode);
+	};
+
+	ReactFlagsSelect.prototype.onSelectWithKeyboard = function onSelectWithKeyboard(evt, countryCode) {
+		evt.preventDefault();
+		if (evt.keyCode === 13) {
+			//enter key: select
+			this.onSelect(countryCode);
+			this.closeOptions(evt);
+		} else if (evt.keyCode === 27) {
+			//esc key: hide options
+			this.toggleOptions();
+		}
+	};
+
+	ReactFlagsSelect.prototype.updateSelected = function updateSelected(countryCode) {
+		var isValid = _countries__WEBPACK_IMPORTED_MODULE_2__["default"][countryCode];
+
+		isValid && this.setState({
+			selected: countryCode
+		});
+	};
+
+	ReactFlagsSelect.prototype.filterSearch = function filterSearch(evt) {
+		var _this2 = this;
+
+		var filterValue = evt.target.value;
+		var filteredCountries = filterValue && this.state.countries.filter(function (key) {
+			var label = _this2.props.customLabels[key] || _countries__WEBPACK_IMPORTED_MODULE_2__["default"][key];
+			return label && label.match(new RegExp(filterValue, 'i'));
+		});
+
+		this.setState({ filter: filterValue, filteredCountries: filteredCountries });
+	};
+
+	ReactFlagsSelect.prototype.setCountries = function setCountries() {
+		var _this3 = this;
+
+		var fullCountries = Object.keys(_countries__WEBPACK_IMPORTED_MODULE_2__["default"]);
+
+		var selectCountries = this.props.countries && this.props.countries.filter(function (country) {
+			return _countries__WEBPACK_IMPORTED_MODULE_2__["default"][country];
+		});
+
+		//Filter BlackList
+		if (this.props.blackList && selectCountries) {
+			selectCountries = fullCountries.filter(function (countryKey) {
+				return selectCountries.filter(function (country) {
+					return countryKey === country;
+				}).length === 0;
+			});
+		}
+
+		this.setState({
+			countries: selectCountries || fullCountries
+		}, function () {
+			var selected = _this3.state.selected;
+
+
+			if (selected && !_this3.state.countries.includes(selected)) {
+				_this3.setState({ selected: null });
+			}
+		});
+	};
+
+	ReactFlagsSelect.prototype.componentDidMount = function componentDidMount() {
+		this.setCountries();
+		!this.props.disabled && window.addEventListener("click", this.closeOptions);
+	};
+
+	ReactFlagsSelect.prototype.componentDidUpdate = function componentDidUpdate(prevProps) {
+		if (prevProps.countries !== this.props.countries || prevProps.blackList !== this.props.blackList) {
+			this.setCountries();
+		}
+	};
+
+	ReactFlagsSelect.prototype.componentWillUnmount = function componentWillUnmount() {
+		!this.props.disabled && window.removeEventListener("click", this.closeOptions);
+	};
+
+	ReactFlagsSelect.prototype.render = function render() {
+		var _this4 = this;
+
+		var isSelected = this.state.selected || this.state.defaultCountry;
+		var selectedSize = this.props.selectedSize;
+		var optionsSize = this.props.optionsSize;
+		var alignClass = this.props.alignOptions.toLowerCase() === 'left' ? 'to--left' : '';
+
+		return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+			'div',
+			{ className: 'flag-select ' + (this.props.className ? this.props.className : "") },
+			react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+				'button',
+				{
+					ref: 'selectedFlag',
+					style: { fontSize: selectedSize + 'px' },
+					className: 'flag-select__btn',
+					onClick: this.toggleOptions,
+					onKeyUp: function onKeyUp(evt) {
+						return _this4.toggleOptionsWithKeyboard(evt);
+					},
+					disabled: this.props.disabled,
+					id: 'select_flag_button',
+					type: this.props.buttonType,
+					'aria-haspopup': 'listbox',
+					'aria-expanded': this.state.openOptions,
+					'aria-labelledby': 'select_flag_button' },
+				isSelected && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+					'span',
+					{ className: 'flag-select__option flag-select__option--placeholder' },
+					react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('img', { className: 'flag-select__option__icon', src: __webpack_require__("./node_modules/react-flags-select/flags sync recursive ^\\.\\/.*\\.svg$")("./" + isSelected.toLowerCase() + ".svg"), alt: isSelected }),
+					this.props.showSelectedLabel && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+						'span',
+						{ className: 'flag-select__option__label' },
+						this.props.customLabels[isSelected] || _countries__WEBPACK_IMPORTED_MODULE_2__["default"][isSelected]
+					)
+				),
+				!isSelected && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+					'span',
+					{ className: 'flag-select__option flag-select__option--placeholder' },
+					this.props.placeholder
+				)
+			),
+			this.state.openOptions && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+				'ul',
+				{ tabIndex: '-1', role: 'listbox', ref: 'flagOptions', style: { fontSize: optionsSize + 'px' }, className: 'flag-select__options ' + alignClass },
+				this.props.searchable && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+					'div',
+					{ className: 'filterBox' },
+					react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('input', { type: 'text', placeholder: this.props.searchPlaceholder, ref: 'filterText', onChange: this.filterSearch })
+				),
+				(this.state.filter ? this.state.filteredCountries : this.state.countries).map(function (countryCode) {
+					return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+						'li',
+						{
+							key: countryCode,
+							role: 'option',
+							tabIndex: '0',
+							id: 'select_flag_' + countryCode,
+							className: 'flag-select__option ' + (_this4.props.showOptionLabel ? 'has-label' : ''),
+							onClick: function onClick() {
+								return _this4.onSelect(countryCode);
+							},
+							onKeyUp: function onKeyUp(evt) {
+								return _this4.onSelectWithKeyboard(evt, countryCode);
+							} },
+						react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+							'span',
+							{ style: { width: optionsSize + 'px', height: optionsSize + 'px' } },
+							react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('img', {
+								className: 'flag-select__option__icon',
+								alt: 'flag for ' + _countries__WEBPACK_IMPORTED_MODULE_2__["default"][countryCode],
+								src: __webpack_require__("./node_modules/react-flags-select/flags sync recursive ^\\.\\/.*\\.svg$")("./" + countryCode.toLowerCase() + ".svg") }),
+							_this4.props.showOptionLabel && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+								'span',
+								{ className: 'flag-select__option__label' },
+								_this4.props.customLabels[countryCode] || _countries__WEBPACK_IMPORTED_MODULE_2__["default"][countryCode]
+							)
+						)
+					);
+				})
+			)
+		);
+	};
+
+	return ReactFlagsSelect;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+ReactFlagsSelect.defaultProps = {
+	selectedSize: 16,
+	optionsSize: 14,
+	placeholder: "Select a country",
+	showSelectedLabel: true,
+	showOptionLabel: true,
+	alignOptions: "right",
+	customLabels: {},
+	disabled: false,
+	buttonType: "button",
+	blackList: false,
+	searchable: false,
+	searchPlaceholder: 'Search'
+};
+
+ReactFlagsSelect.propTypes =  true ? {
+	countries: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.array,
+	blackList: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+	customLabels: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object,
+	selectedSize: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
+	optionsSize: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number,
+	defaultCountry: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+	placeholder: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+	className: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+	showSelectedLabel: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+	showOptionLabel: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+	alignOptions: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+	onSelect: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+	disabled: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+	buttonType: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string,
+	searchable: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+	searchPlaceholder: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string
+} : undefined;
+
+/* harmony default export */ __webpack_exports__["default"] = (ReactFlagsSelect);
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags sync recursive ^\\.\\/.*\\.svg$":
+/*!******************************************************************!*\
+  !*** ./node_modules/react-flags-select/flags sync ^\.\/.*\.svg$ ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./ad.svg": "./node_modules/react-flags-select/flags/ad.svg",
+	"./ae.svg": "./node_modules/react-flags-select/flags/ae.svg",
+	"./af.svg": "./node_modules/react-flags-select/flags/af.svg",
+	"./ag.svg": "./node_modules/react-flags-select/flags/ag.svg",
+	"./ai.svg": "./node_modules/react-flags-select/flags/ai.svg",
+	"./al.svg": "./node_modules/react-flags-select/flags/al.svg",
+	"./am.svg": "./node_modules/react-flags-select/flags/am.svg",
+	"./ao.svg": "./node_modules/react-flags-select/flags/ao.svg",
+	"./ar.svg": "./node_modules/react-flags-select/flags/ar.svg",
+	"./as.svg": "./node_modules/react-flags-select/flags/as.svg",
+	"./at.svg": "./node_modules/react-flags-select/flags/at.svg",
+	"./au.svg": "./node_modules/react-flags-select/flags/au.svg",
+	"./aw.svg": "./node_modules/react-flags-select/flags/aw.svg",
+	"./az.svg": "./node_modules/react-flags-select/flags/az.svg",
+	"./ba.svg": "./node_modules/react-flags-select/flags/ba.svg",
+	"./bb.svg": "./node_modules/react-flags-select/flags/bb.svg",
+	"./bd.svg": "./node_modules/react-flags-select/flags/bd.svg",
+	"./be.svg": "./node_modules/react-flags-select/flags/be.svg",
+	"./bf.svg": "./node_modules/react-flags-select/flags/bf.svg",
+	"./bg.svg": "./node_modules/react-flags-select/flags/bg.svg",
+	"./bh.svg": "./node_modules/react-flags-select/flags/bh.svg",
+	"./bi.svg": "./node_modules/react-flags-select/flags/bi.svg",
+	"./bj.svg": "./node_modules/react-flags-select/flags/bj.svg",
+	"./bm.svg": "./node_modules/react-flags-select/flags/bm.svg",
+	"./bo.svg": "./node_modules/react-flags-select/flags/bo.svg",
+	"./br.svg": "./node_modules/react-flags-select/flags/br.svg",
+	"./bs.svg": "./node_modules/react-flags-select/flags/bs.svg",
+	"./bt.svg": "./node_modules/react-flags-select/flags/bt.svg",
+	"./bw.svg": "./node_modules/react-flags-select/flags/bw.svg",
+	"./by.svg": "./node_modules/react-flags-select/flags/by.svg",
+	"./bz.svg": "./node_modules/react-flags-select/flags/bz.svg",
+	"./ca.svg": "./node_modules/react-flags-select/flags/ca.svg",
+	"./cd.svg": "./node_modules/react-flags-select/flags/cd.svg",
+	"./cf.svg": "./node_modules/react-flags-select/flags/cf.svg",
+	"./cg.svg": "./node_modules/react-flags-select/flags/cg.svg",
+	"./ch.svg": "./node_modules/react-flags-select/flags/ch.svg",
+	"./ci.svg": "./node_modules/react-flags-select/flags/ci.svg",
+	"./ck.svg": "./node_modules/react-flags-select/flags/ck.svg",
+	"./cl.svg": "./node_modules/react-flags-select/flags/cl.svg",
+	"./cm.svg": "./node_modules/react-flags-select/flags/cm.svg",
+	"./cn.svg": "./node_modules/react-flags-select/flags/cn.svg",
+	"./co.svg": "./node_modules/react-flags-select/flags/co.svg",
+	"./cr.svg": "./node_modules/react-flags-select/flags/cr.svg",
+	"./cu.svg": "./node_modules/react-flags-select/flags/cu.svg",
+	"./cv.svg": "./node_modules/react-flags-select/flags/cv.svg",
+	"./cw.svg": "./node_modules/react-flags-select/flags/cw.svg",
+	"./cy.svg": "./node_modules/react-flags-select/flags/cy.svg",
+	"./cz.svg": "./node_modules/react-flags-select/flags/cz.svg",
+	"./de.svg": "./node_modules/react-flags-select/flags/de.svg",
+	"./dj.svg": "./node_modules/react-flags-select/flags/dj.svg",
+	"./dk.svg": "./node_modules/react-flags-select/flags/dk.svg",
+	"./dm.svg": "./node_modules/react-flags-select/flags/dm.svg",
+	"./do.svg": "./node_modules/react-flags-select/flags/do.svg",
+	"./dz.svg": "./node_modules/react-flags-select/flags/dz.svg",
+	"./ec.svg": "./node_modules/react-flags-select/flags/ec.svg",
+	"./ee.svg": "./node_modules/react-flags-select/flags/ee.svg",
+	"./eg.svg": "./node_modules/react-flags-select/flags/eg.svg",
+	"./er.svg": "./node_modules/react-flags-select/flags/er.svg",
+	"./es.svg": "./node_modules/react-flags-select/flags/es.svg",
+	"./et.svg": "./node_modules/react-flags-select/flags/et.svg",
+	"./fi.svg": "./node_modules/react-flags-select/flags/fi.svg",
+	"./fj.svg": "./node_modules/react-flags-select/flags/fj.svg",
+	"./fk.svg": "./node_modules/react-flags-select/flags/fk.svg",
+	"./fm.svg": "./node_modules/react-flags-select/flags/fm.svg",
+	"./fo.svg": "./node_modules/react-flags-select/flags/fo.svg",
+	"./fr.svg": "./node_modules/react-flags-select/flags/fr.svg",
+	"./ga.svg": "./node_modules/react-flags-select/flags/ga.svg",
+	"./gb.svg": "./node_modules/react-flags-select/flags/gb.svg",
+	"./gd.svg": "./node_modules/react-flags-select/flags/gd.svg",
+	"./ge.svg": "./node_modules/react-flags-select/flags/ge.svg",
+	"./gg.svg": "./node_modules/react-flags-select/flags/gg.svg",
+	"./gh.svg": "./node_modules/react-flags-select/flags/gh.svg",
+	"./gi.svg": "./node_modules/react-flags-select/flags/gi.svg",
+	"./gl.svg": "./node_modules/react-flags-select/flags/gl.svg",
+	"./gm.svg": "./node_modules/react-flags-select/flags/gm.svg",
+	"./gn.svg": "./node_modules/react-flags-select/flags/gn.svg",
+	"./gq.svg": "./node_modules/react-flags-select/flags/gq.svg",
+	"./gr.svg": "./node_modules/react-flags-select/flags/gr.svg",
+	"./gt.svg": "./node_modules/react-flags-select/flags/gt.svg",
+	"./gu.svg": "./node_modules/react-flags-select/flags/gu.svg",
+	"./gw.svg": "./node_modules/react-flags-select/flags/gw.svg",
+	"./hk.svg": "./node_modules/react-flags-select/flags/hk.svg",
+	"./hn.svg": "./node_modules/react-flags-select/flags/hn.svg",
+	"./hr.svg": "./node_modules/react-flags-select/flags/hr.svg",
+	"./ht.svg": "./node_modules/react-flags-select/flags/ht.svg",
+	"./hu.svg": "./node_modules/react-flags-select/flags/hu.svg",
+	"./id.svg": "./node_modules/react-flags-select/flags/id.svg",
+	"./ie.svg": "./node_modules/react-flags-select/flags/ie.svg",
+	"./il.svg": "./node_modules/react-flags-select/flags/il.svg",
+	"./im.svg": "./node_modules/react-flags-select/flags/im.svg",
+	"./in.svg": "./node_modules/react-flags-select/flags/in.svg",
+	"./io.svg": "./node_modules/react-flags-select/flags/io.svg",
+	"./iq.svg": "./node_modules/react-flags-select/flags/iq.svg",
+	"./ir.svg": "./node_modules/react-flags-select/flags/ir.svg",
+	"./is.svg": "./node_modules/react-flags-select/flags/is.svg",
+	"./it.svg": "./node_modules/react-flags-select/flags/it.svg",
+	"./je.svg": "./node_modules/react-flags-select/flags/je.svg",
+	"./jm.svg": "./node_modules/react-flags-select/flags/jm.svg",
+	"./jo.svg": "./node_modules/react-flags-select/flags/jo.svg",
+	"./jp.svg": "./node_modules/react-flags-select/flags/jp.svg",
+	"./ke.svg": "./node_modules/react-flags-select/flags/ke.svg",
+	"./kg.svg": "./node_modules/react-flags-select/flags/kg.svg",
+	"./kh.svg": "./node_modules/react-flags-select/flags/kh.svg",
+	"./ki.svg": "./node_modules/react-flags-select/flags/ki.svg",
+	"./km.svg": "./node_modules/react-flags-select/flags/km.svg",
+	"./kn.svg": "./node_modules/react-flags-select/flags/kn.svg",
+	"./kp.svg": "./node_modules/react-flags-select/flags/kp.svg",
+	"./kr.svg": "./node_modules/react-flags-select/flags/kr.svg",
+	"./kw.svg": "./node_modules/react-flags-select/flags/kw.svg",
+	"./ky.svg": "./node_modules/react-flags-select/flags/ky.svg",
+	"./kz.svg": "./node_modules/react-flags-select/flags/kz.svg",
+	"./la.svg": "./node_modules/react-flags-select/flags/la.svg",
+	"./lb.svg": "./node_modules/react-flags-select/flags/lb.svg",
+	"./li.svg": "./node_modules/react-flags-select/flags/li.svg",
+	"./lk.svg": "./node_modules/react-flags-select/flags/lk.svg",
+	"./lr.svg": "./node_modules/react-flags-select/flags/lr.svg",
+	"./ls.svg": "./node_modules/react-flags-select/flags/ls.svg",
+	"./lt.svg": "./node_modules/react-flags-select/flags/lt.svg",
+	"./lu.svg": "./node_modules/react-flags-select/flags/lu.svg",
+	"./lv.svg": "./node_modules/react-flags-select/flags/lv.svg",
+	"./ly.svg": "./node_modules/react-flags-select/flags/ly.svg",
+	"./ma.svg": "./node_modules/react-flags-select/flags/ma.svg",
+	"./mc.svg": "./node_modules/react-flags-select/flags/mc.svg",
+	"./md.svg": "./node_modules/react-flags-select/flags/md.svg",
+	"./me.svg": "./node_modules/react-flags-select/flags/me.svg",
+	"./mg.svg": "./node_modules/react-flags-select/flags/mg.svg",
+	"./mh.svg": "./node_modules/react-flags-select/flags/mh.svg",
+	"./mk.svg": "./node_modules/react-flags-select/flags/mk.svg",
+	"./ml.svg": "./node_modules/react-flags-select/flags/ml.svg",
+	"./mm.svg": "./node_modules/react-flags-select/flags/mm.svg",
+	"./mn.svg": "./node_modules/react-flags-select/flags/mn.svg",
+	"./mo.svg": "./node_modules/react-flags-select/flags/mo.svg",
+	"./mp.svg": "./node_modules/react-flags-select/flags/mp.svg",
+	"./mq.svg": "./node_modules/react-flags-select/flags/mq.svg",
+	"./mr.svg": "./node_modules/react-flags-select/flags/mr.svg",
+	"./ms.svg": "./node_modules/react-flags-select/flags/ms.svg",
+	"./mt.svg": "./node_modules/react-flags-select/flags/mt.svg",
+	"./mu.svg": "./node_modules/react-flags-select/flags/mu.svg",
+	"./mv.svg": "./node_modules/react-flags-select/flags/mv.svg",
+	"./mw.svg": "./node_modules/react-flags-select/flags/mw.svg",
+	"./mx.svg": "./node_modules/react-flags-select/flags/mx.svg",
+	"./my.svg": "./node_modules/react-flags-select/flags/my.svg",
+	"./mz.svg": "./node_modules/react-flags-select/flags/mz.svg",
+	"./na.svg": "./node_modules/react-flags-select/flags/na.svg",
+	"./nato.svg": "./node_modules/react-flags-select/flags/nato.svg",
+	"./ne.svg": "./node_modules/react-flags-select/flags/ne.svg",
+	"./nf.svg": "./node_modules/react-flags-select/flags/nf.svg",
+	"./ng.svg": "./node_modules/react-flags-select/flags/ng.svg",
+	"./ni.svg": "./node_modules/react-flags-select/flags/ni.svg",
+	"./nl.svg": "./node_modules/react-flags-select/flags/nl.svg",
+	"./no.svg": "./node_modules/react-flags-select/flags/no.svg",
+	"./np.svg": "./node_modules/react-flags-select/flags/np.svg",
+	"./nr.svg": "./node_modules/react-flags-select/flags/nr.svg",
+	"./nu.svg": "./node_modules/react-flags-select/flags/nu.svg",
+	"./nz.svg": "./node_modules/react-flags-select/flags/nz.svg",
+	"./om.svg": "./node_modules/react-flags-select/flags/om.svg",
+	"./pa.svg": "./node_modules/react-flags-select/flags/pa.svg",
+	"./pe.svg": "./node_modules/react-flags-select/flags/pe.svg",
+	"./pf.svg": "./node_modules/react-flags-select/flags/pf.svg",
+	"./pg.svg": "./node_modules/react-flags-select/flags/pg.svg",
+	"./ph.svg": "./node_modules/react-flags-select/flags/ph.svg",
+	"./pk.svg": "./node_modules/react-flags-select/flags/pk.svg",
+	"./pl.svg": "./node_modules/react-flags-select/flags/pl.svg",
+	"./pn.svg": "./node_modules/react-flags-select/flags/pn.svg",
+	"./pr.svg": "./node_modules/react-flags-select/flags/pr.svg",
+	"./ps.svg": "./node_modules/react-flags-select/flags/ps.svg",
+	"./pt.svg": "./node_modules/react-flags-select/flags/pt.svg",
+	"./pw.svg": "./node_modules/react-flags-select/flags/pw.svg",
+	"./py.svg": "./node_modules/react-flags-select/flags/py.svg",
+	"./qa.svg": "./node_modules/react-flags-select/flags/qa.svg",
+	"./ro.svg": "./node_modules/react-flags-select/flags/ro.svg",
+	"./rs.svg": "./node_modules/react-flags-select/flags/rs.svg",
+	"./ru.svg": "./node_modules/react-flags-select/flags/ru.svg",
+	"./rw.svg": "./node_modules/react-flags-select/flags/rw.svg",
+	"./sa.svg": "./node_modules/react-flags-select/flags/sa.svg",
+	"./sb.svg": "./node_modules/react-flags-select/flags/sb.svg",
+	"./sc.svg": "./node_modules/react-flags-select/flags/sc.svg",
+	"./sd.svg": "./node_modules/react-flags-select/flags/sd.svg",
+	"./se.svg": "./node_modules/react-flags-select/flags/se.svg",
+	"./sg.svg": "./node_modules/react-flags-select/flags/sg.svg",
+	"./si.svg": "./node_modules/react-flags-select/flags/si.svg",
+	"./sk.svg": "./node_modules/react-flags-select/flags/sk.svg",
+	"./sl.svg": "./node_modules/react-flags-select/flags/sl.svg",
+	"./sm.svg": "./node_modules/react-flags-select/flags/sm.svg",
+	"./sn.svg": "./node_modules/react-flags-select/flags/sn.svg",
+	"./so.svg": "./node_modules/react-flags-select/flags/so.svg",
+	"./sr.svg": "./node_modules/react-flags-select/flags/sr.svg",
+	"./ss.svg": "./node_modules/react-flags-select/flags/ss.svg",
+	"./st.svg": "./node_modules/react-flags-select/flags/st.svg",
+	"./sv.svg": "./node_modules/react-flags-select/flags/sv.svg",
+	"./sx.svg": "./node_modules/react-flags-select/flags/sx.svg",
+	"./sy.svg": "./node_modules/react-flags-select/flags/sy.svg",
+	"./sz.svg": "./node_modules/react-flags-select/flags/sz.svg",
+	"./tc.svg": "./node_modules/react-flags-select/flags/tc.svg",
+	"./td.svg": "./node_modules/react-flags-select/flags/td.svg",
+	"./tg.svg": "./node_modules/react-flags-select/flags/tg.svg",
+	"./th.svg": "./node_modules/react-flags-select/flags/th.svg",
+	"./tibet.svg": "./node_modules/react-flags-select/flags/tibet.svg",
+	"./tj.svg": "./node_modules/react-flags-select/flags/tj.svg",
+	"./tk.svg": "./node_modules/react-flags-select/flags/tk.svg",
+	"./tm.svg": "./node_modules/react-flags-select/flags/tm.svg",
+	"./tn.svg": "./node_modules/react-flags-select/flags/tn.svg",
+	"./to.svg": "./node_modules/react-flags-select/flags/to.svg",
+	"./tr.svg": "./node_modules/react-flags-select/flags/tr.svg",
+	"./tt.svg": "./node_modules/react-flags-select/flags/tt.svg",
+	"./tv.svg": "./node_modules/react-flags-select/flags/tv.svg",
+	"./tw.svg": "./node_modules/react-flags-select/flags/tw.svg",
+	"./tz.svg": "./node_modules/react-flags-select/flags/tz.svg",
+	"./ua.svg": "./node_modules/react-flags-select/flags/ua.svg",
+	"./ug.svg": "./node_modules/react-flags-select/flags/ug.svg",
+	"./us.svg": "./node_modules/react-flags-select/flags/us.svg",
+	"./uy.svg": "./node_modules/react-flags-select/flags/uy.svg",
+	"./uz.svg": "./node_modules/react-flags-select/flags/uz.svg",
+	"./ve.svg": "./node_modules/react-flags-select/flags/ve.svg",
+	"./vi.svg": "./node_modules/react-flags-select/flags/vi.svg",
+	"./vn.svg": "./node_modules/react-flags-select/flags/vn.svg",
+	"./vu.svg": "./node_modules/react-flags-select/flags/vu.svg",
+	"./ws.svg": "./node_modules/react-flags-select/flags/ws.svg",
+	"./ye.svg": "./node_modules/react-flags-select/flags/ye.svg",
+	"./za.svg": "./node_modules/react-flags-select/flags/za.svg",
+	"./zm.svg": "./node_modules/react-flags-select/flags/zm.svg",
+	"./zw.svg": "./node_modules/react-flags-select/flags/zw.svg"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "./node_modules/react-flags-select/flags sync recursive ^\\.\\/.*\\.svg$";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ad.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ad.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ad.svg?2f0263e0853b6f2c798368f73ac87cde";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ae.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ae.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ae.svg?d038b7ed641db07b673b255136b21993";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/af.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/af.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/af.svg?14c45ecc69136ef689a20e7b456593f9";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ag.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ag.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ag.svg?8bd07b264ee50f6e93dac01925d8b5bb";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ai.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ai.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ai.svg?417419b9bb5ab990118e6c27e1fe04df";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/al.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/al.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/al.svg?c521e40e04e61f31e814e29ccc5e2d78";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/am.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/am.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/am.svg?8b42c952b8e5e282a7bf70ef524118be";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ao.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ao.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ao.svg?2490f4bdc9f6ba4a049e56bbe00dfc9e";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ar.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ar.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ar.svg?4f098aa50b53a576c2588df26798e978";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/as.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/as.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/as.svg?e0de455073fcd389052034d7bdf4b485";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/at.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/at.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/at.svg?e006579c101b01447e2d2d868c167d4e";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/au.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/au.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/au.svg?ecef4318677ec5821f095be51f2c3c48";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/aw.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/aw.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/aw.svg?1eb0d2cdc19a278d33ad0b55329d9656";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/az.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/az.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/az.svg?fa9c079d723e259450fc5b3d1501a2e9";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ba.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ba.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ba.svg?f27ae1eae0f22cf3cb37e46611dcd408";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/bb.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/bb.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/bb.svg?d35efe6b08e42a61ae1e861bf5eb5f1b";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/bd.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/bd.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/bd.svg?6ab6bba36765f4668f381986a5dde4b0";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/be.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/be.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/be.svg?8e6fc60fa23bf9fdace300a03fcc5091";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/bf.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/bf.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/bf.svg?a6dec3ee26631e98263fc111d94a0f23";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/bg.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/bg.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/bg.svg?8a0211a85f69e64609f6f5169bad02ca";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/bh.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/bh.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/bh.svg?c47c4db191f0271c41f3ccf30666968d";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/bi.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/bi.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/bi.svg?21c1ff1f4bebbdf2f08aa35a544c1261";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/bj.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/bj.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/bj.svg?aa6d71d381196460e1d1ce83b871645a";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/bm.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/bm.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/bm.svg?e28367a1f8ab84e9762806a13169b793";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/bo.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/bo.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/bo.svg?197a9d2042c864c30cc3620f004443bb";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/br.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/br.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/br.svg?8909bc2f8e7e1074b02423dc6623dc2c";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/bs.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/bs.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/bs.svg?cbc1054504e15571bc38756094256810";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/bt.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/bt.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/bt.svg?f5f3492232cfd6196a2764887e68f0b6";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/bw.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/bw.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/bw.svg?6c2cdb0c06e00cdf4ddf483396b33244";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/by.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/by.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/by.svg?ad33ee06faf23c06d0a6b208a5148c56";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/bz.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/bz.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/bz.svg?c6b9ed7bc99a7a4c317e05ed301999b7";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ca.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ca.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ca.svg?ea6532d7b9cda969352affc0cc5a7ffc";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/cd.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/cd.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/cd.svg?eaf9c22471a60304940d9acce3f1314d";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/cf.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/cf.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/cf.svg?037865b5c116397f4a8c9d969c8de727";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/cg.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/cg.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/cg.svg?c2f55ad5ac783bbb7e40cd0d212728d9";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ch.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ch.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ch.svg?f0617e6d1572194298e4bc6886677275";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ci.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ci.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ci.svg?02796bef5bf42f89edf80fd268f77395";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ck.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ck.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ck.svg?0e4eaabf8f668c922f676fe07cbeaeaf";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/cl.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/cl.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/cl.svg?dfefa273f01ddbd6341785f8d1d6a5e7";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/cm.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/cm.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/cm.svg?4982702b39b79a43c96ead01f9cc6510";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/cn.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/cn.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/cn.svg?ce4c8db3eda99fd12c799cc3def054ec";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/co.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/co.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/co.svg?714d1724a2b3323651e3a4d380f644d6";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/cr.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/cr.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/cr.svg?46b19aa9b98b0ef48c79e647016ab886";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/cu.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/cu.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/cu.svg?7797b415b2ef9d2eccbd67c6a8b133c7";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/cv.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/cv.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/cv.svg?10bc0622c831aac134b1003cd26c846a";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/cw.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/cw.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/cw.svg?93e442a035a9ef88549ae21fe50ecfad";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/cy.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/cy.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/cy.svg?59aa3a041705c3ad5c1cd6c0ea3f8ea3";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/cz.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/cz.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/cz.svg?072878bc70d214fba1acda6ac3fcd23d";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/de.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/de.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/de.svg?b55ae913a982896139703572a8520de9";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/dj.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/dj.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/dj.svg?556d36eab84f856583904c8244db2cf9";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/dk.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/dk.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/dk.svg?85d2764498f13edbffd104c464a22b6a";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/dm.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/dm.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/dm.svg?eecccf82442b919a15c457be4a2c1b22";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/do.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/do.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/do.svg?48badacfa970821032ebea86fb823213";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/dz.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/dz.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/dz.svg?29c9e0c54a0d641d1cfe0579538a2942";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ec.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ec.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ec.svg?ca34fc752115caa19ae433e41aa73a5f";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ee.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ee.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ee.svg?10148440221da3f095e3d73905880661";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/eg.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/eg.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/eg.svg?e1ba2666aa891c8824eacdd95559ec4d";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/er.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/er.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/er.svg?ed8466e00c6fe3db1fc5efedd989ec25";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/es.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/es.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/es.svg?e6a28e060cab0941e34115ae98196fbc";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/et.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/et.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/et.svg?c788799057c79f1962c2ef6a233f0f43";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/fi.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/fi.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/fi.svg?1b29841536ce71365e3043bcfb8481b6";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/fj.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/fj.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/fj.svg?49f9fa66b09ebc4d201a34c1aee218da";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/fk.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/fk.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/fk.svg?9144425b215d06dc81c5bff8de72bce6";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/fm.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/fm.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/fm.svg?1d9aff75f14e220de9d479d011c60b11";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/fo.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/fo.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/fo.svg?76d76579677aafe9c87f45d3bf65a5a7";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/fr.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/fr.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/fr.svg?0846f86ef6c102ccae38202233181418";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ga.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ga.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ga.svg?f2442ae08584b537efd2c09e5be83531";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/gb.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/gb.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/gb.svg?4df1e7ea39eff61c0cfc549168db9cc8";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/gd.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/gd.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/gd.svg?03bd9ec862668115356d091f9819ed80";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ge.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ge.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ge.svg?080272a78753e98cb4fb91f6632aac0c";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/gg.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/gg.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/gg.svg?6d36584f4205543deea500c8cd5bfde2";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/gh.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/gh.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/gh.svg?d9949341cb94c7e68380133587722557";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/gi.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/gi.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/gi.svg?8bab78ca93b005f295822804b8df244c";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/gl.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/gl.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/gl.svg?86f5655938c40b4e402fd7248f4085a4";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/gm.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/gm.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/gm.svg?814fdc51e9461a52e44292d6520d74c7";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/gn.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/gn.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/gn.svg?6bab8b1e44026e1894368b3b4ff6ed1d";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/gq.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/gq.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/gq.svg?3c96f718967249e267ccb21f44c42340";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/gr.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/gr.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/gr.svg?be0d63c323c808f02c8bd99f787cc556";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/gt.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/gt.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/gt.svg?e2a8f7ec1d3c521229198e76d00e817f";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/gu.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/gu.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/gu.svg?037043f8dcdf01c5f7f39b256c37cd80";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/gw.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/gw.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/gw.svg?47fd8d67bbde73f7a41e707682b07fac";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/hk.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/hk.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/hk.svg?bb078da163b527e5f98a11b1d7524919";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/hn.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/hn.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/hn.svg?ca21772ccd0f0d39dcdd79904a6005e7";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/hr.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/hr.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/hr.svg?5dbad14f458e1cb950a582ad2c710ff5";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ht.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ht.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ht.svg?b269aba7d4cd009962d9cde279fdac64";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/hu.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/hu.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/hu.svg?70eee4ddf711fa9691203ce564952608";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/id.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/id.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/id.svg?6b254ad7c2b9d7209ab342341f256bda";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ie.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ie.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ie.svg?116f300a4e51d885885102778a3a1a89";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/il.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/il.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/il.svg?8cfa7ba12f0b8a7f225c60e91c757f5e";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/im.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/im.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/im.svg?3e276e7d8bcbc157eebf3c34bec19fe5";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/in.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/in.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/in.svg?7fdfdb85c2cbf35c4d8a8e30e27cbc92";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/io.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/io.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/io.svg?aecf8a976f9550e8f7b2e2c8068014e9";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/iq.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/iq.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/iq.svg?a1520bca28df046942a92d445ed44c38";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ir.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ir.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ir.svg?7c8e6cb3156702fe6be30d30425a2a87";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/is.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/is.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/is.svg?1eecf71d700cb3f18b8188c00de9c181";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/it.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/it.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/it.svg?b46f8792f1641fc6927137c0f162e46c";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/je.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/je.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/je.svg?55d15529888cfcb15cb52b8b93ad2f1b";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/jm.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/jm.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/jm.svg?2fbfcbf15ba4812ecc134b7913c0f809";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/jo.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/jo.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/jo.svg?8f719a67a528c19790f907b7f93acdc4";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/jp.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/jp.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/jp.svg?4187b1d40dd02e84f908f0b2c9d24236";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ke.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ke.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ke.svg?732c2b397511b291abeb188dec746a38";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/kg.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/kg.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/kg.svg?99318e86009dfc5243eb92721b93d70c";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/kh.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/kh.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/kh.svg?ae60a7f636411c3f57dd5a964c8221bb";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ki.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ki.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ki.svg?80e19e9bf279ba4b868cbec11a13849a";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/km.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/km.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/km.svg?7fdeb4b60e4def05a0673545c5a5dd24";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/kn.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/kn.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/kn.svg?6819c37bf38fb00b773608eb51b91bf6";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/kp.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/kp.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/kp.svg?69b9a9751ad3f942b3254a29a9c5d5be";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/kr.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/kr.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/kr.svg?5adfd676d31e3b286f072b71c639378c";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/kw.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/kw.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/kw.svg?398bcf751f8e43722092f9b0f10515c9";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ky.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ky.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ky.svg?b7acd796583d3b0eb1c89334c6761a94";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/kz.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/kz.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/kz.svg?130a3907b1b872f554cc897ad767aa70";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/la.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/la.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/la.svg?3d622932923c42d8689bf02015788a87";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/lb.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/lb.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/lb.svg?5e6ca7227e00e4baaaa70a01e6b5ae18";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/li.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/li.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/li.svg?64c4108b7211e2356f9258b35aaee81d";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/lk.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/lk.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/lk.svg?d5cf9401eb1cf775f0923c6872eff30b";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/lr.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/lr.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/lr.svg?7f661fb0cc9de268c5304e5f754a0f01";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ls.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ls.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ls.svg?7528237237f645e204dcd54ef08f0c79";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/lt.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/lt.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/lt.svg?bc4254416c1598f3b876634f9bd301b7";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/lu.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/lu.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/lu.svg?f8137a63210014accfc51d72989bdbf7";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/lv.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/lv.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/lv.svg?d24278f83921e0d7f6832efe37a55d0e";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ly.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ly.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ly.svg?2178201ba5709d7caa1fa7527d883a20";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ma.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ma.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ma.svg?68c6eafb3e4cf2035dc9bd8118a371cc";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/mc.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/mc.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/mc.svg?a6ed56abb83da72636cd48dbf1213fa3";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/md.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/md.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/md.svg?d09118bed729a0767548a68afc7e6d81";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/me.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/me.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/me.svg?0400ec95c6755bd077fff650bd8e32bc";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/mg.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/mg.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/mg.svg?ab73662ef077b51ce49e1f890479f219";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/mh.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/mh.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/mh.svg?969819c2742f10e771d1223fbc74dc6b";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/mk.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/mk.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/mk.svg?c62e58182c822bdfde3f570b8b7aa008";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ml.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ml.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ml.svg?c931aaa189afa74fe94ceeb2a96d7acc";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/mm.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/mm.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/mm.svg?386487d6f353578e4aa71d865add7068";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/mn.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/mn.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/mn.svg?b2185c1f22dd3d91140ee15771c19bab";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/mo.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/mo.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/mo.svg?59c91c04aa040e60c908076f98fcb88e";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/mp.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/mp.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/mp.svg?7e3550d74cb0379fee19ce084858abf3";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/mq.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/mq.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/mq.svg?61a53cf5d503e731ff4136c9d1dbdee4";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/mr.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/mr.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/mr.svg?cb62979151515ad6d7b5d15a2c841f6b";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ms.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ms.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ms.svg?cbd3f274eaf55565f3015e3e6b9a9479";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/mt.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/mt.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/mt.svg?dd04a6973ff46652227d4691be00d98e";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/mu.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/mu.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/mu.svg?8400b4ab760a6e3b6b917b1243f83e93";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/mv.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/mv.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/mv.svg?6ef586428bfd6dcf9f44e1660a452e7a";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/mw.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/mw.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/mw.svg?3a771f57bfe922d66ac2f239bf7f6b03";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/mx.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/mx.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/mx.svg?434d6364f29c9e18ba5ff09fb081128c";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/my.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/my.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/my.svg?cd942bda71b2fbefa3957ea414e48b65";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/mz.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/mz.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/mz.svg?aff3b04af4ebac602e243e79fe4333f7";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/na.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/na.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/na.svg?e60de66385b16009fcb5dfa598e13a50";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/nato.svg":
+/*!********************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/nato.svg ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/nato.svg?0ade7442ebd6579de6b03641681ed1c5";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ne.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ne.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ne.svg?13e02dc692f1ae62cae90b7c56cebd47";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/nf.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/nf.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/nf.svg?8b6629d91236f5d18d9c6ef78612c6e1";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ng.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ng.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ng.svg?dda0e5c84f1d80b117fb200dd08a0021";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ni.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ni.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ni.svg?87480e3d44c018beab79dd61ccb8b5df";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/nl.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/nl.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/nl.svg?4daecacbf81009028828c8b63cdebfb8";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/no.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/no.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/no.svg?d3ab6c2834d8cd2715fedcb2771b8ecf";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/np.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/np.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/np.svg?9f2d8bc5fc663316bf9f6cda104aca6e";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/nr.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/nr.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/nr.svg?a00df6c7c2807376a6e12ff0ff72478b";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/nu.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/nu.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/nu.svg?4d01f4d617b31034796186e2ec14cfab";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/nz.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/nz.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/nz.svg?6bb1f1bd2e0df838b93f3c6692d3c45d";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/om.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/om.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/om.svg?289c4ffe31e0b84ecfc69e42d91bda6b";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/pa.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/pa.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/pa.svg?0b468e395103cc0594b0daed90fbed0d";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/pe.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/pe.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/pe.svg?20bd6f7b3e2b12f56556a98412af6ecc";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/pf.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/pf.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/pf.svg?1398e1c87dfe19af92fa2db41f6b78ec";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/pg.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/pg.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/pg.svg?779acb7331dafc5407baf23b3f491271";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ph.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ph.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ph.svg?ba51f2ba424c001fc34cb7a2ee050571";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/pk.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/pk.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/pk.svg?c519e9b1bae09ee95355e5e35bcd1d0e";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/pl.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/pl.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/pl.svg?f6afdb6282dbc143f635c20037a9728e";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/pn.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/pn.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/pn.svg?250c320b86c35d0dd6a9038c6f7039b4";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/pr.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/pr.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/pr.svg?7477154a0cf29d7c66f4d4e43a09cd53";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ps.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ps.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ps.svg?33a2122adcb1d83a3ddac036db450d0d";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/pt.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/pt.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/pt.svg?55a651f808fedde314286a00cec23e78";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/pw.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/pw.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/pw.svg?667ce732707efae02e07f118c7cb6e39";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/py.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/py.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/py.svg?1a604331bdbe71a860e6da96cf4c4693";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/qa.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/qa.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/qa.svg?b1303a153be1bfe3153c843dc1b251b7";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ro.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ro.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ro.svg?583d46885330f9689ef73462d82f5a2e";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/rs.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/rs.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/rs.svg?eb3be364f4870d574be35ad83e1be820";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ru.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ru.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ru.svg?4336677bb1fbd65733809573bb256682";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/rw.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/rw.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/rw.svg?b586ef696d05d86f3134d2dbb1533672";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/sa.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/sa.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/sa.svg?479bb907f17a17b69478443d24027a6c";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/sb.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/sb.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/sb.svg?40725ee9b822ec6f5ff60aff376ea674";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/sc.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/sc.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/sc.svg?74bd1af95f5aa121f40fe53fb08344a2";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/sd.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/sd.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/sd.svg?808944c35f7a3fba5e789e500f3cc056";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/se.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/se.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/se.svg?ea2a67f515d9992e998c6bc8a2199493";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/sg.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/sg.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/sg.svg?5e6527638858205ca0f576074c8c8f2f";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/si.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/si.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/si.svg?4279aabf6bd2e738498988419fe2e67e";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/sk.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/sk.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/sk.svg?e995322edc4aa2749ed9d34a21be69da";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/sl.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/sl.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/sl.svg?0ab96fdfe4e80b29767ffdf7c7e939fd";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/sm.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/sm.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/sm.svg?c4ee42b3c4beaeb81088bc5ceba19de8";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/sn.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/sn.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/sn.svg?1569aca0cb46b2ca655c964006c337de";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/so.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/so.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/so.svg?dc2fb9befc0991f247021eb226d3875a";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/sr.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/sr.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/sr.svg?a96b947d3e01d617afbb1d8d3ddb9ac0";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ss.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ss.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ss.svg?49471e3c27c0db5ad966532bd9059f13";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/st.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/st.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/st.svg?abdc56036d300ba07f70226de839e675";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/sv.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/sv.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/sv.svg?7aecb11535b343c812a0bad1be7b2867";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/sx.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/sx.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/sx.svg?c70e8d706231569d5cabbb0f674b70e4";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/sy.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/sy.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/sy.svg?6065fa1603db028d536d816207b2537f";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/sz.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/sz.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/sz.svg?3fd422e9ee9cbfa1a791999d380b1967";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/tc.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/tc.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/tc.svg?3886447add7caba05dd7b9f9910a15f2";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/td.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/td.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/td.svg?97c1759bef4ec5fc7a5b578543d31770";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/tg.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/tg.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/tg.svg?e0f4483533c48a7c0ede0109b5fbda5d";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/th.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/th.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/th.svg?5f831e47acb96985d8a8f7dea0065715";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/tibet.svg":
+/*!*********************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/tibet.svg ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/tibet.svg?3f00c818cbac4c1a5c0d0c68dbbf31d4";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/tj.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/tj.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/tj.svg?88ea306ff9923b46373b9c2fce39dc90";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/tk.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/tk.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/tk.svg?595812eb4c8e8e3752c683ea50dd3340";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/tm.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/tm.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/tm.svg?33f1c1cd801d785dabbe6c77a45f21c3";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/tn.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/tn.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/tn.svg?c17b985c33137f61b29fdec1b1ec9efb";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/to.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/to.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/to.svg?ec77d856b2ac7bd115f9d81dde8887e5";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/tr.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/tr.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/tr.svg?28b8c158347dba2fed728a76bc81ad0b";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/tt.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/tt.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/tt.svg?fbc6495cc65864e3c49a5947cd6e1b0c";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/tv.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/tv.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/tv.svg?eb5ef829d502fc08a2211c7a79b1cbf4";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/tw.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/tw.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/tw.svg?9374cc2926c2948d6fe65b95045fccca";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/tz.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/tz.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/tz.svg?ec5a26d3645c8bee4d17f49cf4066081";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ua.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ua.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ua.svg?1c23b8c9945e4fab0ad0631cacb0f20e";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ug.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ug.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ug.svg?e80e04132cc080dcc071da5f9e6eccc5";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/us.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/us.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/us.svg?fa563627097b131b0da1075bbd4a9cba";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/uy.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/uy.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/uy.svg?6afe5efa72239d92b911c923c95ecaf4";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/uz.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/uz.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/uz.svg?f32eacef6c921a7e25a16617757f5f7b";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ve.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ve.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ve.svg?89aac662cc303834cef7126ef4659570";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/vi.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/vi.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/vi.svg?9089b8e3e7a3c0ed474f01050b300fa8";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/vn.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/vn.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/vn.svg?3e303f7f120428c7caf219d1d3c8596a";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/vu.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/vu.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/vu.svg?3b3fcfb40964bb9cf13378ce93c3fc48";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ws.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ws.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ws.svg?6d92b2e4db64cdf8dd3deefd957be2c1";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/ye.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/ye.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/ye.svg?20c6e27ff9f778328c45c21c461c760e";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/za.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/za.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/za.svg?4b07683a3c129b75608aeb672541af5d";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/zm.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/zm.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/zm.svg?acad9df90b4ac790162442fe2de03af4";
+
+/***/ }),
+
+/***/ "./node_modules/react-flags-select/flags/zw.svg":
+/*!******************************************************!*\
+  !*** ./node_modules/react-flags-select/flags/zw.svg ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/react-flags-select/flags/zw.svg?bd54e200ac3229e3c318ff0816ad29ea";
+
+/***/ }),
+
 /***/ "./node_modules/react-is/cjs/react-is.development.js":
 /*!***********************************************************!*\
   !*** ./node_modules/react-is/cjs/react-is.development.js ***!
@@ -69613,6 +72981,515 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/lib/addStyles.js":
+/*!****************************************************!*\
+  !*** ./node_modules/style-loader/lib/addStyles.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getTarget = function (target, parent) {
+  if (parent){
+    return parent.querySelector(target);
+  }
+  return document.querySelector(target);
+};
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(target, parent) {
+                // If passing function in options, then use it for resolve "head" element.
+                // Useful for Shadow Root style i.e
+                // {
+                //   insertInto: function () { return document.querySelector("#foo").shadowRoot }
+                // }
+                if (typeof target === 'function') {
+                        return target();
+                }
+                if (typeof memo[target] === "undefined") {
+			var styleTarget = getTarget.call(this, target, parent);
+			// Special case to return head of iframe instead of iframe itself
+			if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+				try {
+					// This will throw an exception if access to iframe is blocked
+					// due to cross-origin restrictions
+					styleTarget = styleTarget.contentDocument.head;
+				} catch(e) {
+					styleTarget = null;
+				}
+			}
+			memo[target] = styleTarget;
+		}
+		return memo[target]
+	};
+})();
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(/*! ./urls */ "./node_modules/style-loader/lib/urls.js");
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+        if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
+		var nextSibling = getElement(options.insertAt.before, target);
+		target.insertBefore(style, nextSibling);
+	} else {
+		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+
+	if(options.attrs.nonce === undefined) {
+		var nonce = getNonce();
+		if (nonce) {
+			options.attrs.nonce = nonce;
+		}
+	}
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function getNonce() {
+	if (false) {}
+
+	return __webpack_require__.nc;
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = typeof options.transform === 'function'
+		 ? options.transform(obj.css) 
+		 : options.transform.default(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/urls.js":
+/*!***********************************************!*\
+  !*** ./node_modules/style-loader/lib/urls.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/tiny-invariant/dist/tiny-invariant.esm.js":
 /*!****************************************************************!*\
   !*** ./node_modules/tiny-invariant/dist/tiny-invariant.esm.js ***!
@@ -69893,6 +73770,36 @@ if (document.getElementById("root")) {
 
 /***/ }),
 
+/***/ "./resources/js/components/navbar/Navbar.css":
+/*!***************************************************!*\
+  !*** ./resources/js/components/navbar/Navbar.css ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/postcss-loader/src??ref--6-2!./Navbar.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/navbar/Navbar.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./resources/js/components/navbar/Navbar.js":
 /*!**************************************************!*\
   !*** ./resources/js/components/navbar/Navbar.js ***!
@@ -69905,16 +73812,57 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_flags_select__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-flags-select */ "./node_modules/react-flags-select/es/index.js");
+/* harmony import */ var react_flags_select_css_react_flags_select_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-flags-select/css/react-flags-select.css */ "./node_modules/react-flags-select/css/react-flags-select.css");
+/* harmony import */ var react_flags_select_css_react_flags_select_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_flags_select_css_react_flags_select_css__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Navbar_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Navbar.css */ "./resources/js/components/navbar/Navbar.css");
+/* harmony import */ var _Navbar_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_Navbar_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _storage_app_public_logo_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../storage/app/public/logo.svg */ "./storage/app/public/logo.svg");
+/* harmony import */ var _storage_app_public_logo_svg__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_storage_app_public_logo_svg__WEBPACK_IMPORTED_MODULE_5__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
 
 
 
 var Navbar = function Navbar() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("DE"),
+      _useState2 = _slicedToArray(_useState, 2),
+      lang = _useState2[0],
+      setLang = _useState2[1];
+
+  var onSelectFlag = function onSelectFlag(countryCode) {
+    setLang(countryCode);
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    console.log(lang);
+  }, [lang]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
     className: "navbar navbar-expand-lg navbar-light bg-light"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "navbar-brand",
     to: "/"
-  }, "Navbar"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    width: "200",
+    src: _storage_app_public_logo_svg__WEBPACK_IMPORTED_MODULE_5___default.a,
+    alt: "Logo"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "navbar-toggler",
     type: "button",
     "data-toggle": "collapse",
@@ -69925,54 +73873,43 @@ var Navbar = function Navbar() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "navbar-toggler-icon"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "choose-lang"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_flags_select__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    countries: ["GB", "FR", "DE", "IT", "BA"],
+    customLabels: {
+      GB: "EN-GB",
+      FR: "FR",
+      DE: "DE",
+      IT: "IT",
+      BA: "BA"
+    },
+    defaultCountry: lang,
+    onSelect: onSelectFlag
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "collapse navbar-collapse",
     id: "navbar"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-    className: "navbar-nav mr-auto"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "nav-item active"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "navbar-nav mx-auto"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
     className: "nav-link",
     to: "/"
-  }, "Home ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "sr-only"
-  }, "(current)"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "nav-item"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+  }, "Home"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
     className: "nav-link",
     to: "#"
-  }, "Link")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "nav-item dropdown"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-    className: "nav-link dropdown-toggle",
-    to: "#",
-    id: "navbarDropdown",
-    role: "button",
-    "data-toggle": "dropdown",
-    "aria-haspopup": "true",
-    "aria-expanded": "false"
-  }, "Dropdown"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "dropdown-menu",
-    "aria-labelledby": "navbarDropdown"
+  }, "Link"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+    className: "nav-link",
+    to: "#"
+  }, "Link"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+    className: "nav-link",
+    to: "#"
+  }, "Link"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "login"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    className: "dropdown-item",
-    to: "#"
-  }, "Action"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    className: "dropdown-item",
-    to: "#"
-  }, "Another action"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "dropdown-divider"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    className: "dropdown-item",
-    to: "#"
-  }, "Something else here"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "nav-item"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-    className: "nav-link disabled",
-    to: "#",
-    tabIndex: "-1",
-    "aria-disabled": "true"
-  }, "Disabled")))));
+    to: "/login"
+  }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/create-account",
+    className: "btn btn-danger btn-lg ml-3"
+  }, "Create my account"))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Navbar);
@@ -70010,6 +73947,17 @@ var Home = function Home() {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./storage/app/public/logo.svg":
+/*!*************************************!*\
+  !*** ./storage/app/public/logo.svg ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/logo.svg?bb3b6c15f3981179c76bb33630c86edd";
 
 /***/ }),
 

@@ -1,0 +1,6 @@
+.flag-select__option__label {
+    top: 7px;
+}
+.flag-select__btn:focus {
+    outline: none;
+}
