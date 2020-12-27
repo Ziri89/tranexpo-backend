@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
@@ -19,7 +20,7 @@ const Login = () => {
     }, [state]);
     return (
         <div className="login-form">
-            <h3 className="text-center text-danger pt-5">Login form</h3>
+            <h3 className="text-center text-danger pt-5">Login</h3>
             <div className="container">
                 <div
                     id="login-row"
@@ -28,9 +29,6 @@ const Login = () => {
                     <div id="login-column" className="col-md-6">
                         <div id="login-box" className="col-md-12">
                             <form id="login-form" className="form">
-                                <h3 className="text-center text-danger">
-                                    Login
-                                </h3>
                                 <div className="form-group">
                                     <label
                                         htmlFor="username"
@@ -92,9 +90,12 @@ const Login = () => {
                                     />
                                 </div>
                                 <div id="register-link" className="text-right">
-                                    <a href="#" className="text-danger">
+                                    <Link
+                                        to="/create-account"
+                                        className="text-danger"
+                                    >
                                         Register here
-                                    </a>
+                                    </Link>
                                 </div>
                             </form>
                         </div>
