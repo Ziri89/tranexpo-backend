@@ -4,6 +4,9 @@
 .flag-select__btn:focus {
     outline: none;
 }
+.flag-select__btn:after {
+    vertical-align: baseline;
+}
 
 @media screen and (max-width: 768px) {
     #navbar {

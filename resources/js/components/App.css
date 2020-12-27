@@ -1,0 +1,21 @@
+body {
+    font-size: 1.3rem;
+}
+.bg-danger {
+    background-color: #fc823c !important;
+}
+.text-danger {
+    color: #fc823c !important;
+}
+.btn-danger {
+    background-color: #fc823c !important;
+    border-color: #fc823c !important;
+}
+.btn-danger:hover {
+    background-color: #fc6107 !important;
+    border-color: #fc6107 !important;
+}
+a.text-danger:hover,
+a.text-danger:focus {
+    color: #fc6107 !important;
+}

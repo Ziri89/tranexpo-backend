@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./Login.css";
 
 const Login = () => {
     const [state, setState] = useState({
@@ -17,7 +18,7 @@ const Login = () => {
         console.log(state.username);
     }, [state]);
     return (
-        <div className="login">
+        <div className="login-form">
             <h3 className="text-center text-danger pt-5">Login form</h3>
             <div className="container">
                 <div

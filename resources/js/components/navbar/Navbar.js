@@ -62,7 +62,9 @@ const Navbar = () => {
                         </NavLink>
                     </div>
                     <div className="login">
-                        <NavLink to="/login">Login</NavLink>
+                        <NavLink to="/login" className="text-danger">
+                            Login
+                        </NavLink>
                         <NavLink
                             to="/create-account"
                             className="btn btn-danger btn-lg ml-3"
