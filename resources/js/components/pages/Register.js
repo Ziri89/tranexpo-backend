@@ -9,8 +9,7 @@ const Register = () => {
         city: "",
         zipcode: "",
         password: "",
-        password_confirm: "",
-        message: ""
+        password_confirm: ""
     });
 
     const onChanfeHandler = ev => {
@@ -20,11 +19,22 @@ const Register = () => {
             [name]: value
         });
     };
+    const onSubmitHandler = ev => {
+        ev.preventDefault();
+        axios
+            .post("/api/register")
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    };
     return (
         <div className="register">
             <div className="container">
                 <div className="row justify-content-center align-items-center">
-                    <form className="col-md-10 mt-5">
+                    <form className="col-md-10 mt-5" onSubmit={onSubmitHandler}>
                         <div id="legend">
                             <h2 className="text-danger text-center">
                                 Register
@@ -198,24 +208,6 @@ const Register = () => {
                                             onChange={onChanfeHandler}
                                         />
                                     </div>
-                                </div>
-                            </div>
-                            <div className="col-12">
-                                <div className="form-group">
-                                    <label
-                                        htmlFor="message"
-                                        className="text-danger"
-                                    >
-                                        Message
-                                    </label>
-                                    <textarea
-                                        name="message"
-                                        id="message"
-                                        className="form-control"
-                                        rows="10"
-                                        value={state.message}
-                                        onChange={onChanfeHandler}
-                                    ></textarea>
                                 </div>
                             </div>
                         </div>

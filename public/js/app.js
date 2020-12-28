@@ -6433,7 +6433,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "body {\r\n    font-size: 1.3rem;\r\n}\r\n.bg-danger {\r\n    background-color: #fc823c !important;\r\n}\r\n.text-danger {\r\n    color: #fc823c !important;\r\n}\r\n.btn-danger {\r\n    background-color: #fc823c !important;\r\n    border-color: #fc823c !important;\r\n}\r\n.btn-danger:hover {\r\n    background-color: #fc6107 !important;\r\n    border-color: #fc6107 !important;\r\n}\r\na.text-danger:hover,\r\na.text-danger:focus {\r\n    color: #fc6107 !important;\r\n}\r\n", ""]);
+exports.push([module.i, "body {\n    font-size: 1.3rem;\n}\n.bg-danger {\n    background-color: #fc823c !important;\n}\n.text-danger {\n    color: #fc823c !important;\n}\n.btn-danger {\n    background-color: #fc823c !important;\n    border-color: #fc823c !important;\n}\n.btn-danger:hover {\n    background-color: #fc6107 !important;\n    border-color: #fc6107 !important;\n}\na.text-danger:hover,\na.text-danger:focus {\n    color: #fc6107 !important;\n}\n", ""]);
 
 // exports
 
@@ -6452,7 +6452,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".flag-select__option__label {\r\n    top: 7px;\r\n}\r\n.flag-select__btn:focus {\r\n    outline: none;\r\n}\r\n.flag-select__btn:after {\r\n    vertical-align: baseline;\r\n}\r\n\r\n@media screen and (max-width: 768px) {\r\n    #navbar {\r\n        position: absolute;\r\n        top: 89px;\r\n        right: 0;\r\n        z-index: 999;\r\n        background-color: #fff;\r\n        padding: 25px;\r\n        width: 100%;\r\n    }\r\n}\r\n", ""]);
+exports.push([module.i, ".flag-select__option__label {\n    top: 7px;\n}\n.flag-select__btn:focus {\n    outline: none;\n}\n.flag-select__btn:after {\n    vertical-align: baseline;\n}\n\n@media screen and (max-width: 768px) {\n    #navbar {\n        position: absolute;\n        top: 89px;\n        right: 0;\n        z-index: 999;\n        background-color: #fff;\n        padding: 25px;\n        width: 100%;\n    }\n}\n", ""]);
 
 // exports
 
@@ -6471,7 +6471,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".login-form {\r\n    margin-top: 7rem;\r\n}\r\n", ""]);
+exports.push([module.i, ".login-form {\n    margin-top: 7rem;\n}\n", ""]);
 
 // exports
 
@@ -74061,8 +74061,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _Login_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Login.css */ "./resources/js/components/pages/Login.css");
-/* harmony import */ var _Login_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Login_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Login_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Login.css */ "./resources/js/components/pages/Login.css");
+/* harmony import */ var _Login_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_Login_css__WEBPACK_IMPORTED_MODULE_3__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -74080,6 +74082,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -74109,6 +74112,16 @@ var Login = function Login() {
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     console.log(state.username);
   }, [state]);
+
+  var onSubmitHandler = function onSubmitHandler(ev) {
+    ev.preventDefault();
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/login").then(function (res) {
+      console.log(res);
+    })["catch"](function (err) {
+      console.log(err);
+    });
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "login-form"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
@@ -74126,7 +74139,8 @@ var Login = function Login() {
     className: "col-md-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     id: "login-form",
-    className: "form"
+    className: "form",
+    onSubmit: onSubmitHandler
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -74222,8 +74236,7 @@ var Register = function Register() {
     city: "",
     zipcode: "",
     password: "",
-    password_confirm: "",
-    message: ""
+    password_confirm: ""
   }),
       _useState2 = _slicedToArray(_useState, 2),
       state = _useState2[0],
@@ -74237,6 +74250,15 @@ var Register = function Register() {
     setState(_objectSpread(_objectSpread({}, state), {}, _defineProperty({}, name, value)));
   };
 
+  var onSubmitHandler = function onSubmitHandler(ev) {
+    ev.preventDefault();
+    axios.post("/api/register").then(function (res) {
+      console.log(res);
+    })["catch"](function (err) {
+      console.log(err);
+    });
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "register"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -74244,7 +74266,8 @@ var Register = function Register() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row justify-content-center align-items-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    className: "col-md-10 mt-5"
+    className: "col-md-10 mt-5",
+    onSubmit: onSubmitHandler
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "legend"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
@@ -74387,21 +74410,7 @@ var Register = function Register() {
     className: "form-control",
     value: state.password_confirm,
     onChange: onChanfeHandler
-  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "form-group"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: "message",
-    className: "text-danger"
-  }, "Message"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-    name: "message",
-    id: "message",
-    className: "form-control",
-    rows: "10",
-    value: state.message,
-    onChange: onChanfeHandler
-  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "controls"
@@ -74443,8 +74452,8 @@ module.exports = "/images/logo.svg?bb3b6c15f3981179c76bb33630c86edd";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\wamp64\www\react-shipping\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\wamp64\www\react-shipping\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\kamar\OneDrive\Desktop\react-shipping\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\kamar\OneDrive\Desktop\react-shipping\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

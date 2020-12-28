@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "./Login.css";
 
 const Login = () => {
@@ -18,6 +19,17 @@ const Login = () => {
     useEffect(() => {
         console.log(state.username);
     }, [state]);
+    const onSubmitHandler = ev => {
+        ev.preventDefault();
+        axios
+            .post("/api/login")
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    };
     return (
         <div className="login-form">
             <h3 className="text-center text-danger pt-5">Login</h3>
@@ -28,7 +40,11 @@ const Login = () => {
                 >
                     <div id="login-column" className="col-md-6">
                         <div id="login-box" className="col-md-12">
-                            <form id="login-form" className="form">
+                            <form
+                                id="login-form"
+                                className="form"
+                                onSubmit={onSubmitHandler}
+                            >
                                 <div className="form-group">
                                     <label
                                         htmlFor="username"
