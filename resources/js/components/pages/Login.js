@@ -22,7 +22,7 @@ const Login = () => {
     const onSubmitHandler = ev => {
         ev.preventDefault();
         axios
-            .post("/api/login")
+            .post("/api/login", state)
             .then(res => {
                 console.log(res);
             })

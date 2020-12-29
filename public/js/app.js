@@ -74115,7 +74115,7 @@ var Login = function Login() {
 
   var onSubmitHandler = function onSubmitHandler(ev) {
     ev.preventDefault();
-    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/login").then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/login", state).then(function (res) {
       console.log(res);
     })["catch"](function (err) {
       console.log(err);
