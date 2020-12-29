@@ -74109,8 +74109,7 @@ var Login = function Login() {
     setState(_objectSpread(_objectSpread({}, state), {}, _defineProperty({}, name, value)));
   };
 
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    console.log(state.email, state.password);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {//console.log(state.email, state.password);
   }, [state]);
 
   var onSubmitHandler = function onSubmitHandler(ev) {
@@ -74232,7 +74231,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var Register = function Register() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    username: "",
+    name: "",
     email: "",
     company: "",
     phone: "",
@@ -74250,22 +74249,20 @@ var Register = function Register() {
         name = _ev$target.name,
         value = _ev$target.value;
     setRegistrationData(_objectSpread(_objectSpread({}, registrationData), {}, _defineProperty({}, name, value)));
-    console.log(registrationData);
   };
 
   var onSubmitHandler = function onSubmitHandler(ev) {
     ev.preventDefault();
     axios.post("/api/register", {
-      username: registrationData.username,
+      name: registrationData.name,
       email: registrationData.email,
       company: registrationData.company,
       phone: registrationData.phone,
       city: registrationData.city,
       zipcode: registrationData.zipcode,
-      password: registrationData.password,
-      password_confirm: registrationData.password_confirm
+      password: registrationData.password
     }).then(function (res) {
-      console.log(res);
+      console.log(res.data);
     })["catch"](function (err) {
       console.log(err);
     });
@@ -74298,10 +74295,10 @@ var Register = function Register() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
     id: "username",
-    name: "username",
+    name: "name",
     placeholder: "",
     className: "form-control",
-    value: registrationData.username,
+    value: registrationData.name,
     onChange: onChangeHandler
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-6"

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const Register = () => {
     const [registrationData, setRegistrationData] = useState({
-        username: "",
+        name: "",
         email: "",
         company: "",
         phone: "",
@@ -11,30 +11,27 @@ const Register = () => {
         password: "",
         password_confirm: ""
     });
-
     const onChangeHandler = ev => {
         const { name, value } = ev.target;
         setRegistrationData({
             ...registrationData,
             [name]: value
         });
-        console.log(registrationData);
     };
     const onSubmitHandler = ev => {
         ev.preventDefault();
         axios
             .post("/api/register", {
-                username: registrationData.username,
+                name: registrationData.name,
                 email: registrationData.email,
                 company: registrationData.company,
                 phone: registrationData.phone,
                 city: registrationData.city,
                 zipcode: registrationData.zipcode,
-                password: registrationData.password,
-                password_confirm: registrationData.password_confirm
+                password: registrationData.password
             })
             .then(res => {
-                console.log(res);
+                console.log(res.data);
             })
             .catch(err => {
                 console.log(err);
@@ -63,10 +60,10 @@ const Register = () => {
                                         <input
                                             type="text"
                                             id="username"
-                                            name="username"
+                                            name="name"
                                             placeholder=""
                                             className="form-control"
-                                            value={registrationData.username}
+                                            value={registrationData.name}
                                             onChange={onChangeHandler}
                                         />
                                     </div>

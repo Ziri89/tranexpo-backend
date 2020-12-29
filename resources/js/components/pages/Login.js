@@ -17,7 +17,7 @@ const Login = () => {
         });
     };
     useEffect(() => {
-        console.log(state.email, state.password);
+        //console.log(state.email, state.password);
     }, [state]);
     const onSubmitHandler = ev => {
         ev.preventDefault();
