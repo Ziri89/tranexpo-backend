@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { login } from "../actions";
+import Loader from "../../img/loader.gif";
+import allReducers from "../reducers";
 import "./Login.css";
 
 const Login = () => {
     const [state, setState] = useState({
         email: "",
-        password: ""
+        password: "",
+        loading: false
     });
     const [checked, setChecked] = useState(false);
     const handleInputsChange = event => {
@@ -16,21 +20,34 @@ const Login = () => {
             [name]: value
         });
     };
+    const loginDetails = useSelector(state => state.LogInReducer);
+    const dispatch = useDispatch();
     useEffect(() => {
         //console.log(state.email, state.password);
     }, [state]);
     const onSubmitHandler = ev => {
         ev.preventDefault();
-        axios
-            .post("/api/login", {
-                email: state.email,
-                password: state.password
+        setState({
+            ...state,
+            loading: true
+        });
+        dispatch(login(state.username, state.password))
+            .then(() => {
+                setState({
+                    ...state,
+                    loading: false,
+                    email: "",
+                    password: ""
+                });
+                console.log(loginDetails);
             })
-            .then(res => {
-                console.log(res.data);
-            })
-            .catch(err => {
-                console.log(err.data);
+            .catch(() => {
+                setState({
+                    ...state,
+                    loading: false,
+                    email: "",
+                    password: ""
+                });
             });
     };
     return (
@@ -101,12 +118,20 @@ const Login = () => {
                                         </span>
                                     </label>
                                     <br />
-                                    <input
+                                    <button
                                         type="submit"
-                                        name="submit"
                                         className="btn btn-danger btn-lg"
-                                        value="submit"
-                                    />
+                                    >
+                                        submit
+                                        {state.loading ? (
+                                            <img
+                                                src={Loader}
+                                                width="20"
+                                                className="ml-2"
+                                                alt="Loader"
+                                            />
+                                        ) : null}
+                                    </button>
                                 </div>
                                 <div id="register-link" className="text-right">
                                     <Link

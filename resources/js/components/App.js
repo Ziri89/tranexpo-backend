@@ -1,11 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware, compose } from "redux";
+import allReducers from "./reducers";
+import thunk from "redux-thunk";
 import Navbar from "./navbar/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import "./App.css";
+
+const composeEnhancers =
+    (window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+const enhancer = composeEnhancers(applyMiddleware(thunk));
+
+const store = createStore(allReducers, enhancer);
 
 function App() {
     return (
@@ -31,5 +41,10 @@ function App() {
 export default App;
 
 if (document.getElementById("root")) {
-    ReactDOM.render(<App />, document.getElementById("root"));
+    ReactDOM.render(
+        <Provider store={store}>
+            <App />
+        </Provider>,
+        document.getElementById("root")
+    );
 }

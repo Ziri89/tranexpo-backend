@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import ReactFlagsSelect from "react-flags-select";
+import { useSelector } from "react-redux";
 import "react-flags-select/css/react-flags-select.css";
 import "./Navbar.css";
 import Logo from "../../../../storage/app/public/logo.svg";
@@ -10,9 +11,10 @@ const Navbar = () => {
         setLang(countryCode);
     };
     useEffect(() => {
-        console.log(lang);
+        //console.log(lang);
     }, [lang]);
-
+    const loginDetails = useSelector(state => state.LogInReducer);
+    const loggedIn = loginDetails.loggedIn;
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container">
@@ -62,9 +64,16 @@ const Navbar = () => {
                         </NavLink>
                     </div>
                     <div className="login">
-                        <NavLink to="/login" className="text-danger">
-                            Login
-                        </NavLink>
+                        {!loggedIn ? (
+                            <NavLink to="/login" className="text-danger">
+                                Login
+                            </NavLink>
+                        ) : (
+                            <NavLink to="/logout" className="text-danger">
+                                Login
+                            </NavLink>
+                        )}
+
                         <NavLink
                             to="/create-account"
                             className="btn btn-danger btn-lg ml-3"
