@@ -5,7 +5,7 @@ import "./Login.css";
 
 const Login = () => {
     const [state, setState] = useState({
-        username: "",
+        email: "",
         password: ""
     });
     const [checked, setChecked] = useState(false);
@@ -17,13 +17,13 @@ const Login = () => {
         });
     };
     useEffect(() => {
-        console.log(state.username, state.password);
+        console.log(state.email, state.password);
     }, [state]);
     const onSubmitHandler = ev => {
         ev.preventDefault();
         axios
             .post("/api/login", {
-                username: state.username,
+                email: state.email,
                 password: state.password
             })
             .then(res => {
@@ -50,18 +50,18 @@ const Login = () => {
                             >
                                 <div className="form-group">
                                     <label
-                                        htmlFor="username"
+                                        htmlFor="email"
                                         className="text-danger"
                                     >
-                                        Username:
+                                        Email:
                                     </label>
                                     <br />
                                     <input
-                                        type="text"
-                                        name="username"
-                                        id="username"
+                                        type="email"
+                                        name="email"
+                                        id="email"
                                         className="form-control"
-                                        value={state.username}
+                                        value={state.email}
                                         onChange={handleInputsChange}
                                     />
                                 </div>

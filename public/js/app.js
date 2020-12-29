@@ -6433,7 +6433,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "body {\r\n    font-size: 1.3rem;\r\n}\r\n.bg-danger {\r\n    background-color: #fc823c !important;\r\n}\r\n.text-danger {\r\n    color: #fc823c !important;\r\n}\r\n.btn-danger {\r\n    background-color: #fc823c !important;\r\n    border-color: #fc823c !important;\r\n}\r\n.btn-danger:hover {\r\n    background-color: #fc6107 !important;\r\n    border-color: #fc6107 !important;\r\n}\r\na.text-danger:hover,\r\na.text-danger:focus {\r\n    color: #fc6107 !important;\r\n}\r\n", ""]);
+exports.push([module.i, "body {\n    font-size: 1.3rem;\n}\n.bg-danger {\n    background-color: #fc823c !important;\n}\n.text-danger {\n    color: #fc823c !important;\n}\n.btn-danger {\n    background-color: #fc823c !important;\n    border-color: #fc823c !important;\n}\n.btn-danger:hover {\n    background-color: #fc6107 !important;\n    border-color: #fc6107 !important;\n}\na.text-danger:hover,\na.text-danger:focus {\n    color: #fc6107 !important;\n}\n", ""]);
 
 // exports
 
@@ -6452,7 +6452,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".flag-select__option__label {\r\n    top: 7px;\r\n}\r\n.flag-select__btn:focus {\r\n    outline: none;\r\n}\r\n.flag-select__btn:after {\r\n    vertical-align: baseline;\r\n}\r\n\r\n@media screen and (max-width: 768px) {\r\n    #navbar {\r\n        position: absolute;\r\n        top: 89px;\r\n        right: 0;\r\n        z-index: 999;\r\n        background-color: #fff;\r\n        padding: 25px;\r\n        width: 100%;\r\n    }\r\n}\r\n", ""]);
+exports.push([module.i, ".flag-select__option__label {\n    top: 7px;\n}\n.flag-select__btn:focus {\n    outline: none;\n}\n.flag-select__btn:after {\n    vertical-align: baseline;\n}\n\n@media screen and (max-width: 768px) {\n    #navbar {\n        position: absolute;\n        top: 89px;\n        right: 0;\n        z-index: 999;\n        background-color: #fff;\n        padding: 25px;\n        width: 100%;\n    }\n}\n", ""]);
 
 // exports
 
@@ -6471,7 +6471,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".login-form {\r\n    margin-top: 7rem;\r\n}\r\n", ""]);
+exports.push([module.i, ".login-form {\n    margin-top: 7rem;\n}\n", ""]);
 
 // exports
 
@@ -74090,7 +74090,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var Login = function Login() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    username: "",
+    email: "",
     password: ""
   }),
       _useState2 = _slicedToArray(_useState, 2),
@@ -74110,13 +74110,13 @@ var Login = function Login() {
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    console.log(state.username, state.password);
+    console.log(state.email, state.password);
   }, [state]);
 
   var onSubmitHandler = function onSubmitHandler(ev) {
     ev.preventDefault();
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/login", {
-      username: state.username,
+      email: state.email,
       password: state.password
     }).then(function (res) {
       console.log(res.data);
@@ -74147,14 +74147,14 @@ var Login = function Login() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: "username",
+    htmlFor: "email",
     className: "text-danger"
-  }, "Username:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    name: "username",
-    id: "username",
+  }, "Email:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "email",
+    name: "email",
+    id: "email",
     className: "form-control",
-    value: state.username,
+    value: state.email,
     onChange: handleInputsChange
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
@@ -74242,20 +74242,29 @@ var Register = function Register() {
     password_confirm: ""
   }),
       _useState2 = _slicedToArray(_useState, 2),
-      state = _useState2[0],
-      setState = _useState2[1];
+      registrationData = _useState2[0],
+      setRegistrationData = _useState2[1];
 
-  var onChanfeHandler = function onChanfeHandler(ev) {
-    var _ev$target = _slicedToArray(ev.target, 2),
-        name = _ev$target[0],
-        value = _ev$target[1];
-
-    setState(_objectSpread(_objectSpread({}, state), {}, _defineProperty({}, name, value)));
+  var onChangeHandler = function onChangeHandler(ev) {
+    var _ev$target = ev.target,
+        name = _ev$target.name,
+        value = _ev$target.value;
+    setRegistrationData(_objectSpread(_objectSpread({}, registrationData), {}, _defineProperty({}, name, value)));
+    console.log(registrationData);
   };
 
   var onSubmitHandler = function onSubmitHandler(ev) {
     ev.preventDefault();
-    axios.post("/api/register").then(function (res) {
+    axios.post("/api/register", {
+      username: registrationData.username,
+      email: registrationData.email,
+      company: registrationData.company,
+      phone: registrationData.phone,
+      city: registrationData.city,
+      zipcode: registrationData.zipcode,
+      password: registrationData.password,
+      password_confirm: registrationData.password_confirm
+    }).then(function (res) {
       console.log(res);
     })["catch"](function (err) {
       console.log(err);
@@ -74292,8 +74301,8 @@ var Register = function Register() {
     name: "username",
     placeholder: "",
     className: "form-control",
-    value: state.username,
-    onChange: onChanfeHandler
+    value: registrationData.username,
+    onChange: onChangeHandler
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -74304,13 +74313,13 @@ var Register = function Register() {
   }, "E-mail*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "controls"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
+    type: "email",
     id: "email",
     name: "email",
     placeholder: "",
     className: "form-control",
-    value: state.email,
-    onChange: onChanfeHandler
+    value: registrationData.email,
+    onChange: onChangeHandler
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -74326,8 +74335,8 @@ var Register = function Register() {
     name: "company",
     placeholder: "",
     className: "form-control",
-    value: state.company,
-    onChange: onChanfeHandler
+    value: registrationData.company,
+    onChange: onChangeHandler
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -74343,42 +74352,42 @@ var Register = function Register() {
     name: "phone",
     placeholder: "",
     className: "form-control",
-    value: state.phone,
-    onChange: onChanfeHandler
+    value: registrationData.phone,
+    onChange: onChangeHandler
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: "company",
+    htmlFor: "city",
     className: "text-danger"
   }, "City"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "controls"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
-    id: "company",
-    name: "company",
+    id: "city",
+    name: "city",
     placeholder: "",
     className: "form-control",
-    value: state.city,
-    onChange: onChanfeHandler
+    value: registrationData.city,
+    onChange: onChangeHandler
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: "company",
+    htmlFor: "zipcode",
     className: "text-danger"
   }, "Zip Code"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "controls"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
-    id: "company",
-    name: "company",
+    id: "zipcode",
+    name: "zipcode",
     placeholder: "",
     className: "form-control",
-    value: state.zipcode,
-    onChange: onChanfeHandler
+    value: registrationData.zipcode,
+    onChange: onChangeHandler
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -74394,8 +74403,8 @@ var Register = function Register() {
     name: "password",
     placeholder: "",
     className: "form-control",
-    value: state.password,
-    onChange: onChanfeHandler
+    value: registrationData.password,
+    onChange: onChangeHandler
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -74411,8 +74420,8 @@ var Register = function Register() {
     name: "password_confirm",
     placeholder: "",
     className: "form-control",
-    value: state.password_confirm,
-    onChange: onChanfeHandler
+    value: registrationData.password_confirm,
+    onChange: onChangeHandler
   }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -74455,8 +74464,8 @@ module.exports = "/images/logo.svg?bb3b6c15f3981179c76bb33630c86edd";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\wamp64\www\react-shipping\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\wamp64\www\react-shipping\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\kamar\OneDrive\Desktop\react-shipping\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\kamar\OneDrive\Desktop\react-shipping\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const Register = () => {
-    const [state, setState] = useState({
+    const [registrationData, setRegistrationData] = useState({
         username: "",
         email: "",
         company: "",
@@ -12,17 +12,27 @@ const Register = () => {
         password_confirm: ""
     });
 
-    const onChanfeHandler = ev => {
-        const [name, value] = ev.target;
-        setState({
-            ...state,
+    const onChangeHandler = ev => {
+        const { name, value } = ev.target;
+        setRegistrationData({
+            ...registrationData,
             [name]: value
         });
+        console.log(registrationData);
     };
     const onSubmitHandler = ev => {
         ev.preventDefault();
         axios
-            .post("/api/register")
+            .post("/api/register", {
+                username: registrationData.username,
+                email: registrationData.email,
+                company: registrationData.company,
+                phone: registrationData.phone,
+                city: registrationData.city,
+                zipcode: registrationData.zipcode,
+                password: registrationData.password,
+                password_confirm: registrationData.password_confirm
+            })
             .then(res => {
                 console.log(res);
             })
@@ -56,8 +66,8 @@ const Register = () => {
                                             name="username"
                                             placeholder=""
                                             className="form-control"
-                                            value={state.username}
-                                            onChange={onChanfeHandler}
+                                            value={registrationData.username}
+                                            onChange={onChangeHandler}
                                         />
                                     </div>
                                 </div>
@@ -72,13 +82,13 @@ const Register = () => {
                                     </label>
                                     <div className="controls">
                                         <input
-                                            type="text"
+                                            type="email"
                                             id="email"
                                             name="email"
                                             placeholder=""
                                             className="form-control"
-                                            value={state.email}
-                                            onChange={onChanfeHandler}
+                                            value={registrationData.email}
+                                            onChange={onChangeHandler}
                                         />
                                     </div>
                                 </div>
@@ -98,8 +108,8 @@ const Register = () => {
                                             name="company"
                                             placeholder=""
                                             className="form-control"
-                                            value={state.company}
-                                            onChange={onChanfeHandler}
+                                            value={registrationData.company}
+                                            onChange={onChangeHandler}
                                         />
                                     </div>
                                 </div>
@@ -119,8 +129,8 @@ const Register = () => {
                                             name="phone"
                                             placeholder=""
                                             className="form-control"
-                                            value={state.phone}
-                                            onChange={onChanfeHandler}
+                                            value={registrationData.phone}
+                                            onChange={onChangeHandler}
                                         />
                                     </div>
                                 </div>
@@ -128,7 +138,7 @@ const Register = () => {
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label
-                                        htmlFor="company"
+                                        htmlFor="city"
                                         className="text-danger"
                                     >
                                         City
@@ -136,12 +146,12 @@ const Register = () => {
                                     <div className="controls">
                                         <input
                                             type="text"
-                                            id="company"
-                                            name="company"
+                                            id="city"
+                                            name="city"
                                             placeholder=""
                                             className="form-control"
-                                            value={state.city}
-                                            onChange={onChanfeHandler}
+                                            value={registrationData.city}
+                                            onChange={onChangeHandler}
                                         />
                                     </div>
                                 </div>
@@ -149,7 +159,7 @@ const Register = () => {
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label
-                                        htmlFor="company"
+                                        htmlFor="zipcode"
                                         className="text-danger"
                                     >
                                         Zip Code
@@ -157,12 +167,12 @@ const Register = () => {
                                     <div className="controls">
                                         <input
                                             type="text"
-                                            id="company"
-                                            name="company"
+                                            id="zipcode"
+                                            name="zipcode"
                                             placeholder=""
                                             className="form-control"
-                                            value={state.zipcode}
-                                            onChange={onChanfeHandler}
+                                            value={registrationData.zipcode}
+                                            onChange={onChangeHandler}
                                         />
                                     </div>
                                 </div>
@@ -183,8 +193,8 @@ const Register = () => {
                                             name="password"
                                             placeholder=""
                                             className="form-control"
-                                            value={state.password}
-                                            onChange={onChanfeHandler}
+                                            value={registrationData.password}
+                                            onChange={onChangeHandler}
                                         />
                                     </div>
                                 </div>
@@ -204,8 +214,10 @@ const Register = () => {
                                             name="password_confirm"
                                             placeholder=""
                                             className="form-control"
-                                            value={state.password_confirm}
-                                            onChange={onChanfeHandler}
+                                            value={
+                                                registrationData.password_confirm
+                                            }
+                                            onChange={onChangeHandler}
                                         />
                                     </div>
                                 </div>
