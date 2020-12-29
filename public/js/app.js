@@ -74110,15 +74110,18 @@ var Login = function Login() {
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    console.log(state.username);
+    console.log(state.username, state.password);
   }, [state]);
 
   var onSubmitHandler = function onSubmitHandler(ev) {
     ev.preventDefault();
-    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/login", state).then(function (res) {
-      console.log(res);
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/login", {
+      username: state.username,
+      password: state.password
+    }).then(function (res) {
+      console.log(res.data);
     })["catch"](function (err) {
-      console.log(err);
+      console.log(err.data);
     });
   };
 

@@ -17,17 +17,20 @@ const Login = () => {
         });
     };
     useEffect(() => {
-        console.log(state.username);
+        console.log(state.username, state.password);
     }, [state]);
     const onSubmitHandler = ev => {
         ev.preventDefault();
         axios
-            .post("/api/login", state)
+            .post("/api/login", {
+                username: state.username,
+                password: state.password
+            })
             .then(res => {
-                console.log(res);
+                console.log(res.data);
             })
             .catch(err => {
-                console.log(err);
+                console.log(err.data);
             });
     };
     return (
