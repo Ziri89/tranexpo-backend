@@ -76662,6 +76662,7 @@ var Login = function Login() {
     return state.LogInReducer;
   });
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
+  var history = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["useHistory"])();
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {//console.log(state.email, state.password);
   }, [state]);
 
@@ -76670,13 +76671,15 @@ var Login = function Login() {
     setState(_objectSpread(_objectSpread({}, state), {}, {
       loading: true
     }));
-    dispatch(Object(_actions__WEBPACK_IMPORTED_MODULE_3__["login"])(state.username, state.password)).then(function () {
+    dispatch(Object(_actions__WEBPACK_IMPORTED_MODULE_3__["login"])(state.username, state.password)).then(function (response) {
+      console.log(response.data.success);
+    }).then(function () {
       setState(_objectSpread(_objectSpread({}, state), {}, {
         loading: false,
         email: "",
         password: ""
       }));
-      console.log(loginDetails);
+      history.push("/");
     })["catch"](function () {
       setState(_objectSpread(_objectSpread({}, state), {}, {
         loading: false,
@@ -77144,6 +77147,7 @@ var AuthService = /*#__PURE__*/function () {
         email: email,
         password: password
       }).then(function (response) {
+        //console.log(response.data);
         if (response.data.accessToken) {
           localStorage.setItem("user", JSON.stringify(response.data));
         }

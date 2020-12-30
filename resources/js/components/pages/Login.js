@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../actions";
 import Loader from "../../img/loader.gif";
@@ -22,6 +22,7 @@ const Login = () => {
     };
     const loginDetails = useSelector(state => state.LogInReducer);
     const dispatch = useDispatch();
+    const history = useHistory();
     useEffect(() => {
         //console.log(state.email, state.password);
     }, [state]);
@@ -32,6 +33,9 @@ const Login = () => {
             loading: true
         });
         dispatch(login(state.username, state.password))
+            .then(response => {
+                console.log(response.data.success);
+            })
             .then(() => {
                 setState({
                     ...state,
@@ -39,7 +43,7 @@ const Login = () => {
                     email: "",
                     password: ""
                 });
-                console.log(loginDetails);
+                history.push("/");
             })
             .catch(() => {
                 setState({
