@@ -14,7 +14,8 @@ const Navbar = () => {
         //console.log(lang);
     }, [lang]);
     const loginDetails = useSelector(state => state.LogInReducer);
-    const loggedIn = loginDetails.loggedIn;
+    const loggedIn = loginDetails.isLoggedIn;
+    console.log(loggedIn);
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container">
@@ -70,7 +71,7 @@ const Navbar = () => {
                             </NavLink>
                         ) : (
                             <NavLink to="/logout" className="text-danger">
-                                Login
+                                Logout
                             </NavLink>
                         )}
 
