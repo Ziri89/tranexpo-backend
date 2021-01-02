@@ -4,7 +4,7 @@ const initialState = user
     ? { isLoggedIn: true, user }
     : { isLoggedIn: false, user: null };
 
-const LogInReducer = (state = initialState, action) => {
+const auth = (state = initialState, action) => {
     const { type, payload } = action;
     switch (type) {
         case "LOGIN_SUCCESS":
@@ -29,4 +29,4 @@ const LogInReducer = (state = initialState, action) => {
             return state;
     }
 };
-export default LogInReducer;
+export default auth;

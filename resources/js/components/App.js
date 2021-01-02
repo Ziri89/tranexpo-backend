@@ -13,7 +13,8 @@ import "./App.css";
 
 const composeEnhancers =
     (window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
-const enhancer = composeEnhancers(applyMiddleware(thunk));
+const middleware = [thunk];
+const enhancer = composeEnhancers(applyMiddleware(...middleware));
 
 const store = createStore(allReducers, enhancer);
 
