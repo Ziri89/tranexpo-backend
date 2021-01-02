@@ -78028,8 +78028,8 @@ var login = function login(email, password) {
         dispatch({
           type: "SET_MESSAGE",
           payload: message
-        });
-        console.log(data.success);
+        }); //console.log(data.success);
+
         return Promise.resolve();
       } else {
         dispatch({
@@ -78038,8 +78038,7 @@ var login = function login(email, password) {
         dispatch({
           type: "SET_MESSAGE",
           payload: message
-        });
-        console.log(data.message);
+        }); //console.log(data.message);
       }
     }, function (error) {
       message = error.response && error.response.data && error.response.data.message || error.message || error.toString();

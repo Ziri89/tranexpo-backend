@@ -14,7 +14,7 @@ export const login = (email, password) => dispatch => {
                     type: "SET_MESSAGE",
                     payload: message
                 });
-                console.log(data.success);
+                //console.log(data.success);
                 return Promise.resolve();
             } else {
                 dispatch({
@@ -24,7 +24,7 @@ export const login = (email, password) => dispatch => {
                     type: "SET_MESSAGE",
                     payload: message
                 });
-                console.log(data.message);
+                //console.log(data.message);
             }
         },
         error => {
