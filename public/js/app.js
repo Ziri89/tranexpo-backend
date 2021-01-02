@@ -78391,7 +78391,7 @@ var Login = function Login() {
 
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(Object(_actions_auth__WEBPACK_IMPORTED_MODULE_6__["login"])(state.email, state.password)).then(function () {
-        console.log(response.data);
+        //console.log(response.data);
         window.location.reload();
         setState(_objectSpread(_objectSpread({}, state), {}, {
           loading: false

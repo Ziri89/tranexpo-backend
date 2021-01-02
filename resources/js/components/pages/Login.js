@@ -18,6 +18,7 @@ const required = value => {
 };
 const Login = () => {
     const form = useRef();
+
     const checkBtn = useRef();
     const [state, setState] = useState({
         email: "",
@@ -46,7 +47,7 @@ const Login = () => {
         if (checkBtn.current.context._errors.length === 0) {
             dispatch(login(state.email, state.password))
                 .then(() => {
-                    console.log(response.data);
+                    //console.log(response.data);
                     window.location.reload();
                     setState({
                         ...state,
