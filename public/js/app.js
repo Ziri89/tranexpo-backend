@@ -6433,7 +6433,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "body {\n    font-size: 1.3rem;\n}\n.bg-danger {\n    background-color: #fc823c !important;\n}\n.text-danger {\n    color: #fc823c !important;\n}\n.btn-danger {\n    background-color: #fc823c !important;\n    border-color: #fc823c !important;\n}\n.btn-danger:hover {\n    background-color: #fc6107 !important;\n    border-color: #fc6107 !important;\n}\na.text-danger:hover,\na.text-danger:focus {\n    color: #fc6107 !important;\n}\n", ""]);
+exports.push([module.i, "body {\r\n    font-size: 1.3rem;\r\n}\r\n.bg-danger {\r\n    background-color: #fc823c !important;\r\n}\r\n.text-danger {\r\n    color: #fc823c !important;\r\n}\r\n.btn-danger {\r\n    background-color: #fc823c !important;\r\n    border-color: #fc823c !important;\r\n}\r\n.btn-danger:hover {\r\n    background-color: #fc6107 !important;\r\n    border-color: #fc6107 !important;\r\n}\r\na.text-danger:hover,\r\na.text-danger:focus {\r\n    color: #fc6107 !important;\r\n}\r\n", ""]);
 
 // exports
 
@@ -6452,7 +6452,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".flag-select__option__label {\n    top: 7px;\n}\n.flag-select__btn:focus {\n    outline: none;\n}\n.flag-select__btn:after {\n    vertical-align: baseline;\n}\n\n@media screen and (max-width: 768px) {\n    #navbar {\n        position: absolute;\n        top: 89px;\n        right: 0;\n        z-index: 999;\n        background-color: #fff;\n        padding: 25px;\n        width: 100%;\n    }\n}\n", ""]);
+exports.push([module.i, ".flag-select__option__label {\r\n    top: 7px;\r\n}\r\n.flag-select__btn:focus {\r\n    outline: none;\r\n}\r\n.flag-select__btn:after {\r\n    vertical-align: baseline;\r\n}\r\n\r\n@media screen and (max-width: 768px) {\r\n    #navbar {\r\n        position: absolute;\r\n        top: 89px;\r\n        right: 0;\r\n        z-index: 999;\r\n        background-color: #fff;\r\n        padding: 25px;\r\n        width: 100%;\r\n    }\r\n}\r\n", ""]);
 
 // exports
 
@@ -6471,7 +6471,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".login-form {\n    margin-top: 7rem;\n}\n", ""]);
+exports.push([module.i, ".login-form {\r\n    margin-top: 7rem;\r\n}\r\n", ""]);
 
 // exports
 
@@ -77210,8 +77210,8 @@ module.exports = "/images/logo.svg?bb3b6c15f3981179c76bb33630c86edd";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\kamar\OneDrive\Desktop\react-shipping\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\kamar\OneDrive\Desktop\react-shipping\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\wamp64\www\react-shipping\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\react-shipping\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
