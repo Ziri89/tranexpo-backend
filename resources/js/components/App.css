@@ -19,3 +19,7 @@ a.text-danger:hover,
 a.text-danger:focus {
     color: #fc6107 !important;
 }
+button.text-danger:hover,
+button.text-danger:focus {
+    color: #fc6107 !important;
+}

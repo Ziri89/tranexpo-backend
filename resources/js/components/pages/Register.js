@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import Loader from "../../img/loader.gif";
+import "./Register.css";
 
 const Register = () => {
     const [registrationData, setRegistrationData] = useState({
@@ -9,8 +12,15 @@ const Register = () => {
         city: "",
         zipcode: "",
         password: "",
-        password_confirm: ""
+        password_confirm: "",
+        loading: false,
+        message: "Fields with * are required",
+        email_message: "",
+        name_message: "",
+        phone_message: "",
+        pass_message: ""
     });
+    const history = useHistory();
     const onChangeHandler = ev => {
         const { name, value } = ev.target;
         setRegistrationData({
@@ -20,22 +30,71 @@ const Register = () => {
     };
     const onSubmitHandler = ev => {
         ev.preventDefault();
-        axios
-            .post("/api/register", {
-                name: registrationData.name,
-                email: registrationData.email,
-                company: registrationData.company,
-                phone: registrationData.phone,
-                city: registrationData.city,
-                zipcode: registrationData.zipcode,
-                password: registrationData.password
-            })
-            .then(res => {
-                console.log(res.data);
-            })
-            .catch(err => {
-                console.log(err);
+        if (registrationData.password !== registrationData.password_confirm) {
+            setRegistrationData({
+                ...registrationData,
+                pass_message:
+                    "Password confirm doesn't match password. Pleas retape"
             });
+        } else {
+            axios
+                .post("/api/register", {
+                    name: registrationData.name,
+                    email: registrationData.email,
+                    company: registrationData.company,
+                    phone: registrationData.phone,
+                    city: registrationData.city,
+                    zipcode: registrationData.zipcode,
+                    password: registrationData.password
+                })
+                .then(res => {
+                    setRegistrationData({
+                        ...registrationData,
+                        loading: true
+                    });
+                    if (res.data.status === 200) {
+                        setRegistrationData({
+                            ...registrationData,
+                            name: "",
+                            email: "",
+                            company: "",
+                            phone: "",
+                            city: "",
+                            zipcode: "",
+                            password: "",
+                            password_confirm: "",
+                            loading: false,
+                            message:
+                                "You have successfully registered. Thank you"
+                        });
+                        history.push("/login");
+                    } else {
+                        setRegistrationData({
+                            ...registrationData,
+                            name_message: res.data.validation_errors.name
+                                ? res.data.validation_errors.name[0]
+                                : "",
+                            email_message: res.data.validation_errors.email
+                                ? res.data.validation_errors.email[0]
+                                : "",
+                            phone_message: res.data.validation_errors.phone
+                                ? res.data.validation_errors.phone[0]
+                                : "",
+                            pass_message: res.data.validation_errors.password
+                                ? res.data.validation_errors.password[0]
+                                : "",
+                            loading: false
+                        });
+                    }
+                })
+                .catch(err => {
+                    setRegistrationData({
+                        ...registrationData,
+                        message: err.message + "." + " Please try later.",
+                        loading: false
+                    });
+                });
+        }
     };
     return (
         <div className="register">
@@ -46,6 +105,9 @@ const Register = () => {
                             <h2 className="text-danger text-center">
                                 Register
                             </h2>
+                            <p className="text-dark text-center">
+                                {registrationData.message}
+                            </p>
                         </div>
                         <div className="row mt-5">
                             <div className="col-md-6">
@@ -66,6 +128,9 @@ const Register = () => {
                                             value={registrationData.name}
                                             onChange={onChangeHandler}
                                         />
+                                        <p className="warning">
+                                            {registrationData.name_message}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -87,6 +152,9 @@ const Register = () => {
                                             value={registrationData.email}
                                             onChange={onChangeHandler}
                                         />
+                                        <p className="warning">
+                                            {registrationData.email_message}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -129,6 +197,9 @@ const Register = () => {
                                             value={registrationData.phone}
                                             onChange={onChangeHandler}
                                         />
+                                        <p className="warning">
+                                            {registrationData.phone_message}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -193,6 +264,9 @@ const Register = () => {
                                             value={registrationData.password}
                                             onChange={onChangeHandler}
                                         />
+                                        <p className="warning">
+                                            {registrationData.pass_message}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -225,6 +299,14 @@ const Register = () => {
                             <div className="controls">
                                 <button className="btn btn-danger btn-lg">
                                     Register
+                                    {registrationData.loading ? (
+                                        <img
+                                            src={Loader}
+                                            width="20"
+                                            className="ml-2"
+                                            alt="Loader"
+                                        />
+                                    ) : null}
                                 </button>
                             </div>
                         </div>

@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
-import LogInReducer from "./LogInReducer";
+import auth from "./auth";
 import message from "./message";
 
 const allReducers = combineReducers({
-    LogInReducer,
+    auth,
     message
 });
 

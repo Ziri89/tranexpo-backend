@@ -7,6 +7,13 @@
 .flag-select__btn:after {
     vertical-align: baseline;
 }
+.logout {
+    border: none;
+    background: transparent;
+}
+.logout:focus {
+    outline: none;
+}
 
 @media screen and (max-width: 768px) {
     #navbar {
