@@ -12,13 +12,21 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required', 
             'email' => 'required|email', 
-            'password' => 'required|min:6'
+            'phone' => 'required|numeric',
+            'password' => 'required|min:6',
+            'company_name' => '',
+            'zip_code' => 'required|numeric',
+            'city' => 'required'
         ]);
 
 
         $user = User::create([
             'name' => $request->name, 
             'email' => $request->email, 
+            'phone' => $request->phone,
+            'company_name' => $request->company_name, 
+            'zip_code' => $request->zip_code, 
+            'city' => $request->city, 
             'password' => bcrypt($request->password)
         ]);
 
@@ -41,5 +49,5 @@ class AuthController extends Controller
             'token' => $token->accessToken
         ]);
     }
-}
+}  
 }

@@ -30,5 +30,8 @@ class AppServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Passport::routes();
+        
+        Schema::defaultStringLength(191);
+        
     }
 }
