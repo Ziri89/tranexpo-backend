@@ -6433,7 +6433,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "body {\r\n    font-size: 1.3rem;\r\n}\r\n.bg-danger {\r\n    background-color: #fc823c !important;\r\n}\r\n.text-danger {\r\n    color: #fc823c !important;\r\n}\r\n.btn-danger {\r\n    background-color: #fc823c !important;\r\n    border-color: #fc823c !important;\r\n}\r\n.btn-danger:hover {\r\n    background-color: #fc6107 !important;\r\n    border-color: #fc6107 !important;\r\n}\r\na.text-danger:hover,\r\na.text-danger:focus {\r\n    color: #fc6107 !important;\r\n}\r\nbutton.text-danger:hover,\r\nbutton.text-danger:focus {\r\n    color: #fc6107 !important;\r\n}\r\n", ""]);
+exports.push([module.i, "body {\n    font-size: 1.3rem;\n}\n.bg-danger {\n    background-color: #fc823c !important;\n}\n.text-danger {\n    color: #fc823c !important;\n}\n.btn-danger {\n    background-color: #fc823c !important;\n    border-color: #fc823c !important;\n}\n.btn-danger:hover {\n    background-color: #fc6107 !important;\n    border-color: #fc6107 !important;\n}\na.text-danger:hover,\na.text-danger:focus {\n    color: #fc6107 !important;\n}\nbutton.text-danger:hover,\nbutton.text-danger:focus {\n    color: #fc6107 !important;\n}\n", ""]);
 
 // exports
 
@@ -6452,7 +6452,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".flag-select__option__label {\r\n    top: 7px;\r\n}\r\n.flag-select__btn:focus {\r\n    outline: none;\r\n}\r\n.flag-select__btn:after {\r\n    vertical-align: baseline;\r\n}\r\n.logout {\r\n    border: none;\r\n    background: transparent;\r\n}\r\n.logout:focus {\r\n    outline: none;\r\n}\r\n\r\n@media screen and (max-width: 768px) {\r\n    #navbar {\r\n        position: absolute;\r\n        top: 89px;\r\n        right: 0;\r\n        z-index: 999;\r\n        background-color: #fff;\r\n        padding: 25px;\r\n        width: 100%;\r\n    }\r\n}\r\n", ""]);
+exports.push([module.i, ".flag-select__option__label {\n    top: 7px;\n}\n.flag-select__btn:focus {\n    outline: none;\n}\n.flag-select__btn:after {\n    vertical-align: baseline;\n}\n.logout {\n    border: none;\n    background: transparent;\n}\n.logout:focus {\n    outline: none;\n}\n\n@media screen and (max-width: 768px) {\n    #navbar {\n        position: absolute;\n        top: 89px;\n        right: 0;\n        z-index: 999;\n        background-color: #fff;\n        padding: 25px;\n        width: 100%;\n    }\n}\n", ""]);
 
 // exports
 
@@ -6471,7 +6471,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".login-form {\r\n    margin-top: 7rem;\r\n}\r\n", ""]);
+exports.push([module.i, ".login-form {\n    margin-top: 7rem;\n}\n", ""]);
 
 // exports
 
@@ -6490,7 +6490,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".register .warning {\r\n    font-size: 14px;\r\n    color: red;\r\n}\r\n", ""]);
+exports.push([module.i, ".register .warning {\n    font-size: 14px;\n    color: red;\n}\n", ""]);
 
 // exports
 
@@ -78575,10 +78575,10 @@ var Register = function Register() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     name: "",
     email: "",
-    company: "",
+    company_name: "",
     phone: "",
     city: "",
-    zipcode: "",
+    zip_code: "",
     password: "",
     password_confirm: "",
     loading: false,
@@ -78612,10 +78612,10 @@ var Register = function Register() {
       axios.post("/api/register", {
         name: registrationData.name,
         email: registrationData.email,
-        company: registrationData.company,
+        company_name: registrationData.company_name,
         phone: registrationData.phone,
         city: registrationData.city,
-        zipcode: registrationData.zipcode,
+        zip_code: registrationData.zip_code,
         password: registrationData.password
       }).then(function (res) {
         setRegistrationData(_objectSpread(_objectSpread({}, registrationData), {}, {
@@ -78626,10 +78626,10 @@ var Register = function Register() {
           setRegistrationData(_objectSpread(_objectSpread({}, registrationData), {}, {
             name: "",
             email: "",
-            company: "",
+            company_name: "",
             phone: "",
             city: "",
-            zipcode: "",
+            zip_code: "",
             password: "",
             password_confirm: "",
             loading: false,
@@ -78721,10 +78721,10 @@ var Register = function Register() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
     id: "company",
-    name: "company",
+    name: "company_name",
     placeholder: "",
     className: "form-control",
-    value: registrationData.company,
+    value: registrationData.company_name,
     onChange: onChangeHandler
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-6"
@@ -78774,10 +78774,10 @@ var Register = function Register() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
     id: "zipcode",
-    name: "zipcode",
+    name: "zip_code",
     placeholder: "",
     className: "form-control",
-    value: registrationData.zipcode,
+    value: registrationData.zip_code,
     onChange: onChangeHandler
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-6"
@@ -79027,8 +79027,8 @@ module.exports = "/images/logo.svg?bb3b6c15f3981179c76bb33630c86edd";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\wamp64\www\react-shipping\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\wamp64\www\react-shipping\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\kamar\OneDrive\Desktop\react-shipping\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\kamar\OneDrive\Desktop\react-shipping\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

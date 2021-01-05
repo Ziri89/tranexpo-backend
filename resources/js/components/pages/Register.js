@@ -7,10 +7,10 @@ const Register = () => {
     const [registrationData, setRegistrationData] = useState({
         name: "",
         email: "",
-        company: "",
+        company_name: "",
         phone: "",
         city: "",
-        zipcode: "",
+        zip_code: "",
         password: "",
         password_confirm: "",
         loading: false,
@@ -41,10 +41,10 @@ const Register = () => {
                 .post("/api/register", {
                     name: registrationData.name,
                     email: registrationData.email,
-                    company: registrationData.company,
+                    company_name: registrationData.company_name,
                     phone: registrationData.phone,
                     city: registrationData.city,
-                    zipcode: registrationData.zipcode,
+                    zip_code: registrationData.zip_code,
                     password: registrationData.password
                 })
                 .then(res => {
@@ -57,10 +57,10 @@ const Register = () => {
                             ...registrationData,
                             name: "",
                             email: "",
-                            company: "",
+                            company_name: "",
                             phone: "",
                             city: "",
-                            zipcode: "",
+                            zip_code: "",
                             password: "",
                             password_confirm: "",
                             loading: false,
@@ -170,10 +170,12 @@ const Register = () => {
                                         <input
                                             type="text"
                                             id="company"
-                                            name="company"
+                                            name="company_name"
                                             placeholder=""
                                             className="form-control"
-                                            value={registrationData.company}
+                                            value={
+                                                registrationData.company_name
+                                            }
                                             onChange={onChangeHandler}
                                         />
                                     </div>
@@ -236,10 +238,10 @@ const Register = () => {
                                         <input
                                             type="text"
                                             id="zipcode"
-                                            name="zipcode"
+                                            name="zip_code"
                                             placeholder=""
                                             className="form-control"
-                                            value={registrationData.zipcode}
+                                            value={registrationData.zip_code}
                                             onChange={onChangeHandler}
                                         />
                                     </div>
