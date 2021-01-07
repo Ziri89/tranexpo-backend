@@ -1,0 +1,100 @@
+.dropdown-list {
+    top: 104%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 5;
+    max-height: 150px;
+    overflow-y: auto;
+    text-align: left;
+}
+.dropdown-list li {
+    cursor: pointer;
+    font-size: 13px;
+    width: 100%;
+    padding: 5px 7px;
+}
+.form-control:focus {
+    border-color: #fc823c;
+    box-shadow: none;
+}
+#shipment .custom-radio label,
+#shipment .custom-checkbox label {
+    font-size: 14px;
+}
+#shipment .form-row label {
+    font-size: 12px;
+}
+.input-group-text {
+    background: #fc823c;
+    color: #fff;
+}
+.custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    border-color: #fc823c;
+    background-color: #fc823c;
+}
+.react-datepicker-wrapper {
+    width: 100%;
+}
+.react-datepicker-wrapper input {
+    padding-right: 40.27px;
+    font-weight: 800;
+}
+.react-datepicker__input-container::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40.27px;
+    height: 100%;
+    background-color: #fc823c;
+    background-image: url("../../img/calendar.png");
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.form-control-file::-webkit-file-upload-button {
+    visibility: hidden;
+}
+.form-control-file::before {
+    content: "Select some picture of cargo";
+    display: inline-block;
+    background: #fc823c;
+    border: 1px solid #fc823c;
+    border-radius: 3px;
+    padding: 9px 8px;
+    outline: none;
+    color: #fff;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+.form-control-file {
+    max-width: 100%;
+    overflow: hidden;
+}
+.form-control-file:focus {
+    outline-color: #fc6107;
+}
+.form-control-file:hover::before {
+    border-color: #fc6107;
+    background: #fc6107;
+}
+.form-control-file:active::before {
+    background: #fc6107;
+}
+.shipment-btn {
+    font-size: 30px;
+}

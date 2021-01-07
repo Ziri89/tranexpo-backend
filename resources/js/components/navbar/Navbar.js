@@ -21,7 +21,7 @@ const Navbar = () => {
         dispatch(logout());
     };
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <div className="container">
                 <Link className="navbar-brand" to="/">
                     <img width="200" src={Logo} alt="Logo" />

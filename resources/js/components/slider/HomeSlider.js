@@ -22,8 +22,7 @@ const HomeSlider = () => {
             autoplay={{ delay: 6000, disableOnInteraction: false }}
             loop={true}
             spaceBetween={0}
-            onSwiper={swiper => console.log(swiper)}
-            onSlideChange={() => console.log("slide change")}
+            speed={900}
         >
             <SwiperSlide>
                 <img src={Slide_01} alt="Truck 1" />
