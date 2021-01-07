@@ -6632,7 +6632,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".swiper-pagination-bullet {\n    width: 20px;\n    height: 20px;\n    text-align: center;\n    line-height: 20px;\n    font-size: 12px;\n    color: #000;\n    opacity: 1;\n    background: rgba(252, 130, 60, 0.4);\n}\n\n.swiper-pagination-bullet-active {\n    color: #fff;\n    background: rgba(252, 130, 60, 1);\n}\n.swiper-button-next,\n.swiper-button-prev {\n    color: rgba(252, 130, 60, 1);\n    height: 100%;\n    padding: 0 80px;\n    background: rgba(255, 255, 255, 0);\n    top: 0;\n    margin-top: 0;\n    transition: background-color 0.3s;\n}\n.swiper-button-prev {\n    left: 0;\n}\n.swiper-button-next {\n    right: 0;\n}\n.swiper-button-next:hover,\n.swiper-button-prev:hover {\n    background: rgba(255, 255, 255, 0.5);\n}\n", ""]);
+exports.push([module.i, ".swiper-pagination-bullet {\r\n    width: 20px;\r\n    height: 20px;\r\n    text-align: center;\r\n    line-height: 20px;\r\n    font-size: 12px;\r\n    color: #000;\r\n    opacity: 1;\r\n    background: rgba(252, 130, 60, 0.4);\r\n}\r\n\r\n.swiper-pagination-bullet-active {\r\n    color: #fff;\r\n    background: rgba(252, 130, 60, 1);\r\n}\r\n.swiper-button-next,\r\n.swiper-button-prev {\r\n    color: rgba(252, 130, 60, 1);\r\n    height: 100%;\r\n    padding: 0 80px;\r\n    background: rgba(255, 255, 255, 0);\r\n    top: 0;\r\n    margin-top: 0;\r\n    transition: background-color 0.3s;\r\n}\r\n.swiper-button-prev {\r\n    left: 0;\r\n}\r\n.swiper-button-next {\r\n    right: 0;\r\n}\r\n.swiper-button-next:hover,\r\n.swiper-button-prev:hover {\r\n    background: rgba(255, 255, 255, 0.5);\r\n}\r\n", ""]);
 
 // exports
 
