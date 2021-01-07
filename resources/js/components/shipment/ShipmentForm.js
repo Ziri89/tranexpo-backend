@@ -400,18 +400,20 @@ const ShipmentForm = () => {
                                         />
                                     </div>
                                 </div>
-                                <div className="form-group col-12">
-                                    <label className="h5" htmlFor="image">
-                                        Add a picture of cargo
-                                    </label>
-                                    <input
-                                        type="file"
-                                        className="form-control-file"
-                                        id="image"
-                                        name="cargoImg"
-                                        value={formData.cargoImg}
-                                        onChange={formChangeHandler}
-                                    />
+                                <div className="row">
+                                    <div className="form-group col-12">
+                                        <label className="h5" htmlFor="image">
+                                            Add a picture of cargo
+                                        </label>
+                                        <input
+                                            type="file"
+                                            className="form-control-file"
+                                            id="image"
+                                            name="cargoImg"
+                                            value={formData.cargoImg}
+                                            onChange={formChangeHandler}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
