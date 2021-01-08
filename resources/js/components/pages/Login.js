@@ -7,6 +7,9 @@ import CheckButton from "react-validation/build/button";
 import { login } from "../actions/auth";
 import Loader from "../../img/loader.gif";
 import "./Login.css";
+import Banner from "../header/Banner";
+import Storehouse_1 from "../../img/storehous_1.jpg";
+import "./Login.css";
 const required = value => {
     if (!value) {
         return (
@@ -73,7 +76,7 @@ const Login = () => {
     }
     return (
         <div className="login-form">
-            <h3 className="text-center text-danger pt-5">Login</h3>
+            <Banner image={Storehouse_1} altText="Storehouse" title="Login" />
             <div className="container">
                 <div
                     id="login-row"

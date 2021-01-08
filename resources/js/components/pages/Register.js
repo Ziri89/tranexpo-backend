@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Loader from "../../img/loader.gif";
+import Banner from "../header/Banner";
+import Storehouse_3 from "../../img/storehous_3.jpg";
 import "./Register.css";
 
 const Register = () => {
@@ -98,13 +100,19 @@ const Register = () => {
     };
     return (
         <div className="register">
+            <Banner
+                image={Storehouse_3}
+                altText="Storehouse"
+                title="Registration"
+            />
             <div className="container">
                 <div className="row justify-content-center align-items-center">
-                    <form className="col-md-10 mt-5" onSubmit={onSubmitHandler}>
+                    <form
+                        id="register-form"
+                        className="col-md-10"
+                        onSubmit={onSubmitHandler}
+                    >
                         <div id="legend">
-                            <h2 className="text-danger text-center">
-                                Register
-                            </h2>
                             <p className="text-dark text-center">
                                 {registrationData.message}
                             </p>
@@ -211,7 +219,7 @@ const Register = () => {
                                         htmlFor="city"
                                         className="text-danger"
                                     >
-                                        City
+                                        City*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -232,7 +240,7 @@ const Register = () => {
                                         htmlFor="zipcode"
                                         className="text-danger"
                                     >
-                                        Zip Code
+                                        Zip Code*
                                     </label>
                                     <div className="controls">
                                         <input
