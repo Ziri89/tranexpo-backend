@@ -20,7 +20,7 @@ const ShipmentForm = () => {
         pallet: false,
         quantity: "1",
         weight: "",
-        pieces: "",
+        length: "",
         width: "",
         height: "",
         cargoImg: ""
@@ -372,9 +372,9 @@ const ShipmentForm = () => {
                                             type="number"
                                             className="form-control"
                                             id="inputAddress"
-                                            name="pieces"
+                                            name="length"
                                             placeholder="Length"
-                                            value={formData.pieces}
+                                            value={formData.length}
                                             onChange={formChangeHandler}
                                         />
                                     </div>
