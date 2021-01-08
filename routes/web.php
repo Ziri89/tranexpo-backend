@@ -14,3 +14,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/{path?}', 'app');
+Route::resource('parcel', 'App\Http\Controllers\ParcelController');
