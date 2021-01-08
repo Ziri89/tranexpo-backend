@@ -9,18 +9,12 @@ use App\Models\Parcel;
 
 class ParcelController extends Controller
 {
-    public function create()
- 
-    {
-        return view('create');
-    }
- 
-    public function store(Request $request)
- 
-    {
-        $input = $request->all();
- 
-        $request->validate([
+    private $sucess_status = 200;
+
+    public function store(Request $request) {
+
+        $validator = Validator::make($request->all(),
+        [
             'countryFrom' => 'required',
             'cityFrom' => 'required',
             'checkFrom' => 'required',
@@ -38,8 +32,20 @@ class ParcelController extends Controller
             'height' => 'required|numeric',
             'shippingDate' => 'required|date',
         ]);
- 
         
+        if($validator->fails()) {
+            return response()->json(["validation_errors" => $validator->errors()]);
+        }
+         $inputs = $request->all();
+         $parcel   = Parcel::create($inputs);
+         
+         if(!is_null($parcel)) {
+            return response()->json(["status" => $this->sucess_status, "success" => true, "data" => $parcel]);
+        }
+
+        else {
+            return response()->json(["status" => "failed", "success" => false, "message" => "Whoops! Parcel not created. please try again."]);
+        }
  
         return back()->with('success','Successfully published a new parcel!');
  

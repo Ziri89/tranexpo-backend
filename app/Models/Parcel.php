@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
 class Parcel extends Model
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
     protected $fillable = [
         'countryFrom',
@@ -27,4 +28,9 @@ class Parcel extends Model
         'height',
         'shippingDate',
     ];
+
+    public function post()
+    {
+         return $this->hasMany('App\Models\Post');
+    }
 }
