@@ -43,28 +43,28 @@ const ShipmentForm = () => {
             ...formData,
             countryFrom: ev.target.textContent
         });
-        ev.target.style.display = "none";
+        ev.target.parentElement.style.display = "none";
     };
     const setValueCountryTo = ev => {
         setFormData({
             ...formData,
             countryTo: ev.target.textContent
         });
-        ev.target.style.display = "none";
+        ev.target.parentElement.style.display = "none";
     };
     const setValueCityFrom = ev => {
         setFormData({
             ...formData,
             cityFrom: ev.target.textContent
         });
-        ev.target.style.display = "none";
+        ev.target.parentElement.style.display = "none";
     };
     const setValueCityTo = ev => {
         setFormData({
             ...formData,
             cityTo: ev.target.textContent
         });
-        ev.target.style.display = "none";
+        ev.target.parentElement.style.display = "none";
     };
     const countriesFrom = countrieOptions
         .filter(item => {
