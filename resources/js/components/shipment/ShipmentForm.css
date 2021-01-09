@@ -98,3 +98,9 @@ input::-webkit-inner-spin-button {
 .shipment-btn {
     font-size: 30px;
 }
+#shipment .success {
+    color: green;
+}
+#shipment .error {
+    color: red;
+}

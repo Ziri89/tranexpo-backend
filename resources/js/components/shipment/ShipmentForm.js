@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { countriesData } from "../countries/data";
 import Select from "./Select";
+import Loader from "../../img/loader.gif";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./ShipmentForm.css";
@@ -28,6 +29,9 @@ const ShipmentForm = () => {
     useEffect(() => {
         console.log(formData);
     }, [formData]);
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState("");
+    const [success, setSuccess] = useState(false);
     const formChangeHandler = ev => {
         const target = ev.target;
         const value =
@@ -134,9 +138,85 @@ const ShipmentForm = () => {
                   </li>
               ))
         : null;
+    const onSubmitHandler = ev => {
+        ev.preventDefault();
+        if (
+            formData.countryFrom === "" &&
+            formData.cityFrom === "" &&
+            formData.countryTo === "" &&
+            formData.cityTo === "" &&
+            formData.weight === "" &&
+            formData.length === "" &&
+            formData.width === "" &&
+            formData.height === "" &&
+            formData.cargoImg === null
+        ) {
+            setMessage("All fields are required");
+            setSuccess(false);
+        } else {
+            setLoading(true);
+            axios
+                .post("/api/publish", {
+                    countryFrom: formData.countryFrom,
+                    cityFrom: formData.cityFrom,
+                    checkFrom: formData.checkFrom,
+                    countryTo: formData.countryTo,
+                    cityTo: formData.cityTo,
+                    checkTo: formData.checkTo,
+                    shippingDate: formData.shippingDate,
+                    parcel: formData.parcel,
+                    envelope: formData.envelope,
+                    pallet: formData.pallet,
+                    quantity: formData.quantity,
+                    weight: formData.weight,
+                    length: formData.length,
+                    width: formData.width,
+                    height: formData.height,
+                    cargoImg: formData.cargoImg
+                })
+                .then(res => {
+                    if (res.data.status === 200) {
+                        setFormData({
+                            ...formData,
+                            countryFrom: "",
+                            cityFrom: "",
+                            checkFrom: "Residential",
+                            countryTo: "",
+                            cityTo: "",
+                            checkTo: "Residential",
+                            shippingDate: new Date(),
+                            parcel: true,
+                            envelope: false,
+                            pallet: false,
+                            quantity: "1",
+                            weight: "",
+                            length: "",
+                            width: "",
+                            height: "",
+                            cargoImg: null
+                        });
+                        setLoading(false);
+                        setSuccess(true);
+                        setMessage(
+                            "You have successfully scheduled the shipment"
+                        );
+                        //history.push("/login");
+                    } else {
+                        setMessage("Something went wrong. Please try later");
+                        setLoading(false);
+                        setSuccess(false);
+                    }
+                })
+                .catch(err => {
+                    setMessage(err.message + "." + " Please try later.");
+                    setLoading(false);
+                    setSuccess(false);
+                });
+        }
+    };
     return (
         <div id="shipment" className="container pb-5">
-            <form>
+            <form onSubmit={onSubmitHandler}>
                 <div className="row mt-5">
                     <div className="col-lg-6">
                         <h2 className="text-danger mb-3">Your destination</h2>
@@ -285,6 +365,9 @@ const ShipmentForm = () => {
                                 </div>
                             </div>
                         </div>
+                        <p className={success ? "success" : "error"}>
+                            {message}
+                        </p>
                     </div>
                     <div className="col-lg-6">
                         <h2 className="text-danger mb-3">Your shipment</h2>
@@ -427,7 +510,15 @@ const ShipmentForm = () => {
                             name="submit"
                             className="btn btn-danger btn-block py-2 shipment-btn mt-4"
                         >
-                            Send my parcel
+                            Send my parcel{" "}
+                            {loading ? (
+                                <img
+                                    src={Loader}
+                                    width="20"
+                                    className="ml-2"
+                                    alt="Loader"
+                                />
+                            ) : null}
                         </button>
                     </div>
                 </div>
