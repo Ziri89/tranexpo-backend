@@ -1,0 +1,10 @@
+.fileUploader .fileContainer {
+    background: transparent;
+    box-shadow: none;
+}
+.fileContainer .chooseFileButton {
+    background: #fc823c;
+}
+.fileContainer .chooseFileButton:hover {
+    background: #fc6107;
+}

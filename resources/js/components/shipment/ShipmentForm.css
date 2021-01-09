@@ -64,6 +64,8 @@ input::-webkit-inner-spin-button {
 }
 .form-control-file::-webkit-file-upload-button {
     visibility: hidden;
+    position: relative;
+    left: -150%;
 }
 .form-control-file::before {
     content: "Select some picture of cargo";
