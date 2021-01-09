@@ -27,7 +27,7 @@ Route::middleware('auth:api')->group(function() {
 Route::get("user", [UserController::class, "userDetail"]);
 });
 
-Route::post('addParcel', [ParcelController::class, "store"]);
+Route::post('publish', [ParcelController::class, "store"]);
     
  
 
