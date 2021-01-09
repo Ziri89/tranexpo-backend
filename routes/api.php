@@ -33,7 +33,7 @@ Route::middleware('auth:api')->group(function() {
 Route::get("parcel", [UserController::class, "view"]);
     });
 
-
+Route::post('publish', [HomeController::class, 'uploadimage'])->name('publish');
     
  
 
