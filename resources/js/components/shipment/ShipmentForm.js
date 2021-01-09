@@ -23,7 +23,7 @@ const ShipmentForm = () => {
         length: "",
         width: "",
         height: "",
-        cargoImg: ""
+        cargoImg: null
     });
     useEffect(() => {
         console.log(formData);
@@ -410,8 +410,13 @@ const ShipmentForm = () => {
                                             className="form-control-file"
                                             id="image"
                                             name="cargoImg"
-                                            value={formData.cargoImg}
-                                            onChange={formChangeHandler}
+                                            onChange={ev => {
+                                                setFormData({
+                                                    ...formData,
+                                                    cargoImg: ev.target.files[0]
+                                                });
+                                            }}
+                                            accept="image/*"
                                         />
                                     </div>
                                 </div>
