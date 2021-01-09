@@ -31,6 +31,6 @@ class Parcel extends Model
 
     public function post()
     {
-         return $this->hasMany('App\Models\Post');
+         return $this->hasMany('App\Models\Parcel');
     }
 }

@@ -64,6 +64,8 @@ input::-webkit-inner-spin-button {
 }
 .form-control-file::-webkit-file-upload-button {
     visibility: hidden;
+    position: relative;
+    left: -150%;
 }
 .form-control-file::before {
     content: "Select some picture of cargo";
@@ -97,4 +99,10 @@ input::-webkit-inner-spin-button {
 }
 .shipment-btn {
     font-size: 30px;
+}
+#shipment .success {
+    color: green;
+}
+#shipment .error {
+    color: red;
 }
