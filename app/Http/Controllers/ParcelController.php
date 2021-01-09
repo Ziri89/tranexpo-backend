@@ -38,6 +38,7 @@ class ParcelController extends Controller
         }
          $inputs = $request->all();
          $parcel   = Parcel::create($inputs);
+         $token      =       $parcel->createToken('token')->accessToken;
          
          if(!is_null($parcel)) {
             return response()->json(["status" => $this->sucess_status, "success" => true, "data" => $parcel]);
@@ -50,5 +51,14 @@ class ParcelController extends Controller
         return back()->with('success','Successfully published a new parcel!');
  
     }
- 
+    
+    public function view() {
+        $parcel           =       Auth::parcel();
+        if(!is_null($parcel)) {
+            return response()->json(["status" => $this->sucess_status, "success" => true, "parcel" => $parcel]);
+        }
+        else {
+            return response()->json(["status" => "failed", "success" => false, "message" => "Whoops! no parcel found"]);
+        }
+    }
 }
