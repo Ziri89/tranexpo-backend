@@ -15,16 +15,16 @@ class CreateParcelsTable extends Migration
     {
         Schema::create('parcels', function (Blueprint $table) {
             $table->id();
-            $table->string('countyFrom');
+            $table->string('countryFrom');
             $table->string('cityFrom');
             $table->string('checkFrom',10);
             $table->string('countryTo');
             $table->string('cityTo');
             $table->string('checkTo',10);
             $table->string('cargoImg');
-            $table->boolean('parcel');
-            $table->boolean('envelope');
-            $table->boolean('pallet');
+            $table->boolean('parcel')->default(0)->change();
+            $table->boolean('envelope')->default(0)->change();
+            $table->boolean('pallet')->default(0)->change();
             $table->integer('quantity');
             $table->integer('weight');
             $table->integer('lenght');
