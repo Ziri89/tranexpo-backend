@@ -496,7 +496,8 @@ const ShipmentForm = () => {
                                             onChange={ev => {
                                                 setFormData({
                                                     ...formData,
-                                                    cargoImg: ev.target.files[0]
+                                                    cargoImg:
+                                                        ev.target.files[0].name
                                                 });
                                             }}
                                             accept="image/*"
