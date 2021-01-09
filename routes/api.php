@@ -28,6 +28,12 @@ Route::get("user", [UserController::class, "userDetail"]);
 });
 
 Route::post('publish', [ParcelController::class, "store"]);
+
+Route::middleware('auth:api')->group(function() {
+Route::get("parcel", [UserController::class, "view"]);
+    });
+
+
     
  
 
