@@ -198,8 +198,8 @@ const ShipmentForm = () => {
                     config
                 )
                 .then(res => {
-                    console.log(res);
-                    if (res.data.status === 200) {
+                    console.log(res.status);
+                    if (res.status === 200) {
                         setFormData({
                             ...formData,
                             countryFrom: "",
