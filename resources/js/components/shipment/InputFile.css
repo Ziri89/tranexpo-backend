@@ -1,6 +1,7 @@
 .fileUploader .fileContainer {
     background: transparent;
     box-shadow: none;
+    padding: 0;
 }
 .fileContainer .chooseFileButton {
     background: #fc823c;

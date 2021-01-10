@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { countriesData } from "../countries/data";
 import Select from "./Select";
 import Loader from "../../img/loader.gif";
+import ImgLoader from "../../img/img-loader.gif";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./ShipmentForm.css";
@@ -158,7 +159,6 @@ const ShipmentForm = () => {
         const config = {
             headers: { "content-type": "multipart/form-data" }
         };
-        console.log(fd, formData.cargoImg, formData.cargoImg.name);
         if (
             formData.countryFrom === "" &&
             formData.cityFrom === "" &&
@@ -278,12 +278,14 @@ const ShipmentForm = () => {
                     />
                 );
             case "uploading":
-                return <h2>Uploading....</h2>;
+                return <img src={ImgLoader} alt="Image Loader" />;
             case "uploaded":
-                return <img src={url} alt="uploaded" />;
+                return (
+                    <h4 className="text-success text-center">Image Uploaded</h4>
+                );
             case "uploadError":
                 return (
-                    <>
+                    <h2>
                         <InputFile
                             labelText="Upload image of cargo"
                             url={url}
@@ -292,7 +294,7 @@ const ShipmentForm = () => {
                         <div className="text-muted h6 text-center">
                             Error message: {imgUpladErrMsg}
                         </div>
-                    </>
+                    </h2>
                 );
         }
     };
@@ -575,7 +577,7 @@ const ShipmentForm = () => {
                         <button
                             type="submit"
                             name="submit"
-                            className="btn btn-danger btn-block py-2 shipment-btn mt-4"
+                            className="btn btn-danger btn-block shipment-btn mt-4"
                         >
                             Send my parcel{" "}
                             {loading ? (

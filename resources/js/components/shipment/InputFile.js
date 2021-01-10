@@ -14,7 +14,7 @@ const InputFile = props => {
                 withIcon={true}
                 singleImage={true}
                 withPreview={true}
-                label="Maximum size file: 1MB"
+                label="Maximum file size: 1MB"
                 onChange={props.onImage}
                 imgExtension={[".jpg", ".png", ".jpeg"]}
                 maxFileSize={1048576}
