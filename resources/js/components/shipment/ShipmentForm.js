@@ -540,9 +540,9 @@ const ShipmentForm = () => {
                                             type="number"
                                             className="form-control"
                                             id="inputAddress"
-                                            name="length"
-                                            placeholder="Length"
-                                            value={formData.length}
+                                            name="lenght"
+                                            placeholder="Lenght"
+                                            value={formData.lenght}
                                             onChange={formChangeHandler}
                                         />
                                     </div>
