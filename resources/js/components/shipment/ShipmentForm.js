@@ -36,7 +36,7 @@ const ShipmentForm = () => {
     const [success, setSuccess] = useState(false);
     const [progress, setProgress] = useState("getUpload");
     const [imgUpladErrMsg, setImgUpladErrMsg] = useState("");
-    const url = "/api/publish";
+    const url = "/api/upload";
 
     const formChangeHandler = ev => {
         const target = ev.target;
