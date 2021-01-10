@@ -28,14 +28,10 @@ Route::middleware('auth:api')->group(function() {
 Route::get("user", [UserController::class, "userDetail"]);
 });
 
-Route::post('parcel', [ParcelController::class, "store"]);
+Route::post('publish', [ParcelController::class, "store"]);
 
 Route::middleware('auth:api')->group(function() {
 Route::get("parcel", [UserController::class, "view"]);
     });
 
 Route::post('publish', [HomeController::class, 'uploadimage'])->name('publish');
-    
- 
-
- 
