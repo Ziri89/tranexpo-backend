@@ -10,6 +10,7 @@ const Select = props => {
                 name={props.name}
                 value={props.value}
                 onChange={props.onChange}
+                autoComplete="off"
             />
             <div className="input-group-append">
                 <div className="input-group-text">{props.char}</div>
