@@ -23,7 +23,7 @@ const ShipmentForm = () => {
         pallet: false,
         quantity: "1",
         weight: "",
-        length: "",
+        lenght: "",
         width: "",
         height: "",
         cargoImg: null
@@ -165,7 +165,7 @@ const ShipmentForm = () => {
             formData.countryTo === "" &&
             formData.cityTo === "" &&
             formData.weight === "" &&
-            formData.length === "" &&
+            formData.lenght === "" &&
             formData.width === "" &&
             formData.height === "" &&
             formData.cargoImg === null
@@ -190,7 +190,7 @@ const ShipmentForm = () => {
                         pallet: formData.pallet,
                         quantity: formData.quantity,
                         weight: formData.weight,
-                        length: formData.length,
+                        lenght: formData.lenght,
                         width: formData.width,
                         height: formData.height,
                         cargoImg: formData.cargoImg
@@ -214,7 +214,7 @@ const ShipmentForm = () => {
                             pallet: false,
                             quantity: "1",
                             weight: "",
-                            length: "",
+                            lenght: "",
                             width: "",
                             height: "",
                             cargoImg: null
@@ -255,6 +255,7 @@ const ShipmentForm = () => {
             const mime = parts[0].split(":")[1];
             const name = parts[1].split("=")[1];
             const data = parts[2];
+            console.log("mime: " + mime, "name: " + name, "data: " + data);
             const res = await axios.post(url, { mime, name, image: data });
             setProgress("uploaded");
             setFormData({
