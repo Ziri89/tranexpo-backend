@@ -18,9 +18,9 @@ class HomeController extends Controller
           $extension = $file->getClientOriginalExtension();
           $picture   = date('His').'-'.$filename;
           //move image to public/img folder
-          $file->move(public_path('img'), $picture);
+          $file->move(public_path('images'), $picture);
           return response()->json(["message" => "Image Uploaded Succesfully"]);
-     } 
+     }
     else
      {
           return response()->json(["message" => "Select image first."]);
