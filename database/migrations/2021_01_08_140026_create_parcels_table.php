@@ -21,10 +21,10 @@ class CreateParcelsTable extends Migration
             $table->string('countryTo');
             $table->string('cityTo');
             $table->string('checkTo',10);
-            $table->string('cargoImg');
             $table->boolean('parcel')->default(0)->change();
             $table->boolean('envelope')->default(0)->change();
             $table->boolean('pallet')->default(0)->change();
+            $table->string('cargoImg');
             $table->integer('quantity');
             $table->integer('weight');
             $table->integer('lenght');

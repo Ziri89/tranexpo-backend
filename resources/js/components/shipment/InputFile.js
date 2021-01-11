@@ -5,10 +5,7 @@ import "./InputFile.css";
 const InputFile = props => {
     return (
         <React.Fragment>
-            <label className="text-danger">
-                {props.labelText}
-                <input type="hidden" id="urlInput" value={props.url} />
-            </label>
+            <label className="text-danger">{props.labelText}</label>
             <ImageUploader
                 key="image-uploader"
                 withIcon={true}
@@ -18,6 +15,7 @@ const InputFile = props => {
                 onChange={props.onImage}
                 imgExtension={[".jpg", ".png", ".jpeg"]}
                 maxFileSize={1048576}
+                fileSizeError=" file size is too big"
             ></ImageUploader>
         </React.Fragment>
     );
