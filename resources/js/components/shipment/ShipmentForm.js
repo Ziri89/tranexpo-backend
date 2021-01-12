@@ -242,6 +242,7 @@ const ShipmentForm = () => {
     const onImage = (failedImages, successImages) => {
         const imageData = successImages[0];
         const myHeaders = new Headers();
+        console.log(myHeaders);
         setProgress("uploading");
         let formdata = new FormData();
         formdata.append("image", imageData);
