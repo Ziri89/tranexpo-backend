@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ParcelController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FileController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -34,4 +34,4 @@ Route::middleware('auth:api')->group(function() {
 Route::get("parcel", [ParcelController::class, "view"]);
     });
 
-Route::post('upload', [HomeController::class, 'uploadimage'])->name('upload');
+Route::post('upload', [FileController::class, 'upload'])->name('upload');
