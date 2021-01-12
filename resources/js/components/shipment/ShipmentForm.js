@@ -241,18 +241,19 @@ const ShipmentForm = () => {
     };
 
     const onImage = (failedImages, successImages) => {
+        let myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${token}`);
         const imageData = successImages[0];
         setProgress("uploading");
-        axios({
-            url: "/api/upload",
+        let formdata = new FormData();
+        formdata.append("image", imageData);
+        let requestOptions = {
             method: "POST",
-            headers: {
-                Authorization: `Bearer ${token}`,
-                Accept: "application/json",
-                "Content-Type": "multipart/form-data"
-            },
-            data: imageData
-        })
+            headers: myHeaders,
+            body: formdata,
+            redirect: "follow"
+        };
+        axios("/api/upload", requestOptions)
             .then(res => {
                 console.log("Response: " + res);
                 setImage(imageData);
