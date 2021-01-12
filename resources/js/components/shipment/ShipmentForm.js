@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { countriesData } from "../countries/data";
 import Select from "./Select";
 import Loader from "../../img/loader.gif";
@@ -36,8 +37,8 @@ const ShipmentForm = () => {
     const [success, setSuccess] = useState(false);
     const [progress, setProgress] = useState("getUpload");
     const [imgUpladErrMsg, setImgUpladErrMsg] = useState("");
-    const url = "/api/upload";
-
+    const [image, setImage] = useState(null);
+    const { token } = useSelector(state => state.auth.user);
     const formChangeHandler = ev => {
         const target = ev.target;
         const value =
@@ -198,7 +199,7 @@ const ShipmentForm = () => {
                     config
                 )
                 .then(res => {
-                    console.log(res.status);
+                    // console.log(res.status);
                     if (res.status === 200) {
                         setFormData({
                             ...formData,
@@ -239,34 +240,29 @@ const ShipmentForm = () => {
         }
     };
 
-    const onImage = async (failedImages, successImages) => {
-        if (!url) {
-            console.log("missing Url");
-            setErrorMessage("missing a url to upload to");
-            setProgress("uploadError");
-            return;
-        }
-
+    const onImage = (failedImages, successImages) => {
+        const imageData = successImages[0];
         setProgress("uploading");
-
-        try {
-            console.log("successImages", successImages);
-            const parts = successImages[0].split(";");
-            const mime = parts[0].split(":")[1];
-            const name = parts[1].split("=")[1];
-            const data = parts[2];
-            console.log("mime: " + mime, "name: " + name, "data: " + data);
-            const res = await axios.post(url, { mime, name, image: data });
-            setProgress("uploaded");
-            setFormData({
-                ...formData,
-                cargoImg: name
+        axios({
+            url: "/api/upload",
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                Accept: "application/json",
+                "Content-Type": "multipart/form-data"
+            },
+            data: imageData
+        })
+            .then(res => {
+                console.log("Response: " + res);
+                setImage(imageData);
+                setProgress("uploaded");
+            })
+            .catch(err => {
+                console.log("Error: " + err);
+                setImgUpladErrMsg(error.message);
+                setProgress("uploadError");
             });
-        } catch (error) {
-            console.log("error in upload", error);
-            setImgUpladErrMsg(error.message);
-            setProgress("uploadError");
-        }
     };
     const imgUploadContent = () => {
         switch (progress) {
@@ -274,22 +270,18 @@ const ShipmentForm = () => {
                 return (
                     <InputFile
                         labelText="Upload image of cargo"
-                        url={url}
                         onImage={onImage}
                     />
                 );
             case "uploading":
                 return <img src={ImgLoader} alt="Image Loader" />;
             case "uploaded":
-                return (
-                    <h4 className="text-success text-center">Image Uploaded</h4>
-                );
+                return <img src={image} alt="Uploaded Image" width="250" />;
             case "uploadError":
                 return (
                     <h2>
                         <InputFile
                             labelText="Upload image of cargo"
-                            url={url}
                             onImage={onImage}
                         />
                         <div className="text-muted h6 text-center">
