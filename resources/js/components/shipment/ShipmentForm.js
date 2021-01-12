@@ -38,7 +38,6 @@ const ShipmentForm = () => {
     const [progress, setProgress] = useState("getUpload");
     const [imgUpladErrMsg, setImgUpladErrMsg] = useState("");
     const [image, setImage] = useState(null);
-    const { token } = useSelector(state => state.auth.user);
     const formChangeHandler = ev => {
         const target = ev.target;
         const value =
@@ -241,9 +240,8 @@ const ShipmentForm = () => {
     };
 
     const onImage = (failedImages, successImages) => {
-        let myHeaders = new Headers();
-        myHeaders.append("Authorization", `Bearer ${token}`);
         const imageData = successImages[0];
+        const myHeaders = new Headers();
         setProgress("uploading");
         let formdata = new FormData();
         formdata.append("image", imageData);
