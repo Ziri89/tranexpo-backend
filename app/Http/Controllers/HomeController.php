@@ -16,9 +16,10 @@ class HomeController extends Controller
           $file      = $request->file('image');
           $filename  = $file->getClientOriginalName();
           $extension = $file->getClientOriginalExtension();
-          $picture   = date('His').'-'.$filename;
-          //move image to public/img folder
+          $picture   = $filename;
+          //move image to public/image folder
           $file->move(public_path('images'), $picture);
+
           return response()->json(["message" => "Image Uploaded Succesfully"]);
      }
     else
