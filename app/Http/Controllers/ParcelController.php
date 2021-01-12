@@ -37,8 +37,8 @@ class ParcelController extends Controller
             return response()->json(["validation_errors" => $validator->errors()]);
         }
          $inputs = $request->all();
-         $parcel   = Parcel::create($inputs);
-         $token      =       $parcel->createToken('token')->accessToken;
+         $parcel = Parcel::create($inputs);
+         $token  = $parcel->createToken('token')->accessToken;
          
          if(!is_null($parcel)) {
             return response()->json(["status" => $this->sucess_status, "success" => true, "data" => $parcel]);
