@@ -57,15 +57,15 @@ const Navbar = () => {
                         <NavLink className="nav-link" to="/">
                             Home
                         </NavLink>
-                        <NavLink className="nav-link" to="#">
-                            Link
-                        </NavLink>
-                        <NavLink className="nav-link" to="#">
-                            Link
+                        <NavLink className="nav-link" to="/about">
+                            About Us
                         </NavLink>
 
-                        <NavLink className="nav-link" to="#">
-                            Link
+                        <NavLink
+                            className="nav-link"
+                            to="/transport-registration"
+                        >
+                            Transport registration
                         </NavLink>
                     </div>
                     <div className="login">
