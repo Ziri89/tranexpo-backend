@@ -27,7 +27,7 @@ const ShipmentForm = () => {
         lenght: "",
         width: "",
         height: "",
-        cargoImg: null
+        cargoImg: ""
     });
     useEffect(() => {
         console.log(formData);
@@ -168,7 +168,7 @@ const ShipmentForm = () => {
             formData.lenght === "" &&
             formData.width === "" &&
             formData.height === "" &&
-            formData.cargoImg === null
+            formData.cargoImg === ""
         ) {
             setMessage("All fields are required");
             setSuccess(false);
@@ -217,7 +217,7 @@ const ShipmentForm = () => {
                             lenght: "",
                             width: "",
                             height: "",
-                            cargoImg: null
+                            cargoImg: ""
                         });
                         setLoading(false);
                         setSuccess(true);
@@ -241,6 +241,10 @@ const ShipmentForm = () => {
 
     const onImage = (failedImages, successImages) => {
         const imageData = successImages[0];
+        const parts = imageData.split(";");
+        const mime = parts[0].split(":")[1];
+        const name = parts[1].split("=")[1];
+        const data = parts[2];
         const myHeaders = new Headers();
         console.log(myHeaders);
         setProgress("uploading");
@@ -257,6 +261,10 @@ const ShipmentForm = () => {
                 console.log("Response: " + res);
                 setImage(imageData);
                 setProgress("uploaded");
+                setFormData({
+                    ...formData,
+                    cargoImg: name
+                });
             })
             .catch(err => {
                 console.log("Error: " + err);
@@ -271,6 +279,7 @@ const ShipmentForm = () => {
                     <InputFile
                         labelText="Upload image of cargo"
                         onImage={onImage}
+                        image={image}
                     />
                 );
             case "uploading":
@@ -283,6 +292,7 @@ const ShipmentForm = () => {
                         <InputFile
                             labelText="Upload image of cargo"
                             onImage={onImage}
+                            image={image}
                         />
                         <div className="text-muted h6 text-center">
                             Error message: {imgUpladErrMsg}
