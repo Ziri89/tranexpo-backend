@@ -54,7 +54,7 @@ const Navbar = () => {
                         />
                     </div>
                     <div className="navbar-nav mx-auto">
-                        <NavLink className="nav-link" to="/">
+                        <NavLink exact className="nav-link" to="/">
                             Home
                         </NavLink>
                         <NavLink className="nav-link" to="/about">
