@@ -17,7 +17,7 @@ const TransportRegistration = () => {
         password: "",
         password_confirm: "",
         loading: false,
-        message: "Fields with * are required",
+        message: "All fields are required",
         email_message: "",
         name_message: "",
         phone_message: "",
@@ -197,7 +197,7 @@ const TransportRegistration = () => {
                                         htmlFor="company"
                                         className="text-danger"
                                     >
-                                        Company Name
+                                        Company Name*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -218,7 +218,7 @@ const TransportRegistration = () => {
                                         htmlFor="company_number"
                                         className="text-danger"
                                     >
-                                        Company Registration Number
+                                        Company Registration Number*
                                     </label>
                                     <div className="controls">
                                         <input
