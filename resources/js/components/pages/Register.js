@@ -39,6 +39,10 @@ const Register = () => {
                     "Password confirm doesn't match password. Pleas retape"
             });
         } else {
+            setRegistrationData({
+                ...registrationData,
+                loading: true
+            });
             axios
                 .post("/api/register", {
                     name: registrationData.name,
@@ -50,10 +54,6 @@ const Register = () => {
                     password: registrationData.password
                 })
                 .then(res => {
-                    setRegistrationData({
-                        ...registrationData,
-                        loading: true
-                    });
                     if (res.data.status === 200) {
                         setRegistrationData({
                             ...registrationData,
@@ -105,7 +105,7 @@ const Register = () => {
                 altText="Storehouse"
                 title="Registration"
             />
-            <div className="container">
+            <div className="container mb-5">
                 <div className="row justify-content-center align-items-center">
                     <form
                         id="register-form"
