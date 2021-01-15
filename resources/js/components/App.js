@@ -12,6 +12,7 @@ import Register from "./pages/Register";
 import "./App.css";
 import TransportRegistration from "./pages/TransportRegistration";
 import About from "./pages/About";
+import Footer from "./footer/Footer";
 
 const composeEnhancers =
     (window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
@@ -43,6 +44,7 @@ function App() {
                     </Route>
                 </Switch>
             </Router>
+            <Footer />
         </div>
     );
 }
