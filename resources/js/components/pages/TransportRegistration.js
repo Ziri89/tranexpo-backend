@@ -209,6 +209,9 @@ const TransportRegistration = () => {
                                             value={shipperReg.company_name}
                                             onChange={onChangeHandler}
                                         />
+                                        <p className="warning">
+                                            {shipperReg.company_name_message}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -230,6 +233,9 @@ const TransportRegistration = () => {
                                             value={shipperReg.company_reg_num}
                                             onChange={onChangeHandler}
                                         />
+                                        <p className="warning">
+                                            {shipperReg.company_reg_num_message}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
