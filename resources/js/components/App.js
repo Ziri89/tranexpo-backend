@@ -13,6 +13,7 @@ import "./App.css";
 import TransportRegistration from "./pages/TransportRegistration";
 import About from "./pages/About";
 import Footer from "./footer/Footer";
+import PackagesPlan from "./pages/PackagesPlan";
 
 const composeEnhancers =
     (window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
@@ -41,6 +42,9 @@ function App() {
                     </Route>
                     <Route path="/about">
                         <About />
+                    </Route>
+                    <Route path="/packages-plans">
+                        <PackagesPlan />
                     </Route>
                 </Switch>
             </Router>
