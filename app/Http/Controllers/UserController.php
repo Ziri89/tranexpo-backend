@@ -64,6 +64,7 @@ class UserController extends Controller {
 
             return response()->json(["status" => $this->sucess_status, "success" => true, "login" => true, "token" => $token, "data" => $user]);
         }
+        
         else {
             return response()->json(["status" => "failed", "success" => false, "message" => "Whoops! invalid email or password"]);
         }
