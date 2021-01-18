@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use App\Models\Shipper;
 
 class UserController extends Controller {
 
@@ -58,13 +59,28 @@ class UserController extends Controller {
             return response()->json(["validation_errors" => $validator->errors()]);
         }
 
+    /*  if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            $details = Auth::guard('web')->user();
+            $user = $details['original'];
+            return $user;
+        } else {
+            return 'auth fail';
+        }
+    */
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-            $user       =       Auth::user();
-            $token      =       $user->createToken('token')->accessToken;
+        $user      =      Auth::user();
+        $token     =      $user->createToken('token')->accessToken;
 
             return response()->json(["status" => $this->sucess_status, "success" => true, "login" => true, "token" => $token, "data" => $user]);
         }
-        
+
+        if(Auth::guard('shipper')->attempt(['email' => $request->email, 'password' => $request->password])){
+            $shipper    =     Auth::shipper();
+            $token   =     $shipper->createToken('token')->accessToken;
+
+            return response()->json(["status" => $this->sucess_status, "success" => true, "login" => true, "token" => $token, "data" => $shipper]);
+        }
+
         else {
             return response()->json(["status" => "failed", "success" => false, "message" => "Whoops! invalid email or password"]);
         }
@@ -81,4 +97,16 @@ class UserController extends Controller {
             return response()->json(["status" => "failed", "success" => false, "message" => "Whoops! no user found"]);
         }
     }
+
+
+    public function shipperDetail() {
+        $user           =       Auth::user();
+        if(!is_null($user)) {
+            return response()->json(["status" => $this->sucess_status, "success" => true, "user" => $user]);
+        }
+        else {
+            return response()->json(["status" => "failed", "success" => false, "message" => "Whoops! no user found"]);
+        }
+    }
+
 }

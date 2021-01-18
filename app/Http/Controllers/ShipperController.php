@@ -44,4 +44,14 @@ class ShipperController extends Controller
         }
     }
 
+
+    public function shipperDetail() {
+        $shipper           =       Auth::shipper();
+        if(!is_null($shipper)) {
+            return response()->json(["status" => $this->sucess_status, "success" => true, "user" => $shipper]);
+        }
+        else {
+            return response()->json(["status" => "failed", "success" => false, "message" => "Whoops! no user found"]);
+        }
+    }
 }
