@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ParcelController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\ShipperController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,6 +23,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('register', [UserController::class, "registerUser"]);
 Route::post('login', [UserController::class, "loginUser"]);
+
+Route::post('registerShipper', [ShipperController::class, "registerShipper"]);
 
 
 Route::middleware('auth:api')->group(function() {
