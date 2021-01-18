@@ -44,12 +44,12 @@ const TransportRegistration = () => {
                     "Password confirm doesn't match password. Pleas retape"
             });
         } else {
-            setRegistrationData({
-                ...registrationData,
+            setShipperReg({
+                ...shipperReg,
                 loading: true
             });
             axios
-                .post("/api/something", {
+                .post("/api/registerShipper", {
                     name: shipperReg.name,
                     email: shipperReg.email,
                     company_name: shipperReg.company_name,
@@ -62,8 +62,8 @@ const TransportRegistration = () => {
                 })
                 .then(res => {
                     if (res.data.status === 200) {
-                        setRegistrationData({
-                            ...registrationData,
+                        setShipperReg({
+                            ...shipperReg,
                             name: "",
                             email: "",
                             company_name: "",
@@ -80,8 +80,8 @@ const TransportRegistration = () => {
                         });
                         history.push("/login");
                     } else {
-                        setRegistrationData({
-                            ...registrationData,
+                        setShipperReg({
+                            ...shipperReg,
                             name_message: res.data.validation_errors.name
                                 ? res.data.validation_errors.name[0]
                                 : "",
@@ -115,8 +115,8 @@ const TransportRegistration = () => {
                     }
                 })
                 .catch(err => {
-                    setRegistrationData({
-                        ...registrationData,
+                    setShipperReg({
+                        ...shipperReg,
                         message: err.message + "." + " Please try later.",
                         loading: false
                     });
@@ -218,7 +218,7 @@ const TransportRegistration = () => {
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label
-                                        htmlFor="company_number"
+                                        htmlFor="company_reg_num"
                                         className="text-danger"
                                     >
                                         Company Registration Number*
@@ -226,8 +226,8 @@ const TransportRegistration = () => {
                                     <div className="controls">
                                         <input
                                             type="text"
-                                            id="company_number"
-                                            name="company_number"
+                                            id="company_reg_num"
+                                            name="company_reg_num"
                                             placeholder=""
                                             className="form-control"
                                             value={shipperReg.company_reg_num}
@@ -252,7 +252,6 @@ const TransportRegistration = () => {
                                             type="tel"
                                             id="phone"
                                             name="phone"
-                                            placeholder=""
                                             className="form-control"
                                             value={shipperReg.phone}
                                             onChange={onChangeHandler}
@@ -275,8 +274,7 @@ const TransportRegistration = () => {
                                         <input
                                             type="number"
                                             id="vehicle_number"
-                                            name="phone"
-                                            placeholder=""
+                                            name="vehicle_number"
                                             className="form-control"
                                             value={shipperReg.vehicle_number}
                                             onChange={onChangeHandler}
@@ -300,7 +298,6 @@ const TransportRegistration = () => {
                                             type="text"
                                             id="city"
                                             name="city"
-                                            placeholder=""
                                             className="form-control"
                                             value={shipperReg.city}
                                             onChange={onChangeHandler}
