@@ -42,7 +42,7 @@ return [
         ],
 
         'shipper' => [
-            'driver' => 'session',
+            'driver' => 'passport',
             'provider' => 'shippers',
         ],
 
@@ -51,6 +51,7 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        
 
     ],
 

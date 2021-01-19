@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
-use App\Models\Shipper;
 
 class UserController extends Controller {
 
@@ -75,10 +74,10 @@ class UserController extends Controller {
         }
 
         if(Auth::guard('shipper')->attempt(['email' => $request->email, 'password' => $request->password])){
-            $shipper    =     Auth::shipper();
-            $token   =     $shipper->createToken('token')->accessToken;
+            $user    =     Auth::guard('shipper')->user();
+            $token   =     $user->createToken('token')->accessToken;
 
-            return response()->json(["status" => $this->sucess_status, "success" => true, "login" => true, "token" => $token, "data" => $shipper]);
+            return response()->json(["status" => $this->sucess_status, "success" => true, "login" => true, "token" => $token, "data" => $user]);
         }
 
         else {
