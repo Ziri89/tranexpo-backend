@@ -26,6 +26,10 @@ Route::post('login', [UserController::class, "loginUser"]);
 
 Route::post('registerShipper', [ShipperController::class, "registerShipper"]);
 
+Route::middleware('auth:api')->group(function() {
+Route::get("shipper", [UserController::class, "shipperDetail"]);
+});
+
 
 Route::middleware('auth:api')->group(function() {
 Route::get("user", [UserController::class, "userDetail"]);

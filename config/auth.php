@@ -41,11 +41,18 @@ return [
             'provider' => 'users',
         ],
 
+        'shipper' => [
+            'driver' => 'passport',
+            'provider' => 'shippers',
+        ],
+
         'api' => [
             'driver' => 'passport',
             'provider' => 'users',
             'hash' => false,
         ],
+        
+
     ],
 
     /*
@@ -69,13 +76,18 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+
+        ],
+        'shippers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Shipper::class,
         ],
 
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
-        // ],
-    ],
+        ],
+
 
     /*
     |--------------------------------------------------------------------------
