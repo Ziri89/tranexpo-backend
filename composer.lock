@@ -108,11 +108,7 @@
             ],
             "support": {
                 "issues": "https://github.com/brick/math/issues",
-<<<<<<< HEAD
                 "source": "https://github.com/brick/math/tree/0.9.2"
-=======
-                "source": "https://github.com/brick/math/tree/master"
->>>>>>> 256b6a1e03924bd906cba3ada0ce2920b9fd48cc
             },
             "funding": [
                 {
@@ -1093,7 +1089,6 @@
         },
         {
             "name": "laravel/framework",
-<<<<<<< HEAD
             "version": "v8.24.0",
             "source": {
                 "type": "git",
@@ -1104,18 +1099,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/d16e9f875e4d7609a05d5007393e22ba95efd1fc",
                 "reference": "d16e9f875e4d7609a05d5007393e22ba95efd1fc",
-=======
-            "version": "v8.23.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/framework.git",
-                "reference": "a813df1b248ca305e5f5ce23ea981ed6c6905504"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/a813df1b248ca305e5f5ce23ea981ed6c6905504",
-                "reference": "a813df1b248ca305e5f5ce23ea981ed6c6905504",
->>>>>>> 256b6a1e03924bd906cba3ada0ce2920b9fd48cc
                 "shasum": ""
             },
             "require": {
@@ -1269,11 +1252,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-<<<<<<< HEAD
             "time": "2021-01-21T14:19:29+00:00"
-=======
-            "time": "2021-01-19T14:10:48+00:00"
->>>>>>> 256b6a1e03924bd906cba3ada0ce2920b9fd48cc
         },
         {
             "name": "laravel/passport",
@@ -3224,11 +3203,7 @@
             ],
             "support": {
                 "issues": "https://github.com/ramsey/collection/issues",
-<<<<<<< HEAD
                 "source": "https://github.com/ramsey/collection/tree/1.1.3"
-=======
-                "source": "https://github.com/ramsey/collection/tree/1.1.1"
->>>>>>> 256b6a1e03924bd906cba3ada0ce2920b9fd48cc
             },
             "funding": [
                 {
@@ -5779,11 +5754,7 @@
             ],
             "support": {
                 "issues": "https://github.com/vlucas/phpdotenv/issues",
-<<<<<<< HEAD
                 "source": "https://github.com/vlucas/phpdotenv/tree/v5.3.0"
-=======
-                "source": "https://github.com/vlucas/phpdotenv/tree/v5.2.0"
->>>>>>> 256b6a1e03924bd906cba3ada0ce2920b9fd48cc
             },
             "funding": [
                 {
@@ -5919,13 +5890,8 @@
                 "validate"
             ],
             "support": {
-<<<<<<< HEAD
                 "issues": "https://github.com/webmozarts/assert/issues",
                 "source": "https://github.com/webmozarts/assert/tree/1.9.1"
-=======
-                "issues": "https://github.com/webmozart/assert/issues",
-                "source": "https://github.com/webmozart/assert/tree/master"
->>>>>>> 256b6a1e03924bd906cba3ada0ce2920b9fd48cc
             },
             "time": "2020-07-08T17:02:28+00:00"
         }
