@@ -10,6 +10,10 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import "./App.css";
+import TransportRegistration from "./pages/TransportRegistration";
+import About from "./pages/About";
+import Footer from "./footer/Footer";
+import PackagesPlan from "./pages/PackagesPlan";
 
 const composeEnhancers =
     (window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
@@ -33,8 +37,18 @@ function App() {
                     <Route path="/create-account">
                         <Register />
                     </Route>
+                    <Route path="/transport-registration">
+                        <TransportRegistration />
+                    </Route>
+                    <Route path="/about">
+                        <About />
+                    </Route>
+                    <Route path="/packages-plans">
+                        <PackagesPlan />
+                    </Route>
                 </Switch>
             </Router>
+            <Footer />
         </div>
     );
 }

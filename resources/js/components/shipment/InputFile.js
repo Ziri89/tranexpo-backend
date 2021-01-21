@@ -8,6 +8,7 @@ const InputFile = props => {
             <label className="text-danger">{props.labelText}</label>
             <ImageUploader
                 key="image-uploader"
+                value={props.image}
                 withIcon={true}
                 singleImage={true}
                 withPreview={true}
@@ -16,6 +17,7 @@ const InputFile = props => {
                 imgExtension={[".jpg", ".png", ".jpeg"]}
                 maxFileSize={1048576}
                 fileSizeError=" file size is too big"
+                dataURLKey="data_url"
             ></ImageUploader>
         </React.Fragment>
     );
