@@ -2,7 +2,7 @@ import React from "react";
 
 const Post = props => {
     return (
-        <div className="post col-md-6">
+        <div className="post col-lg-6">
             <div className="card">
                 <img
                     src={props.image}
