@@ -15,7 +15,7 @@ const Footer = () => {
                         <ul className="list-unstyled">
                             <li>
                                 <a
-                                    href="#"
+                                    href="/images/conditions.pdf"
                                     target="_blank"
                                     className="text-danger"
                                 >
