@@ -1,6 +1,5 @@
 import React from "react";
 import LogoLight from "../../img/logo-white.svg";
-//import Conditions from "../../img/conditions.pdf";
 
 const date = new Date();
 const year = date.getFullYear();
