@@ -1,5 +1,6 @@
 import React from "react";
 import LogoLight from "../../img/logo-white.svg";
+import { Link } from "react-router-dom";
 
 const date = new Date();
 const year = date.getFullYear();
@@ -9,6 +10,21 @@ const Footer = () => {
         <footer className="p-4 bg-dark text-white">
             <div className="container">
                 <div className="row justify-content-between align-items-start">
+                    <div className="col-lg-3">
+                        <h3>General conditions</h3>
+                        <ul className="list-unstyled">
+                            <li>
+                                <a
+                                    href="#"
+                                    target="_blank"
+                                    className="text-danger"
+                                    rel="noopener noreferrer"
+                                >
+                                    See conditions
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                     <div className="col-lg-3">
                         <img
                             src={LogoLight}
