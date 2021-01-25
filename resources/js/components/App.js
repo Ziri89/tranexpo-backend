@@ -14,6 +14,7 @@ import TransportRegistration from "./pages/TransportRegistration";
 import About from "./pages/About";
 import Footer from "./footer/Footer";
 import PackagesPlan from "./pages/PackagesPlan";
+import Posts from "./pages/Posts";
 
 const composeEnhancers =
     (window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
@@ -45,6 +46,9 @@ function App() {
                     </Route>
                     <Route path="/packages-plans">
                         <PackagesPlan />
+                    </Route>
+                    <Route path="/posts">
+                        <Posts />
                     </Route>
                 </Switch>
             </Router>

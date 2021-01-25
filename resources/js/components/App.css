@@ -27,3 +27,9 @@ button.text-danger:hover,
 button.text-danger:focus {
     color: #fc6107 !important;
 }
+.border-danger {
+    border-color: #fc823c !important;
+}
+hr {
+    border-color: #fc6107 !important;
+}

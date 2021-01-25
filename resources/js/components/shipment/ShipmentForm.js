@@ -9,7 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./ShipmentForm.css";
 import InputFile from "./InputFile";
 
-const ShipmentForm = () => {
+const ShipmentForm = props => {
     const countrieOptions = Object.keys(countriesData);
     const [formData, setFormData] = useState({
         countryFrom: "",
@@ -38,6 +38,7 @@ const ShipmentForm = () => {
     const [progress, setProgress] = useState("getUpload");
     const [imgUpladErrMsg, setImgUpladErrMsg] = useState("");
     const [image, setImage] = useState(null);
+    const { isLoggedIn } = useSelector(state => state.auth);
     const formChangeHandler = ev => {
         const target = ev.target;
         const value =
@@ -303,297 +304,307 @@ const ShipmentForm = () => {
     };
     return (
         <div id="shipment" className="container pb-5">
+            <h2 className="text-danger text-center mt-5">
+                You must be logged in to be able to fill out the form
+            </h2>
             <form onSubmit={onSubmitHandler}>
-                <div className="row mt-5">
-                    <div className="col-lg-6">
-                        <h2 className="text-danger mb-3">Your destination</h2>
-                        <div className="row align-items-center border-right">
-                            <div className="col-lg-5">
-                                <h3 className="h5">Ship From</h3>
-                                <Select
-                                    char="▼"
-                                    type="text"
-                                    placeholder="Country"
-                                    name="countryFrom"
-                                    value={formData.countryFrom}
-                                    onChange={formChangeHandler}
-                                    options={countriesFrom}
-                                />
-                            </div>
-                            <div className="col-lg-7 text-right">
-                                <div className="custom-control custom-radio custom-control-inline mr-0">
-                                    <input
-                                        className="custom-control-input"
-                                        type="radio"
-                                        name="checkFrom"
-                                        id="from-res"
-                                        value="Residential"
-                                        checked={
-                                            formData.checkFrom === "Residential"
-                                        }
+                <fieldset disabled={isLoggedIn ? false : true}>
+                    <div className="row mt-5">
+                        <div className="col-lg-6 border-right border-danger">
+                            <h2 className="text-danger mb-3">
+                                Your destination
+                            </h2>
+                            <div className="row align-items-center">
+                                <div className="col-lg-5">
+                                    <h3 className="h5">Ship From</h3>
+                                    <Select
+                                        char="▼"
+                                        type="text"
+                                        placeholder="Country"
+                                        name="countryFrom"
+                                        value={formData.countryFrom}
                                         onChange={formChangeHandler}
-                                    />
-                                    <label
-                                        className="custom-control-label"
-                                        htmlFor="from-res"
-                                    >
-                                        Residential
-                                    </label>
-                                </div>
-                                <div className="custom-control custom-radio custom-control-inline mr-0 ml-2">
-                                    <input
-                                        className="custom-control-input"
-                                        type="radio"
-                                        name="checkFrom"
-                                        id="from-bus"
-                                        value="Business"
-                                        checked={
-                                            formData.checkFrom === "Business"
-                                        }
-                                        onChange={formChangeHandler}
-                                    />
-                                    <label
-                                        className="custom-control-label"
-                                        htmlFor="from-bus"
-                                    >
-                                        Business
-                                    </label>
-                                </div>
-                                <Select
-                                    char="▼"
-                                    type="text"
-                                    placeholder="City"
-                                    name="cityFrom"
-                                    value={formData.cityFrom}
-                                    onChange={formChangeHandler}
-                                    options={citiesFrom}
-                                />
-                            </div>
-                        </div>
-                        <div className="row align-items-center border-right">
-                            <div className="col-lg-5">
-                                <h3 className="h5">Ship To</h3>
-                                <Select
-                                    char="▼"
-                                    type="text"
-                                    placeholder="Country"
-                                    name="countryTo"
-                                    value={formData.countryTo}
-                                    onChange={formChangeHandler}
-                                    options={countriesTo}
-                                />
-                            </div>
-                            <div className="col-lg-7 text-right">
-                                <div className="custom-control custom-radio custom-control-inline mr-0">
-                                    <input
-                                        className="custom-control-input"
-                                        type="radio"
-                                        name="checkTo"
-                                        id="to-res"
-                                        value="Residential"
-                                        checked={
-                                            formData.checkTo === "Residential"
-                                        }
-                                        onChange={formChangeHandler}
-                                    />
-                                    <label
-                                        className="custom-control-label"
-                                        htmlFor="to-res"
-                                    >
-                                        Residential
-                                    </label>
-                                </div>
-                                <div className="custom-control custom-radio custom-control-inline mr-0 ml-2">
-                                    <input
-                                        className="custom-control-input"
-                                        type="radio"
-                                        name="checkTo"
-                                        id="to-bus"
-                                        value="Business"
-                                        checked={
-                                            formData.checkTo === "Business"
-                                        }
-                                        onChange={formChangeHandler}
-                                    />
-                                    <label
-                                        className="custom-control-label"
-                                        htmlFor="to-bus"
-                                    >
-                                        Business
-                                    </label>
-                                </div>
-                                <Select
-                                    char="▼"
-                                    type="text"
-                                    placeholder="City"
-                                    name="cityTo"
-                                    value={formData.cityTo}
-                                    onChange={formChangeHandler}
-                                    options={citiesTo}
-                                />
-                            </div>
-                        </div>
-                        <div className="row border-right">
-                            <div className="col-lg-7">
-                                <div className="form-group">
-                                    <label className="h6 w-100">
-                                        Shipping date
-                                    </label>
-                                    <DatePicker
-                                        selected={formData.shippingDate}
-                                        onChange={date => {
-                                            setFormData({
-                                                ...formData,
-                                                shippingDate: date
-                                            });
-                                        }}
-                                        className="w-100 form-control"
+                                        options={countriesFrom}
                                     />
                                 </div>
-                            </div>
-                        </div>
-                        <p className={success ? "success" : "error"}>
-                            {message}
-                        </p>
-                    </div>
-                    <div className="col-lg-6">
-                        <h2 className="text-danger mb-3">Your shipment</h2>
-                        <div className="row">
-                            <div className="col-12">
-                                <div className="custom-control custom-checkbox custom-control-inline">
-                                    <input
-                                        type="checkbox"
-                                        id="parcel"
-                                        name="parcel"
-                                        className="custom-control-input"
-                                        checked={formData.parcel}
-                                        onChange={formChangeHandler}
-                                    />
-                                    <label
-                                        className="custom-control-label"
-                                        htmlFor="parcel"
-                                    >
-                                        Parcel
-                                    </label>
-                                </div>
-                                <div className="custom-control custom-checkbox custom-control-inline">
-                                    <input
-                                        type="checkbox"
-                                        id="envelope"
-                                        name="envelope"
-                                        className="custom-control-input"
-                                        checked={formData.envelope}
-                                        onChange={formChangeHandler}
-                                    />
-                                    <label
-                                        className="custom-control-label"
-                                        htmlFor="envelope"
-                                    >
-                                        Envelope
-                                    </label>
-                                </div>
-                                <div className="custom-control custom-checkbox custom-control-inline">
-                                    <input
-                                        type="checkbox"
-                                        id="pallet"
-                                        name="pallet"
-                                        className="custom-control-input"
-                                        checked={formData.pallet}
-                                        onChange={formChangeHandler}
-                                    />
-                                    <label
-                                        className="custom-control-label"
-                                        htmlFor="pallet"
-                                    >
-                                        Pallet
-                                    </label>
-                                </div>
-                                <div className="form-row align-items-end">
-                                    <div className="form-group col-md-2">
-                                        <label htmlFor="qty">Qty</label>
+                                <div className="col-lg-7 text-right">
+                                    <div className="custom-control custom-radio custom-control-inline mr-0">
                                         <input
-                                            type="number"
-                                            className="form-control"
-                                            id="qty"
-                                            name="quantity"
-                                            min="1"
-                                            step="1"
-                                            value={formData.quantity}
+                                            className="custom-control-input"
+                                            type="radio"
+                                            name="checkFrom"
+                                            id="from-res"
+                                            value="Residential"
+                                            checked={
+                                                formData.checkFrom ===
+                                                "Residential"
+                                            }
                                             onChange={formChangeHandler}
                                         />
-                                    </div>
-                                    <div className="form-group col-md-2">
-                                        <label htmlFor="weight">
-                                            Weight (kg)
+                                        <label
+                                            className="custom-control-label"
+                                            htmlFor="from-res"
+                                        >
+                                            Residential
                                         </label>
+                                    </div>
+                                    <div className="custom-control custom-radio custom-control-inline mr-0 ml-2">
                                         <input
-                                            type="number"
-                                            className="form-control"
-                                            id="weight"
-                                            name="weight"
-                                            placeholder="/unit"
-                                            value={formData.weight}
+                                            className="custom-control-input"
+                                            type="radio"
+                                            name="checkFrom"
+                                            id="from-bus"
+                                            value="Business"
+                                            checked={
+                                                formData.checkFrom ===
+                                                "Business"
+                                            }
                                             onChange={formChangeHandler}
                                         />
+                                        <label
+                                            className="custom-control-label"
+                                            htmlFor="from-bus"
+                                        >
+                                            Business
+                                        </label>
                                     </div>
-                                    <div className="form-group col-md-3">
-                                        <label>Dimensions (cm)</label>
-                                        <input
-                                            type="number"
-                                            className="form-control"
-                                            id="inputAddress"
-                                            name="lenght"
-                                            placeholder="Lenght"
-                                            value={formData.lenght}
-                                            onChange={formChangeHandler}
-                                        />
-                                    </div>
-                                    <div className="form-group col-md-2">
-                                        <input
-                                            type="number"
-                                            className="form-control"
-                                            name="width"
-                                            placeholder="Width"
-                                            value={formData.width}
-                                            onChange={formChangeHandler}
-                                        />
-                                    </div>
-                                    <div className="form-group  col-md-2">
-                                        <input
-                                            type="number"
-                                            className="form-control"
-                                            id="inputCity"
-                                            name="height"
-                                            placeholder="Height"
-                                            value={formData.height}
-                                            onChange={formChangeHandler}
-                                        />
-                                    </div>
+                                    <Select
+                                        char="▼"
+                                        type="text"
+                                        placeholder="City"
+                                        name="cityFrom"
+                                        value={formData.cityFrom}
+                                        onChange={formChangeHandler}
+                                        options={citiesFrom}
+                                    />
                                 </div>
-                                <div className="row">
-                                    <div className="form-group col-12">
-                                        {imgUploadContent()}
+                            </div>
+                            <div className="row align-items-center">
+                                <div className="col-lg-5">
+                                    <h3 className="h5">Ship To</h3>
+                                    <Select
+                                        char="▼"
+                                        type="text"
+                                        placeholder="Country"
+                                        name="countryTo"
+                                        value={formData.countryTo}
+                                        onChange={formChangeHandler}
+                                        options={countriesTo}
+                                    />
+                                </div>
+                                <div className="col-lg-7 text-right">
+                                    <div className="custom-control custom-radio custom-control-inline mr-0">
+                                        <input
+                                            className="custom-control-input"
+                                            type="radio"
+                                            name="checkTo"
+                                            id="to-res"
+                                            value="Residential"
+                                            checked={
+                                                formData.checkTo ===
+                                                "Residential"
+                                            }
+                                            onChange={formChangeHandler}
+                                        />
+                                        <label
+                                            className="custom-control-label"
+                                            htmlFor="to-res"
+                                        >
+                                            Residential
+                                        </label>
+                                    </div>
+                                    <div className="custom-control custom-radio custom-control-inline mr-0 ml-2">
+                                        <input
+                                            className="custom-control-input"
+                                            type="radio"
+                                            name="checkTo"
+                                            id="to-bus"
+                                            value="Business"
+                                            checked={
+                                                formData.checkTo === "Business"
+                                            }
+                                            onChange={formChangeHandler}
+                                        />
+                                        <label
+                                            className="custom-control-label"
+                                            htmlFor="to-bus"
+                                        >
+                                            Business
+                                        </label>
+                                    </div>
+                                    <Select
+                                        char="▼"
+                                        type="text"
+                                        placeholder="City"
+                                        name="cityTo"
+                                        value={formData.cityTo}
+                                        onChange={formChangeHandler}
+                                        options={citiesTo}
+                                    />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-lg-7">
+                                    <div className="form-group">
+                                        <label className="h6 w-100">
+                                            Shipping date
+                                        </label>
+                                        <DatePicker
+                                            selected={formData.shippingDate}
+                                            onChange={date => {
+                                                setFormData({
+                                                    ...formData,
+                                                    shippingDate: date
+                                                });
+                                            }}
+                                            className="w-100 form-control"
+                                        />
                                     </div>
                                 </div>
                             </div>
+                            <p className={success ? "success" : "error"}>
+                                {message}
+                            </p>
                         </div>
-                        <button
-                            type="submit"
-                            name="submit"
-                            className="btn btn-danger btn-block shipment-btn mt-4"
-                        >
-                            Send my parcel{" "}
-                            {loading ? (
-                                <img
-                                    src={Loader}
-                                    width="20"
-                                    className="ml-2"
-                                    alt="Loader"
-                                />
-                            ) : null}
-                        </button>
+                        <div className="col-lg-6">
+                            <h2 className="text-danger mb-3">Your shipment</h2>
+                            <div className="row">
+                                <div className="col-12">
+                                    <div className="custom-control custom-checkbox custom-control-inline">
+                                        <input
+                                            type="checkbox"
+                                            id="parcel"
+                                            name="parcel"
+                                            className="custom-control-input"
+                                            checked={formData.parcel}
+                                            onChange={formChangeHandler}
+                                        />
+                                        <label
+                                            className="custom-control-label"
+                                            htmlFor="parcel"
+                                        >
+                                            Parcel
+                                        </label>
+                                    </div>
+                                    <div className="custom-control custom-checkbox custom-control-inline">
+                                        <input
+                                            type="checkbox"
+                                            id="envelope"
+                                            name="envelope"
+                                            className="custom-control-input"
+                                            checked={formData.envelope}
+                                            onChange={formChangeHandler}
+                                        />
+                                        <label
+                                            className="custom-control-label"
+                                            htmlFor="envelope"
+                                        >
+                                            Envelope
+                                        </label>
+                                    </div>
+                                    <div className="custom-control custom-checkbox custom-control-inline">
+                                        <input
+                                            type="checkbox"
+                                            id="pallet"
+                                            name="pallet"
+                                            className="custom-control-input"
+                                            checked={formData.pallet}
+                                            onChange={formChangeHandler}
+                                        />
+                                        <label
+                                            className="custom-control-label"
+                                            htmlFor="pallet"
+                                        >
+                                            Pallet
+                                        </label>
+                                    </div>
+                                    <div className="form-row align-items-end">
+                                        <div className="form-group col-md-2">
+                                            <label htmlFor="qty">Qty</label>
+                                            <input
+                                                type="number"
+                                                className="form-control"
+                                                id="qty"
+                                                name="quantity"
+                                                min="1"
+                                                step="1"
+                                                value={formData.quantity}
+                                                onChange={formChangeHandler}
+                                            />
+                                        </div>
+                                        <div className="form-group col-md-2">
+                                            <label htmlFor="weight">
+                                                Weight (kg)
+                                            </label>
+                                            <input
+                                                type="number"
+                                                className="form-control"
+                                                id="weight"
+                                                name="weight"
+                                                placeholder="/unit"
+                                                value={formData.weight}
+                                                onChange={formChangeHandler}
+                                            />
+                                        </div>
+                                        <div className="form-group col-md-3">
+                                            <label>Dimensions (cm)</label>
+                                            <input
+                                                type="number"
+                                                className="form-control"
+                                                id="inputAddress"
+                                                name="lenght"
+                                                placeholder="Lenght"
+                                                value={formData.lenght}
+                                                onChange={formChangeHandler}
+                                            />
+                                        </div>
+                                        <div className="form-group col-md-2">
+                                            <input
+                                                type="number"
+                                                className="form-control"
+                                                name="width"
+                                                placeholder="Width"
+                                                value={formData.width}
+                                                onChange={formChangeHandler}
+                                            />
+                                        </div>
+                                        <div className="form-group  col-md-2">
+                                            <input
+                                                type="number"
+                                                className="form-control"
+                                                id="inputCity"
+                                                name="height"
+                                                placeholder="Height"
+                                                value={formData.height}
+                                                onChange={formChangeHandler}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="form-group col-12">
+                                            {imgUploadContent()}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                                type="submit"
+                                name="submit"
+                                className="btn btn-danger btn-block shipment-btn mt-4"
+                            >
+                                Send my parcel{" "}
+                                {loading ? (
+                                    <img
+                                        src={Loader}
+                                        width="20"
+                                        className="ml-2"
+                                        alt="Loader"
+                                    />
+                                ) : null}
+                            </button>
+                        </div>
                     </div>
-                </div>
+                </fieldset>
             </form>
         </div>
     );

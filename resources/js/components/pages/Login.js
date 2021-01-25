@@ -75,7 +75,7 @@ const Login = () => {
         history.push("/");
     }
     return (
-        <div className="login-form">
+        <div className="login-form mb-5">
             <Banner image={Storehouse_1} altText="Storehouse" title="Login" />
             <div className="container">
                 <div
