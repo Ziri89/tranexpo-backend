@@ -66,8 +66,8 @@ class UserController extends Controller {
             return 'auth fail';
         }
     */
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-        $user      =      Auth::user();
+        if(Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])){
+        $user      =      Auth::guard('web')->user();
         $token     =      $user->createToken('token')->accessToken;
 
             return response()->json(["status" => $this->sucess_status, "success" => true, "login" => true, "token" => $token, "data" => $user]);
