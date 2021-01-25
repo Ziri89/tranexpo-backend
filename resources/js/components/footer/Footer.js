@@ -1,6 +1,6 @@
 import React from "react";
 import LogoLight from "../../img/logo-white.svg";
-import { Link } from "react-router-dom";
+//import Conditions from "../../img/conditions.pdf";
 
 const date = new Date();
 const year = date.getFullYear();
@@ -14,7 +14,11 @@ const Footer = () => {
                         <h3>General conditions</h3>
                         <ul className="list-unstyled">
                             <li>
-                                <a href="#" className="text-danger">
+                                <a
+                                    href="#"
+                                    target="_blank"
+                                    className="text-danger"
+                                >
                                     See conditions
                                 </a>
                             </li>
