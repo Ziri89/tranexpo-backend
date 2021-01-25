@@ -14,12 +14,7 @@ const Footer = () => {
                         <h3>General conditions</h3>
                         <ul className="list-unstyled">
                             <li>
-                                <a
-                                    href="#"
-                                    target="_blank"
-                                    className="text-danger"
-                                    rel="noopener noreferrer"
-                                >
+                                <a href="#" className="text-danger">
                                     See conditions
                                 </a>
                             </li>
