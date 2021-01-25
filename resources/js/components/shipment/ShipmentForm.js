@@ -305,16 +305,16 @@ const ShipmentForm = props => {
     return (
         <div id="shipment" className="container pb-5">
             <h2 className="text-danger text-center mt-5">
-                You must be logged in to fill this form
+                You must be logged in to be able to fill out the form
             </h2>
             <form onSubmit={onSubmitHandler}>
                 <fieldset disabled={isLoggedIn ? false : true}>
                     <div className="row mt-5">
-                        <div className="col-lg-6">
+                        <div className="col-lg-6 border-right border-danger">
                             <h2 className="text-danger mb-3">
                                 Your destination
                             </h2>
-                            <div className="row align-items-center border-right">
+                            <div className="row align-items-center">
                                 <div className="col-lg-5">
                                     <h3 className="h5">Ship From</h3>
                                     <Select
@@ -379,7 +379,7 @@ const ShipmentForm = props => {
                                     />
                                 </div>
                             </div>
-                            <div className="row align-items-center border-right">
+                            <div className="row align-items-center">
                                 <div className="col-lg-5">
                                     <h3 className="h5">Ship To</h3>
                                     <Select
@@ -443,7 +443,7 @@ const ShipmentForm = props => {
                                     />
                                 </div>
                             </div>
-                            <div className="row border-right">
+                            <div className="row">
                                 <div className="col-lg-7">
                                     <div className="form-group">
                                         <label className="h6 w-100">

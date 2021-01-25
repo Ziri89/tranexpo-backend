@@ -268,7 +268,7 @@ const TransportRegistration = () => {
                                         htmlFor="vehicle_number"
                                         className="text-danger"
                                     >
-                                        Vehicle Number *
+                                        Amount Of Vehicle *
                                     </label>
                                     <div className="controls">
                                         <input
@@ -276,6 +276,7 @@ const TransportRegistration = () => {
                                             id="vehicle_number"
                                             name="vehicle_number"
                                             className="form-control"
+                                            min="1"
                                             value={shipperReg.vehicle_number}
                                             onChange={onChangeHandler}
                                         />
