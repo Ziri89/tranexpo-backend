@@ -8,7 +8,7 @@ const Footer = () => {
     return (
         <footer className="p-4 bg-dark text-white">
             <div className="container">
-                <div className="row justify-content-between align-items-start">
+                <div className="row justify-content-between align-items-start text-center">
                     <div className="col-lg-3">
                         <h3>General conditions</h3>
                         <ul className="list-unstyled">
