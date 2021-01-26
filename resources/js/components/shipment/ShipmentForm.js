@@ -39,6 +39,7 @@ const ShipmentForm = props => {
     const [imgUpladErrMsg, setImgUpladErrMsg] = useState("");
     const [image, setImage] = useState(null);
     const { isLoggedIn } = useSelector(state => state.auth);
+    console.log(isLoggedIn);
     const formChangeHandler = ev => {
         const target = ev.target;
         const value =
@@ -304,9 +305,12 @@ const ShipmentForm = props => {
     };
     return (
         <div id="shipment" className="container pb-5">
-            <h2 className="text-danger text-center mt-5">
-                You must be logged in to be able to fill out the form
-            </h2>
+            {!isLoggedIn ? (
+                <h2 className="text-danger text-center mt-5">
+                    You must be logged in to be able to fill out the form
+                </h2>
+            ) : null}
+
             <form onSubmit={onSubmitHandler}>
                 <fieldset disabled={isLoggedIn ? false : true}>
                     <div className="row mt-5">
