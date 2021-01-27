@@ -29,17 +29,24 @@ const ShipmentForm = props => {
         height: "",
         cargoImg: ""
     });
-    useEffect(() => {
-        console.log(formData);
-    }, [formData]);
+    const [isUserShiper, setIsUserShiper] = useState(false);
+
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [success, setSuccess] = useState(false);
     const [progress, setProgress] = useState("getUpload");
     const [imgUpladErrMsg, setImgUpladErrMsg] = useState("");
     const [image, setImage] = useState(null);
-    const { isLoggedIn } = useSelector(state => state.auth);
-    console.log(isLoggedIn);
+    const { isLoggedIn, user } = useSelector(state => state.auth);
+    useEffect(() => {
+        if (user !== null) {
+            if (Object.keys(user.data).includes("vehicle_number")) {
+                setIsUserShiper(true);
+            } else {
+                setIsUserShiper(false);
+            }
+        }
+    }, [isLoggedIn]);
     const formChangeHandler = ev => {
         const target = ev.target;
         const value =
@@ -303,16 +310,25 @@ const ShipmentForm = props => {
                 );
         }
     };
+    console.log(isUserShiper, isLoggedIn);
     return (
         <div id="shipment" className="container pb-5">
-            {!isLoggedIn ? (
+            {(isLoggedIn === false && isUserShiper === false) ||
+            (isLoggedIn === true && isUserShiper === true) ||
+            (isLoggedIn === false && isUserShiper === true) ? (
                 <h2 className="text-danger text-center mt-5">
                     You must be logged in to be able to fill out the form
                 </h2>
             ) : null}
 
             <form onSubmit={onSubmitHandler}>
-                <fieldset disabled={isLoggedIn ? false : true}>
+                <fieldset
+                    disabled={
+                        isLoggedIn === true && isUserShiper === false
+                            ? false
+                            : true
+                    }
+                >
                     <div className="row mt-5">
                         <div className="col-lg-6 border-right border-danger">
                             <h2 className="text-danger mb-3">

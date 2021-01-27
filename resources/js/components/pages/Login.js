@@ -36,7 +36,7 @@ const Login = () => {
             [name]: value
         });
     };
-    const { isLoggedIn } = useSelector(state => state.auth);
+    const { isLoggedIn, user } = useSelector(state => state.auth);
     const { message } = useSelector(state => state.message);
     const dispatch = useDispatch();
     const history = useHistory();
@@ -71,9 +71,12 @@ const Login = () => {
         }
     };
 
-    if (isLoggedIn) {
+    if (isLoggedIn && !user.data.vehicle_number) {
         history.push("/");
+    } else if (isLoggedIn && user.data.vehicle_number) {
+        history.push("/posts");
     }
+    console.log(user);
     return (
         <div className="login-form mb-5">
             <Banner image={Storehouse_1} altText="Storehouse" title="Login" />
