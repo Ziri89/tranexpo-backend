@@ -26,16 +26,15 @@ Route::post('register', [UserController::class, "registerUser"]);
 Route::post('login', [UserController::class, "loginUser"]);
 
 Route::post('registerShipper', [ShipperController::class, "registerShipper"]);
-
+/*
 Route::middleware('auth:api')->group(function() {
-Route::get("shipper", [UserController::class, "shipperDetail"]);
+Route::get("shipper", [ShipperController::class, "shipperDetail"]);
 });
-
 
 Route::middleware('auth:api')->group(function() {
 Route::get("user", [UserController::class, "userDetail"]);
 });
-
+*/
 Route::post('publish', [ParcelController::class, "store"]);
 
 Route::middleware('auth:api')->group(function() {

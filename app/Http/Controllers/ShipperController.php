@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Models\User;
 use App\Models\Shipper;
 
 class ShipperController extends Controller
@@ -44,14 +45,14 @@ class ShipperController extends Controller
         }
     }
 
-
-    public function shipperDetail() {
-        $shipper           =       Auth::shipper();
-        if(!is_null($shipper)) {
-            return response()->json(["status" => $this->sucess_status, "success" => true, "user" => $shipper]);
+   /* public function shipperDetail() {
+        $user           =       Auth::guard('shipper')->user();
+        if(!is_null($user)) {
+            return response()->json(["status" => $this->sucess_status, "success" => true, "user" => $user]);
         }
         else {
             return response()->json(["status" => "failed", "success" => false, "message" => "Whoops! no user found"]);
         }
     }
+    */
 }

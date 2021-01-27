@@ -87,7 +87,7 @@ class UserController extends Controller {
 
 
     // User Detail
-    public function userDetail() {
+   /* public function userDetail() {
         $user           =       Auth::user();
         if(!is_null($user)) {
             return response()->json(["status" => $this->sucess_status, "success" => true, "user" => $user]);
@@ -97,15 +97,9 @@ class UserController extends Controller {
         }
     }
 
+    */
 
-    public function shipperDetail() {
-        $user           =       Auth::user();
-        if(!is_null($user)) {
-            return response()->json(["status" => $this->sucess_status, "success" => true, "user" => $user]);
-        }
-        else {
-            return response()->json(["status" => "failed", "success" => false, "message" => "Whoops! no user found"]);
-        }
-    }
+
+
 
 }
