@@ -166,8 +166,6 @@ const ShipmentForm = () => {
             "Authorization",
             "Bearer Beraer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTU5MDUxODE5NCwibmJmIjoxNTkwNTE4MTk0LCJleHAiOjE1OTExMjI5OTQsImRhdGEiOnsidXNlciI6eyJpZCI6IjEifX19.SdWEGbFk3HJBuZFpZ4RQu1J74YyRyNM7QgSdGmDv3Po"
         );
-        // let formdata = new FormData();
-        // formdata.append(formData);
         let requestOptions = {
             method: "POST",
             headers: myHeaders,
@@ -218,7 +216,6 @@ const ShipmentForm = () => {
                         setMessage(
                             "You have successfully scheduled the shipment"
                         );
-                        //history.push("/login");
                     } else {
                         setMessage("Something went wrong. Please try later");
                         setLoading(false);
@@ -235,45 +232,12 @@ const ShipmentForm = () => {
 
     const onImage = (pictureFiles, pictureDataURLs) => {
         console.log(pictureFiles[0].name, pictureDataURLs);
-        // const imageData = successImages[0];
-        // const parts = imageData.split(";");
-        // const mime = parts[0].split(":")[1];
-        // const name = parts[1].split("=")[1];
-        // const data = parts[2];
         setFormData({
             ...formData,
             image: pictureFiles[0].name
         });
     };
-    // const imgUploadContent = () => {
-    //     switch (progress) {
-    //         case "getUpload":
-    //             return (
-    //                 <InputFile
-    //                     labelText="Upload image of cargo"
-    //                     onImage={onImage}
-    //                     image={image}
-    //                 />
-    //             );
-    //         case "uploading":
-    //             return <img src={ImgLoader} alt="Image Loader" />;
-    //         case "uploaded":
-    //             return <img src={image} alt="Uploaded Image" width="250" />;
-    //         case "uploadError":
-    //             return (
-    //                 <h2>
-    //                     <InputFile
-    //                         labelText="Upload image of cargo"
-    //                         onImage={onImage}
-    //                         image={image}
-    //                     />
-    //                     <div className="text-muted h6 text-center">
-    //                         Error message: {imgUpladErrMsg}
-    //                     </div>
-    //                 </h2>
-    //             );
-    //     }
-    // };
+
     return (
         <div id="shipment" className="container pb-5">
             {(isLoggedIn === false && isUserShiper === false) ||
