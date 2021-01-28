@@ -17,10 +17,10 @@ class CreateParcelsTable extends Migration
             $table->id();
             $table->string('countryFrom');
             $table->string('cityFrom');
-            $table->string('checkFrom',10);
+            $table->text('checkFrom');
             $table->string('countryTo');
             $table->string('cityTo');
-            $table->string('checkTo',10);
+            $table->text('checkTo');
             $table->boolean('parcel');
             $table->boolean('envelope');
             $table->boolean('pallet');
