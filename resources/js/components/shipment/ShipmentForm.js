@@ -3,13 +3,12 @@ import { useSelector } from "react-redux";
 import { countriesData } from "../countries/data";
 import Select from "./Select";
 import Loader from "../../img/loader.gif";
-import ImgLoader from "../../img/img-loader.gif";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./ShipmentForm.css";
 import InputFile from "./InputFile";
 
-const ShipmentForm = props => {
+const ShipmentForm = () => {
     const countrieOptions = Object.keys(countriesData);
     const [formData, setFormData] = useState({
         countryFrom: "",
@@ -34,8 +33,6 @@ const ShipmentForm = props => {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [success, setSuccess] = useState(false);
-    const [progress, setProgress] = useState("getUpload");
-    const [imgUpladErrMsg, setImgUpladErrMsg] = useState("");
     const { isLoggedIn, user } = useSelector(state => state.auth);
     useEffect(() => {
         if (user !== null) {
@@ -169,12 +166,12 @@ const ShipmentForm = props => {
             "Authorization",
             "Bearer Beraer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTU5MDUxODE5NCwibmJmIjoxNTkwNTE4MTk0LCJleHAiOjE1OTExMjI5OTQsImRhdGEiOnsidXNlciI6eyJpZCI6IjEifX19.SdWEGbFk3HJBuZFpZ4RQu1J74YyRyNM7QgSdGmDv3Po"
         );
-        let formdata = new FormData();
-        formdata.append(...formData);
+        // let formdata = new FormData();
+        // formdata.append(formData);
         let requestOptions = {
             method: "POST",
             headers: myHeaders,
-            body: formdata,
+            body: formData,
             redirect: "follow"
         };
         if (
@@ -236,7 +233,7 @@ const ShipmentForm = props => {
     };
 
     const onImage = (pictureFiles, pictureDataURLs) => {
-        console.log(pictureFiles);
+        console.log(pictureFiles[0].name, pictureDataURLs);
         // const imageData = successImages[0];
         // const parts = imageData.split(";");
         // const mime = parts[0].split(":")[1];
@@ -244,7 +241,7 @@ const ShipmentForm = props => {
         // const data = parts[2];
         setFormData({
             ...formData,
-            image: pictureFiles
+            image: pictureFiles[0].name
         });
     };
     // const imgUploadContent = () => {
