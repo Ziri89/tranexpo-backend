@@ -36,7 +36,6 @@ const ShipmentForm = props => {
     const [success, setSuccess] = useState(false);
     const [progress, setProgress] = useState("getUpload");
     const [imgUpladErrMsg, setImgUpladErrMsg] = useState("");
-    const [image, setImage] = useState(null);
     const { isLoggedIn, user } = useSelector(state => state.auth);
     useEffect(() => {
         if (user !== null) {
@@ -165,8 +164,18 @@ const ShipmentForm = props => {
     const onSubmitHandler = ev => {
         ev.preventDefault();
 
-        const config = {
-            headers: { "content-type": "multipart/form-data" }
+        let myHeaders = new Headers();
+        myHeaders.append(
+            "Authorization",
+            "Bearer Beraer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTU5MDUxODE5NCwibmJmIjoxNTkwNTE4MTk0LCJleHAiOjE1OTExMjI5OTQsImRhdGEiOnsidXNlciI6eyJpZCI6IjEifX19.SdWEGbFk3HJBuZFpZ4RQu1J74YyRyNM7QgSdGmDv3Po"
+        );
+        let formdata = new FormData();
+        formdata.append(...formData);
+        let requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: formdata,
+            redirect: "follow"
         };
         if (
             formData.countryFrom === "" &&
@@ -183,31 +192,9 @@ const ShipmentForm = props => {
             setSuccess(false);
         } else {
             setLoading(true);
-            axios
-                .post(
-                    "/api/publish",
-                    {
-                        countryFrom: formData.countryFrom,
-                        cityFrom: formData.cityFrom,
-                        checkFrom: formData.checkFrom,
-                        countryTo: formData.countryTo,
-                        cityTo: formData.cityTo,
-                        checkTo: formData.checkTo,
-                        shippingDate: formData.shippingDate,
-                        parcel: formData.parcel,
-                        envelope: formData.envelope,
-                        pallet: formData.pallet,
-                        quantity: formData.quantity,
-                        weight: formData.weight,
-                        lenght: formData.lenght,
-                        width: formData.width,
-                        height: formData.height,
-                        image: formData.image
-                    },
-                    config
-                )
+            axios("/api/publish", requestOptions)
                 .then(res => {
-                    // console.log(res.status);
+                    console.log(res.data);
                     if (res.status === 200) {
                         setFormData({
                             ...formData,
@@ -254,32 +241,10 @@ const ShipmentForm = props => {
         const mime = parts[0].split(":")[1];
         const name = parts[1].split("=")[1];
         const data = parts[2];
-        const myHeaders = new Headers();
-        console.log(myHeaders);
-        setProgress("uploading");
-        let formdata = new FormData();
-        formdata.append("image", imageData);
-        let requestOptions = {
-            method: "POST",
-            headers: myHeaders,
-            body: formdata,
-            redirect: "follow"
-        };
-        axios("/api/upload", requestOptions)
-            .then(res => {
-                console.log("Response: " + res);
-                setImage(imageData);
-                setProgress("uploaded");
-                setFormData({
-                    ...formData,
-                    image: name
-                });
-            })
-            .catch(err => {
-                console.log("Error: " + err);
-                setImgUpladErrMsg(error.message);
-                setProgress("uploadError");
-            });
+        setFormData({
+            ...formData,
+            image: imageData
+        });
     };
     const imgUploadContent = () => {
         switch (progress) {
@@ -310,7 +275,6 @@ const ShipmentForm = props => {
                 );
         }
     };
-    console.log(isUserShiper, isLoggedIn);
     return (
         <div id="shipment" className="container pb-5">
             {(isLoggedIn === false && isUserShiper === false) ||
@@ -602,7 +566,11 @@ const ShipmentForm = props => {
                                     </div>
                                     <div className="row">
                                         <div className="form-group col-12">
-                                            {imgUploadContent()}
+                                            <InputFile
+                                                labelText="Upload image of cargo"
+                                                onImage={onImage}
+                                                image={formData.image}
+                                            />
                                         </div>
                                     </div>
                                 </div>
