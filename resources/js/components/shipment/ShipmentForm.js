@@ -174,6 +174,7 @@ const ShipmentForm = () => {
             body: formData,
             redirect: "follow"
         };
+        console.log(requestOptions.body);
         if (
             formData.countryFrom === "" &&
             formData.cityFrom === "" &&
