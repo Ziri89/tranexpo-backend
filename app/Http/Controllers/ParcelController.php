@@ -3,62 +3,83 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Controller;
 use App\Models\Parcel;
-
+use Image;
 class ParcelController extends Controller
 {
-    private $sucess_status = 200;
 
     public function store(Request $request) {
 
-        $validator = Validator::make($request->all(),
-        [
-            'countryFrom' => 'required',
-            'cityFrom' => 'required',
-            'checkFrom' => 'required',
-            'countryTo' => 'required',
-            'cityTo' => 'required',
-            'checkTo' => 'required',
-            'cargoImg' => 'required',
-            'parcel' => 'required|boolean',
-            'envelope' => 'required|boolean',
-            'pallet' => 'required|boolean',
-            'quantity' => 'required|numeric',
-            'weight' => 'required|numeric',
-            'lenght' => 'required|numeric',
-            'width' => 'required|numeric',
-            'height' => 'required|numeric',
-            'shippingDate' => 'required|date',
-        ]);
-        
-        if($validator->fails()) {
-            return response()->json(["validation_errors" => $validator->errors()]);
+        $data = new Parcel;
+        $data->countryFrom = $request->countryFrom;
+        $data->cityFrom = $request->cityFrom;
+        $data->checkFrom = $request->checkFrom;
+        $data->countryTo = $request->countryTo;
+        $data->cityTo = $request->cityTo;
+        $data->checkTo = $request->checkTo;
+        $data->parcel = $request->parcel;
+        $data->envelope = $request->envelope;
+        $data->pallet = $request->pallet;
+        $data->quantity = $request->quantity;
+        $data->weight = $request->weight;
+        $data->lenght = $request->lenght;
+        $data->width = $request->width;
+        $data->height = $request->height;
+        $data->shippingDate = $request->shippingDate;
+        if($request->hasFile("image")){
+            $img = $request->image;
+            $img_name = $img->getClientOriginalName();
+            Image::make($img)->save(public_path("/images/".$img_name));
+            $data->image = $img_name;
         }
-         $inputs = $request->all();
-         $parcel = Parcel::create($inputs);
-         $token  = $parcel->createToken('token')->accessToken;
-         
-         if(!is_null($parcel)) {
-            return response()->json(["status" => $this->sucess_status, "success" => true, "data" => $parcel]);
+        if($data->save()){
+            return response()->json([
+                "data" => $data,
+                "msg"  => "Published Successfully"
+            ], 201);
+        }else{
+            return response()->json([
+                "data" => null,
+                "msg" => "Something went wrong!"
+            ], 400);
         }
+    }
+   
+    public function show($id){
 
-        else {
-            return response()->json(["status" => "failed", "success" => false, "message" => "Whoops! Parcel not created. please try again."]);
+        $data = Parcel::find($id);
+        if($data->save()){
+            return response()->json([
+                "data" => $data,
+                "msg" => "Parcel ID"
+            ], 200);
+        }else{
+            return response()->json([
+                "data" => null,
+                "msg" => "Not found"
+            ], 404);
         }
- 
-        return back()->with('success','Successfully published a new parcel!');
- 
     }
     
-    public function view() {
-        $parcel           =       Auth::parcel();
-        if(!is_null($parcel)) {
-            return response()->json(["status" => $this->sucess_status, "success" => true, "parcel" => $parcel]);
-        }
-        else {
-            return response()->json(["status" => "failed", "success" => false, "message" => "Whoops! no parcel found"]);
+    public function delete($id){
+
+        $data = Parcel::find($id);
+        if($data){
+            $data->delete();
+            return response()->json([
+                "data" => null,
+                "msg" => "Deleted successfully"
+            ], 204);
+        }else{
+            return response()->json([
+                "data" => null,
+                "msg" => "Something went wrong"
+            ], 400);
         }
     }
+
+
+
+  
 }

@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ParcelController;
-use App\Http\Controllers\FileController;
 use App\Http\Controllers\ShipperController;
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +37,6 @@ Route::get("user", [UserController::class, "userDetail"]);
 Route::post('publish', [ParcelController::class, "store"]);
 
 Route::middleware('auth:api')->group(function() {
-Route::get("parcel", [ParcelController::class, "view"]);
+Route::get("parcelShow", [ParcelController::class, "show"]);
     });
 
-Route::post('upload', [FileController::class, 'upload'])->name('upload');

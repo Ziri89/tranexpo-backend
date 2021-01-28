@@ -17,7 +17,7 @@ class Parcel extends Model
         'countryTo',
         'cityTo',
         'checkTo',
-        'cargoImg',
+        'image',
         'parcel',
         'envelope',
         'pallet',
