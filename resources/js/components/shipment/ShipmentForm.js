@@ -235,46 +235,47 @@ const ShipmentForm = props => {
         }
     };
 
-    const onImage = (failedImages, successImages) => {
-        const imageData = successImages[0];
-        const parts = imageData.split(";");
-        const mime = parts[0].split(":")[1];
-        const name = parts[1].split("=")[1];
-        const data = parts[2];
+    const onImage = (pictureFiles, pictureDataURLs) => {
+        console.log(pictureFiles);
+        // const imageData = successImages[0];
+        // const parts = imageData.split(";");
+        // const mime = parts[0].split(":")[1];
+        // const name = parts[1].split("=")[1];
+        // const data = parts[2];
         setFormData({
             ...formData,
-            image: imageData
+            image: pictureFiles
         });
     };
-    const imgUploadContent = () => {
-        switch (progress) {
-            case "getUpload":
-                return (
-                    <InputFile
-                        labelText="Upload image of cargo"
-                        onImage={onImage}
-                        image={image}
-                    />
-                );
-            case "uploading":
-                return <img src={ImgLoader} alt="Image Loader" />;
-            case "uploaded":
-                return <img src={image} alt="Uploaded Image" width="250" />;
-            case "uploadError":
-                return (
-                    <h2>
-                        <InputFile
-                            labelText="Upload image of cargo"
-                            onImage={onImage}
-                            image={image}
-                        />
-                        <div className="text-muted h6 text-center">
-                            Error message: {imgUpladErrMsg}
-                        </div>
-                    </h2>
-                );
-        }
-    };
+    // const imgUploadContent = () => {
+    //     switch (progress) {
+    //         case "getUpload":
+    //             return (
+    //                 <InputFile
+    //                     labelText="Upload image of cargo"
+    //                     onImage={onImage}
+    //                     image={image}
+    //                 />
+    //             );
+    //         case "uploading":
+    //             return <img src={ImgLoader} alt="Image Loader" />;
+    //         case "uploaded":
+    //             return <img src={image} alt="Uploaded Image" width="250" />;
+    //         case "uploadError":
+    //             return (
+    //                 <h2>
+    //                     <InputFile
+    //                         labelText="Upload image of cargo"
+    //                         onImage={onImage}
+    //                         image={image}
+    //                     />
+    //                     <div className="text-muted h6 text-center">
+    //                         Error message: {imgUpladErrMsg}
+    //                     </div>
+    //                 </h2>
+    //             );
+    //     }
+    // };
     return (
         <div id="shipment" className="container pb-5">
             {(isLoggedIn === false && isUserShiper === false) ||
