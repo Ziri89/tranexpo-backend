@@ -27,7 +27,7 @@ const ShipmentForm = props => {
         lenght: "",
         width: "",
         height: "",
-        cargoImg: ""
+        image: ""
     });
     const [isUserShiper, setIsUserShiper] = useState(false);
 
@@ -177,7 +177,7 @@ const ShipmentForm = props => {
             formData.lenght === "" &&
             formData.width === "" &&
             formData.height === "" &&
-            formData.cargoImg === ""
+            formData.image === ""
         ) {
             setMessage("All fields are required");
             setSuccess(false);
@@ -202,7 +202,7 @@ const ShipmentForm = props => {
                         lenght: formData.lenght,
                         width: formData.width,
                         height: formData.height,
-                        cargoImg: formData.cargoImg
+                        image: formData.image
                     },
                     config
                 )
@@ -226,7 +226,7 @@ const ShipmentForm = props => {
                             lenght: "",
                             width: "",
                             height: "",
-                            cargoImg: ""
+                            image: ""
                         });
                         setLoading(false);
                         setSuccess(true);
@@ -272,7 +272,7 @@ const ShipmentForm = props => {
                 setProgress("uploaded");
                 setFormData({
                     ...formData,
-                    cargoImg: name
+                    image: name
                 });
             })
             .catch(err => {
