@@ -13,10 +13,10 @@ const ShipmentForm = () => {
     const [formData, setFormData] = useState({
         countryFrom: "",
         cityFrom: "",
-        checkFrom: "Residential",
+        checkFrom: "res",
         countryTo: "",
         cityTo: "",
-        checkTo: "Residential",
+        checkTo: "res",
         shippingDate: new Date(),
         parcel: true,
         envelope: false,
@@ -167,7 +167,6 @@ const ShipmentForm = () => {
             "Bearer Beraer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTU5MDUxODE5NCwibmJmIjoxNTkwNTE4MTk0LCJleHAiOjE1OTExMjI5OTQsImRhdGEiOnsidXNlciI6eyJpZCI6IjEifX19.SdWEGbFk3HJBuZFpZ4RQu1J74YyRyNM7QgSdGmDv3Po"
         );
         let requestOptions = {
-            method: "POST",
             headers: myHeaders,
             body: formData,
             redirect: "follow"
@@ -188,7 +187,8 @@ const ShipmentForm = () => {
             setSuccess(false);
         } else {
             setLoading(true);
-            axios("/api/publish", requestOptions)
+            axios
+                .post("/api/publish", requestOptions)
                 .then(res => {
                     console.log(res.data);
                     if (res.status === 200) {
@@ -196,8 +196,8 @@ const ShipmentForm = () => {
                             ...formData,
                             countryFrom: "",
                             cityFrom: "",
-                            checkFrom: "Residential",
-                            countryTo: "",
+                            checkFrom: "res",
+                            countryTo: "res",
                             cityTo: "",
                             checkTo: "Residential",
                             shippingDate: new Date(),
@@ -281,10 +281,9 @@ const ShipmentForm = () => {
                                             type="radio"
                                             name="checkFrom"
                                             id="from-res"
-                                            value="Residential"
+                                            value="res"
                                             checked={
-                                                formData.checkFrom ===
-                                                "Residential"
+                                                formData.checkFrom === "res"
                                             }
                                             onChange={formChangeHandler}
                                         />
@@ -301,10 +300,9 @@ const ShipmentForm = () => {
                                             type="radio"
                                             name="checkFrom"
                                             id="from-bus"
-                                            value="Business"
+                                            value="bus"
                                             checked={
-                                                formData.checkFrom ===
-                                                "Business"
+                                                formData.checkFrom === "bus"
                                             }
                                             onChange={formChangeHandler}
                                         />
@@ -346,11 +344,8 @@ const ShipmentForm = () => {
                                             type="radio"
                                             name="checkTo"
                                             id="to-res"
-                                            value="Residential"
-                                            checked={
-                                                formData.checkTo ===
-                                                "Residential"
-                                            }
+                                            value="res"
+                                            checked={formData.checkTo === "res"}
                                             onChange={formChangeHandler}
                                         />
                                         <label
@@ -366,10 +361,8 @@ const ShipmentForm = () => {
                                             type="radio"
                                             name="checkTo"
                                             id="to-bus"
-                                            value="Business"
-                                            checked={
-                                                formData.checkTo === "Business"
-                                            }
+                                            value="bus"
+                                            checked={formData.checkTo === "bus"}
                                             onChange={formChangeHandler}
                                         />
                                         <label
