@@ -106,6 +106,13 @@ input::-webkit-inner-spin-button {
 #shipment .error {
     color: red;
 }
+#shipment input[type="file"] {
+    background: #fc823c;
+    color: #fff;
+}
+#shipment label {
+    font-size: 14px;
+}
 @media screen and (max-width: 768px) {
     .border-right.border-danger {
         border-right: none !important;

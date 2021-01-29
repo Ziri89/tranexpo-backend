@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Post from "../posts/Post";
 import Storehouse_2 from "../../img/storehous_2.jpg";
 import Banner from "../header/Banner";
 import "./Posts.css";
 
 const Posts = () => {
+    const { post, setPost } = useState(null);
+    useEffect(() => {
+        let unmounted = false;
+        let source = axios.CancelToken.source();
+        axios
+            .get("/api/parcelShow")
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err.message);
+            });
+        return () => {
+            unmounted = true;
+            source.cancel("axios request cancelled");
+        };
+    }, [post]);
     return (
         <div className="posts">
             <Banner

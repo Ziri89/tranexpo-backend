@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { countriesData } from "../countries/data";
 import Select from "./Select";
@@ -7,6 +7,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./ShipmentForm.css";
 import InputFile from "./InputFile";
+import { faSortAmountDownAlt } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
 const ShipmentForm = () => {
     const countrieOptions = Object.keys(countriesData);
@@ -26,14 +28,13 @@ const ShipmentForm = () => {
         lenght: "",
         width: "",
         height: "",
-        image: ""
+        image: null
     });
     const [isUserShiper, setIsUserShiper] = useState(false);
-
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [success, setSuccess] = useState(false);
-    const { isLoggedIn, user } = useSelector(state => state.auth);
+    const { isLoggedIn, user, token } = useSelector(state => state.auth);
     useEffect(() => {
         if (user !== null) {
             if (Object.keys(user.data).includes("vehicle_number")) {
@@ -43,6 +44,12 @@ const ShipmentForm = () => {
             }
         }
     }, [isLoggedIn]);
+    useEffect(() => {
+        if (formData.image !== null) {
+            console.log(formData.image.name);
+        }
+    }, [formData]);
+    const fileInput = useRef();
     const formChangeHandler = ev => {
         const target = ev.target;
         const value =
@@ -161,81 +168,42 @@ const ShipmentForm = () => {
     const onSubmitHandler = ev => {
         ev.preventDefault();
 
-        let myHeaders = new Headers();
-        myHeaders.append(
-            "Authorization",
-            "Bearer Beraer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMCIsImlhdCI6MTU5MDUxODE5NCwibmJmIjoxNTkwNTE4MTk0LCJleHAiOjE1OTExMjI5OTQsImRhdGEiOnsidXNlciI6eyJpZCI6IjEifX19.SdWEGbFk3HJBuZFpZ4RQu1J74YyRyNM7QgSdGmDv3Po"
-        );
-        let requestOptions = {
-            headers: myHeaders,
-            body: formData,
-            redirect: "follow"
-        };
-        console.log(requestOptions.body);
-        if (
-            formData.countryFrom === "" &&
-            formData.cityFrom === "" &&
-            formData.countryTo === "" &&
-            formData.cityTo === "" &&
-            formData.weight === "" &&
-            formData.lenght === "" &&
-            formData.width === "" &&
-            formData.height === "" &&
-            formData.image === ""
-        ) {
-            setMessage("All fields are required");
-            setSuccess(false);
-        } else {
-            setLoading(true);
-            axios
-                .post("/api/publish", requestOptions)
-                .then(res => {
-                    console.log(res.data);
-                    if (res.status === 200) {
-                        setFormData({
-                            ...formData,
-                            countryFrom: "",
-                            cityFrom: "",
-                            checkFrom: "res",
-                            countryTo: "res",
-                            cityTo: "",
-                            checkTo: "Residential",
-                            shippingDate: new Date(),
-                            parcel: true,
-                            envelope: false,
-                            pallet: false,
-                            quantity: "1",
-                            weight: "",
-                            lenght: "",
-                            width: "",
-                            height: "",
-                            image: ""
-                        });
-                        setLoading(false);
-                        setSuccess(true);
-                        setMessage(
-                            "You have successfully scheduled the shipment"
-                        );
-                    } else {
-                        setMessage("Something went wrong. Please try later");
-                        setLoading(false);
-                        setSuccess(false);
-                    }
-                })
-                .catch(err => {
-                    setMessage(err.message + "." + " Please try later.");
-                    setLoading(false);
-                    setSuccess(false);
-                });
-        }
+        let formdata = new FormData();
+        formdata.append("image", formData.image, formData.image.name);
+        formdata.append("countryFrom", formData.countryFrom);
+        formdata.append("cityFrom", formData.cityFrom);
+        formdata.append("checkFrom", formData.checkFrom);
+        formdata.append("countryTo", formData.countryTo);
+        formdata.append("cityTo", formData.cityTo);
+        formdata.append("checkTo", formData.checkTo);
+        formdata.append("shippingDate", formData.shippingDate);
+        formdata.append("parcel", formData.parcel);
+        formdata.append("envelope", formData.envelope);
+        formdata.append("pallet", formData.pallet);
+        formdata.append("quantity", formData.quantity);
+        formdata.append("weight", formData.weight);
+        formdata.append("lenght", formData.lenght);
+        formdata.append("width", formData.width);
+        formdata.append("height", formData.height);
+        axios
+            .post("/api/publish", formdata)
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            });
     };
-
-    const onImage = (pictureFiles, pictureDataURLs) => {
-        console.log(pictureFiles[0].name, pictureDataURLs);
-        setFormData({
-            ...formData,
-            image: pictureFiles[0].name
-        });
+    const onImage = ev => {
+        if (ev.target.files[0].size > 3145728) {
+            setMessage("The image file iz bigger then 3MB. Please use smaller");
+        } else {
+            setFormData({
+                ...formData,
+                image: fileInput.current.files[0]
+            });
+            console.log(formData.image);
+        }
     };
 
     return (
@@ -248,7 +216,7 @@ const ShipmentForm = () => {
                 </h2>
             ) : null}
 
-            <form onSubmit={onSubmitHandler}>
+            <form onSubmit={onSubmitHandler} encType="multipart/form-data">
                 <fieldset
                     disabled={
                         isLoggedIn === true && isUserShiper === false
@@ -522,11 +490,22 @@ const ShipmentForm = () => {
                                     </div>
                                     <div className="row">
                                         <div className="form-group col-12">
-                                            <InputFile
+                                            <label htmlFor="image">
+                                                Upload Image (Max. 3MB)
+                                            </label>
+                                            <input
+                                                type="file"
+                                                name="image"
+                                                id="image"
+                                                accept="image/*"
+                                                ref={fileInput}
+                                                onChange={onImage}
+                                            />
+                                            {/* <InputFile
                                                 labelText="Upload image of cargo"
                                                 onImage={onImage}
                                                 image={formData.image}
-                                            />
+                                            /> */}
                                         </div>
                                     </div>
                                 </div>
