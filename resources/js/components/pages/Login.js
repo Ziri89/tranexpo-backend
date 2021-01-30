@@ -76,7 +76,6 @@ const Login = () => {
     } else if (isLoggedIn && user.data.vehicle_number) {
         history.push("/posts");
     }
-    console.log(user);
     return (
         <div className="login-form mb-5">
             <Banner image={Storehouse_1} altText="Storehouse" title="Login" />
@@ -106,6 +105,9 @@ const Login = () => {
                                         name="email"
                                         id="email"
                                         className="form-control"
+                                        autocomplete={
+                                            checked === true ? "on" : "off"
+                                        }
                                         value={state.email}
                                         onChange={handleInputsChange}
                                         validations={[required]}
@@ -124,6 +126,9 @@ const Login = () => {
                                         name="password"
                                         id="password"
                                         className="form-control"
+                                        autocomplete={
+                                            checked === true ? "on" : "off"
+                                        }
                                         value={state.password}
                                         onChange={handleInputsChange}
                                         validations={[required]}

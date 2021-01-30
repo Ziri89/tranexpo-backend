@@ -5,8 +5,9 @@ import Select from "./Select";
 import Loader from "../../img/loader.gif";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "./ShipmentForm.css";
+import * as moment from "moment";
 import axios from "axios";
+import "./ShipmentForm.css";
 
 const ShipmentForm = () => {
     const countrieOptions = Object.keys(countriesData);
@@ -18,9 +19,9 @@ const ShipmentForm = () => {
         cityTo: "",
         checkTo: "Residential",
         shippingDate: new Date(),
-        parcel: 1,
-        envelope: 0,
-        pallet: 0,
+        parcel: true,
+        envelope: false,
+        pallet: false,
         quantity: "1",
         weight: "",
         lenght: "",
@@ -43,9 +44,7 @@ const ShipmentForm = () => {
         }
     }, [isLoggedIn]);
     useEffect(() => {
-        if (formData.image !== null) {
-            console.log(formData.image.name);
-        }
+        console.log(formData.shippingDate);
     }, [formData]);
     const fileInput = useRef();
     const formChangeHandler = ev => {
@@ -174,10 +173,13 @@ const ShipmentForm = () => {
         formdata.append("countryTo", formData.countryTo);
         formdata.append("cityTo", formData.cityTo);
         formdata.append("checkTo", formData.checkTo);
-        formdata.append("shippingDate", formData.shippingDate);
-        formdata.append("parcel", formData.parcel);
-        formdata.append("envelope", formData.envelope);
-        formdata.append("pallet", formData.pallet);
+        formdata.append(
+            "shippingDate",
+            moment(formData.shippingDate).format("YYYY.MM.DD")
+        );
+        formdata.append("parcel", formData.parcel === true ? 1 : 0);
+        formdata.append("envelope", formData.envelope === true ? 1 : 0);
+        formdata.append("pallet", formData.pallet === true ? 1 : 0);
         formdata.append("quantity", formData.quantity);
         formdata.append("weight", formData.weight);
         formdata.append("lenght", formData.lenght);
@@ -205,10 +207,13 @@ const ShipmentForm = () => {
                     height: "",
                     image: null
                 });
-                setSuccess(false);
+                setSuccess(true);
                 setMessage(
                     "You have successfully added your goods for transportation."
                 );
+                setTimeout(() => {
+                    location.reload();
+                }, 3000);
                 console.log(res);
             })
             .catch(err => {
