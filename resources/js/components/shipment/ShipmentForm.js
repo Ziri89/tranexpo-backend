@@ -6,8 +6,6 @@ import Loader from "../../img/loader.gif";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./ShipmentForm.css";
-import InputFile from "./InputFile";
-import { faSortAmountDownAlt } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 const ShipmentForm = () => {
@@ -15,14 +13,14 @@ const ShipmentForm = () => {
     const [formData, setFormData] = useState({
         countryFrom: "",
         cityFrom: "",
-        checkFrom: "res",
+        checkFrom: "Residential",
         countryTo: "",
         cityTo: "",
-        checkTo: "res",
+        checkTo: "Residential",
         shippingDate: new Date(),
-        parcel: true,
-        envelope: false,
-        pallet: false,
+        parcel: 1,
+        envelope: 0,
+        pallet: 0,
         quantity: "1",
         weight: "",
         lenght: "",
@@ -185,12 +183,55 @@ const ShipmentForm = () => {
         formdata.append("lenght", formData.lenght);
         formdata.append("width", formData.width);
         formdata.append("height", formData.height);
+        setLoading(true);
         axios
             .post("/api/publish", formdata)
             .then(res => {
+                setFormData({
+                    countryFrom: "",
+                    cityFrom: "",
+                    checkFrom: "Residential",
+                    countryTo: "",
+                    cityTo: "",
+                    checkTo: "Residential",
+                    shippingDate: new Date(),
+                    parcel: 1,
+                    envelope: 0,
+                    pallet: 0,
+                    quantity: "1",
+                    weight: "",
+                    lenght: "",
+                    width: "",
+                    height: "",
+                    image: null
+                });
+                setSuccess(false);
+                setMessage(
+                    "You have successfully added your goods for transportation."
+                );
                 console.log(res);
             })
             .catch(err => {
+                setFormData({
+                    countryFrom: "",
+                    cityFrom: "",
+                    checkFrom: "Residential",
+                    countryTo: "",
+                    cityTo: "",
+                    checkTo: "Residential",
+                    shippingDate: new Date(),
+                    parcel: 1,
+                    envelope: 0,
+                    pallet: 0,
+                    quantity: "1",
+                    weight: "",
+                    lenght: "",
+                    width: "",
+                    height: "",
+                    image: null
+                });
+                setSuccess(false);
+                setMessage("Something is wrong. Please try again later.");
                 console.log(err);
             });
     };
@@ -202,7 +243,6 @@ const ShipmentForm = () => {
                 ...formData,
                 image: fileInput.current.files[0]
             });
-            console.log(formData.image);
         }
     };
 
@@ -249,9 +289,10 @@ const ShipmentForm = () => {
                                             type="radio"
                                             name="checkFrom"
                                             id="from-res"
-                                            value="res"
+                                            value="Residential"
                                             checked={
-                                                formData.checkFrom === "res"
+                                                formData.checkFrom ===
+                                                "Residential"
                                             }
                                             onChange={formChangeHandler}
                                         />
@@ -268,9 +309,10 @@ const ShipmentForm = () => {
                                             type="radio"
                                             name="checkFrom"
                                             id="from-bus"
-                                            value="bus"
+                                            value="Business"
                                             checked={
-                                                formData.checkFrom === "bus"
+                                                formData.checkFrom ===
+                                                "Business"
                                             }
                                             onChange={formChangeHandler}
                                         />
@@ -312,8 +354,11 @@ const ShipmentForm = () => {
                                             type="radio"
                                             name="checkTo"
                                             id="to-res"
-                                            value="res"
-                                            checked={formData.checkTo === "res"}
+                                            value="Residential"
+                                            checked={
+                                                formData.checkTo ===
+                                                "Residential"
+                                            }
                                             onChange={formChangeHandler}
                                         />
                                         <label
@@ -329,8 +374,10 @@ const ShipmentForm = () => {
                                             type="radio"
                                             name="checkTo"
                                             id="to-bus"
-                                            value="bus"
-                                            checked={formData.checkTo === "bus"}
+                                            value="Business"
+                                            checked={
+                                                formData.checkTo === "Business"
+                                            }
                                             onChange={formChangeHandler}
                                         />
                                         <label
@@ -501,11 +548,6 @@ const ShipmentForm = () => {
                                                 ref={fileInput}
                                                 onChange={onImage}
                                             />
-                                            {/* <InputFile
-                                                labelText="Upload image of cargo"
-                                                onImage={onImage}
-                                                image={formData.image}
-                                            /> */}
                                         </div>
                                     </div>
                                 </div>
