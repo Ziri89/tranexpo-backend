@@ -105,7 +105,7 @@ const Login = () => {
                                         name="email"
                                         id="email"
                                         className="form-control"
-                                        autocomplete={
+                                        autoComplete={
                                             checked === true ? "on" : "off"
                                         }
                                         value={state.email}
@@ -126,7 +126,7 @@ const Login = () => {
                                         name="password"
                                         id="password"
                                         className="form-control"
-                                        autocomplete={
+                                        autoComplete={
                                             checked === true ? "on" : "off"
                                         }
                                         value={state.password}
