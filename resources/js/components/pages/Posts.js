@@ -6,9 +6,9 @@ import Banner from "../header/Banner";
 import "./Posts.css";
 
 const Posts = () => {
-    const { post, setPost } = useState(null);
+    const [post, setPost] = useState(null);
+    let [unmounted, setUnmounted] = useState(false);
     useEffect(() => {
-        let unmounted = false;
         let source = axios.CancelToken.source();
         axios
             .get("/api/parcelShow")
@@ -19,7 +19,7 @@ const Posts = () => {
                 console.log(err.message);
             });
         return () => {
-            unmounted = true;
+            setUnmounted(true);
             source.cancel("axios request cancelled");
         };
     }, [post]);
