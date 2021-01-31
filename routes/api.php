@@ -36,10 +36,10 @@ Route::get("user", [UserController::class, "userDetail"]);
 */
 Route::post('publish', [ParcelController::class, "store"]);
 
-// Route::get('parcelShow', [ParcelController::class, "show"]);
+Route::get('/parcelShow/{parcelShow}', [ParcelController::class, "show"])->name('parcelShow');;
 
 
-Route::middleware('auth:api')->group(function() {
+/*Route::middleware('auth:api')->group(function() {
 Route::get("parcelShow", [ParcelController::class, "show"]);
     });
-
+*/
