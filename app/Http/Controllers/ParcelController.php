@@ -46,7 +46,7 @@ class ParcelController extends Controller
         }
     }
    
-    public function show($id){
+   /* public function show($id){
 
         $data = Parcel::find($id);
         if($data->save()){
@@ -61,7 +61,14 @@ class ParcelController extends Controller
             ], 404);
         }
     }
+    */
     
+    public function showAll(Request $request){
+       
+        $data = Parcel::query()->orderByDesc('id')->paginate(5);
+        return response($data, 200);
+    }
+
     public function delete($id){
 
         $data = Parcel::find($id);
