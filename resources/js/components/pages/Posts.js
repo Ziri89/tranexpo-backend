@@ -13,16 +13,45 @@ const Posts = () => {
         axios
             .get("/api/parcelShow")
             .then(res => {
-                console.log(res);
+                setPost(res.data.data);
+                console.log(res.data.data);
             })
             .catch(err => {
                 console.log(err.message);
             });
+
         return () => {
             setUnmounted(true);
             source.cancel("axios request cancelled");
         };
-    }, [post]);
+    }, []);
+    const posts =
+        post !== null
+            ? post.map(item => {
+                  return (
+                      <Post
+                          key={item.id}
+                          image={`images/${item.image}`}
+                          altText="Post Image"
+                          person="Dordje Djordjevic"
+                          email="example@gmail.com"
+                          phone="+38765444444"
+                          from={`${item.countryFrom}, ${item.cityFrom}`}
+                          to={`${item.countryTo}, ${item.cityTo}`}
+                          date={item.shippingDate}
+                          type={`${item.parcel === 1 ? "parcel" : null}, ${
+                              item.envelope === 1 ? "envelope" : null
+                          }, ${item.pallet === 1 ? "pallet" : null}`}
+                          quantity={item.quantity}
+                          weight={`${item.weight}kg`}
+                          lenght={`${item.lenght}cm`}
+                          width={`${item.width}cm`}
+                          height={`${item.height}cm`}
+                      />
+                  );
+              })
+            : null;
+
     return (
         <div className="posts">
             <Banner
@@ -31,24 +60,7 @@ const Posts = () => {
                 title="Transportation offers"
             />
             <div className="container mb-5">
-                <div className="row">
-                    <Post
-                        image={Storehouse_2}
-                        altText="Storehouse"
-                        person="Dordje Djordjevic"
-                        email="example@gmail.com"
-                        phone="+38765444444"
-                        from="Bosnia and Hertzegovina, Sarajevo"
-                        to="Austria, Vienna"
-                        date="01.03.2021"
-                        type="parcel"
-                        quantity="45"
-                        weight="450"
-                        lenght="150"
-                        width="75"
-                        height="125"
-                    />
-                </div>
+                <div className="row">{posts}</div>
             </div>
         </div>
     );
