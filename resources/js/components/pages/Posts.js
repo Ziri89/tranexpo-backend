@@ -33,7 +33,7 @@ const Posts = () => {
                           key={item.id}
                           image={`images/${item.image}`}
                           altText="Post Image"
-                          person="Dordje Djordjevic"
+                          person="Djordje Djordjevic"
                           email="example@gmail.com"
                           phone="+38765444444"
                           from={`${item.countryFrom}, ${item.cityFrom}`}
@@ -43,10 +43,10 @@ const Posts = () => {
                               item.envelope === 1 ? "envelope" : null
                           }, ${item.pallet === 1 ? "pallet" : null}`}
                           quantity={item.quantity}
-                          weight={`${item.weight}kg`}
-                          lenght={`${item.lenght}cm`}
-                          width={`${item.width}cm`}
-                          height={`${item.height}cm`}
+                          weight={item.weight}
+                          lenght={item.lenght}
+                          width={item.width}
+                          height={item.height}
                       />
                   );
               })
