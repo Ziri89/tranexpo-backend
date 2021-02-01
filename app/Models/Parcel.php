@@ -28,7 +28,7 @@ class Parcel extends Model
         'height',
         'shippingDate',
     ];
-
+    
     public function post()
     {
          return $this->hasMany('App\Models\Parcel');
