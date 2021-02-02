@@ -15,7 +15,7 @@ class CreateParcelsTable extends Migration
     {
         Schema::create('parcels', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->unsigned();
+            $table->unsignedBigInteger('user_id')->unsigned()->nullable();
             $table->string('countryFrom');
             $table->string('cityFrom');
             $table->text('checkFrom');

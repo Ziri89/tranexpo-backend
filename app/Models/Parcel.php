@@ -11,6 +11,7 @@ class Parcel extends Model
     use HasFactory, Notifiable;
 
     protected $fillable = [
+        'user_id',
         'countryFrom',
         'cityFrom',
         'checkFrom',
