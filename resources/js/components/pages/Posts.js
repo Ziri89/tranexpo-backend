@@ -3,21 +3,30 @@ import axios from "axios";
 import Post from "../posts/Post";
 import Storehouse_2 from "../../img/storehous_2.jpg";
 import Banner from "../header/Banner";
+import Loader from "../../img/img-loader.gif";
 import "./Posts.css";
 
 const Posts = () => {
     const [post, setPost] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [errMsg, setErrMsg] = useState(null);
     let [unmounted, setUnmounted] = useState(false);
     useEffect(() => {
         let source = axios.CancelToken.source();
+        setLoading(true);
         axios
             .get("/api/parcelShow")
             .then(res => {
                 setPost(res.data.data);
                 console.log(res.data.data);
             })
+            .then(() => {
+                setLoading(false);
+            })
             .catch(err => {
-                console.log(err.message);
+                setErrMsg("Something went wrong. Please try latter");
+                console.log(err);
+                setLoading(false);
             });
 
         return () => {
@@ -39,9 +48,9 @@ const Posts = () => {
                           from={`${item.countryFrom}, ${item.cityFrom}`}
                           to={`${item.countryTo}, ${item.cityTo}`}
                           date={item.shippingDate}
-                          type={`${item.parcel === 1 ? "parcel" : null}, ${
-                              item.envelope === 1 ? "envelope" : null
-                          }, ${item.pallet === 1 ? "pallet" : null}`}
+                          type={`${item.parcel === 1 ? "parcel" : ""}, ${
+                              item.envelope === 1 ? "envelope" : ""
+                          }, ${item.pallet === 1 ? "pallet" : ""}`}
                           quantity={item.quantity}
                           weight={item.weight}
                           lenght={item.lenght}
@@ -60,7 +69,19 @@ const Posts = () => {
                 title="Transportation offers"
             />
             <div className="container mb-5">
-                <div className="row">{posts}</div>
+                {!errMsg ? (
+                    <div className="row">
+                        {loading ? (
+                            <div className="col-6 m-auto text-center">
+                                <img src={Loader} alt="Loader" />
+                            </div>
+                        ) : (
+                            posts
+                        )}
+                    </div>
+                ) : (
+                    <p className="text-danger text-center">{errMsg}</p>
+                )}
             </div>
         </div>
     );
