@@ -45,6 +45,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function parcels() 
+    {
+         return $this->hasMany(Parcel::class);
+    }
 
     public function post()
     {

@@ -15,6 +15,7 @@ class CreateParcelsTable extends Migration
     {
         Schema::create('parcels', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
             $table->string('countryFrom');
             $table->string('cityFrom');
             $table->text('checkFrom');

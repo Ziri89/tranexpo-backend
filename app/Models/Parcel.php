@@ -29,6 +29,11 @@ class Parcel extends Model
         'shippingDate',
     ];
     
+    public function user() 
+    {
+         return $this->belongsTo(User::class);
+    }
+
     public function post()
     {
          return $this->hasMany('App\Models\Parcel');
