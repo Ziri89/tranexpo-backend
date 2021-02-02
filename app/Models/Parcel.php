@@ -11,6 +11,7 @@ class Parcel extends Model
     use HasFactory, Notifiable;
 
     protected $fillable = [
+        'user_id',
         'countryFrom',
         'cityFrom',
         'checkFrom',
@@ -28,9 +29,15 @@ class Parcel extends Model
         'height',
         'shippingDate',
     ];
+    
+    public function user() 
+    {
+         return $this->belongsTo(User::class);
+    }
 
-    public function post()
+    /*public function post()
     {
          return $this->hasMany('App\Models\Parcel');
     }
+    */
 }

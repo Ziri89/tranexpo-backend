@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Parcel;
+use App\Models\User;
 use Image;
 class ParcelController extends Controller
 {
@@ -30,7 +31,7 @@ class ParcelController extends Controller
         if($request->hasFile("image")){
             $img = $request->image;
             $img_name = $img->getClientOriginalName();
-            Image::make($img)->save(public_path("/images/".$img_name));
+            Image::make($img)->resize(500, 500)->save(public_path("/images/".$img_name));
             $data->image = $img_name;
         }
         if($data->save()){
@@ -62,7 +63,12 @@ class ParcelController extends Controller
         }
     }
     */
-    
+   /* public function showAll(Request $request){
+
+       $parcel = Parcel::with('user')->get();
+    return response($parcels, 200);
+    }
+*/
     public function showAll(Request $request){
        
         $data = Parcel::query()->orderByDesc('id')->paginate(5);
