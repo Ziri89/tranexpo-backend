@@ -51,8 +51,9 @@ class User extends Authenticatable
          return $this->hasMany(Parcel::class);
     }
 
-    public function post()
+   /* public function post()
     {
          return $this->hasMany('App\Models\Post');
     }
+    */
 }

@@ -15,7 +15,7 @@ class CreateParcelsTable extends Migration
     {
         Schema::create('parcels', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id')->unsigned();
             $table->string('countryFrom');
             $table->string('cityFrom');
             $table->text('checkFrom');
@@ -34,6 +34,7 @@ class CreateParcelsTable extends Migration
             $table->date('shippingDate');
             $table->rememberToken();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

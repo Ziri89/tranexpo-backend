@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Parcel;
+use App\Models\User;
 use Image;
 class ParcelController extends Controller
 {
@@ -62,7 +63,12 @@ class ParcelController extends Controller
         }
     }
     */
-    
+   /* public function showAll(Request $request){
+
+       $parcel = Parcel::with('user')->get();
+    return response($parcels, 200);
+    }
+*/
     public function showAll(Request $request){
        
         $data = Parcel::query()->orderByDesc('id')->paginate(5);
