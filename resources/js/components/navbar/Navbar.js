@@ -17,10 +17,10 @@ const Navbar = () => {
         location.reload();
     };
     useEffect(() => {
-        window.localStorage.setItem("lang", lang.toLocaleLowerCase());
+        localStorage.setItem("lang", lang.toLocaleLowerCase());
     }, [lang]);
     useEffect(() => {
-        window.localStorage.setItem("lang", lang.toLocaleLowerCase());
+        localStorage.setItem("lang", lang.toLocaleLowerCase());
     }, []);
     const dispatch = useDispatch();
     const { isLoggedIn } = useSelector(state => state.auth);

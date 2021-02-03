@@ -7,6 +7,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import * as moment from "moment";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 import "./ShipmentForm.css";
 
 const ShipmentForm = () => {
@@ -242,7 +243,9 @@ const ShipmentForm = () => {
     };
     const onImage = ev => {
         if (ev.target.files[0].size > 3145728) {
-            setMessage("The image file iz bigger then 3MB. Please use smaller");
+            setMessage(
+                "The image file iz bigger then 3MB. Please use smaller."
+            );
         } else {
             setFormData({
                 ...formData,
@@ -250,7 +253,7 @@ const ShipmentForm = () => {
             });
         }
     };
-
+    const { t } = useTranslation();
     return (
         <div id="shipment" className="container pb-5">
             {(isLoggedIn === false && isUserShiper === false) ||
