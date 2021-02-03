@@ -9,6 +9,9 @@ import "react-flags-select/css/react-flags-select.css";
 import "./Navbar.css";
 import Logo from "../../img/logo.svg";
 const Navbar = () => {
+    if (!localStorage.getItem("lang")) {
+        localStorage.setItem("lang", "de");
+    }
     const useLang = localStorage.getItem("lang");
     const [lang, setLang] = useState(useLang.toUpperCase());
 
@@ -18,10 +21,11 @@ const Navbar = () => {
     };
     useEffect(() => {
         localStorage.setItem("lang", lang.toLocaleLowerCase());
-    }, [lang]);
+    }, []);
     useEffect(() => {
         localStorage.setItem("lang", lang.toLocaleLowerCase());
-    }, []);
+    }, [lang]);
+
     const dispatch = useDispatch();
     const { isLoggedIn } = useSelector(state => state.auth);
     const logoutHandler = () => {
