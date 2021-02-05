@@ -3,6 +3,7 @@
     border-color: #ff914d;
     color: #ff914d;
     font-weight: 700;
+    border-radius: 4px;
 }
 .lang-btn select:focus {
     outline: none;
