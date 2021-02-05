@@ -1,0 +1,13 @@
+.lang-btn select {
+    font-size: 14px;
+    border-color: #ff914d;
+    color: #ff914d;
+    font-weight: 700;
+}
+.lang-btn select:focus {
+    outline: none;
+}
+.lang-btn select option {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.9);
+}

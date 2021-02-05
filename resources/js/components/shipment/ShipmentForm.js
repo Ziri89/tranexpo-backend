@@ -10,6 +10,8 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import "./ShipmentForm.css";
 
+import { API_BASE_URL } from "../config/config";
+
 const ShipmentForm = () => {
     const countrieOptions = Object.keys(countriesData);
     const [formData, setFormData] = useState({
@@ -35,6 +37,7 @@ const ShipmentForm = () => {
     const [message, setMessage] = useState("");
     const [success, setSuccess] = useState(false);
     const { isLoggedIn, user, token } = useSelector(state => state.auth);
+    const { t } = useTranslation();
     useEffect(() => {
         if (user !== null) {
             if (Object.keys(user.data).includes("vehicle_number")) {
@@ -188,7 +191,7 @@ const ShipmentForm = () => {
         formdata.append("height", formData.height);
         setLoading(true);
         axios
-            .post("/api/publish", formdata)
+            .post(API_BASE_URL + "/api/publish", formdata)
             .then(res => {
                 setFormData({
                     countryFrom: "",
@@ -209,9 +212,7 @@ const ShipmentForm = () => {
                     image: null
                 });
                 setSuccess(true);
-                setMessage(
-                    "You have successfully added your goods for transportation."
-                );
+                setMessage(`$t("successfully_added_your_goods")`);
                 setTimeout(() => {
                     location.reload();
                 }, 3000);
@@ -237,15 +238,13 @@ const ShipmentForm = () => {
                     image: null
                 });
                 setSuccess(false);
-                setMessage("Something is wrong. Please try again later.");
+                setMessage(`$t("something_is_wrong")`);
                 console.log(err);
             });
     };
     const onImage = ev => {
         if (ev.target.files[0].size > 3145728) {
-            setMessage(
-                "The image file iz bigger then 3MB. Please use smaller."
-            );
+            setMessage(`$t("image_file_is_bigger")`);
         } else {
             setFormData({
                 ...formData,
@@ -253,14 +252,14 @@ const ShipmentForm = () => {
             });
         }
     };
-    const { t } = useTranslation();
+
     return (
         <div id="shipment" className="container pb-5">
             {(isLoggedIn === false && isUserShiper === false) ||
             (isLoggedIn === true && isUserShiper === true) ||
             (isLoggedIn === false && isUserShiper === true) ? (
                 <h2 className="text-danger text-center mt-5">
-                    You must be logged in to be able to fill out the form
+                    {t("you_must_be_logged")}
                 </h2>
             ) : null}
 
@@ -275,15 +274,15 @@ const ShipmentForm = () => {
                     <div className="row mt-5">
                         <div className="col-lg-6 border-right border-danger">
                             <h2 className="text-danger mb-3">
-                                Your destination
+                                {t("your_destination")}
                             </h2>
                             <div className="row align-items-center">
                                 <div className="col-lg-5">
-                                    <h3 className="h5">Ship From</h3>
+                                    <h3 className="h5">{t("ship_from")}</h3>
                                     <Select
                                         char="▼"
                                         type="text"
-                                        placeholder="Country"
+                                        placeholder={t("country")}
                                         name="countryFrom"
                                         value={formData.countryFrom}
                                         onChange={formChangeHandler}
@@ -308,7 +307,7 @@ const ShipmentForm = () => {
                                             className="custom-control-label"
                                             htmlFor="from-res"
                                         >
-                                            Residential
+                                            {t("residential")}
                                         </label>
                                     </div>
                                     <div className="custom-control custom-radio custom-control-inline mr-0 ml-2">
@@ -328,13 +327,13 @@ const ShipmentForm = () => {
                                             className="custom-control-label"
                                             htmlFor="from-bus"
                                         >
-                                            Business
+                                            {t("business")}
                                         </label>
                                     </div>
                                     <Select
                                         char="▼"
                                         type="text"
-                                        placeholder="City"
+                                        placeholder={t("city")}
                                         name="cityFrom"
                                         value={formData.cityFrom}
                                         onChange={formChangeHandler}
@@ -344,11 +343,11 @@ const ShipmentForm = () => {
                             </div>
                             <div className="row align-items-center">
                                 <div className="col-lg-5">
-                                    <h3 className="h5">Ship To</h3>
+                                    <h3 className="h5">{t("ship_to")}</h3>
                                     <Select
                                         char="▼"
                                         type="text"
-                                        placeholder="Country"
+                                        placeholder={t("country")}
                                         name="countryTo"
                                         value={formData.countryTo}
                                         onChange={formChangeHandler}
@@ -373,7 +372,7 @@ const ShipmentForm = () => {
                                             className="custom-control-label"
                                             htmlFor="to-res"
                                         >
-                                            Residential
+                                            {t("residential")}
                                         </label>
                                     </div>
                                     <div className="custom-control custom-radio custom-control-inline mr-0 ml-2">
@@ -392,13 +391,13 @@ const ShipmentForm = () => {
                                             className="custom-control-label"
                                             htmlFor="to-bus"
                                         >
-                                            Business
+                                            {t("business")}
                                         </label>
                                     </div>
                                     <Select
                                         char="▼"
                                         type="text"
-                                        placeholder="City"
+                                        placeholder={t("city")}
                                         name="cityTo"
                                         value={formData.cityTo}
                                         onChange={formChangeHandler}
@@ -410,7 +409,7 @@ const ShipmentForm = () => {
                                 <div className="col-lg-7">
                                     <div className="form-group">
                                         <label className="h6 w-100">
-                                            Shipping date
+                                            {t("shipping_date")}
                                         </label>
                                         <DatePicker
                                             selected={formData.shippingDate}
@@ -430,7 +429,9 @@ const ShipmentForm = () => {
                             </p>
                         </div>
                         <div className="col-lg-6">
-                            <h2 className="text-danger mb-3">Your shipment</h2>
+                            <h2 className="text-danger mb-3">
+                                {t("your_shipment")}
+                            </h2>
                             <div className="row">
                                 <div className="col-12">
                                     <div className="custom-control custom-checkbox custom-control-inline">
@@ -446,7 +447,7 @@ const ShipmentForm = () => {
                                             className="custom-control-label"
                                             htmlFor="parcel"
                                         >
-                                            Parcel
+                                            {t("parcel")}
                                         </label>
                                     </div>
                                     <div className="custom-control custom-checkbox custom-control-inline">
@@ -462,7 +463,7 @@ const ShipmentForm = () => {
                                             className="custom-control-label"
                                             htmlFor="envelope"
                                         >
-                                            Envelope
+                                            {t("envelope")}
                                         </label>
                                     </div>
                                     <div className="custom-control custom-checkbox custom-control-inline">
@@ -478,12 +479,14 @@ const ShipmentForm = () => {
                                             className="custom-control-label"
                                             htmlFor="pallet"
                                         >
-                                            Pallet
+                                            {t("pallet")}
                                         </label>
                                     </div>
                                     <div className="form-row align-items-end">
                                         <div className="form-group col-md-2">
-                                            <label htmlFor="qty">Qty</label>
+                                            <label htmlFor="qty">
+                                                {t("quantity")}
+                                            </label>
                                             <input
                                                 type="number"
                                                 className="form-control"
@@ -497,26 +500,28 @@ const ShipmentForm = () => {
                                         </div>
                                         <div className="form-group col-md-2">
                                             <label htmlFor="weight">
-                                                Weight (kg)
+                                                {t("weight")} (kg)
                                             </label>
                                             <input
                                                 type="number"
                                                 className="form-control"
                                                 id="weight"
                                                 name="weight"
-                                                placeholder="/unit"
+                                                placeholder={t("unit")}
                                                 value={formData.weight}
                                                 onChange={formChangeHandler}
                                             />
                                         </div>
                                         <div className="form-group col-md-3">
-                                            <label>Dimensions (cm)</label>
+                                            <label>
+                                                {t("dimensions")} (cm)
+                                            </label>
                                             <input
                                                 type="number"
                                                 className="form-control"
                                                 id="inputAddress"
                                                 name="lenght"
-                                                placeholder="Lenght"
+                                                placeholder={t("lenght")}
                                                 value={formData.lenght}
                                                 onChange={formChangeHandler}
                                             />
@@ -526,7 +531,7 @@ const ShipmentForm = () => {
                                                 type="number"
                                                 className="form-control"
                                                 name="width"
-                                                placeholder="Width"
+                                                placeholder={t("width")}
                                                 value={formData.width}
                                                 onChange={formChangeHandler}
                                             />
@@ -537,7 +542,7 @@ const ShipmentForm = () => {
                                                 className="form-control"
                                                 id="inputCity"
                                                 name="height"
-                                                placeholder="Height"
+                                                placeholder={t("height")}
                                                 value={formData.height}
                                                 onChange={formChangeHandler}
                                             />
@@ -546,7 +551,7 @@ const ShipmentForm = () => {
                                     <div className="row">
                                         <div className="form-group col-12">
                                             <label htmlFor="image">
-                                                Upload Image (Max. 3MB)
+                                                {t("upload_image")}
                                             </label>
                                             <input
                                                 type="file"
@@ -565,7 +570,7 @@ const ShipmentForm = () => {
                                 name="submit"
                                 className="btn btn-danger btn-block shipment-btn mt-4"
                             >
-                                Send my parcel{" "}
+                                {t("send_my_parcel")}{" "}
                                 {loading ? (
                                     <img
                                         src={Loader}

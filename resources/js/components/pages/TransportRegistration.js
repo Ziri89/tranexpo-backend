@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Loader from "../../img/loader.gif";
 import Banner from "../header/Banner";
 import Truck_6 from "../../img/truck_6.jpg";
 
+import { API_BASE_URL } from "../config/config";
+
 const TransportRegistration = () => {
+    const { t, i18n } = useTranslation();
     const [shipperReg, setShipperReg] = useState({
         name: "",
         email: "",
@@ -17,7 +21,7 @@ const TransportRegistration = () => {
         password: "",
         password_confirm: "",
         loading: false,
-        message: "All fields are required",
+        message: `${t("all_fields")}`,
         email_message: "",
         name_message: "",
         phone_message: "",
@@ -40,8 +44,7 @@ const TransportRegistration = () => {
         if (shipperReg.password !== shipperReg.password_confirm) {
             setShipperReg({
                 ...shipperReg,
-                pass_message:
-                    "Password confirm doesn't match password. Pleas retape"
+                pass_message: `${t("password_confirm_match")}`
             });
         } else {
             setShipperReg({
@@ -49,7 +52,7 @@ const TransportRegistration = () => {
                 loading: true
             });
             axios
-                .post("/api/registerShipper", {
+                .post(API_BASE_URL + "/registerShipper", {
                     name: shipperReg.name,
                     email: shipperReg.email,
                     company_name: shipperReg.company_name,
@@ -75,8 +78,7 @@ const TransportRegistration = () => {
                             password: "",
                             password_confirm: "",
                             loading: false,
-                            message:
-                                "You have successfully registered. Thank you"
+                            message: `${t("success_registration")}`
                         });
                         history.push("/login");
                     } else {
@@ -117,7 +119,7 @@ const TransportRegistration = () => {
                 .catch(err => {
                     setShipperReg({
                         ...shipperReg,
-                        message: err.message + "." + " Please try later.",
+                        message: `${err.message}. ${t("try_latter")}`,
                         loading: false
                     });
                 });
@@ -128,7 +130,7 @@ const TransportRegistration = () => {
             <Banner
                 image={Truck_6}
                 altText="STrucks"
-                title="Shipper Registration"
+                title={t("shipper_registration")}
             />
             <div className="container mb-5">
                 <div className="row justify-content-center align-items-center">
@@ -149,7 +151,7 @@ const TransportRegistration = () => {
                                         htmlFor="username"
                                         className="text-danger"
                                     >
-                                        Full Name*
+                                        {t("full_name")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -197,7 +199,7 @@ const TransportRegistration = () => {
                                         htmlFor="company"
                                         className="text-danger"
                                     >
-                                        Company Name*
+                                        {t("company_name")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -221,7 +223,7 @@ const TransportRegistration = () => {
                                         htmlFor="company_reg_num"
                                         className="text-danger"
                                     >
-                                        Company Registration Number*
+                                        {t("company_registration_number")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -245,7 +247,7 @@ const TransportRegistration = () => {
                                         htmlFor="phone"
                                         className="text-danger"
                                     >
-                                        Phone*
+                                        {t("phone")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -268,7 +270,7 @@ const TransportRegistration = () => {
                                         htmlFor="vehicle_number"
                                         className="text-danger"
                                     >
-                                        Amount Of Vehicle *
+                                        {t("amount_of_vehicle")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -292,7 +294,7 @@ const TransportRegistration = () => {
                                         htmlFor="city"
                                         className="text-danger"
                                     >
-                                        City*
+                                        {t("city")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -312,7 +314,7 @@ const TransportRegistration = () => {
                                         htmlFor="zipcode"
                                         className="text-danger"
                                     >
-                                        Zip Code*
+                                        {t("zip_code")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -334,7 +336,7 @@ const TransportRegistration = () => {
                                         htmlFor="password"
                                         className="text-danger"
                                     >
-                                        Password*
+                                        {t("password")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -358,7 +360,7 @@ const TransportRegistration = () => {
                                         htmlFor="password_confirm"
                                         className="text-danger"
                                     >
-                                        Password (Confirm)*
+                                        {t("password_confirm")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -378,7 +380,7 @@ const TransportRegistration = () => {
                         <div className="form-group">
                             <div className="controls">
                                 <button className="btn btn-danger btn-lg">
-                                    Register
+                                    {t("register")}
                                     {shipperReg.loading ? (
                                         <img
                                             src={Loader}

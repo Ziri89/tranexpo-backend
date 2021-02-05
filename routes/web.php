@@ -15,5 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/{path?}', 'app');
 Route::resource('parcel', ParcelController::class);
-
+Route::get('/', function () {
+    return redirect('index');
+});
 Auth::routes();

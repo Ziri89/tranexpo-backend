@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Loader from "../../img/loader.gif";
 import Banner from "../header/Banner";
 import Storehouse_3 from "../../img/storehous_3.jpg";
 import "./Register.css";
 
+import { API_BASE_URL } from "../config/config";
+
 const Register = () => {
+    const { t, i18n } = useTranslation();
     const [registrationData, setRegistrationData] = useState({
         name: "",
         email: "",
@@ -16,7 +20,7 @@ const Register = () => {
         password: "",
         password_confirm: "",
         loading: false,
-        message: "Fields with * are required",
+        message: `${t("field_with_stars")}`,
         email_message: "",
         name_message: "",
         phone_message: "",
@@ -35,8 +39,7 @@ const Register = () => {
         if (registrationData.password !== registrationData.password_confirm) {
             setRegistrationData({
                 ...registrationData,
-                pass_message:
-                    "Password confirm doesn't match password. Pleas retape"
+                pass_message: `${t("password_confirm_match")}`
             });
         } else {
             setRegistrationData({
@@ -44,7 +47,7 @@ const Register = () => {
                 loading: true
             });
             axios
-                .post("/api/register", {
+                .post(API_BASE_URL + "/register", {
                     name: registrationData.name,
                     email: registrationData.email,
                     company_name: registrationData.company_name,
@@ -66,8 +69,7 @@ const Register = () => {
                             password: "",
                             password_confirm: "",
                             loading: false,
-                            message:
-                                "You have successfully registered. Thank you"
+                            message: `${t("success_registration")}`
                         });
                         history.push("/login");
                     } else {
@@ -92,7 +94,7 @@ const Register = () => {
                 .catch(err => {
                     setRegistrationData({
                         ...registrationData,
-                        message: err.message + "." + " Please try later.",
+                        message: `${err.message}. ${t("try_latter")}`,
                         loading: false
                     });
                 });
@@ -103,7 +105,7 @@ const Register = () => {
             <Banner
                 image={Storehouse_3}
                 altText="Storehouse"
-                title="Registration"
+                title={t("registration")}
             />
             <div className="container mb-5">
                 <div className="row justify-content-center align-items-center">
@@ -124,7 +126,7 @@ const Register = () => {
                                         htmlFor="username"
                                         className="text-danger"
                                     >
-                                        Full Name*
+                                        {t("full_name")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -172,7 +174,7 @@ const Register = () => {
                                         htmlFor="company"
                                         className="text-danger"
                                     >
-                                        Company Name
+                                        {t("company_name")}
                                     </label>
                                     <div className="controls">
                                         <input
@@ -195,7 +197,7 @@ const Register = () => {
                                         htmlFor="phone"
                                         className="text-danger"
                                     >
-                                        Phone*
+                                        {t("phone")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -219,7 +221,7 @@ const Register = () => {
                                         htmlFor="city"
                                         className="text-danger"
                                     >
-                                        City*
+                                        {t("city")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -240,7 +242,7 @@ const Register = () => {
                                         htmlFor="zipcode"
                                         className="text-danger"
                                     >
-                                        Zip Code*
+                                        {t("zip_code")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -262,7 +264,7 @@ const Register = () => {
                                         htmlFor="password"
                                         className="text-danger"
                                     >
-                                        Password*
+                                        {t("password")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -286,7 +288,7 @@ const Register = () => {
                                         htmlFor="password_confirm"
                                         className="text-danger"
                                     >
-                                        Password (Confirm)*
+                                        {t("password_confirm")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -308,7 +310,7 @@ const Register = () => {
                         <div className="form-group">
                             <div className="controls">
                                 <button className="btn btn-danger btn-lg">
-                                    Register
+                                    {t("register")}
                                     {registrationData.loading ? (
                                         <img
                                             src={Loader}

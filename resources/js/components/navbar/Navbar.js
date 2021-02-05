@@ -1,41 +1,34 @@
-import React, { useState, useEffect } from "react";
-import { NavLink, Link } from "react-router-dom";
-import ReactFlagsSelect from "react-flags-select";
+import React from "react";
+import { NavLink, Link, useHistory } from "react-router-dom";
+import LangBtn from "./LangBtn";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
-import i18next from "i18next";
 import { logout } from "../actions/auth";
-import "react-flags-select/css/react-flags-select.css";
 import "./Navbar.css";
 import Logo from "../../img/logo.svg";
-const Navbar = () => {
-    if (!localStorage.getItem("lang")) {
-        localStorage.setItem("lang", "de");
-    }
-    const useLang = localStorage.getItem("lang");
-    const [lang, setLang] = useState(useLang.toUpperCase());
 
-    const onSelectFlag = countryCode => {
-        setLang(countryCode);
-        location.reload();
+const Navbar = () => {
+    const { t, i18n } = useTranslation();
+
+    const linkGenerator = link => {
+        // if the current language is the default language dont add the lang prefix
+        const languageLocale =
+            i18n.options.fallbackLng[0] === i18n.language
+                ? null
+                : i18n.language;
+        return languageLocale ? "/" + languageLocale + link : link;
     };
-    useEffect(() => {
-        localStorage.setItem("lang", lang.toLocaleLowerCase());
-    }, []);
-    useEffect(() => {
-        localStorage.setItem("lang", lang.toLocaleLowerCase());
-    }, [lang]);
 
     const dispatch = useDispatch();
     const { isLoggedIn } = useSelector(state => state.auth);
     const logoutHandler = () => {
         dispatch(logout());
     };
-    const { t } = useTranslation();
+    console.log("Link Generator: " + linkGenerator("/"));
     return (
         <nav className="navbar navbar-expand-xl navbar-light bg-light fixed-top">
             <div className="container-fluid">
-                <Link className="navbar-brand" to="/">
+                <Link className="navbar-brand" to={linkGenerator("/")}>
                     <img width="200" src={Logo} alt="Logo" />
                 </Link>
                 <button
@@ -52,37 +45,36 @@ const Navbar = () => {
 
                 <div className="collapse navbar-collapse" id="navbar">
                     <div className="choose-lang">
-                        <ReactFlagsSelect
-                            countries={["GB", "FR", "DE", "IT", "BA"]}
-                            customLabels={{
-                                GB: "EN",
-                                FR: "FR",
-                                DE: "DE",
-                                IT: "IT",
-                                BA: "BA"
-                            }}
-                            defaultCountry={lang}
-                            onSelect={onSelectFlag}
-                        />
+                        <LangBtn />
                     </div>
                     <div className="navbar-nav mx-auto">
-                        <NavLink exact className="nav-link" to="/">
+                        <NavLink
+                            exact
+                            className="nav-link"
+                            to={linkGenerator("/")}
+                        >
                             {t("home")}
                         </NavLink>
-                        <NavLink className="nav-link" to="/about">
+                        <NavLink
+                            className="nav-link"
+                            to={linkGenerator("/about")}
+                        >
                             {t("about_us")}
                         </NavLink>
 
                         <NavLink
                             className="nav-link"
-                            to="/transport-registration"
+                            to={linkGenerator("/transport-registration")}
                         >
                             {t("transport_registration")}
                         </NavLink>
                     </div>
                     <div className="login">
                         {!isLoggedIn ? (
-                            <NavLink to="/login" className="text-danger">
+                            <NavLink
+                                to={linkGenerator("/login")}
+                                className="text-danger"
+                            >
                                 {t("login")}
                             </NavLink>
                         ) : (
@@ -96,7 +88,7 @@ const Navbar = () => {
                         )}
 
                         <NavLink
-                            to="/create-account"
+                            to={linkGenerator("/create-account")}
                             className="btn btn-danger btn-lg ml-3"
                         >
                             {t("create_my_account")}
