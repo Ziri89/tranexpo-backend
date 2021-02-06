@@ -1,6 +1,7 @@
 import React from "react";
-
+import { useTranslation } from "react-i18next";
 const Post = props => {
+    const { t, i18n } = useTranslation();
     return (
         <div className="post col-lg-6">
             <div className="card">
@@ -26,31 +27,31 @@ const Post = props => {
                     </h6>
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item">
-                            Shipment from: {props.from}
+                            {t("shipment_from")}: {props.from}
                         </li>
                         <li className="list-group-item">
-                            Shipment to: {props.to}
+                            {t("shipment_to")}: {props.to}
                         </li>
                         <li className="list-group-item">
-                            Shipping date: {props.date}
+                            {t("shipping_date")}: {props.date}
                         </li>
                         <li className="list-group-item">
-                            Type of shipment: {props.type}
+                            {t("type_of_shipment")}: {props.type}
                         </li>
                         <li className="list-group-item">
-                            Quantity: {props.quantity}
+                            {t("quantity")}: {props.quantity}
                         </li>
                         <li className="list-group-item">
-                            Weight/unit: {props.weight}kg
+                            {t("weight_unit")}: {props.weight}kg
                         </li>
                         <li className="list-group-item">
-                            Lenght: {props.lenght}cm
+                            {t("lenght")}: {props.lenght}cm
                         </li>
                         <li className="list-group-item">
-                            Width: {props.width}cm
+                            {t("width")}: {props.width}cm
                         </li>
                         <li className="list-group-item">
-                            Height: {props.height}cm
+                            {t("height")}: {props.height}cm
                         </li>
                     </ul>
                 </div>

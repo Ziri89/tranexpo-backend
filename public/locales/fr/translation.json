@@ -53,5 +53,20 @@
   "all_fields": "Tous les champs sont requis",
   "shipper_registration": "Enregistrement de l'expéditeur",
   "company_registration_number": "Numéro d'entreprise",
-  "amount_of_vehicle": "Quantité de véhicule"
+  "amount_of_vehicle": "Quantité de véhicule",
+  "our_packages": "Notre forfait",
+  "basic": "De base",
+  "a_year": "Une année",
+  "use_application": "Vous permet d'utiliser notre application Web pour",
+  "month": "mois",
+  "months": "mois",
+  "one_month": "un mois",
+  "six_months": "six mois",
+  "price": "Prix",
+  "bay_now": "Acheter maintenant",
+  "transportation_offers": "Offres de transport",
+  "shipment_from": "Expédition de",
+  "shipment_to": "Envoi à",
+  "type_of_shipment": "Type d'expédition",
+  "weight_unit": "Poids / unité"
 }

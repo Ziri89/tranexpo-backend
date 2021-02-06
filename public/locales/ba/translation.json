@@ -53,5 +53,20 @@
   "all_fields": "Sva polja su obavezna",
   "shipper_registration": "Registracija prevoznika",
   "company_registration_number": "Registracioni broj kompanije",
-  "amount_of_vehicle": "Količina vozila"
+  "amount_of_vehicle": "Količina vozila",
+  "our_packages": "Naši paketi",
+  "basic": "Osnovni",
+  "a_year": "godina",
+  "use_application": "Omogućava vam upotrebu naše web aplikacije",
+  "month": "mjesec",
+  "months": "mjeseci",
+  "one_month": "jedan mjesec",
+  "six_months": "šest mjeseci",
+  "price": "Cijena",
+  "bay_now": "Kupi sada",
+  "transportation_offers": "Ponude za prijevoz",
+  "shipment_from": "Pošiljka od",
+  "shipment_to": "Pošiljka do",
+  "type_of_shipment": "Vrsta pošiljke",
+  "weight_unit": "Težina / jedinica"
 }

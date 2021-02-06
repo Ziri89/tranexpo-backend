@@ -53,6 +53,21 @@
   "all_fields": "Alle Felder sind erforderlich",
   "shipper_registration": "Versenderregistrierung",
   "company_registration_number": "Handelsregisternummer",
-  "amount_of_vehicle": "Fahrzeugmenge"
+  "amount_of_vehicle": "Fahrzeugmenge",
+  "our_packages": "Unsere Pakete",
+  "basic": "Basic",
+  "a_year": "Ein Jahr",
+  "use_application": "Ermöglicht die Verwendung unserer Webanwendung für",
+  "month": "Monat",
+  "months": "Monate",
+  "one_month": "ein Monat",
+  "six_months": "sechs Monate",
+  "price": "Preis",
+  "bay_now": "Kaufe jetzt",
+  "transportation_offers": "Transportangebote",
+  "shipment_from": "Versand von",
+  "shipment_to": "Lieferung an",
+  "type_of_shipment": "Art der Sendung",
+  "weight_unit": "Gewichtseinheit"
 }
 

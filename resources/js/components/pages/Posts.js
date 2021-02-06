@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 import Post from "../posts/Post";
 import Storehouse_2 from "../../img/storehous_2.jpg";
 import Banner from "../header/Banner";
@@ -7,6 +8,7 @@ import Loader from "../../img/img-loader.gif";
 import "./Posts.css";
 
 const Posts = () => {
+    const { t, i18n } = useTranslation();
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(false);
     const [errMsg, setErrMsg] = useState(null);
@@ -24,7 +26,7 @@ const Posts = () => {
                 setLoading(false);
             })
             .catch(err => {
-                setErrMsg("Something went wrong. Please try latter");
+                setErrMsg(`${t("")}`);
                 console.log(err);
                 setLoading(false);
             });
@@ -48,9 +50,9 @@ const Posts = () => {
                           from={`${item.countryFrom}, ${item.cityFrom}`}
                           to={`${item.countryTo}, ${item.cityTo}`}
                           date={item.shippingDate}
-                          type={`${item.parcel === 1 ? "parcel" : ""}, ${
+                          type={`${item.parcel === 1 ? "parcel" : ""} ${
                               item.envelope === 1 ? "envelope" : ""
-                          }, ${item.pallet === 1 ? "pallet" : ""}`}
+                          } ${item.pallet === 1 ? "pallet" : ""}`}
                           quantity={item.quantity}
                           weight={item.weight}
                           lenght={item.lenght}
@@ -66,7 +68,7 @@ const Posts = () => {
             <Banner
                 image={Storehouse_2}
                 altText="Storehouse"
-                title="Transportation offers"
+                title={t("transportation_offers")}
             />
             <div className="container mb-5">
                 {!errMsg ? (

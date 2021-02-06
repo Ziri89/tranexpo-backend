@@ -53,5 +53,20 @@
   "all_fields": "All fields are required",
   "shipper_registration": "Shipper Registration",
   "company_registration_number": "Company Registration Number",
-  "amount_of_vehicle": "Amount Of Vehicle"
+  "amount_of_vehicle": "Amount Of Vehicle",
+  "our_packages": "Our packages",
+  "basic": "Basic",
+  "a_year": "A year",
+  "use_application": "Allows you to use our web application for",
+  "month": "month",
+  "months": "months",
+  "one_month": "one month",
+  "six_months": "six months",
+  "price": "Price",
+  "bay_now": "Buy Now",
+  "transportation_offers": "Transportation offers",
+  "shipment_from": "Shipment from",
+  "shipment_to": "Shipment to",
+  "type_of_shipment": "Type of shipment",
+  "weight_unit": "Weight/unit"
 }
