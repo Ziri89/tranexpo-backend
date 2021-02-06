@@ -2,9 +2,9 @@
   "home": "Naslovna",
   "about_us": "O Nama",
   "transport_registration": "Registracija transporta",
-  "login": "Registracija",
+  "login": "Prijava",
   "logout": "Odjavi se",
-  "create_my_account": "Otvori moj nalog",
+  "create_my_account": "Otvori svoj nalog",
   "you_must_be_logged": "Morate biti prijavljeni da biste mogli ispuniti obrazac",
   "your_destination": "Vaše odredište",
   "ship_from": "Isporučiti od",
@@ -68,5 +68,7 @@
   "shipment_from": "Pošiljka od",
   "shipment_to": "Pošiljka do",
   "type_of_shipment": "Vrsta pošiljke",
-  "weight_unit": "Težina / kom"
+  "weight_unit": "Težina / kom",
+  "posts_for_transport": "Postovi za transport",
+  "package_plans": "Naši paketi"
 }

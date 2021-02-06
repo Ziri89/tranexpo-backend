@@ -2,7 +2,7 @@
   "home": "Accueil",
   "about_us": "À propos de nous",
   "transport_registration": "Enregistrement du transport",
-  "login": "Enregistrement",
+  "login": "Se connecter",
   "logout": "Se déconnecter",
   "create_my_account": "Créer mon compte",
   "you_must_be_logged": "Vous devez être connecté pour pouvoir remplir le formulaire",
@@ -68,5 +68,7 @@
   "shipment_from": "Expédition de",
   "shipment_to": "Envoi à",
   "type_of_shipment": "Type d'expédition",
-  "weight_unit": "Poids / unité"
+  "weight_unit": "Poids / unité",
+  "posts_for_transport": "Postes de transport",
+  "package_plans": "Nos forfaits"
 }

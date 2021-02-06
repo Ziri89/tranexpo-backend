@@ -2,9 +2,9 @@
   "home": "Casa",
   "about_us": "Chi siamo",
   "transport_registration": "Registrazione del trasporto",
-  "login": "Registrazione",
+  "login": "Accedi",
   "logout": "Disconnettersi",
-  "create_my_account": "Creare il mio account",
+  "create_my_account": "Crea il tuo conto",
   "you_must_be_logged": "Devi essere loggato per poter compilare il form",
   "your_destination": "La tua destinazione",
   "ship_from": "Nave da",
@@ -68,5 +68,7 @@
   "shipment_from": "Spedizione da",
   "shipment_to": "Spedizione a",
   "type_of_shipment": "Tipo di spedizione",
-  "weight_unit": "Peso / unità"
+  "weight_unit": "Peso / unità",
+  "posts_for_transport": "Pali per il trasporto",
+  "package_plans": "I nostri pacchetti"
 }

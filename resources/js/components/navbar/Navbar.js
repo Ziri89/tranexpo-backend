@@ -61,12 +61,23 @@ const Navbar = () => {
                         >
                             {t("about_us")}
                         </NavLink>
-
                         <NavLink
                             className="nav-link"
                             to={linkGenerator("/transport-registration")}
                         >
                             {t("transport_registration")}
+                        </NavLink>
+                        <NavLink
+                            className="nav-link"
+                            to={linkGenerator("/posts")}
+                        >
+                            {t("posts_for_transport")}
+                        </NavLink>
+                        <NavLink
+                            className="nav-link"
+                            to={linkGenerator("/packages-plans")}
+                        >
+                            {t("package_plans")}
                         </NavLink>
                     </div>
                     <div className="login">
