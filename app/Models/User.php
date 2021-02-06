@@ -48,7 +48,7 @@ class User extends Authenticatable
     
     public function parcels() 
     {
-         return $this->hasMany(Parcel::class);
+         return $this->hasMany(Parcel::class, 'user_id');
     }
 
    /* public function post()
