@@ -9,3 +9,9 @@
     border-radius: 10px;
     background: #fff;
 }
+
+@media screen and (max-width: 560px) {
+    #register-form {
+        margin-top: 0;
+    }
+}
