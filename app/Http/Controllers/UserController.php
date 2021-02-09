@@ -88,7 +88,7 @@ class UserController extends Controller {
 
     // User Detail
    public function userDetail() {
-    $user = User::find();
+    $user = User::get();
         if(!is_null($user)) {
             return response()->json(["status" => $this->sucess_status, "success" => true, "user" => $user]);
         }
