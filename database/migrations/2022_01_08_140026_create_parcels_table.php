@@ -14,6 +14,7 @@ class CreateParcelsTable extends Migration
     public function up()
     {
         Schema::create('parcels', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->bigIncrements('id');
             $table->string('countryFrom');
             $table->string('cityFrom');
@@ -31,7 +32,7 @@ class CreateParcelsTable extends Migration
             $table->integer('width');
             $table->integer('height');
             $table->date('shippingDate');
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained('users')->nullable();
             $table->rememberToken();
             $table->timestamps();
             
