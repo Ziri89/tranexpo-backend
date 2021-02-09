@@ -191,7 +191,7 @@ const ShipmentForm = () => {
         formdata.append("height", formData.height);
         setLoading(true);
         axios
-            .post(API_BASE_URL + "/api/publish", formdata)
+            .post(API_BASE_URL + "/publish", formdata)
             .then(res => {
                 setFormData({
                     countryFrom: "",
@@ -212,7 +212,7 @@ const ShipmentForm = () => {
                     image: null
                 });
                 setSuccess(true);
-                setMessage(`$t("successfully_added_your_goods")`);
+                setMessage(`${t("successfully_added_your_goods")}`);
                 setTimeout(() => {
                     location.reload();
                 }, 3000);
@@ -238,13 +238,13 @@ const ShipmentForm = () => {
                     image: null
                 });
                 setSuccess(false);
-                setMessage(`$t("something_is_wrong")`);
+                setMessage(`${t("something_is_wrong")}`);
                 console.log(err);
             });
     };
     const onImage = ev => {
         if (ev.target.files[0].size > 3145728) {
-            setMessage(`$t("image_file_is_bigger")`);
+            setMessage(`${t("image_file_is_bigger")}`);
         } else {
             setFormData({
                 ...formData,
