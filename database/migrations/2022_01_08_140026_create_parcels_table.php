@@ -15,7 +15,7 @@ class CreateParcelsTable extends Migration
     {
         Schema::create('parcels', function (Blueprint $table) {
             $table->engine = "InnoDB";
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('countryFrom');
             $table->string('cityFrom');
             $table->text('checkFrom');
@@ -32,7 +32,7 @@ class CreateParcelsTable extends Migration
             $table->integer('width');
             $table->integer('height');
             $table->date('shippingDate');
-            $table->foreignId('user_id')->constrained('users')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('restrict'); 
             $table->rememberToken();
             $table->timestamps();
             
