@@ -11,7 +11,7 @@ class ParcelController extends Controller
 {
 
     public function store(Request $request) {
-
+       
         $data = new Parcel;
         $data->countryFrom = $request->countryFrom;
         $data->cityFrom = $request->cityFrom;
@@ -28,7 +28,6 @@ class ParcelController extends Controller
         $data->width = $request->width;
         $data->height = $request->height;
         $data->shippingDate = $request->shippingDate;
-        $data->user_id =  $request->user()->id;
         if($request->hasFile("image")){
             $img = $request->image;
             $img_name = $img->getClientOriginalName();
@@ -36,7 +35,6 @@ class ParcelController extends Controller
             $data->image = $img_name;
         }
         if($data->save()){
-            $data = Parcel::with('user_id')->find($data->id);
             return response()->json([
                 "data" => $data,
                 "msg"  => "Published Successfully"
@@ -94,7 +92,6 @@ class ParcelController extends Controller
         }
     }
 
-
-
   
 }
+

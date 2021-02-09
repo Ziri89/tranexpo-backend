@@ -87,8 +87,8 @@ class UserController extends Controller {
 
 
     // User Detail
-   /* public function userDetail() {
-        $user           =       Auth::user();
+   public function userDetail() {
+    $user = User::get();
         if(!is_null($user)) {
             return response()->json(["status" => $this->sucess_status, "success" => true, "user" => $user]);
         }
@@ -97,7 +97,7 @@ class UserController extends Controller {
         }
     }
 
-    */
+    
 
 
 

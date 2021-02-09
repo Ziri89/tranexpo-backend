@@ -19,3 +19,5 @@ Route::get('/', function () {
     return redirect('index');
 });
 Auth::routes();
+
+Route::get('parcel', function(){ return App\Models\Parcel::with('user')->get(); });

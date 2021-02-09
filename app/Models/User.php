@@ -46,7 +46,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
-    public function parcels() 
+    public function parcel() 
     {
          return $this->hasMany(Parcel::class, 'user_id');
     }
