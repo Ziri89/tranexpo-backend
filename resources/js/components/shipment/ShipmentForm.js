@@ -14,6 +14,8 @@ import { API_BASE_URL } from "../config/config";
 
 const ShipmentForm = () => {
     const countrieOptions = Object.keys(countriesData);
+    const { isLoggedIn, user, token } = useSelector(state => state.auth);
+    //console.log(user.data.id);
     const [formData, setFormData] = useState({
         countryFrom: "",
         cityFrom: "",
@@ -36,7 +38,6 @@ const ShipmentForm = () => {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [success, setSuccess] = useState(false);
-    const { isLoggedIn, user, token } = useSelector(state => state.auth);
     const { t } = useTranslation();
     useEffect(() => {
         if (user !== null) {
