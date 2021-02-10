@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Parcel;
 use App\Models\User;
 use Image;
@@ -28,13 +29,17 @@ class ParcelController extends Controller
         $data->width = $request->width;
         $data->height = $request->height;
         $data->shippingDate = $request->shippingDate;
+        $data->user_id = Auth::user()->id;
         if($request->hasFile("image")){
             $img = $request->image;
             $img_name = $img->getClientOriginalName();
             Image::make($img)->resize(500, 500)->save(public_path("/images/".$img_name));
             $data->image = $img_name;
+        //$data->user_id =  Auth::guard('web')->user()->id;
         }
         if($data->save()){
+            //$data = Parcel::where('user_id')->orderBy('id','DESC')->paginate(10);
+           // dd($data);
             return response()->json([
                 "data" => $data,
                 "msg"  => "Published Successfully"
