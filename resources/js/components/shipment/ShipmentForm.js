@@ -15,6 +15,7 @@ import { API_BASE_URL } from "../config/config";
 const ShipmentForm = () => {
     const countrieOptions = Object.keys(countriesData);
     const { isLoggedIn, user, token } = useSelector(state => state.auth);
+    const userId = user !== null ? user.data.id : null;
     //console.log(user.data.id);
     const [formData, setFormData] = useState({
         countryFrom: "",
@@ -49,9 +50,10 @@ const ShipmentForm = () => {
         }
     }, [isLoggedIn]);
     useEffect(() => {
-        console.log(formData.shippingDate);
+        //console.log(formData.shippingDate);
     }, [formData]);
     const fileInput = useRef();
+    const hiddenInput = useRef();
     const formChangeHandler = ev => {
         const target = ev.target;
         const value =
@@ -190,6 +192,7 @@ const ShipmentForm = () => {
         formdata.append("lenght", formData.lenght);
         formdata.append("width", formData.width);
         formdata.append("height", formData.height);
+        formdata.append("user_id", hiddenInput.current.value);
         setLoading(true);
         axios
             .post(API_BASE_URL + "/publish", formdata)
@@ -565,6 +568,14 @@ const ShipmentForm = () => {
                                         </div>
                                     </div>
                                 </div>
+                                <input
+                                    className="custom-control-input"
+                                    type="hidden"
+                                    name="user_id"
+                                    id="user_id"
+                                    ref={hiddenInput}
+                                    value={userId}
+                                />
                             </div>
                             <button
                                 type="submit"

@@ -22,16 +22,6 @@ const Posts = () => {
             .get("/api/parcelShow")
             .then(res => {
                 setPost(res.data.data);
-                console.log(res.data.data[0].user_id);
-                axios.get("/api/user?" + res.data.data[0].user_id).then(res => {
-                    console.log(res.data);
-                    setUser({
-                        userName: res.data.user[0].name,
-                        userEmail: res.data.user[0].email,
-                        userPhone: res.data.user[0].phone
-                    });
-                    //console.log(user.userName);
-                });
             })
             .then(() => {
                 setLoading(false);
