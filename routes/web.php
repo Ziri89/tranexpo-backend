@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/{path?}', 'app');
-Route::resource('parcel', ParcelController::class);
+
+Route::resource('publish', ParcelController::class);
+
 Route::get('/', function () {
     return redirect('index');
 });

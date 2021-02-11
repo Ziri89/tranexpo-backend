@@ -34,13 +34,16 @@ Route::middleware('auth:api')->group(function() {
 Route::get("user", [UserController::class, "userDetail"]);
 });
 */
+Route::get('parcelShow', [ParcelController::class, "showAll"]);
+
+Route::get('user', [UserController::class, "userDetail"]);
+
 Route::post('publish', [ParcelController::class, "store"]);
 
 /* Route::get('/parcelShow/{parcelShow}', [ParcelController::class, "show"])->name('parcelShow');;
 by ID
 */
-Route::get("user", [UserController::class, "userDetail"]);
 
-Route::get('parcelShow', [ParcelController::class, 'showAll']);
+
 
 
