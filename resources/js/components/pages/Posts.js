@@ -17,14 +17,14 @@ const Posts = () => {
     useEffect(() => {
         let source = axios.CancelToken.source();
         setLoading(true);
-        console.log(post);
+
         axios
             .get("/api/parcelShow")
-            .then(res => {
-                setPost(res.data.data);
-            })
-            .then(() => {
+            .then(res => res.data.data)
+            .then(data => {
+                setPost(data);
                 setLoading(false);
+                console.log(data);
             })
             .catch(err => {
                 setErrMsg(`${t("")}`);
