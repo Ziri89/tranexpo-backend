@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { countriesData } from "../countries/data";
 import Select from "./Select";
+import FlashMessage from "react-flash-message";
 import Loader from "../../img/loader.gif";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -15,7 +16,8 @@ import { API_BASE_URL } from "../config/config";
 const ShipmentForm = () => {
     const countrieOptions = Object.keys(countriesData);
     const { isLoggedIn, user, token } = useSelector(state => state.auth);
-    const userId = user !== null ? user.data.id : null;
+    const userId = user !== null ? user : null;
+    console.log("User ID: " + userId);
     //console.log(user.data.id);
     const [formData, setFormData] = useState({
         countryFrom: "",
@@ -195,7 +197,7 @@ const ShipmentForm = () => {
         formdata.append("user_id", hiddenInput.current.value);
         setLoading(true);
         axios
-            .post(API_BASE_URL + "/publish", formdata)
+            .post(API_BASE_URL + "/publish/", formdata)
             .then(res => {
                 setFormData({
                     countryFrom: "",
@@ -217,6 +219,7 @@ const ShipmentForm = () => {
                 });
                 setSuccess(true);
                 setMessage(`${t("successfully_added_your_goods")}`);
+                setLoading(false);
                 setTimeout(() => {
                     location.reload();
                 }, 3000);
@@ -243,6 +246,7 @@ const ShipmentForm = () => {
                 });
                 setSuccess(false);
                 setMessage(`${t("something_is_wrong")}`);
+                setLoading(false);
                 console.log(err);
             });
     };
