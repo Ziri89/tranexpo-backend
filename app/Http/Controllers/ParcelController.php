@@ -34,7 +34,7 @@ class ParcelController extends Controller
         $data->width = $request->width;
         $data->height = $request->height;
         $data->shippingDate = $request->shippingDate;
-        $data->user_id = Auth::guard('web')->user()->id;
+        $data->user_id = Auth::guard('web')->user()->id();
         if($request->hasFile("image")){
             $img = $request->image;
             $img_name = $img->getClientOriginalName();
