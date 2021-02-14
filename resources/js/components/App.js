@@ -25,8 +25,6 @@ const enhancer = composeEnhancers(applyMiddleware(...middleware));
 
 const store = createStore(allReducers, enhancer);
 
-//const lang = localStorage.getItem("lang");
-//const baseRouteUrl = lang === "gb" ? "/en" : "/" + lang;
 const localesString = "/:locale(de|en|fr|it|ba)?";
 export const baseUrl = i18n.language === "/de" ? "" : "/" + i18n.language;
 console.log("Lang from App: " + baseUrl, localesString);

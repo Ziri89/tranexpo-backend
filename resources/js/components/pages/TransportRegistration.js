@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import ReactFlagsSelect from "react-flags-select";
+import { countriesData } from "../countries/data-shortcode";
 import Loader from "../../img/loader.gif";
 import Banner from "../header/Banner";
 import Truck_6 from "../../img/truck_6.jpg";
@@ -12,12 +13,14 @@ import { API_BASE_URL } from "../config/config";
 
 const TransportRegistration = () => {
     const { t, i18n } = useTranslation();
+    const countrieOptions = Object.keys(countriesData);
     const [shipperReg, setShipperReg] = useState({
         name: "",
         email: "",
         company_name: "",
         company_number: "",
         phone: "",
+        country: "",
         city: "",
         zip_code: "",
         vehicle_number: 1,
@@ -33,10 +36,9 @@ const TransportRegistration = () => {
         company_reg_num_message: "",
         vehicle_number_message: ""
     });
-    const [selected, setSelected] = useState("");
     useEffect(() => {
-        console.log(selected);
-    }, [selected]);
+        console.log(shipperReg.country);
+    }, [shipperReg.country]);
     const history = useHistory();
     const onChangeHandler = ev => {
         const { name, value } = ev.target;
@@ -45,7 +47,31 @@ const TransportRegistration = () => {
             [name]: value
         });
     };
-
+    const setValueCity = ev => {
+        setShipperReg({
+            ...shipperReg,
+            city: ev.target.textContent
+        });
+        ev.target.parentElement.style.display = "none";
+    };
+    const cities = countrieOptions.includes(shipperReg.country)
+        ? countriesData[shipperReg.country]
+              .filter(item => {
+                  return (
+                      item.match(new RegExp(`${shipperReg.city}`, "i")) &&
+                      shipperReg.city !== ""
+                  );
+              })
+              .map((item, key) => (
+                  <li
+                      className="list-group-item list-group-item-action w-100"
+                      key={key}
+                      onClick={setValueCity}
+                  >
+                      {item}
+                  </li>
+              ))
+        : null;
     const onSubmitHandler = ev => {
         ev.preventDefault();
         if (shipperReg.password !== shipperReg.password_confirm) {
@@ -66,8 +92,8 @@ const TransportRegistration = () => {
                     company_number: shipperReg.company_reg_num,
                     phone: shipperReg.phone,
                     vehicle_number: shipperReg.vehicle_number,
+                    country: shipperReg.country,
                     city: shipperReg.city,
-                    country: selected,
                     zip_code: shipperReg.zip_code,
                     password: shipperReg.password
                 })
@@ -80,6 +106,7 @@ const TransportRegistration = () => {
                             company_name: "",
                             company_number: "",
                             phone: "",
+                            country: "",
                             city: "",
                             country: "",
                             zip_code: "",
@@ -305,51 +332,15 @@ const TransportRegistration = () => {
                                     {t("country")}*
                                 </label>
                                 <ReactFlagsSelect
-                                    countries={[
-                                        "AL",
-                                        "AD",
-                                        "AT",
-                                        "BA",
-                                        "BG",
-                                        "BY",
-                                        "BE",
-                                        "HR",
-                                        "CY",
-                                        "CZ",
-                                        "DK",
-                                        "FI",
-                                        "FR",
-                                        "DE",
-                                        "GR",
-                                        "GB",
-                                        "IS",
-                                        "IE",
-                                        "IT",
-                                        "LV",
-                                        "LI",
-                                        "LT",
-                                        "LU",
-                                        "MK",
-                                        "MC",
-                                        "ME",
-                                        "NL",
-                                        "NO",
-                                        "PL",
-                                        "PT",
-                                        "RO",
-                                        "RU",
-                                        "RS",
-                                        "SK",
-                                        "SI",
-                                        "SE",
-                                        "ES",
-                                        "SZ",
-                                        "TR",
-                                        "UA"
-                                    ]}
+                                    countries={countrieOptions}
                                     id="country"
-                                    selected={selected}
-                                    onSelect={code => setSelected(code)}
+                                    selected={shipperReg.country}
+                                    onSelect={code =>
+                                        setShipperReg({
+                                            ...shipperReg,
+                                            country: code
+                                        })
+                                    }
                                     placeholder={t("your_country")}
                                     searchable
                                 />
@@ -363,23 +354,23 @@ const TransportRegistration = () => {
                                         {t("city")}*
                                     </label>
                                     <div className="controls">
-                                        {/*<Select
-                                    char="▼"
-                                    type="text"
-                                    placeholder={t("city")}
-                                    name="city"
-                                    value={shipperReg.city}
-                                    onChange={onChangeHandler}
-                                    options={cities}
-                                />*/}
-                                        <input
+                                        <Select
+                                            char="▼"
+                                            type="text"
+                                            placeholder={t("city")}
+                                            name="city"
+                                            value={shipperReg.city}
+                                            onChange={onChangeHandler}
+                                            options={cities}
+                                        />
+                                        {/* <input
                                             type="text"
                                             id="city"
                                             name="city"
                                             className="form-control"
                                             value={shipperReg.city}
                                             onChange={onChangeHandler}
-                                        />
+                                        />*/}
                                     </div>
                                 </div>
                             </div>
