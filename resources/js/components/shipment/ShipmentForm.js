@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { countriesData } from "../countries/data";
-import Select from "./Select";
+import Select from "../select/Select";
 import FlashMessage from "react-flash-message";
 import Loader from "../../img/loader.gif";
 import DatePicker from "react-datepicker";

@@ -7,6 +7,19 @@ export const countriesData = {
         "Tirana",
         "Ura Vajgurore"
     ],
+    Andorra: [
+        "Andorra la Vella",
+        "Canillo",
+        "Encamp",
+        "Engordany",
+        "Escaldes-Engordany",
+        "La Massana",
+        "Llorts",
+        "Ordino",
+        "Santa Coloma",
+        "Sispony",
+        "Soldeu"
+    ],
     Austria: [
         "Absam",
         "Absdorf",

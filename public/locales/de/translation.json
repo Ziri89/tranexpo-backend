@@ -70,6 +70,7 @@
   "type_of_shipment": "Art der Sendung",
   "weight_unit": "Gewichtseinheit",
   "posts_for_transport": "Pfosten für den Transport",
-  "package_plans": "Unsere Pakete"
+  "package_plans": "Unsere Pakete",
+  "your_country": "Dein Land"
 }
 

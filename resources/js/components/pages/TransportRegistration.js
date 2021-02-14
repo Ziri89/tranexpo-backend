@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import ReactFlagsSelect from "react-flags-select";
 import Loader from "../../img/loader.gif";
 import Banner from "../header/Banner";
 import Truck_6 from "../../img/truck_6.jpg";
+import Select from "../select/Select";
+import "./TransportRegistration.css";
 
 import { API_BASE_URL } from "../config/config";
 
@@ -30,6 +33,10 @@ const TransportRegistration = () => {
         company_reg_num_message: "",
         vehicle_number_message: ""
     });
+    const [selected, setSelected] = useState("");
+    useEffect(() => {
+        console.log(selected);
+    }, [selected]);
     const history = useHistory();
     const onChangeHandler = ev => {
         const { name, value } = ev.target;
@@ -38,9 +45,9 @@ const TransportRegistration = () => {
             [name]: value
         });
     };
+
     const onSubmitHandler = ev => {
         ev.preventDefault();
-        console.log("Yesss");
         if (shipperReg.password !== shipperReg.password_confirm) {
             setShipperReg({
                 ...shipperReg,
@@ -60,6 +67,7 @@ const TransportRegistration = () => {
                     phone: shipperReg.phone,
                     vehicle_number: shipperReg.vehicle_number,
                     city: shipperReg.city,
+                    country: selected,
                     zip_code: shipperReg.zip_code,
                     password: shipperReg.password
                 })
@@ -73,6 +81,7 @@ const TransportRegistration = () => {
                             company_number: "",
                             phone: "",
                             city: "",
+                            country: "",
                             zip_code: "",
                             vehicle_number: 1,
                             password: "",
@@ -288,7 +297,64 @@ const TransportRegistration = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-6">
+                            <div className="col-md-4">
+                                <label
+                                    htmlFor="country"
+                                    className="text-danger"
+                                >
+                                    {t("country")}*
+                                </label>
+                                <ReactFlagsSelect
+                                    countries={[
+                                        "AL",
+                                        "AD",
+                                        "AT",
+                                        "BA",
+                                        "BG",
+                                        "BY",
+                                        "BE",
+                                        "HR",
+                                        "CY",
+                                        "CZ",
+                                        "DK",
+                                        "FI",
+                                        "FR",
+                                        "DE",
+                                        "GR",
+                                        "GB",
+                                        "IS",
+                                        "IE",
+                                        "IT",
+                                        "LV",
+                                        "LI",
+                                        "LT",
+                                        "LU",
+                                        "MK",
+                                        "MC",
+                                        "ME",
+                                        "NL",
+                                        "NO",
+                                        "PL",
+                                        "PT",
+                                        "RO",
+                                        "RU",
+                                        "RS",
+                                        "SK",
+                                        "SI",
+                                        "SE",
+                                        "ES",
+                                        "SZ",
+                                        "TR",
+                                        "UA"
+                                    ]}
+                                    id="country"
+                                    selected={selected}
+                                    onSelect={code => setSelected(code)}
+                                    placeholder={t("your_country")}
+                                    searchable
+                                />
+                            </div>
+                            <div className="col-md-4">
                                 <div className="form-group">
                                     <label
                                         htmlFor="city"
@@ -297,6 +363,15 @@ const TransportRegistration = () => {
                                         {t("city")}*
                                     </label>
                                     <div className="controls">
+                                        {/*<Select
+                                    char="▼"
+                                    type="text"
+                                    placeholder={t("city")}
+                                    name="city"
+                                    value={shipperReg.city}
+                                    onChange={onChangeHandler}
+                                    options={cities}
+                                />*/}
                                         <input
                                             type="text"
                                             id="city"
@@ -308,7 +383,7 @@ const TransportRegistration = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-6">
+                            <div className="col-md-4">
                                 <div className="form-group">
                                     <label
                                         htmlFor="zipcode"

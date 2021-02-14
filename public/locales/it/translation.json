@@ -70,5 +70,6 @@
   "type_of_shipment": "Tipo di spedizione",
   "weight_unit": "Peso / unità",
   "posts_for_transport": "Pali per il trasporto",
-  "package_plans": "I nostri pacchetti"
+  "package_plans": "I nostri pacchetti",
+  "your_country": "Il tuo paese"
 }

@@ -70,5 +70,6 @@
   "type_of_shipment": "Vrsta pošiljke",
   "weight_unit": "Težina / kom",
   "posts_for_transport": "Postovi za transport",
-  "package_plans": "Naši paketi"
+  "package_plans": "Naši paketi",
+  "your_country": "Tvoja država"
 }
