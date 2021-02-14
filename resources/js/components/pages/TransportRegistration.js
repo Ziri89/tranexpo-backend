@@ -37,8 +37,8 @@ const TransportRegistration = () => {
         vehicle_number_message: ""
     });
     useEffect(() => {
-        console.log(shipperReg.country);
-    }, [shipperReg.country]);
+        console.log(shipperReg);
+    }, [shipperReg]);
     const history = useHistory();
     const onChangeHandler = ev => {
         const { name, value } = ev.target;
@@ -89,7 +89,7 @@ const TransportRegistration = () => {
                     name: shipperReg.name,
                     email: shipperReg.email,
                     company_name: shipperReg.company_name,
-                    company_number: shipperReg.company_reg_num,
+                    company_number: shipperReg.company_number,
                     phone: shipperReg.phone,
                     vehicle_number: shipperReg.vehicle_number,
                     country: shipperReg.country,
@@ -265,10 +265,10 @@ const TransportRegistration = () => {
                                         <input
                                             type="text"
                                             id="company_reg_num"
-                                            name="company_reg_num"
+                                            name="company_number"
                                             placeholder=""
                                             className="form-control"
-                                            value={shipperReg.company_reg_num}
+                                            value={shipperReg.company_number}
                                             onChange={onChangeHandler}
                                         />
                                         <p className="warning">
