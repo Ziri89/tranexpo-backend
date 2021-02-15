@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { countriesData } from "../countries/data";
 import Select from "../select/Select";
 import FlashMessage from "react-flash-message";
+import { useCookies } from "react-cookie";
 import Loader from "../../img/loader.gif";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -15,8 +16,10 @@ import { API_BASE_URL } from "../config/config";
 
 const ShipmentForm = () => {
     const countrieOptions = Object.keys(countriesData);
-    const { isLoggedIn, user, token } = useSelector(state => state.auth);
+    const { isLoggedIn, user } = useSelector(state => state.auth);
+    const [cookies, setCookie] = useCookies(["name"]);
     const userId = user !== null ? user.data.id : null;
+    console.log(user.token);
     console.log("User ID: " + userId);
     //console.log(user.data.id);
     const [formData, setFormData] = useState({
@@ -197,7 +200,13 @@ const ShipmentForm = () => {
         formdata.append("user_id", hiddenInput.current.value);
         setLoading(true);
         axios
-            .post(API_BASE_URL + "/publish/", formdata)
+            .post(API_BASE_URL + "/publish", formdata, {
+                headers: {
+                    Authorization: `Bearer ${user.token ? user.token : null}`,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            })
             .then(res => {
                 setFormData({
                     countryFrom: "",
@@ -247,7 +256,6 @@ const ShipmentForm = () => {
                 setSuccess(false);
                 setMessage(`${t("something_is_wrong")}`);
                 setLoading(false);
-                console.log(err);
             });
     };
     const onImage = ev => {

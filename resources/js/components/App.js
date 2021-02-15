@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { HashRouter, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
+import { CookiesProvider } from "react-cookie";
 import { createStore, applyMiddleware, compose } from "redux";
 import allReducers from "./reducers";
 import thunk from "redux-thunk";
@@ -68,7 +69,9 @@ if (document.getElementById("root")) {
     ReactDOM.render(
         <I18nextProvider i18n={i18n}>
             <Provider store={store}>
-                <App />
+                <CookiesProvider>
+                    <App />
+                </CookiesProvider>
             </Provider>
         </I18nextProvider>,
         document.getElementById("root")
