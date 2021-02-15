@@ -17,10 +17,9 @@ import { API_BASE_URL } from "../config/config";
 const ShipmentForm = () => {
     const countrieOptions = Object.keys(countriesData);
     const { isLoggedIn, user } = useSelector(state => state.auth);
-    const [cookies, setCookie] = useCookies(["name"]);
     const userId = user !== null ? user.data.id : null;
-    console.log(user.token);
-    console.log("User ID: " + userId);
+    //console.log(user.token);
+    //console.log("User ID: " + userId);
     //console.log(user.data.id);
     const [formData, setFormData] = useState({
         countryFrom: "",
@@ -199,64 +198,68 @@ const ShipmentForm = () => {
         formdata.append("height", formData.height);
         formdata.append("user_id", hiddenInput.current.value);
         setLoading(true);
-        axios
-            .post(API_BASE_URL + "/publish", formdata, {
-                headers: {
-                    Authorization: `Bearer ${user.token ? user.token : null}`,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            })
-            .then(res => {
-                setFormData({
-                    countryFrom: "",
-                    cityFrom: "",
-                    checkFrom: "Residential",
-                    countryTo: "",
-                    cityTo: "",
-                    checkTo: "Residential",
-                    shippingDate: new Date(),
-                    parcel: 1,
-                    envelope: 0,
-                    pallet: 0,
-                    quantity: "1",
-                    weight: "",
-                    lenght: "",
-                    width: "",
-                    height: "",
-                    image: null
+        if (user !== null) {
+            axios
+                .post(API_BASE_URL + "/publish", formdata, {
+                    headers: {
+                        Authorization: `Bearer ${
+                            user.token ? user.token : null
+                        }`,
+                        Accept: "application/json",
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then(res => {
+                    setFormData({
+                        countryFrom: "",
+                        cityFrom: "",
+                        checkFrom: "Residential",
+                        countryTo: "",
+                        cityTo: "",
+                        checkTo: "Residential",
+                        shippingDate: new Date(),
+                        parcel: 1,
+                        envelope: 0,
+                        pallet: 0,
+                        quantity: "1",
+                        weight: "",
+                        lenght: "",
+                        width: "",
+                        height: "",
+                        image: null
+                    });
+                    setSuccess(true);
+                    setMessage(`${t("successfully_added_your_goods")}`);
+                    setLoading(false);
+                    setTimeout(() => {
+                        location.reload();
+                    }, 3000);
+                    console.log(res);
+                })
+                .catch(err => {
+                    setFormData({
+                        countryFrom: "",
+                        cityFrom: "",
+                        checkFrom: "Residential",
+                        countryTo: "",
+                        cityTo: "",
+                        checkTo: "Residential",
+                        shippingDate: new Date(),
+                        parcel: 1,
+                        envelope: 0,
+                        pallet: 0,
+                        quantity: "1",
+                        weight: "",
+                        lenght: "",
+                        width: "",
+                        height: "",
+                        image: null
+                    });
+                    setSuccess(false);
+                    setMessage(`${t("something_is_wrong")}`);
+                    setLoading(false);
                 });
-                setSuccess(true);
-                setMessage(`${t("successfully_added_your_goods")}`);
-                setLoading(false);
-                setTimeout(() => {
-                    location.reload();
-                }, 3000);
-                console.log(res);
-            })
-            .catch(err => {
-                setFormData({
-                    countryFrom: "",
-                    cityFrom: "",
-                    checkFrom: "Residential",
-                    countryTo: "",
-                    cityTo: "",
-                    checkTo: "Residential",
-                    shippingDate: new Date(),
-                    parcel: 1,
-                    envelope: 0,
-                    pallet: 0,
-                    quantity: "1",
-                    weight: "",
-                    lenght: "",
-                    width: "",
-                    height: "",
-                    image: null
-                });
-                setSuccess(false);
-                setMessage(`${t("something_is_wrong")}`);
-                setLoading(false);
-            });
+        }
     };
     const onImage = ev => {
         if (ev.target.files[0].size > 3145728) {
