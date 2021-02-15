@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import Post from "../posts/Post";
 import Storehouse_2 from "../../img/storehous_2.jpg";
 import Banner from "../header/Banner";
@@ -9,28 +10,36 @@ import "./Posts.css";
 
 const Posts = () => {
     const { t, i18n } = useTranslation();
+    const { user } = useSelector(state => state.auth);
     const [post, setPost] = useState(null);
-    const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(false);
     const [errMsg, setErrMsg] = useState(null);
     let [unmounted, setUnmounted] = useState(false);
     useEffect(() => {
         let source = axios.CancelToken.source();
         setLoading(true);
-
-        axios
-            .get("/api/parcelShow")
-            .then(res => res.data.data)
-            .then(data => {
-                setPost(data);
-                setLoading(false);
-                console.log(data);
-            })
-            .catch(err => {
-                setErrMsg(`${t("")}`);
-                console.log(err);
-                setLoading(false);
-            });
+        console.log(user.data.company_number);
+        if (user !== null && user.data.company_number) {
+            axios
+                .get("/api/parcelShow", {
+                    headers: {
+                        Authorization: `Bearer ${
+                            user.token ? user.token : null
+                        }`
+                    }
+                })
+                .then(res => res.data.data)
+                .then(data => {
+                    setPost(data);
+                    setLoading(false);
+                    console.log(data);
+                })
+                .catch(err => {
+                    setErrMsg(`${t("")}`);
+                    console.log(err);
+                    setLoading(false);
+                });
+        }
 
         return () => {
             setUnmounted(true);

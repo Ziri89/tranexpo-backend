@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink, Link, useHistory } from "react-router-dom";
 import LangBtn from "./LangBtn";
 import { useSelector, useDispatch } from "react-redux";
+
 import { useTranslation } from "react-i18next";
 import { logout } from "../actions/auth";
 import "./Navbar.css";
@@ -9,7 +10,7 @@ import Logo from "../../img/logo.svg";
 
 const Navbar = () => {
     const { t, i18n } = useTranslation();
-
+    const { user } = useSelector(state => state.auth);
     const linkGenerator = link => {
         // if the current language is the default language dont add the lang prefix
         const languageLocale =
@@ -24,7 +25,6 @@ const Navbar = () => {
     const logoutHandler = () => {
         dispatch(logout());
     };
-    console.log("Link Generator: " + linkGenerator("/"));
     return (
         <nav className="navbar navbar-expand-xl navbar-light bg-light fixed-top">
             <div className="container-fluid">
@@ -67,18 +67,22 @@ const Navbar = () => {
                         >
                             {t("transport_registration")}
                         </NavLink>
-                        <NavLink
-                            className="nav-link"
-                            to={linkGenerator("/posts")}
-                        >
-                            {t("posts_for_transport")}
-                        </NavLink>
-                        <NavLink
-                            className="nav-link"
-                            to={linkGenerator("/packages-plans")}
-                        >
-                            {t("package_plans")}
-                        </NavLink>
+                        {user !== null && user.data.company_number ? (
+                            <React.Fragment>
+                                <NavLink
+                                    className="nav-link"
+                                    to={linkGenerator("/posts")}
+                                >
+                                    {t("posts_for_transport")}
+                                </NavLink>
+                                <NavLink
+                                    className="nav-link"
+                                    to={linkGenerator("/packages-plans")}
+                                >
+                                    {t("package_plans")}
+                                </NavLink>
+                            </React.Fragment>
+                        ) : null}
                     </div>
                     <div className="login">
                         {!isLoggedIn ? (
