@@ -23,6 +23,7 @@ class ShipperController extends Controller
                 'company_number' =>        'required',  
                 'vehicle_number' =>        'required|numeric',
                 'city'           =>        'required',
+                'country'           =>     'required',
                 'zip_code'       =>        'required|numeric',
 
             ]

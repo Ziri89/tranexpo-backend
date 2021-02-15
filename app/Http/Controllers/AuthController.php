@@ -16,7 +16,8 @@ class AuthController extends Controller
             'password' => 'required|min:6',
             'company_name' => '',
             'zip_code' => 'required|numeric',
-            'city' => 'required'
+            'city' => 'required',
+            'country' => 'required'
         ]);
 
 
@@ -27,6 +28,7 @@ class AuthController extends Controller
             'company_name' => $request->company_name, 
             'zip_code' => $request->zip_code, 
             'city' => $request->city, 
+            'country' => $request->country, 
             'password' => bcrypt($request->password)
         ]);
 

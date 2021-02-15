@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
 class UserController extends Controller {
@@ -20,6 +21,7 @@ class UserController extends Controller {
                 'password'       =>        'required|alpha_num|min:5',
                 'company_name'   =>        '',
                 'city'           =>        'required',
+                'country'           =>     'required',
                 'zip_code'       =>        'required|numeric',
 
             ]
@@ -87,8 +89,8 @@ class UserController extends Controller {
 
 
     // User Detail
-   public function userDetail() {
-    $user = User::get();
+  /* public function userDetail($id) {
+    $user = User::find($id);
         if(!is_null($user)) {
             return response()->json(["status" => $this->sucess_status, "success" => true, "user" => $user]);
         }
@@ -96,10 +98,37 @@ class UserController extends Controller {
             return response()->json(["status" => "failed", "success" => false, "message" => "Whoops! no user found"]);
         }
     }
+    */
 
+    public function show($id){
+
+        $user = User::find($id);
+        if(!is_null($user)){
+            return response()->json([
+                "user" => $user,
+                "msg" => "Parcel ID"
+            ], 200);
+        }else{
+            return response()->json([
+                "user" => null,
+                "msg" => "Not found"
+            ], 404);
+        }
     
+    }
+    
+    public function logout(Request $request){
 
+    $accessToken = Auth::user()->token();
+        DB::table('oauth_refresh_tokens')
+            ->where('access_token_id', $accessToken->id)
+            ->update([
+                'revoked' => true
+            ]);
 
-
+        $accessToken->revoke();
+        return response()->json(null, 204);
+    }
+    
 
 }
