@@ -51,7 +51,7 @@ const Login = () => {
         });
         form.current.validateAll();
         if (checkBtn.current.context._errors.length === 0) {
-            dispatch(login(state.email, state.password, state.checked))
+            dispatch(login(state.email, state.password))
                 .then(() => {
                     //console.log(response.data);
                     window.location.reload();

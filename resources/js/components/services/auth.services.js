@@ -5,7 +5,7 @@ const login = (email, password) => {
     return axios
         .post(API_BASE_URL + "/login", { email, password })
         .then(response => {
-            console.log(response.data);
+            //console.log(response.data);
             if (response.data.login) {
                 localStorage.setItem("user", JSON.stringify(response.data));
             }
