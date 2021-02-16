@@ -57,7 +57,7 @@ class ParcelController extends Controller
         }
     }
    
-   /* public function show($id){
+    public function show($id){
 
         $data = Parcel::find($id);
         if($data->save()){
@@ -72,7 +72,7 @@ class ParcelController extends Controller
             ], 404);
         }
     }
-    */
+    
    /* public function showAll(Request $request){
 
        $parcel = Parcel::with('user')->get();

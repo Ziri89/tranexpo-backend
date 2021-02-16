@@ -45,9 +45,9 @@ $router->group(['middleware' => 'auth:api'], function () use ($router) {
     Route::get('logout', [UserController::class, 'logout']);
 });
 
-/* Route::get('/parcelShow/{parcelShow}', [ParcelController::class, "show"])->name('parcelShow');;
-by ID
-*/
+Route::get('parcelShowById/{id}', [ParcelController::class, "show"])->name('parcelShowById');;
+
+
 
 
 
