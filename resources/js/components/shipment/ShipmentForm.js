@@ -17,7 +17,7 @@ import { API_BASE_URL } from "../config/config";
 const ShipmentForm = () => {
     const countrieOptions = Object.keys(countriesData);
     const { isLoggedIn, user } = useSelector(state => state.auth);
-    const userId = user !== null ? user.data.id : null;
+    const userId = user !== null ? user.data.id : "";
     //console.log(user.token);
     //console.log("User ID: " + userId);
     //console.log(user.data.id);

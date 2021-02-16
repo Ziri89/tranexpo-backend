@@ -29,9 +29,9 @@ const Login = () => {
     const [state, setState] = useState({
         email: "",
         password: "",
+        checked: false,
         loading: false
     });
-    const [checked, setChecked] = useState(false);
     const handleInputsChange = event => {
         const { name, value } = event.target;
         setState({
@@ -51,7 +51,7 @@ const Login = () => {
         });
         form.current.validateAll();
         if (checkBtn.current.context._errors.length === 0) {
-            dispatch(login(state.email, state.password))
+            dispatch(login(state.email, state.password, state.checked))
                 .then(() => {
                     //console.log(response.data);
                     window.location.reload();
@@ -112,9 +112,6 @@ const Login = () => {
                                         name="email"
                                         id="email"
                                         className="form-control"
-                                        autoComplete={
-                                            checked === true ? "on" : "off"
-                                        }
                                         value={state.email}
                                         onChange={handleInputsChange}
                                         validations={[required]}
@@ -133,9 +130,6 @@ const Login = () => {
                                         name="password"
                                         id="password"
                                         className="form-control"
-                                        autoComplete={
-                                            checked === true ? "on" : "off"
-                                        }
                                         value={state.password}
                                         onChange={handleInputsChange}
                                         validations={[required]}
@@ -152,9 +146,9 @@ const Login = () => {
                                                 id="remember-me"
                                                 name="remember-me"
                                                 type="checkbox"
-                                                value={checked}
+                                                value={state.checked}
                                                 onChange={() =>
-                                                    setChecked(!checked)
+                                                    setState(!state.checked)
                                                 }
                                             />
                                         </span>
