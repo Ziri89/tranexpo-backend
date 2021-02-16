@@ -29,7 +29,6 @@ const store = createStore(allReducers, enhancer);
 
 const localesString = "/:locale(de|en|fr|it|ba)?";
 export const baseUrl = i18n.language === "/de" ? "" : "/" + i18n.language;
-console.log("Lang from App: " + baseUrl, localesString);
 function App() {
     return (
         <div className="App">

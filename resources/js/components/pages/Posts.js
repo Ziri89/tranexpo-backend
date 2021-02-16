@@ -18,7 +18,6 @@ const Posts = () => {
     useEffect(() => {
         let source = axios.CancelToken.source();
         setLoading(true);
-        console.log(user.data.company_number);
         if (user !== null && user.data.company_number) {
             axios
                 .get("/api/parcelShow", {
