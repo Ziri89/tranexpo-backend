@@ -29,7 +29,10 @@ const Register = () => {
         email_message: "",
         name_message: "",
         phone_message: "",
-        pass_message: ""
+        pass_message: "",
+        country_message: "",
+        city_message: "",
+        zip_code_message: ""
     });
     const history = useHistory();
     const onChangeHandler = ev => {
@@ -85,7 +88,7 @@ const Register = () => {
                     email: registrationData.email,
                     company_name: registrationData.company_name,
                     phone: registrationData.phone,
-                    country: setRegistrationData.country,
+                    country: registrationData.country,
                     city: registrationData.city,
                     zip_code: registrationData.zip_code,
                     password: registrationData.password
@@ -119,11 +122,15 @@ const Register = () => {
                             phone_message: res.data.validation_errors.phone
                                 ? res.data.validation_errors.phone[0]
                                 : "",
-                            phone_message: res.data.validation_errors.country
-                                ? res.data.validation_errors.phone[0]
+                            country_message: res.data.validation_errors.country
+                                ? res.data.validation_errors.country[0]
                                 : "",
-                            phone_message: res.data.validation_errors.city
-                                ? res.data.validation_errors.phone[0]
+                            city_message: res.data.validation_errors.city
+                                ? res.data.validation_errors.city[0]
+                                : "",
+                            zip_code_message: res.data.validation_errors
+                                .zip_code
+                                ? res.data.validation_errors.zip_code[0]
                                 : "",
                             pass_message: res.data.validation_errors.password
                                 ? res.data.validation_errors.password[0]
@@ -138,6 +145,7 @@ const Register = () => {
                         message: `${err.message}. ${t("try_latter")}`,
                         loading: false
                     });
+                    console.log(err);
                 });
         }
     };
@@ -276,6 +284,9 @@ const Register = () => {
                                     placeholder={t("your_country")}
                                     searchable
                                 />
+                                <p className="warning">
+                                    {registrationData.country_message}
+                                </p>
                             </div>
                             <div className="col-md-4">
                                 <div className="form-group">
@@ -295,6 +306,9 @@ const Register = () => {
                                             onChange={onChangeHandler}
                                             options={cities}
                                         />
+                                        <p className="warning">
+                                            {registrationData.city_message}
+                                        </p>
                                         {/* <input
                                             type="text"
                                             id="city"
@@ -324,6 +338,9 @@ const Register = () => {
                                             value={registrationData.zip_code}
                                             onChange={onChangeHandler}
                                         />
+                                        <p className="warning">
+                                            {registrationData.zip_cod_message}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
