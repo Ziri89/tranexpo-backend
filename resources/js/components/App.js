@@ -12,6 +12,7 @@ import Navbar from "./navbar/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import SinglePost from "./pages/SinglePost";
 import "./App.css";
 import TransportRegistration from "./pages/TransportRegistration";
 import About from "./pages/About";
@@ -55,6 +56,9 @@ function App() {
                     </Route>
                     <Route path={localesString + "/posts"}>
                         <Posts />
+                    </Route>
+                    <Route path={localesString + "/single-post/:id"}>
+                        <SinglePost />
                     </Route>
                 </Switch>
             </HashRouter>

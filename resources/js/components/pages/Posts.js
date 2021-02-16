@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import Post from "../posts/Post";
+import ReducedPost from "../posts/PostMultiple";
 import Storehouse_2 from "../../img/storehous_2.jpg";
 import Banner from "../header/Banner";
 import Loader from "../../img/img-loader.gif";
@@ -28,7 +28,10 @@ const Posts = () => {
                         }`
                     }
                 })
-                .then(res => res.data.data)
+                .then(res => {
+                    console.log(res.data.data);
+                    return res.data.data;
+                })
                 .then(data => {
                     setPost(data);
                     setLoading(false);
@@ -50,24 +53,14 @@ const Posts = () => {
         post !== null
             ? post.map(item => {
                   return (
-                      <Post
+                      <ReducedPost
                           key={item.id}
                           image={`images/${item.image}`}
                           altText="Post Image"
-                          person={item.userName}
-                          email={item.userEmail}
-                          phone={item.userPhone}
                           from={`${item.countryFrom}, ${item.cityFrom}`}
                           to={`${item.countryTo}, ${item.cityTo}`}
                           date={item.shippingDate}
-                          type={`${item.parcel === 1 ? "parcel" : ""} ${
-                              item.envelope === 1 ? "envelope" : ""
-                          } ${item.pallet === 1 ? "pallet" : ""}`}
-                          quantity={item.quantity}
-                          weight={item.weight}
-                          lenght={item.lenght}
-                          width={item.width}
-                          height={item.height}
+                          id={item.id}
                       />
                   );
               })
