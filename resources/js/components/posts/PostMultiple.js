@@ -32,7 +32,7 @@ const ReducedPost = props => {
                         </li>
                     </ul>
                     <Link
-                        to={linkGenerator(`single-post/${props.id}`)}
+                        to={linkGenerator(`/single-post/${props.id}`)}
                         className="btn btn-danger"
                     >
                         {t("see_more")}

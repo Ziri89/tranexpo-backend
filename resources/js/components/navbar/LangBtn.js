@@ -1,14 +1,22 @@
-import React from "react";
-import { useLocation, useHistory } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import "./LangBtn.css";
 
 const LangBtn = () => {
     const curLocation = useLocation();
-    const history = useHistory();
-    const pathnameWithoutLang = curLocation.pathname.split("/").splice(-1);
-    //console.log(pathnameWithoutLang[0]);
+    const pathnameWithoutLang =
+        curLocation.pathname.indexOf("single-post") !== -1
+            ? curLocation.pathname
+                  .split("/")
+                  .splice(-2)
+                  .join("/")
+            : curLocation.pathname.split("/").splice(-1);
+    useEffect(() => {
+        console.log(curLocation.pathname.indexOf("single-post"));
+    }, []);
+
     const { i18n } = useTranslation();
 
     const changeLang = ev => {
