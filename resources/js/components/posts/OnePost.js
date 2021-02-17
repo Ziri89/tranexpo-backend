@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 const Post = props => {
     const { t, i18n } = useTranslation();
     return (
-        <div className="post col-12 mb-4">
+        <div className="single-post col-12 mb-4">
             <div className="card">
                 <img
                     src={props.image}
