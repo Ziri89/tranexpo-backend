@@ -9,6 +9,7 @@ use App\Models\Parcel;
 use App\Models\User;
 use GuzzleHttp\Middleware;
 use Image;
+
 class ParcelController extends Controller
 {
     public function __construct()
@@ -16,8 +17,9 @@ class ParcelController extends Controller
         $this->middleware('auth:api');
     }
 
-    public function store(Request $request) {
-       
+    public function store(Request $request)
+    {
+
         $data = new Parcel;
         $data->countryFrom = $request->countryFrom;
         $data->cityFrom = $request->cityFrom;
@@ -35,73 +37,73 @@ class ParcelController extends Controller
         $data->height = $request->height;
         $data->shippingDate = $request->shippingDate;
         $data->user_id = Auth::user()->id;
-        if($request->hasFile("image")){
+        if ($request->hasFile("image")) {
             $img = $request->image;
             $img_name = $img->getClientOriginalName();
-            Image::make($img)->resize(500, 500)->save(public_path("/images/".$img_name));
+            Image::make($img)->resize(500, 500)->save(public_path("/images/" . $img_name));
             $data->image = $img_name;
-        //$data->user_id =  Auth::guard('web')->user()->id;
+            //$data->user_id =  Auth::guard('web')->user()->id;
         }
-        if($data->save()){
+        if ($data->save()) {
             //$data = Parcel::where('user_id')->orderBy('id','DESC')->paginate(10);
-           // dd($data);
+            // dd($data);
             return response()->json([
                 "data" => $data,
                 "msg"  => "Published Successfully"
             ], 201);
-        }else{
+        } else {
             return response()->json([
                 "data" => null,
                 "msg" => "Something went wrong!"
             ], 400);
         }
     }
-   
-    public function show($id){
+
+    public function show($id)
+    {
 
         $data = Parcel::find($id);
-        if($data->save()){
+        if ($data->save()) {
             return response()->json([
                 "data" => $data,
                 "msg" => "Parcel ID"
             ], 200);
-        }else{
+        } else {
             return response()->json([
                 "data" => null,
                 "msg" => "Not found"
             ], 404);
         }
     }
-    
-   /* public function showAll(Request $request){
+
+    /* public function showAll(Request $request){
 
        $parcel = Parcel::with('user')->get();
     return response($parcels, 200);
     }
 */
-    public function showAll(Request $request){
-       
-        $data = Parcel::query()->orderByDesc('id')->paginate(9);
+    public function showAll(Request $request)
+    {
+
+        $data = Parcel::query()->orderByDesc('id')->paginate(6);
         return response($data, 200);
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
 
         $data = Parcel::find($id);
-        if($data){
+        if ($data) {
             $data->delete();
             return response()->json([
                 "data" => null,
                 "msg" => "Deleted successfully"
             ], 204);
-        }else{
+        } else {
             return response()->json([
                 "data" => null,
                 "msg" => "Something went wrong"
             ], 400);
         }
     }
-
-  
 }
-

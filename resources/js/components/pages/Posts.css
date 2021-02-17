@@ -12,6 +12,19 @@
     font-size: 13px;
     font-weight: 600;
 }
+.page-pagination .page-link {
+    color: #fc823c;
+    border-color: #fc823c;
+    font-size: 15px;
+    padding: 8px;
+}
+.page-pagination .page-link.active {
+    color: #fff;
+    background: #fc823c;
+}
+.page-pagination .page-link:focus {
+    box-shadow: none;
+}
 @media screen and (max-width: 560px) {
     .posts .container {
         margin-top: 0;

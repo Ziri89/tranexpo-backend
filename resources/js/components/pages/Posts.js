@@ -12,9 +12,11 @@ const Posts = () => {
     const { t, i18n } = useTranslation();
     const { user } = useSelector(state => state.auth);
     const [post, setPost] = useState(null);
+    const [paginationLinks, setPpaginationLinks] = useState(null);
     const [loading, setLoading] = useState(false);
     const [errMsg, setErrMsg] = useState(null);
     let [unmounted, setUnmounted] = useState(false);
+
     useEffect(() => {
         let source = axios.CancelToken.source();
         setLoading(true);
@@ -28,17 +30,18 @@ const Posts = () => {
                     }
                 })
                 .then(res => {
-                    console.log(res.data.data);
-                    return res.data.data;
+                    console.log(res.data.links);
+                    return res.data;
                 })
                 .then(data => {
-                    setPost(data);
+                    setPost(data.data);
+                    setPpaginationLinks(data.links);
                     setLoading(false);
-                    console.log(data);
+                    console.log(data.links);
                 })
                 .catch(err => {
                     setErrMsg(`${t("")}`);
-                    console.log(err);
+
                     setLoading(false);
                 });
         }
@@ -64,7 +67,52 @@ const Posts = () => {
                   );
               })
             : null;
-
+    const pagination = paginationLinks
+        ? paginationLinks.map((item, key) => {
+              return (
+                  <li
+                      key={key}
+                      className={`page-item ${
+                          item.url === null ? "disabled" : ""
+                      }`}
+                  >
+                      <a
+                          className={`page-link ${
+                              item.active === true ? "active" : ""
+                          }`}
+                          href="#"
+                          onClick={ev => {
+                              ev.preventDefault();
+                              setLoading(true);
+                              axios
+                                  .get(item.url, {
+                                      headers: {
+                                          Authorization: `Bearer ${
+                                              user.token ? user.token : null
+                                          }`
+                                      }
+                                  })
+                                  .then(res => {
+                                      setPost(res.data.data);
+                                      setPpaginationLinks(res.data.links);
+                                      setLoading(false);
+                                  })
+                                  .catch(err => {
+                                      console.log(err);
+                                      setLoading(false);
+                                  });
+                          }}
+                      >
+                          {item.label === "&laquo; Previous"
+                              ? "<<"
+                              : item.label === "Next &raquo;"
+                              ? ">>"
+                              : item.label}
+                      </a>
+                  </li>
+              );
+          })
+        : null;
     return (
         <div className="posts">
             <Banner
@@ -87,6 +135,9 @@ const Posts = () => {
                     <p className="text-danger text-center">{errMsg}</p>
                 )}
             </div>
+            <nav className="page-pagination d-flex">
+                <ul className="pagination mx-auto">{pagination}</ul>
+            </nav>
         </div>
     );
 };
