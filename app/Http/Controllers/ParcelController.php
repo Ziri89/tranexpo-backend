@@ -81,7 +81,7 @@ class ParcelController extends Controller
 */
     public function showAll(Request $request){
        
-        $data = Parcel::query()->orderByDesc('id')->paginate(5);
+        $data = Parcel::query()->orderByDesc('id')->paginate(9);
         return response($data, 200);
     }
 
