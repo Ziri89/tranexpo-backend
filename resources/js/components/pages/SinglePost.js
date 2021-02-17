@@ -36,7 +36,27 @@ const Posts = () => {
                     return res.data.data;
                 })
                 .then(data => {
-                    setPost(data);
+                    setPost({
+                        ...post,
+                        user_id: data.user_id,
+                        countryFrom: data.countryFrom,
+                        cityFrom: data.cityFrom,
+                        checkFrom: data.checkFrom,
+                        countryTo: data.countryTo,
+                        cityTo: data.cityTo,
+                        checkTo: data.checkTo,
+                        shippingDate: data.shippingDate,
+                        parcel: data.parcel === 1 ? `${t("parcel")}, ` : "",
+                        envelope:
+                            data.envelope === 1 ? `${t("envelope")}, ` : "",
+                        pallet: data.pallet === 1 ? `${t("pallet")}` : "",
+                        quantity: data.quantity,
+                        weight: data.weight,
+                        lenght: data.lenght,
+                        width: data.width,
+                        height: data.height,
+                        image: data.image
+                    });
                     setLoading(false);
                     console.log(data);
                 })
