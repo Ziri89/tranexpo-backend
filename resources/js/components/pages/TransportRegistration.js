@@ -1,23 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import ReactFlagsSelect from "react-flags-select";
+import { countriesData } from "../countries/data-shortcode";
 import Loader from "../../img/loader.gif";
 import Banner from "../header/Banner";
 import Truck_6 from "../../img/truck_6.jpg";
+import Select from "../select/Select";
+import "./TransportRegistration.css";
+
+import { API_BASE_URL } from "../config/config";
 
 const TransportRegistration = () => {
+    const { t, i18n } = useTranslation();
+    const countrieOptions = Object.keys(countriesData);
     const [shipperReg, setShipperReg] = useState({
         name: "",
         email: "",
         company_name: "",
         company_number: "",
         phone: "",
+        country: "",
         city: "",
         zip_code: "",
         vehicle_number: 1,
         password: "",
         password_confirm: "",
         loading: false,
-        message: "All fields are required",
+        message: `${t("all_fields")}`,
         email_message: "",
         name_message: "",
         phone_message: "",
@@ -26,6 +36,9 @@ const TransportRegistration = () => {
         company_reg_num_message: "",
         vehicle_number_message: ""
     });
+    useEffect(() => {
+        console.log(shipperReg);
+    }, [shipperReg]);
     const history = useHistory();
     const onChangeHandler = ev => {
         const { name, value } = ev.target;
@@ -34,14 +47,37 @@ const TransportRegistration = () => {
             [name]: value
         });
     };
+    const setValueCity = ev => {
+        setShipperReg({
+            ...shipperReg,
+            city: ev.target.textContent
+        });
+        ev.target.parentElement.style.display = "none";
+    };
+    const cities = countrieOptions.includes(shipperReg.country)
+        ? countriesData[shipperReg.country]
+              .filter(item => {
+                  return (
+                      item.match(new RegExp(`${shipperReg.city}`, "i")) &&
+                      shipperReg.city !== ""
+                  );
+              })
+              .map((item, key) => (
+                  <li
+                      className="list-group-item list-group-item-action w-100"
+                      key={key}
+                      onClick={setValueCity}
+                  >
+                      {item}
+                  </li>
+              ))
+        : null;
     const onSubmitHandler = ev => {
         ev.preventDefault();
-        console.log("Yesss");
         if (shipperReg.password !== shipperReg.password_confirm) {
             setShipperReg({
                 ...shipperReg,
-                pass_message:
-                    "Password confirm doesn't match password. Pleas retape"
+                pass_message: `${t("password_confirm_match")}`
             });
         } else {
             setShipperReg({
@@ -49,13 +85,14 @@ const TransportRegistration = () => {
                 loading: true
             });
             axios
-                .post("/api/registerShipper", {
+                .post(API_BASE_URL + "/registerShipper", {
                     name: shipperReg.name,
                     email: shipperReg.email,
                     company_name: shipperReg.company_name,
-                    company_number: shipperReg.company_reg_num,
+                    company_number: shipperReg.company_number,
                     phone: shipperReg.phone,
                     vehicle_number: shipperReg.vehicle_number,
+                    country: shipperReg.country,
                     city: shipperReg.city,
                     zip_code: shipperReg.zip_code,
                     password: shipperReg.password
@@ -69,14 +106,15 @@ const TransportRegistration = () => {
                             company_name: "",
                             company_number: "",
                             phone: "",
+                            country: "",
                             city: "",
+                            country: "",
                             zip_code: "",
                             vehicle_number: 1,
                             password: "",
                             password_confirm: "",
                             loading: false,
-                            message:
-                                "You have successfully registered. Thank you"
+                            message: `${t("success_registration")}`
                         });
                         history.push("/login");
                     } else {
@@ -117,7 +155,7 @@ const TransportRegistration = () => {
                 .catch(err => {
                     setShipperReg({
                         ...shipperReg,
-                        message: err.message + "." + " Please try later.",
+                        message: `${err.message}. ${t("try_latter")}`,
                         loading: false
                     });
                 });
@@ -128,7 +166,7 @@ const TransportRegistration = () => {
             <Banner
                 image={Truck_6}
                 altText="STrucks"
-                title="Shipper Registration"
+                title={t("shipper_registration")}
             />
             <div className="container mb-5">
                 <div className="row justify-content-center align-items-center">
@@ -149,7 +187,7 @@ const TransportRegistration = () => {
                                         htmlFor="username"
                                         className="text-danger"
                                     >
-                                        Full Name*
+                                        {t("full_name")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -197,7 +235,7 @@ const TransportRegistration = () => {
                                         htmlFor="company"
                                         className="text-danger"
                                     >
-                                        Company Name*
+                                        {t("company_name")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -221,16 +259,16 @@ const TransportRegistration = () => {
                                         htmlFor="company_reg_num"
                                         className="text-danger"
                                     >
-                                        Company Registration Number*
+                                        {t("company_registration_number")}*
                                     </label>
                                     <div className="controls">
                                         <input
                                             type="text"
                                             id="company_reg_num"
-                                            name="company_reg_num"
+                                            name="company_number"
                                             placeholder=""
                                             className="form-control"
-                                            value={shipperReg.company_reg_num}
+                                            value={shipperReg.company_number}
                                             onChange={onChangeHandler}
                                         />
                                         <p className="warning">
@@ -245,7 +283,7 @@ const TransportRegistration = () => {
                                         htmlFor="phone"
                                         className="text-danger"
                                     >
-                                        Phone*
+                                        {t("phone")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -268,7 +306,7 @@ const TransportRegistration = () => {
                                         htmlFor="vehicle_number"
                                         className="text-danger"
                                     >
-                                        Amount Of Vehicle *
+                                        {t("amount_of_vehicle")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -286,33 +324,63 @@ const TransportRegistration = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-6">
+                            <div className="col-md-4">
+                                <label
+                                    htmlFor="country"
+                                    className="text-danger"
+                                >
+                                    {t("country")}*
+                                </label>
+                                <ReactFlagsSelect
+                                    countries={countrieOptions}
+                                    id="country"
+                                    selected={shipperReg.country}
+                                    onSelect={code =>
+                                        setShipperReg({
+                                            ...shipperReg,
+                                            country: code
+                                        })
+                                    }
+                                    placeholder={t("your_country")}
+                                    searchable
+                                />
+                            </div>
+                            <div className="col-md-4">
                                 <div className="form-group">
                                     <label
                                         htmlFor="city"
                                         className="text-danger"
                                     >
-                                        City*
+                                        {t("city")}*
                                     </label>
                                     <div className="controls">
-                                        <input
+                                        <Select
+                                            char="▼"
+                                            type="text"
+                                            placeholder={t("city")}
+                                            name="city"
+                                            value={shipperReg.city}
+                                            onChange={onChangeHandler}
+                                            options={cities}
+                                        />
+                                        {/* <input
                                             type="text"
                                             id="city"
                                             name="city"
                                             className="form-control"
                                             value={shipperReg.city}
                                             onChange={onChangeHandler}
-                                        />
+                                        />*/}
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-6">
+                            <div className="col-md-4">
                                 <div className="form-group">
                                     <label
                                         htmlFor="zipcode"
                                         className="text-danger"
                                     >
-                                        Zip Code*
+                                        {t("zip_code")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -334,7 +402,7 @@ const TransportRegistration = () => {
                                         htmlFor="password"
                                         className="text-danger"
                                     >
-                                        Password*
+                                        {t("password")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -358,7 +426,7 @@ const TransportRegistration = () => {
                                         htmlFor="password_confirm"
                                         className="text-danger"
                                     >
-                                        Password (Confirm)*
+                                        {t("password_confirm")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -378,7 +446,7 @@ const TransportRegistration = () => {
                         <div className="form-group">
                             <div className="controls">
                                 <button className="btn btn-danger btn-lg">
-                                    Register
+                                    {t("register")}
                                     {shipperReg.loading ? (
                                         <img
                                             src={Loader}

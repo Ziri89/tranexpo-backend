@@ -1,26 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import ReactFlagsSelect from "react-flags-select";
+import { countriesData } from "../countries/data-shortcode";
 import Loader from "../../img/loader.gif";
+import Select from "../select/Select";
 import Banner from "../header/Banner";
 import Storehouse_3 from "../../img/storehous_3.jpg";
 import "./Register.css";
 
+import { API_BASE_URL } from "../config/config";
+
 const Register = () => {
+    const { t, i18n } = useTranslation();
+    const countrieOptions = Object.keys(countriesData);
     const [registrationData, setRegistrationData] = useState({
         name: "",
         email: "",
         company_name: "",
         phone: "",
+        country: "",
         city: "",
         zip_code: "",
         password: "",
         password_confirm: "",
         loading: false,
-        message: "Fields with * are required",
+        message: `${t("field_with_stars")}`,
         email_message: "",
         name_message: "",
         phone_message: "",
-        pass_message: ""
+        pass_message: "",
+        country_message: "",
+        city_message: "",
+        zip_code_message: ""
     });
     const history = useHistory();
     const onChangeHandler = ev => {
@@ -30,13 +42,40 @@ const Register = () => {
             [name]: value
         });
     };
+    useEffect(() => {
+        console.log(registrationData);
+    }, [registrationData]);
+    const setValueCity = ev => {
+        setRegistrationData({
+            ...registrationData,
+            city: ev.target.textContent
+        });
+        ev.target.parentElement.style.display = "none";
+    };
+    const cities = countrieOptions.includes(registrationData.country)
+        ? countriesData[registrationData.country]
+              .filter(item => {
+                  return (
+                      item.match(new RegExp(`${registrationData.city}`, "i")) &&
+                      registrationData.city !== ""
+                  );
+              })
+              .map((item, key) => (
+                  <li
+                      className="list-group-item list-group-item-action w-100"
+                      key={key}
+                      onClick={setValueCity}
+                  >
+                      {item}
+                  </li>
+              ))
+        : null;
     const onSubmitHandler = ev => {
         ev.preventDefault();
         if (registrationData.password !== registrationData.password_confirm) {
             setRegistrationData({
                 ...registrationData,
-                pass_message:
-                    "Password confirm doesn't match password. Pleas retape"
+                pass_message: `${t("password_confirm_match")}`
             });
         } else {
             setRegistrationData({
@@ -44,11 +83,12 @@ const Register = () => {
                 loading: true
             });
             axios
-                .post("/api/register", {
+                .post(API_BASE_URL + "/register", {
                     name: registrationData.name,
                     email: registrationData.email,
                     company_name: registrationData.company_name,
                     phone: registrationData.phone,
+                    country: registrationData.country,
                     city: registrationData.city,
                     zip_code: registrationData.zip_code,
                     password: registrationData.password
@@ -61,13 +101,13 @@ const Register = () => {
                             email: "",
                             company_name: "",
                             phone: "",
+                            country: "",
                             city: "",
                             zip_code: "",
                             password: "",
                             password_confirm: "",
                             loading: false,
-                            message:
-                                "You have successfully registered. Thank you"
+                            message: `${t("success_registration")}`
                         });
                         history.push("/login");
                     } else {
@@ -82,6 +122,16 @@ const Register = () => {
                             phone_message: res.data.validation_errors.phone
                                 ? res.data.validation_errors.phone[0]
                                 : "",
+                            country_message: res.data.validation_errors.country
+                                ? res.data.validation_errors.country[0]
+                                : "",
+                            city_message: res.data.validation_errors.city
+                                ? res.data.validation_errors.city[0]
+                                : "",
+                            zip_code_message: res.data.validation_errors
+                                .zip_code
+                                ? res.data.validation_errors.zip_code[0]
+                                : "",
                             pass_message: res.data.validation_errors.password
                                 ? res.data.validation_errors.password[0]
                                 : "",
@@ -92,9 +142,10 @@ const Register = () => {
                 .catch(err => {
                     setRegistrationData({
                         ...registrationData,
-                        message: err.message + "." + " Please try later.",
+                        message: `${err.message}. ${t("try_latter")}`,
                         loading: false
                     });
+                    console.log(err);
                 });
         }
     };
@@ -103,7 +154,7 @@ const Register = () => {
             <Banner
                 image={Storehouse_3}
                 altText="Storehouse"
-                title="Registration"
+                title={t("registration")}
             />
             <div className="container mb-5">
                 <div className="row justify-content-center align-items-center">
@@ -124,7 +175,7 @@ const Register = () => {
                                         htmlFor="username"
                                         className="text-danger"
                                     >
-                                        Full Name*
+                                        {t("full_name")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -172,7 +223,7 @@ const Register = () => {
                                         htmlFor="company"
                                         className="text-danger"
                                     >
-                                        Company Name
+                                        {t("company_name")}
                                     </label>
                                     <div className="controls">
                                         <input
@@ -195,7 +246,7 @@ const Register = () => {
                                         htmlFor="phone"
                                         className="text-danger"
                                     >
-                                        Phone*
+                                        {t("phone")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -213,34 +264,69 @@ const Register = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-6">
+                            <div className="col-md-4">
+                                <label
+                                    htmlFor="country"
+                                    className="text-danger"
+                                >
+                                    {t("country")}*
+                                </label>
+                                <ReactFlagsSelect
+                                    countries={countrieOptions}
+                                    id="country"
+                                    selected={registrationData.country}
+                                    onSelect={code =>
+                                        setRegistrationData({
+                                            ...registrationData,
+                                            country: code
+                                        })
+                                    }
+                                    placeholder={t("your_country")}
+                                    searchable
+                                />
+                                <p className="warning">
+                                    {registrationData.country_message}
+                                </p>
+                            </div>
+                            <div className="col-md-4">
                                 <div className="form-group">
                                     <label
                                         htmlFor="city"
                                         className="text-danger"
                                     >
-                                        City*
+                                        {t("city")}*
                                     </label>
                                     <div className="controls">
-                                        <input
+                                        <Select
+                                            char="▼"
+                                            type="text"
+                                            placeholder={t("city")}
+                                            name="city"
+                                            value={registrationData.city}
+                                            onChange={onChangeHandler}
+                                            options={cities}
+                                        />
+                                        <p className="warning">
+                                            {registrationData.city_message}
+                                        </p>
+                                        {/* <input
                                             type="text"
                                             id="city"
                                             name="city"
-                                            placeholder=""
                                             className="form-control"
-                                            value={registrationData.city}
+                                            value={shipperReg.city}
                                             onChange={onChangeHandler}
-                                        />
+                                        />*/}
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-6">
+                            <div className="col-md-4">
                                 <div className="form-group">
                                     <label
                                         htmlFor="zipcode"
                                         className="text-danger"
                                     >
-                                        Zip Code*
+                                        {t("zip_code")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -252,6 +338,9 @@ const Register = () => {
                                             value={registrationData.zip_code}
                                             onChange={onChangeHandler}
                                         />
+                                        <p className="warning">
+                                            {registrationData.zip_cod_message}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -262,7 +351,7 @@ const Register = () => {
                                         htmlFor="password"
                                         className="text-danger"
                                     >
-                                        Password*
+                                        {t("password")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -286,7 +375,7 @@ const Register = () => {
                                         htmlFor="password_confirm"
                                         className="text-danger"
                                     >
-                                        Password (Confirm)*
+                                        {t("password_confirm")}*
                                     </label>
                                     <div className="controls">
                                         <input
@@ -308,7 +397,7 @@ const Register = () => {
                         <div className="form-group">
                             <div className="controls">
                                 <button className="btn btn-danger btn-lg">
-                                    Register
+                                    {t("register")}
                                     {registrationData.loading ? (
                                         <img
                                             src={Loader}

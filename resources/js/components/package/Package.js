@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Package = props => {
+    const { t, i18n } = useTranslation();
     return (
         <div className="col-lg-4 mb-4">
             <div className="card">
@@ -10,12 +11,13 @@ const Package = props => {
                         {props.plan} / {props.title}
                     </h3>
                     <p>
-                        This package allows you to use our web application for{" "}
-                        {props.number} months
+                        {t("use_application")} {props.number} {props.time}
                     </p>
                 </div>
                 <div className="card-body">
-                    <h5 className="card-title">Price: {props.price}€</h5>
+                    <h5 className="card-title">
+                        {t("price")}: {props.price}€
+                    </h5>
                     <p className="card-text">
                         With supporting text below as a natural lead-in to
                         additional content.
@@ -27,7 +29,7 @@ const Package = props => {
                         data-target={props.target}
                         onClick={props.click}
                     >
-                        Bay Now
+                        {t("bay_now")}
                     </button>
                 </div>
             </div>

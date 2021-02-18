@@ -1,16 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { countriesData } from "../countries/data";
-import Select from "./Select";
+import Select from "../select/Select";
+import FlashMessage from "react-flash-message";
+import { useCookies } from "react-cookie";
 import Loader from "../../img/loader.gif";
-import ImgLoader from "../../img/img-loader.gif";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import * as moment from "moment";
+import axios from "axios";
+import { useTranslation } from "react-i18next";
 import "./ShipmentForm.css";
-import InputFile from "./InputFile";
 
-const ShipmentForm = props => {
+import { API_BASE_URL } from "../config/config";
+
+const ShipmentForm = () => {
     const countrieOptions = Object.keys(countriesData);
+    const { isLoggedIn, user } = useSelector(state => state.auth);
+    const userId = user !== null ? user.data.id : "";
+    //console.log(user.token);
+    //console.log("User ID: " + userId);
+    //console.log(user.data.id);
     const [formData, setFormData] = useState({
         countryFrom: "",
         cityFrom: "",
@@ -27,19 +37,27 @@ const ShipmentForm = props => {
         lenght: "",
         width: "",
         height: "",
-        cargoImg: ""
+        image: null
     });
-    useEffect(() => {
-        console.log(formData);
-    }, [formData]);
+    const [isUserShiper, setIsUserShiper] = useState(false);
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [success, setSuccess] = useState(false);
-    const [progress, setProgress] = useState("getUpload");
-    const [imgUpladErrMsg, setImgUpladErrMsg] = useState("");
-    const [image, setImage] = useState(null);
-    const { isLoggedIn } = useSelector(state => state.auth);
-    console.log(isLoggedIn);
+    const { t } = useTranslation();
+    useEffect(() => {
+        if (user !== null) {
+            if (Object.keys(user.data).includes("vehicle_number")) {
+                setIsUserShiper(true);
+            } else {
+                setIsUserShiper(false);
+            }
+        }
+    }, [isLoggedIn]);
+    useEffect(() => {
+        //console.log(formData.shippingDate);
+    }, [formData]);
+    const fileInput = useRef();
+    const hiddenInput = useRef();
     const formChangeHandler = ev => {
         const target = ev.target;
         const value =
@@ -158,173 +176,132 @@ const ShipmentForm = props => {
     const onSubmitHandler = ev => {
         ev.preventDefault();
 
-        const config = {
-            headers: { "content-type": "multipart/form-data" }
-        };
-        if (
-            formData.countryFrom === "" &&
-            formData.cityFrom === "" &&
-            formData.countryTo === "" &&
-            formData.cityTo === "" &&
-            formData.weight === "" &&
-            formData.lenght === "" &&
-            formData.width === "" &&
-            formData.height === "" &&
-            formData.cargoImg === ""
-        ) {
-            setMessage("All fields are required");
-            setSuccess(false);
-        } else {
-            setLoading(true);
+        let formdata = new FormData();
+        formdata.append("image", formData.image, formData.image.name);
+        formdata.append("countryFrom", formData.countryFrom);
+        formdata.append("cityFrom", formData.cityFrom);
+        formdata.append("checkFrom", formData.checkFrom);
+        formdata.append("countryTo", formData.countryTo);
+        formdata.append("cityTo", formData.cityTo);
+        formdata.append("checkTo", formData.checkTo);
+        formdata.append(
+            "shippingDate",
+            moment(formData.shippingDate).format("YYYY.MM.DD")
+        );
+        formdata.append("parcel", formData.parcel === true ? 1 : 0);
+        formdata.append("envelope", formData.envelope === true ? 1 : 0);
+        formdata.append("pallet", formData.pallet === true ? 1 : 0);
+        formdata.append("quantity", formData.quantity);
+        formdata.append("weight", formData.weight);
+        formdata.append("lenght", formData.lenght);
+        formdata.append("width", formData.width);
+        formdata.append("height", formData.height);
+        formdata.append("user_id", hiddenInput.current.value);
+        setLoading(true);
+        if (user !== null) {
             axios
-                .post(
-                    "/api/publish",
-                    {
-                        countryFrom: formData.countryFrom,
-                        cityFrom: formData.cityFrom,
-                        checkFrom: formData.checkFrom,
-                        countryTo: formData.countryTo,
-                        cityTo: formData.cityTo,
-                        checkTo: formData.checkTo,
-                        shippingDate: formData.shippingDate,
-                        parcel: formData.parcel,
-                        envelope: formData.envelope,
-                        pallet: formData.pallet,
-                        quantity: formData.quantity,
-                        weight: formData.weight,
-                        lenght: formData.lenght,
-                        width: formData.width,
-                        height: formData.height,
-                        cargoImg: formData.cargoImg
-                    },
-                    config
-                )
-                .then(res => {
-                    // console.log(res.status);
-                    if (res.status === 200) {
-                        setFormData({
-                            ...formData,
-                            countryFrom: "",
-                            cityFrom: "",
-                            checkFrom: "Residential",
-                            countryTo: "",
-                            cityTo: "",
-                            checkTo: "Residential",
-                            shippingDate: new Date(),
-                            parcel: true,
-                            envelope: false,
-                            pallet: false,
-                            quantity: "1",
-                            weight: "",
-                            lenght: "",
-                            width: "",
-                            height: "",
-                            cargoImg: ""
-                        });
-                        setLoading(false);
-                        setSuccess(true);
-                        setMessage(
-                            "You have successfully scheduled the shipment"
-                        );
-                        //history.push("/login");
-                    } else {
-                        setMessage("Something went wrong. Please try later");
-                        setLoading(false);
-                        setSuccess(false);
+                .post(API_BASE_URL + "/publish", formdata, {
+                    headers: {
+                        Authorization: `Bearer ${
+                            user.token ? user.token : null
+                        }`,
+                        Accept: "application/json",
+                        "Content-Type": "application/json"
                     }
                 })
-                .catch(err => {
-                    setMessage(err.message + "." + " Please try later.");
+                .then(res => {
+                    setFormData({
+                        countryFrom: "",
+                        cityFrom: "",
+                        checkFrom: "Residential",
+                        countryTo: "",
+                        cityTo: "",
+                        checkTo: "Residential",
+                        shippingDate: new Date(),
+                        parcel: 1,
+                        envelope: 0,
+                        pallet: 0,
+                        quantity: "1",
+                        weight: "",
+                        lenght: "",
+                        width: "",
+                        height: "",
+                        image: null
+                    });
+                    setSuccess(true);
+                    setMessage(`${t("successfully_added_your_goods")}`);
                     setLoading(false);
+                    setTimeout(() => {
+                        location.reload();
+                    }, 3000);
+                    console.log(res);
+                })
+                .catch(err => {
+                    setFormData({
+                        countryFrom: "",
+                        cityFrom: "",
+                        checkFrom: "Residential",
+                        countryTo: "",
+                        cityTo: "",
+                        checkTo: "Residential",
+                        shippingDate: new Date(),
+                        parcel: 1,
+                        envelope: 0,
+                        pallet: 0,
+                        quantity: "1",
+                        weight: "",
+                        lenght: "",
+                        width: "",
+                        height: "",
+                        image: null
+                    });
                     setSuccess(false);
+                    setMessage(`${t("something_is_wrong")}`);
+                    setLoading(false);
                 });
+        }
+    };
+    const onImage = ev => {
+        if (ev.target.files[0].size > 3145728) {
+            setMessage(`${t("image_file_is_bigger")}`);
+        } else {
+            setFormData({
+                ...formData,
+                image: fileInput.current.files[0]
+            });
         }
     };
 
-    const onImage = (failedImages, successImages) => {
-        const imageData = successImages[0];
-        const parts = imageData.split(";");
-        const mime = parts[0].split(":")[1];
-        const name = parts[1].split("=")[1];
-        const data = parts[2];
-        const myHeaders = new Headers();
-        console.log(myHeaders);
-        setProgress("uploading");
-        let formdata = new FormData();
-        formdata.append("image", imageData);
-        let requestOptions = {
-            method: "POST",
-            headers: myHeaders,
-            body: formdata,
-            redirect: "follow"
-        };
-        axios("/api/upload", requestOptions)
-            .then(res => {
-                console.log("Response: " + res);
-                setImage(imageData);
-                setProgress("uploaded");
-                setFormData({
-                    ...formData,
-                    cargoImg: name
-                });
-            })
-            .catch(err => {
-                console.log("Error: " + err);
-                setImgUpladErrMsg(error.message);
-                setProgress("uploadError");
-            });
-    };
-    const imgUploadContent = () => {
-        switch (progress) {
-            case "getUpload":
-                return (
-                    <InputFile
-                        labelText="Upload image of cargo"
-                        onImage={onImage}
-                        image={image}
-                    />
-                );
-            case "uploading":
-                return <img src={ImgLoader} alt="Image Loader" />;
-            case "uploaded":
-                return <img src={image} alt="Uploaded Image" width="250" />;
-            case "uploadError":
-                return (
-                    <h2>
-                        <InputFile
-                            labelText="Upload image of cargo"
-                            onImage={onImage}
-                            image={image}
-                        />
-                        <div className="text-muted h6 text-center">
-                            Error message: {imgUpladErrMsg}
-                        </div>
-                    </h2>
-                );
-        }
-    };
     return (
         <div id="shipment" className="container pb-5">
-            {!isLoggedIn ? (
+            {(isLoggedIn === false && isUserShiper === false) ||
+            (isLoggedIn === true && isUserShiper === true) ||
+            (isLoggedIn === false && isUserShiper === true) ? (
                 <h2 className="text-danger text-center mt-5">
-                    You must be logged in to be able to fill out the form
+                    {t("you_must_be_logged")}
                 </h2>
             ) : null}
 
-            <form onSubmit={onSubmitHandler}>
-                <fieldset disabled={isLoggedIn ? false : true}>
+            <form onSubmit={onSubmitHandler} encType="multipart/form-data">
+                <fieldset
+                    disabled={
+                        isLoggedIn === true && isUserShiper === false
+                            ? false
+                            : true
+                    }
+                >
                     <div className="row mt-5">
                         <div className="col-lg-6 border-right border-danger">
                             <h2 className="text-danger mb-3">
-                                Your destination
+                                {t("your_destination")}
                             </h2>
                             <div className="row align-items-center">
                                 <div className="col-lg-5">
-                                    <h3 className="h5">Ship From</h3>
+                                    <h3 className="h5">{t("ship_from")}</h3>
                                     <Select
                                         char="▼"
                                         type="text"
-                                        placeholder="Country"
+                                        placeholder={t("country")}
                                         name="countryFrom"
                                         value={formData.countryFrom}
                                         onChange={formChangeHandler}
@@ -349,7 +326,7 @@ const ShipmentForm = props => {
                                             className="custom-control-label"
                                             htmlFor="from-res"
                                         >
-                                            Residential
+                                            {t("residential")}
                                         </label>
                                     </div>
                                     <div className="custom-control custom-radio custom-control-inline mr-0 ml-2">
@@ -369,13 +346,13 @@ const ShipmentForm = props => {
                                             className="custom-control-label"
                                             htmlFor="from-bus"
                                         >
-                                            Business
+                                            {t("business")}
                                         </label>
                                     </div>
                                     <Select
                                         char="▼"
                                         type="text"
-                                        placeholder="City"
+                                        placeholder={t("city")}
                                         name="cityFrom"
                                         value={formData.cityFrom}
                                         onChange={formChangeHandler}
@@ -385,11 +362,11 @@ const ShipmentForm = props => {
                             </div>
                             <div className="row align-items-center">
                                 <div className="col-lg-5">
-                                    <h3 className="h5">Ship To</h3>
+                                    <h3 className="h5">{t("ship_to")}</h3>
                                     <Select
                                         char="▼"
                                         type="text"
-                                        placeholder="Country"
+                                        placeholder={t("country")}
                                         name="countryTo"
                                         value={formData.countryTo}
                                         onChange={formChangeHandler}
@@ -414,7 +391,7 @@ const ShipmentForm = props => {
                                             className="custom-control-label"
                                             htmlFor="to-res"
                                         >
-                                            Residential
+                                            {t("residential")}
                                         </label>
                                     </div>
                                     <div className="custom-control custom-radio custom-control-inline mr-0 ml-2">
@@ -433,13 +410,13 @@ const ShipmentForm = props => {
                                             className="custom-control-label"
                                             htmlFor="to-bus"
                                         >
-                                            Business
+                                            {t("business")}
                                         </label>
                                     </div>
                                     <Select
                                         char="▼"
                                         type="text"
-                                        placeholder="City"
+                                        placeholder={t("city")}
                                         name="cityTo"
                                         value={formData.cityTo}
                                         onChange={formChangeHandler}
@@ -451,7 +428,7 @@ const ShipmentForm = props => {
                                 <div className="col-lg-7">
                                     <div className="form-group">
                                         <label className="h6 w-100">
-                                            Shipping date
+                                            {t("shipping_date")}
                                         </label>
                                         <DatePicker
                                             selected={formData.shippingDate}
@@ -471,7 +448,9 @@ const ShipmentForm = props => {
                             </p>
                         </div>
                         <div className="col-lg-6">
-                            <h2 className="text-danger mb-3">Your shipment</h2>
+                            <h2 className="text-danger mb-3">
+                                {t("your_shipment")}
+                            </h2>
                             <div className="row">
                                 <div className="col-12">
                                     <div className="custom-control custom-checkbox custom-control-inline">
@@ -487,7 +466,7 @@ const ShipmentForm = props => {
                                             className="custom-control-label"
                                             htmlFor="parcel"
                                         >
-                                            Parcel
+                                            {t("parcel")}
                                         </label>
                                     </div>
                                     <div className="custom-control custom-checkbox custom-control-inline">
@@ -503,7 +482,7 @@ const ShipmentForm = props => {
                                             className="custom-control-label"
                                             htmlFor="envelope"
                                         >
-                                            Envelope
+                                            {t("envelope")}
                                         </label>
                                     </div>
                                     <div className="custom-control custom-checkbox custom-control-inline">
@@ -519,12 +498,14 @@ const ShipmentForm = props => {
                                             className="custom-control-label"
                                             htmlFor="pallet"
                                         >
-                                            Pallet
+                                            {t("pallet")}
                                         </label>
                                     </div>
                                     <div className="form-row align-items-end">
                                         <div className="form-group col-md-2">
-                                            <label htmlFor="qty">Qty</label>
+                                            <label htmlFor="qty">
+                                                {t("quantity")}
+                                            </label>
                                             <input
                                                 type="number"
                                                 className="form-control"
@@ -538,26 +519,28 @@ const ShipmentForm = props => {
                                         </div>
                                         <div className="form-group col-md-2">
                                             <label htmlFor="weight">
-                                                Weight (kg)
+                                                {t("weight")} (kg)
                                             </label>
                                             <input
                                                 type="number"
                                                 className="form-control"
                                                 id="weight"
                                                 name="weight"
-                                                placeholder="/unit"
+                                                placeholder={t("unit")}
                                                 value={formData.weight}
                                                 onChange={formChangeHandler}
                                             />
                                         </div>
                                         <div className="form-group col-md-3">
-                                            <label>Dimensions (cm)</label>
+                                            <label>
+                                                {t("dimensions")} (cm)
+                                            </label>
                                             <input
                                                 type="number"
                                                 className="form-control"
                                                 id="inputAddress"
                                                 name="lenght"
-                                                placeholder="Lenght"
+                                                placeholder={t("lenght")}
                                                 value={formData.lenght}
                                                 onChange={formChangeHandler}
                                             />
@@ -567,7 +550,7 @@ const ShipmentForm = props => {
                                                 type="number"
                                                 className="form-control"
                                                 name="width"
-                                                placeholder="Width"
+                                                placeholder={t("width")}
                                                 value={formData.width}
                                                 onChange={formChangeHandler}
                                             />
@@ -578,7 +561,7 @@ const ShipmentForm = props => {
                                                 className="form-control"
                                                 id="inputCity"
                                                 name="height"
-                                                placeholder="Height"
+                                                placeholder={t("height")}
                                                 value={formData.height}
                                                 onChange={formChangeHandler}
                                             />
@@ -586,17 +569,35 @@ const ShipmentForm = props => {
                                     </div>
                                     <div className="row">
                                         <div className="form-group col-12">
-                                            {imgUploadContent()}
+                                            <label htmlFor="image">
+                                                {t("upload_image")}
+                                            </label>
+                                            <input
+                                                type="file"
+                                                name="image"
+                                                id="image"
+                                                accept="image/*"
+                                                ref={fileInput}
+                                                onChange={onImage}
+                                            />
                                         </div>
                                     </div>
                                 </div>
+                                <input
+                                    className="custom-control-input"
+                                    type="hidden"
+                                    name="user_id"
+                                    id="user_id"
+                                    ref={hiddenInput}
+                                    value={userId}
+                                />
                             </div>
                             <button
                                 type="submit"
                                 name="submit"
                                 className="btn btn-danger btn-block shipment-btn mt-4"
                             >
-                                Send my parcel{" "}
+                                {t("send_my_parcel")}{" "}
                                 {loading ? (
                                     <img
                                         src={Loader}

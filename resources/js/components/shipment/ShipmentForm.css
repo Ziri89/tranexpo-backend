@@ -77,7 +77,6 @@ input::-webkit-inner-spin-button {
     outline: none;
     color: #fff;
     white-space: nowrap;
-    -webkit-user-select: none;
     cursor: pointer;
     font-weight: 700;
     font-size: 14px;
@@ -105,6 +104,14 @@ input::-webkit-inner-spin-button {
 }
 #shipment .error {
     color: red;
+}
+#shipment input[type="file"] {
+    background: #fc823c;
+    color: #fff;
+    max-width: 100%;
+}
+#shipment label {
+    font-size: 14px;
 }
 @media screen and (max-width: 768px) {
     .border-right.border-danger {

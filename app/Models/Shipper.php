@@ -18,6 +18,7 @@ class Shipper extends Authenticatable
         'email',
         'phone',
         'city',
+        'country',
         'company_name',
         'company_number',
         'vehicle_number',

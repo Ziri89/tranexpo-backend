@@ -4,31 +4,34 @@ import { useSelector, useDispatch } from "react-redux";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
+import { useTranslation } from "react-i18next";
 import { login } from "../actions/auth";
 import Loader from "../../img/loader.gif";
 import "./Login.css";
 import Banner from "../header/Banner";
 import Storehouse_1 from "../../img/storehous_1.jpg";
 import "./Login.css";
-const required = value => {
-    if (!value) {
-        return (
-            <div className="alert alert-danger" role="alert">
-                This field is required!
-            </div>
-        );
-    }
-};
+
 const Login = () => {
     const form = useRef();
+    const { t, i18n } = useTranslation();
 
+    const required = value => {
+        if (!value) {
+            return (
+                <div className="alert alert-danger" role="alert">
+                    {t("field_required")}
+                </div>
+            );
+        }
+    };
     const checkBtn = useRef();
     const [state, setState] = useState({
         email: "",
         password: "",
+        checked: false,
         loading: false
     });
-    const [checked, setChecked] = useState(false);
     const handleInputsChange = event => {
         const { name, value } = event.target;
         setState({
@@ -36,7 +39,7 @@ const Login = () => {
             [name]: value
         });
     };
-    const { isLoggedIn } = useSelector(state => state.auth);
+    const { isLoggedIn, user } = useSelector(state => state.auth);
     const { message } = useSelector(state => state.message);
     const dispatch = useDispatch();
     const history = useHistory();
@@ -71,12 +74,18 @@ const Login = () => {
         }
     };
 
-    if (isLoggedIn) {
+    if (isLoggedIn && !user.data.vehicle_number) {
         history.push("/");
+    } else if (isLoggedIn && user.data.vehicle_number) {
+        history.push("/posts");
     }
     return (
         <div className="login-form mb-5">
-            <Banner image={Storehouse_1} altText="Storehouse" title="Login" />
+            <Banner
+                image={Storehouse_1}
+                altText="Storehouse"
+                title={t("login")}
+            />
             <div className="container">
                 <div
                     id="login-row"
@@ -113,7 +122,7 @@ const Login = () => {
                                         htmlFor="password"
                                         className="text-danger"
                                     >
-                                        Password:
+                                        {t("password")}:
                                     </label>
                                     <br />
                                     <Input
@@ -131,15 +140,15 @@ const Login = () => {
                                         htmlFor="remember-me"
                                         className="text-danger"
                                     >
-                                        <span>Remember me</span> 
+                                        <span>{t("remember_me")}</span> 
                                         <span>
                                             <input
                                                 id="remember-me"
                                                 name="remember-me"
                                                 type="checkbox"
-                                                value={checked}
+                                                value={state.checked}
                                                 onChange={() =>
-                                                    setChecked(!checked)
+                                                    setState(!state.checked)
                                                 }
                                             />
                                         </span>
@@ -149,7 +158,7 @@ const Login = () => {
                                         type="submit"
                                         className="btn btn-danger btn-lg"
                                     >
-                                        submit
+                                        {t("submit")}
                                         {state.loading ? (
                                             <img
                                                 src={Loader}
@@ -165,7 +174,7 @@ const Login = () => {
                                         to="/create-account"
                                         className="text-danger"
                                     >
-                                        Register here
+                                        {t("register_here")}
                                     </Link>
                                 </div>
                                 {message && (

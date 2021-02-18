@@ -21,6 +21,7 @@ class CreateShipperTable extends Migration
             $table->string('password');
             $table->string('phone');
             $table->string('city');
+            $table->string('country');
             $table->string('company_name');
             $table->string('company_number');
             $table->integer('vehicle_number');

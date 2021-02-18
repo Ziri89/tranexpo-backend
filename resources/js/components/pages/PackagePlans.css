@@ -19,3 +19,8 @@
     background: #fff;
     border-radius: 20px;
 }
+@media screen and (max-width: 560px) {
+    .packages {
+        margin-top: 0;
+    }
+}

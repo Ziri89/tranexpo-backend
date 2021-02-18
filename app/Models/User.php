@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'phone',
         'city',
+        'country',
         'company_name',
         'zip_code',
         'password',
@@ -45,9 +46,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function parcels() 
+    {
+         return $this->hasMany(Parcel::class, 'user_id');
+    }
 
-    public function post()
+   /* public function post()
     {
          return $this->hasMany('App\Models\Post');
     }
+    */
 }

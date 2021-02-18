@@ -2,9 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ParcelController;
-use App\Http\Controllers\FileController;
 use App\Http\Controllers\ShipperController;
 /*
 |--------------------------------------------------------------------------
@@ -25,20 +25,24 @@ Route::post('register', [UserController::class, "registerUser"]);
 Route::post('login', [UserController::class, "loginUser"]);
 
 Route::post('registerShipper', [ShipperController::class, "registerShipper"]);
-
+/*
 Route::middleware('auth:api')->group(function() {
-Route::get("shipper", [UserController::class, "shipperDetail"]);
+Route::get("shipper", [ShipperController::class, "shipperDetail"]);
 });
-
 
 Route::middleware('auth:api')->group(function() {
 Route::get("user", [UserController::class, "userDetail"]);
 });
+*/
+Route::get('parcelShow', [ParcelController::class, "showAll"]);
+
+Route::get('user/{id}', [UserController::class, "show"])->name('user');
 
 Route::post('publish', [ParcelController::class, "store"]);
 
-Route::middleware('auth:api')->group(function() {
-Route::get("parcel", [ParcelController::class, "view"]);
-    });
+//Route::post('logout', [UserController::class, "logout"]);
+$router->group(['middleware' => 'auth:api'], function () use ($router) {
+    Route::get('logout', [UserController::class, 'logout']);
+});
 
-Route::post('upload', [FileController::class, 'upload'])->name('upload');
+Route::get('parcelShowById/{id}', [ParcelController::class, "show"])->name('parcelShowById');

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,8 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/{path?}', 'app');
-Route::resource('parcel', ParcelController::class);
 
-Route::get('/', [FileController::class, 'index']);
+Route::resource('publish', ParcelController::class);
 
-Route::post('/upload', [FileController::class, 'upload'])->name('upload');
+Route::get('/', function () {
+    return redirect('index');
+});
+Auth::routes();
+
+Route::get('parcel', function(){ return App\Models\Parcel::with('user')->get(); });

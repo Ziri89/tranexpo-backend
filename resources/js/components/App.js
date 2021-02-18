@@ -1,14 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
+import { CookiesProvider } from "react-cookie";
 import { createStore, applyMiddleware, compose } from "redux";
 import allReducers from "./reducers";
 import thunk from "redux-thunk";
+import i18n from "./i18n";
+import { I18nextProvider, withTranslation } from "react-i18next";
 import Navbar from "./navbar/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import SinglePost from "./pages/SinglePost";
 import "./App.css";
 import TransportRegistration from "./pages/TransportRegistration";
 import About from "./pages/About";
@@ -23,47 +27,56 @@ const enhancer = composeEnhancers(applyMiddleware(...middleware));
 
 const store = createStore(allReducers, enhancer);
 
+const localesString = "/:locale(de|en|fr|it|ba)?";
+export const baseUrl = i18n.language === "/de" ? "" : "/" + i18n.language;
 function App() {
     return (
         <div className="App">
-            <Router>
+            <HashRouter>
                 <Navbar />
                 <Switch>
-                    <Route exact path="/">
+                    <Route exact path={localesString + "/"}>
                         <Home />
                     </Route>
-                    <Route path="/login">
+                    <Route path={localesString + "/login"}>
                         <Login />
                     </Route>
-                    <Route path="/create-account">
+                    <Route path={localesString + "/create-account"}>
                         <Register />
                     </Route>
-                    <Route path="/transport-registration">
+                    <Route path={localesString + "/transport-registration"}>
                         <TransportRegistration />
                     </Route>
-                    <Route path="/about">
+                    <Route path={localesString + "/about"}>
                         <About />
                     </Route>
-                    <Route path="/packages-plans">
+                    <Route path={localesString + "/packages-plans"}>
                         <PackagesPlan />
                     </Route>
-                    <Route path="/posts">
+                    <Route path={localesString + "/posts"}>
                         <Posts />
                     </Route>
+                    <Route path={localesString + "/single-post/:id"}>
+                        <SinglePost />
+                    </Route>
                 </Switch>
-            </Router>
+            </HashRouter>
             <Footer />
         </div>
     );
 }
 
-export default App;
+export default withTranslation("translations")(App);
 
 if (document.getElementById("root")) {
     ReactDOM.render(
-        <Provider store={store}>
-            <App />
-        </Provider>,
+        <I18nextProvider i18n={i18n}>
+            <Provider store={store}>
+                <CookiesProvider>
+                    <App />
+                </CookiesProvider>
+            </Provider>
+        </I18nextProvider>,
         document.getElementById("root")
     );
 }
