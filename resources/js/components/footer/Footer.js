@@ -6,7 +6,9 @@ const date = new Date();
 const year = date.getFullYear();
 
 const Footer = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const lng = i18n.language;
+    console.log(lng);
     return (
         <footer className="p-4 bg-dark text-white">
             <div className="container">
@@ -16,7 +18,7 @@ const Footer = () => {
                         <ul className="list-unstyled">
                             <li>
                                 <a
-                                    href="/images/AGB_Tranexpo.pdf"
+                                    href={`/images/conditions/Tranexpo-${lng}.pdf`}
                                     target="_blank"
                                     className="text-danger"
                                 >
@@ -61,7 +63,9 @@ const Footer = () => {
             <div className="bottom container">
                 <div className="row justify-content-between align-items-center">
                     <div className="col-12">
-                        <p className="m-0 text-center">{t("copyright")}</p>
+                        <p className="m-0 text-center">
+                            {t("copyright_1")} {year} {t("copyright_2")}
+                        </p>
                     </div>
                 </div>
             </div>
