@@ -24,7 +24,7 @@ const Navbar = () => {
     const { isLoggedIn } = useSelector(state => state.auth);
     const logoutHandler = () => {
         dispatch(logout());
-        history.push("/login");
+        history.push(linkGenerator("/login"));
     };
     return (
         <nav className="navbar navbar-expand-xl navbar-light bg-light fixed-top">

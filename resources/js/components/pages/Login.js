@@ -73,11 +73,19 @@ const Login = () => {
             });
         }
     };
+    const linkGenerator = link => {
+        // if the current language is the default language dont add the lang prefix
+        const languageLocale =
+            i18n.options.fallbackLng[0] === i18n.language
+                ? null
+                : i18n.language;
+        return languageLocale ? "/" + languageLocale + link : link;
+    };
 
     if (isLoggedIn && !user.data.vehicle_number) {
-        history.push("/");
+        history.push(linkGenerator("/"));
     } else if (isLoggedIn && user.data.vehicle_number) {
-        history.push("/posts");
+        history.push(linkGenerator("/posts"));
     }
     return (
         <div className="login-form mb-5">
