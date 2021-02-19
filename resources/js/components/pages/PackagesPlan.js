@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { PayPalButton } from "react-paypal-button-v2";
+import { useSelector } from "react-redux";
 import Package from "../package/Package";
 import Banner from "../header/Banner";
 import StoreHouse_4 from "../../img/storehous_4.jpg";
@@ -7,6 +8,7 @@ import "./PackagePlans.css";
 import { useTranslation } from "react-i18next";
 
 const PackagesPlan = () => {
+    const { user } = useSelector(state => state.auth);
     const { t, i18n } = useTranslation();
     const [modal, setModal] = useState(false);
     const options = [
@@ -16,7 +18,12 @@ const PackagesPlan = () => {
             title: `${t("one_month")}`,
             number: 1,
             time: `${t("month")}`,
-            price: 29
+            price:
+                user.data.country === "CH"
+                    ? 64
+                    : user.data.country === "BA" || "HR" || "MK" || "ME" || "RS"
+                    ? 15
+                    : 29
         },
         {
             id: "813dc1e3-f128-4e75-99e4-960806dd1a1e",
@@ -24,7 +31,12 @@ const PackagesPlan = () => {
             title: `${t("six_months")}`,
             number: 6,
             time: `${t("months")}`,
-            price: 159
+            price:
+                user.data.country === "CH"
+                    ? 332
+                    : user.data.country === "BA" || "HR" || "MK" || "ME" || "RS"
+                    ? 79
+                    : 159
         },
         {
             id: "c3d49e89-83e5-43cf-8ef8-f763473c3359",
@@ -32,7 +44,12 @@ const PackagesPlan = () => {
             title: `${t("a_year")}`,
             number: 12,
             time: `${t("months")}`,
-            price: 309
+            price:
+                user.data.country === "CH"
+                    ? 600
+                    : user.data.country === "BA" || "HR" || "MK" || "ME" || "RS"
+                    ? 149
+                    : 309
         }
     ];
     const clickModalBtnHandler = () => {

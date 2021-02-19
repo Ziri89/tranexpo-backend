@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink, Link, useHistory } from "react-router-dom";
 import LangBtn from "./LangBtn";
 import { useSelector, useDispatch } from "react-redux";
-
 import { useTranslation } from "react-i18next";
 import { logout } from "../actions/auth";
 import "./Navbar.css";
@@ -10,6 +9,7 @@ import Logo from "../../img/logo.svg";
 
 const Navbar = () => {
     const { t, i18n } = useTranslation();
+    const history = useHistory();
     const { user } = useSelector(state => state.auth);
     const linkGenerator = link => {
         // if the current language is the default language dont add the lang prefix
@@ -24,6 +24,7 @@ const Navbar = () => {
     const { isLoggedIn } = useSelector(state => state.auth);
     const logoutHandler = () => {
         dispatch(logout());
+        history.push("/login");
     };
     return (
         <nav className="navbar navbar-expand-xl navbar-light bg-light fixed-top">
