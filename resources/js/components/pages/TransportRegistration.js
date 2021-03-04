@@ -85,7 +85,7 @@ const TransportRegistration = () => {
                 loading: true
             });
             axios
-                .post(API_BASE_URL + "/registerShipper", {
+                .post(API_BASE_URL + "api/registerShipper", {
                     name: shipperReg.name,
                     email: shipperReg.email,
                     company_name: shipperReg.company_name,

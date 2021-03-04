@@ -83,7 +83,7 @@ const Register = () => {
                 loading: true
             });
             axios
-                .post(API_BASE_URL + "/register", {
+                .post(API_BASE_URL + "api/register", {
                     name: registrationData.name,
                     email: registrationData.email,
                     company_name: registrationData.company_name,

@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import LogoLight from "../../img/logo-white.svg";
+import "./Footer.css";
 
 const date = new Date();
 const year = date.getFullYear();
