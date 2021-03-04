@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
 
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -32,6 +33,10 @@ class AppServiceProvider extends ServiceProvider
         Passport::routes();
         
         Schema::defaultStringLength(191);
-        
+
+    }
+    public function view(User $user, Parcel $parcel)
+    {
+        return $user->id === $parcel->user_id;
     }
 }

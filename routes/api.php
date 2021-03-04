@@ -21,19 +21,25 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('register', [UserController::class, "registerUser"]);
-Route::post('login', [UserController::class, "loginUser"]);
+
 
 Route::post('registerShipper', [ShipperController::class, "registerShipper"]);
-/*
-Route::middleware('auth:api')->group(function() {
-Route::get("shipper", [ShipperController::class, "shipperDetail"]);
-});
 
+/*Route::middleware('auth:api')->group(function() {
+});
+*/
+Route::post('register', [UserController::class, "registerUser"]);
+Route::post('login', [UserController::class, "loginUser"]);
+    
+
+
+//Route::get("shipper", [ShipperController::class, "shipperDetail"]);
+/*
 Route::middleware('auth:api')->group(function() {
 Route::get("user", [UserController::class, "userDetail"]);
 });
 */
+
 Route::get('parcelShow', [ParcelController::class, "showAll"]);
 
 Route::get('user/{id}', [UserController::class, "show"])->name('user');
