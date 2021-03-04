@@ -1,12 +1,3 @@
-.flag-select__option__label {
-    top: 7px;
-}
-.flag-select__btn:focus {
-    outline: none;
-}
-.flag-select__btn:after {
-    vertical-align: baseline;
-}
 .logout {
     border: none;
     background: transparent;
@@ -17,7 +8,15 @@
 .logout:hover {
     text-decoration: underline;
 }
-
+@media screen and (max-width: 1440px) {
+    .nav-link {
+        font-size: 17px;
+    }
+    .login button,
+    .login a {
+        font-size: 17px;
+    }
+}
 @media screen and (max-width: 768px) {
     #navbar {
         position: absolute;

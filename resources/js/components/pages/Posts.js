@@ -21,9 +21,17 @@ const Posts = () => {
         let source = axios.CancelToken.source();
         setLoading(true);
         if (user !== null && user.data.company_number) {
+            let csrf = RegExp("XSRF-TOKEN[^;]+").exec(document.cookie);
+            csrf = decodeURIComponent(
+                csrf ? csrf.toString().replace(/^[^=]+./, "") : ""
+            );
+            console.log(csrf);
             axios
                 .get("/api/parcelShow", {
                     headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": csrf,
                         Authorization: `Bearer ${
                             user.token ? user.token : null
                         }`

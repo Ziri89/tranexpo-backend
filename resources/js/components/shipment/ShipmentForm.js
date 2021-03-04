@@ -200,7 +200,7 @@ const ShipmentForm = () => {
         setLoading(true);
         if (user !== null) {
             axios
-                .post(API_BASE_URL + "/publish", formdata, {
+                .post(API_BASE_URL + "api/publish", formdata, {
                     headers: {
                         Authorization: `Bearer ${
                             user.token ? user.token : null
