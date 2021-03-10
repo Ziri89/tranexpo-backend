@@ -27,6 +27,8 @@ const Package = props => {
                         className="btn btn-danger"
                         data-toggle="modal"
                         data-target={props.target}
+                        data-price={props.price}
+                        data-text={props.text}
                         onClick={props.click}
                     >
                         {t("bay_now")}

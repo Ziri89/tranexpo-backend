@@ -10,6 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">
     <link rel="stylesheet" href="/css/app.css">
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=AdLvp7gnB2nrjtBF6bQ0gMx3BsVoCwQnypT7V-3PK0iQIJ-GwOXSl_n-Gpmt4G_h0fFPUy4Q7xdyb1ac&currency=EUR">
+    </script>
+    <!--<script src="https://www.paypal.com/sdk/js?client-id=Abb-F1pDodxd694ER0mz3-tE1yi7AnhOsd4TWx9U0qaAvk4oponrqJRs&currency=EUR"></script>-->
 
 </head>
 
@@ -17,5 +21,6 @@
     <div id="root"></div>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
+
 
 </html>

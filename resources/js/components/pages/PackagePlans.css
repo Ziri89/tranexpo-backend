@@ -8,7 +8,7 @@
     position: relative;
 }
 
-#paypal-parent {
+#paypal {
     position: fixed !important;
     width: 550px !important;
     top: 50%;
@@ -22,5 +22,8 @@
 @media screen and (max-width: 560px) {
     .packages {
         margin-top: 0;
+    }
+    #paypal {
+        width: 95% !important;
     }
 }
