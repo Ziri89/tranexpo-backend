@@ -53,4 +53,4 @@ $router->group(['middleware' => 'auth:api'], function () use ($router) {
 
 Route::get('parcelShowById/{id}', [ParcelController::class, "show"])->name('parcelShowById');
 
-Route::detete('delete/{id}', [ParcelController::class, "delete"])->name('delete');
+Route::delete('delete/{id}', [ParcelController::class, "delete"])->name('delete');
