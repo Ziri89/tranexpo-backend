@@ -27,7 +27,7 @@ const TransportRegistration = () => {
         password: "",
         password_confirm: "",
         loading: false,
-        message: `${t("all_fields")}`,
+        message: `${t("field_with_stars")}`,
         email_message: "",
         name_message: "",
         phone_message: "",
@@ -36,9 +36,6 @@ const TransportRegistration = () => {
         company_reg_num_message: "",
         vehicle_number_message: ""
     });
-    useEffect(() => {
-        console.log(shipperReg);
-    }, [shipperReg]);
     const history = useHistory();
     const onChangeHandler = ev => {
         const { name, value } = ev.target;
@@ -137,11 +134,6 @@ const TransportRegistration = () => {
                                 .company_name_message
                                 ? res.data.validation_errors
                                       .company_name_message[0]
-                                : "",
-                            company_reg_num_message: res.data.validation_errors
-                                .company_reg_num_message
-                                ? res.data.validation_errors
-                                      .company_reg_num_message[0]
                                 : "",
                             vehicle_number_message: res.data.validation_errors
                                 .vehicle_number_message
@@ -259,7 +251,7 @@ const TransportRegistration = () => {
                                         htmlFor="company_reg_num"
                                         className="text-danger"
                                     >
-                                        {t("company_registration_number")}*
+                                        {t("company_registration_number")}
                                     </label>
                                     <div className="controls">
                                         <input

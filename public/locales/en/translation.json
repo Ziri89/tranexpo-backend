@@ -74,5 +74,17 @@
   "posts_for_transport": "Posts for transport",
   "package_plans": "Our packages",
   "your_country": "Your Country",
-  "see_more": "See more"
+  "see_more": "See more",
+  "destination": "Destination",
+  "place_of_departure": "Place of departure",
+  "departure_date": "Departure date",
+  "date_of_return": "Date of return",
+  "number_of_passengers": "Number of passengers",
+  "reservation_request": "Send a reservation request",
+  "one-way_ticket": "A one-way ticket",
+  "round-trip_ticket": "A round-trip ticket",
+  "submit_request": "Submit your request",
+  "transport_of_goods": "Registration of transport of goods",
+  "passenger_registration": "Passenger transport registration",
+  "street": "Street"
 }

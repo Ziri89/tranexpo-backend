@@ -74,5 +74,17 @@
   "posts_for_transport": "Postes de transport",
   "package_plans": "Nos forfaits",
   "your_country": "Votre pays",
-  "see_more": "En savoir plus"
+  "see_more": "En savoir plus",
+  "destination": "Destination",
+  "place_of_departure": "Lieu de départ",
+  "departure_date": "Date de départ",
+  "date_of_return": "Date de retour",
+  "number_of_passengers": "Nombre de passagers",
+  "reservation_request": "Envoyez une demande de réservation",
+  "one-way_ticket": "Un billet aller",
+  "round-trip_ticket": "Un billet aller-retour",
+  "submit_request": "Soumettez votre demande",
+  "transport_of_goods": "Enregistrement du transport de marchandises",
+  "passenger_registration": "Enregistrement du transport de passagers",
+  "street": "Rue"
 }

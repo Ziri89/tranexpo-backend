@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { countriesData } from "../countries/data";
 import Select from "../select/Select";
-import FlashMessage from "react-flash-message";
-import { useCookies } from "react-cookie";
 import Loader from "../../img/loader.gif";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -274,28 +272,14 @@ const ShipmentForm = () => {
 
     return (
         <div id="shipment" className="container pb-5">
-            {(isLoggedIn === false && isUserShiper === false) ||
-            (isLoggedIn === true && isUserShiper === true) ||
-            (isLoggedIn === false && isUserShiper === true) ? (
-                <h2 className="text-danger text-center mt-5">
-                    {t("you_must_be_logged")}
-                </h2>
-            ) : null}
-
             <form onSubmit={onSubmitHandler} encType="multipart/form-data">
-                <fieldset
-                    disabled={
-                        isLoggedIn === true && isUserShiper === false
-                            ? false
-                            : true
-                    }
-                >
-                    <div className="row mt-5">
+                <fieldset>
+                    <div className="row">
                         <div className="col-lg-6 border-right border-danger">
                             <h2 className="text-danger mb-3">
                                 {t("your_destination")}
                             </h2>
-                            <div className="row align-items-center">
+                            <div className="row align-items-center mb-2">
                                 <div className="col-lg-5">
                                     <h3 className="h5">{t("ship_from")}</h3>
                                     <Select
@@ -360,7 +344,7 @@ const ShipmentForm = () => {
                                     />
                                 </div>
                             </div>
-                            <div className="row align-items-center">
+                            <div className="row align-items-center mb-2">
                                 <div className="col-lg-5">
                                     <h3 className="h5">{t("ship_to")}</h3>
                                     <Select
@@ -427,7 +411,7 @@ const ShipmentForm = () => {
                             <div className="row">
                                 <div className="col-lg-7">
                                     <div className="form-group">
-                                        <label className="h6 w-100">
+                                        <label className="h5 w-100">
                                             {t("shipping_date")}
                                         </label>
                                         <DatePicker

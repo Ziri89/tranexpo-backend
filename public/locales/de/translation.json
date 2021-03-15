@@ -74,6 +74,18 @@
   "posts_for_transport": "Pfosten für den Transport",
   "package_plans": "Unsere Pakete",
   "your_country": "Dein Land",
-  "see_more": "Mehr sehen"
+  "see_more": "Mehr sehen",
+  "destination": "Ziel",
+  "place_of_departure": "Abfahrtsort",
+  "departure_date": "Abreisedatum",
+  "date_of_return": "Datum der Rückgabe",
+  "number_of_passengers": "Anzahl der Passagiere",
+  "reservation_request": "Senden Sie eine Reservierungsanfrage",
+  "one-way_ticket": "Eine Hinfahrkarte",
+  "round-trip_ticket": "Eine Hin-und Rückfahrkarte",
+  "submit_request": "Senden Sie Ihre Anfrage",
+  "transport_of_goods": "Registrierung des Warentransports",
+  "passenger_registration": "Registrierung des Personenverkehrs",
+  "street": "Straße"
 }
 

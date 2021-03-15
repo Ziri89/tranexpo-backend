@@ -72,7 +72,7 @@ const Navbar = () => {
                             <React.Fragment>
                                 <NavLink
                                     className="nav-link"
-                                    to={linkGenerator("/posts")}
+                                    to={linkGenerator("/freight-posts")}
                                 >
                                     {t("posts_for_transport")}
                                 </NavLink>
