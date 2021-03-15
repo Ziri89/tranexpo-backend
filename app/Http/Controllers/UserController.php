@@ -106,7 +106,7 @@ class UserController extends Controller {
         if(!is_null($user)){
             return response()->json([
                 "user" => $user,
-                "msg" => "Parcel ID"
+                "msg" => "User ID"
             ], 200);
         }else{
             return response()->json([
