@@ -25,6 +25,11 @@
 .page-pagination .page-link:focus {
     box-shadow: none;
 }
+@media screen and (max-width: 1440px) {
+    .posts .container {
+        margin-top: -6%;
+    }
+}
 @media screen and (max-width: 560px) {
     .posts .container {
         margin-top: 0;

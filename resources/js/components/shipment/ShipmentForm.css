@@ -110,9 +110,6 @@ input::-webkit-inner-spin-button {
     color: #fff;
     max-width: 100%;
 }
-#shipment label {
-    font-size: 14px;
-}
 @media screen and (max-width: 768px) {
     .border-right.border-danger {
         border-right: none !important;

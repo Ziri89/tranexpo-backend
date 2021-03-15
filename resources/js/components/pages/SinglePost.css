@@ -4,6 +4,11 @@
 .single-post .list-group-item {
     padding: 10px 0;
 }
+@media screen and (max-width: 1440px) {
+    .single-post {
+    margin-top: -8%;
+}
+}
 @media screen and (max-width: 560px) {
     .single-post {
         margin-top: 0;

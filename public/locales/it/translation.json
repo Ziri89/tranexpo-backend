@@ -74,5 +74,17 @@
   "posts_for_transport": "Pali per il trasporto",
   "package_plans": "I nostri pacchetti",
   "your_country": "Il tuo paese",
-  "see_more": "Vedi altro"
+  "see_more": "Vedi altro",
+  "destination": "Destinazione",
+  "place_of_departure": "Luogo di partenza",
+  "departure_date": "Data di partenza",
+  "date_of_return": "Data di ritorno",
+  "number_of_passengers": "Numero di passeggeri",
+  "reservation_request": "Invia una richiesta di prenotazione",
+  "one-way_ticket": "Un biglietto di sola andata",
+  "round-trip_ticket": "Un biglietto di andata e ritorno",
+  "submit_request": "Invia la tua richiesta",
+  "transport_of_goods": "Registrazione del trasporto di merci",
+  "passenger_registration": "Registrazione del trasporto passeggeri",
+  "street": "Strada"
 }

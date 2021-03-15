@@ -22,6 +22,7 @@ const Register = () => {
         country: "",
         city: "",
         zip_code: "",
+        street: "",
         password: "",
         password_confirm: "",
         loading: false,
@@ -32,7 +33,8 @@ const Register = () => {
         pass_message: "",
         country_message: "",
         city_message: "",
-        zip_code_message: ""
+        zip_code_message: "",
+        street_message: ""
     });
     const history = useHistory();
     const onChangeHandler = ev => {
@@ -91,6 +93,7 @@ const Register = () => {
                     country: registrationData.country,
                     city: registrationData.city,
                     zip_code: registrationData.zip_code,
+                    street: registrationData.street,
                     password: registrationData.password
                 })
                 .then(res => {
@@ -104,6 +107,7 @@ const Register = () => {
                             country: "",
                             city: "",
                             zip_code: "",
+                            street: "",
                             password: "",
                             password_confirm: "",
                             loading: false,
@@ -131,6 +135,9 @@ const Register = () => {
                             zip_code_message: res.data.validation_errors
                                 .zip_code
                                 ? res.data.validation_errors.zip_code[0]
+                                : "",
+                            street_message: res.data.validation_errors.street
+                                ? res.data.validation_errors.street[0]
                                 : "",
                             pass_message: res.data.validation_errors.password
                                 ? res.data.validation_errors.password[0]
@@ -264,7 +271,7 @@ const Register = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-md-6">
                                 <label
                                     htmlFor="country"
                                     className="text-danger"
@@ -288,7 +295,7 @@ const Register = () => {
                                     {registrationData.country_message}
                                 </p>
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-md-6">
                                 <div className="form-group">
                                     <label
                                         htmlFor="city"
@@ -309,18 +316,10 @@ const Register = () => {
                                         <p className="warning">
                                             {registrationData.city_message}
                                         </p>
-                                        {/* <input
-                                            type="text"
-                                            id="city"
-                                            name="city"
-                                            className="form-control"
-                                            value={shipperReg.city}
-                                            onChange={onChangeHandler}
-                                        />*/}
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-md-6">
                                 <div className="form-group">
                                     <label
                                         htmlFor="zipcode"
@@ -340,6 +339,30 @@ const Register = () => {
                                         />
                                         <p className="warning">
                                             {registrationData.zip_cod_message}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <label
+                                        htmlFor="street"
+                                        className="text-danger"
+                                    >
+                                        {t("street")}*
+                                    </label>
+                                    <div className="controls">
+                                        <input
+                                            type="text"
+                                            id="street"
+                                            name="street"
+                                            placeholder=""
+                                            className="form-control"
+                                            value={registrationData.street}
+                                            onChange={onChangeHandler}
+                                        />
+                                        <p className="warning">
+                                            {registrationData.street_message}
                                         </p>
                                     </div>
                                 </div>

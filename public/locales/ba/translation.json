@@ -74,5 +74,17 @@
   "posts_for_transport": "Postovi za transport",
   "package_plans": "Naši paketi",
   "your_country": "Tvoja država",
-  "see_more": "Vidi više"
+  "see_more": "Vidi više",
+  "destination": "Odredište",
+  "place_of_departure": "Mjesto polaska",
+  "departure_date": "Datum polaska",
+  "date_of_return": "Datum povratka",
+  "number_of_passengers": "Broj putnika",
+  "reservation_request": "Pošaljite upit za rezervaciju",
+  "one-way_ticket": "Karta u jednom smjeru",
+  "round-trip_ticket": "Povratna karta",
+  "submit_request": "Pošaljite vaš zahtjev",
+  "transport_of_goods": "Registracija prevoza robe",
+  "passenger_registration": "Prijava trasporta putnika",
+  "street": "Ulica"
 }

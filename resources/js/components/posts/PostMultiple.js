@@ -12,7 +12,7 @@ const ReducedPost = props => {
         return languageLocale ? "/" + languageLocale + link : link;
     };
     return (
-        <div className="post col-4 mb-4">
+        <div className="post col-lg-4 mb-4">
             <div className="card">
                 <img
                     src={props.image}
