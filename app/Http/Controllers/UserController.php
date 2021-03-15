@@ -21,7 +21,8 @@ class UserController extends Controller {
                 'password'       =>        'required|alpha_num|min:5',
                 'company_name'   =>        '',
                 'city'           =>        'required',
-                'country'           =>     'required',
+                'country'        =>        'required',
+                'street'         =>        'required',
                 'zip_code'       =>        'required|numeric',
 
             ]
