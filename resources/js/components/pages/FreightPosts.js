@@ -12,7 +12,7 @@ const FreightPosts = () => {
     const { t, i18n } = useTranslation();
     const { user } = useSelector(state => state.auth);
     const [post, setPost] = useState(null);
-    const [paginationLinks, setPpaginationLinks] = useState(null);
+    const [paginationLinks, setPaginationLinks] = useState(null);
     const [loading, setLoading] = useState(false);
     const [errMsg, setErrMsg] = useState(null);
     let [unmounted, setUnmounted] = useState(false);
@@ -25,7 +25,7 @@ const FreightPosts = () => {
             csrf = decodeURIComponent(
                 csrf ? csrf.toString().replace(/^[^=]+./, "") : ""
             );
-            console.log(csrf);
+
             axios
                 .get("/api/parcelShow", {
                     headers: {
@@ -43,13 +43,11 @@ const FreightPosts = () => {
                 })
                 .then(data => {
                     setPost(data.data);
-                    setPpaginationLinks(data.links);
+                    setPaginationLinks(data.links);
                     setLoading(false);
-                    console.log(data.links);
                 })
                 .catch(err => {
                     setErrMsg(`${t("")}`);
-
                     setLoading(false);
                 });
         }
@@ -102,8 +100,9 @@ const FreightPosts = () => {
                                   })
                                   .then(res => {
                                       setPost(res.data.data);
-                                      setPpaginationLinks(res.data.links);
+                                      setPaginationLinks(res.data.links);
                                       setLoading(false);
+                                      console.log(paginationLinks);
                                   })
                                   .catch(err => {
                                       console.log(err);
