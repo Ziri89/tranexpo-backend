@@ -83,6 +83,12 @@ class UserController extends Controller {
             return response()->json(["status" => $this->sucess_status, "success" => true, "login" => true, "token" => $token, "data" => $user]);
         }
 
+        if(Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])){
+            $user      =      Auth::guard('admin')->user();
+            $token     =      $user->createToken('token')->accessToken;
+    
+                return response()->json(["status" => $this->sucess_status, "success" => true, "login" => true, "token" => $token, "data" => $user]);
+            }
         else {
             return response()->json(["status" => "failed", "success" => false, "message" => "Whoops! invalid email or password"]);
         }
@@ -117,7 +123,41 @@ class UserController extends Controller {
         }
     
     }
+    public function updateUser(Request $request, $id){
+
+       $user = User::find($id);
+       $user->name = $request->input('name');
+       $user->email = $request->input('email');
+       $user->phone = $request->input('phone');
+       $user->city = $request->input('city');
+       $user->country = $request->input('country');
+       $user->company_name = $request->input('company_name');
+       $user->zip_code = $request->input('zip_code');
+       $user->street = $request->input('street');
+       $user->password = $request->input('password');
+
+       $user->save();
+       return response()->json($user);
+
+    }
     
+    public function delete($id){
+
+        $user = User::find($id);
+        if ($user) {
+            $user->delete();
+            return response()->json([
+                "user" => null,
+                "msg" => "Deleted successfully"
+            ], 204);
+        } else {
+            return response()->json([
+                "user" => null,
+                "msg" => "Something went wrong"
+            ], 400);
+        }
+    }
+
     public function logout(Request $request){
 
     $accessToken = Auth::user()->token();
