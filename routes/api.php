@@ -5,7 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ParcelController;
+use App\Http\Controllers\PassengerController;
 use App\Http\Controllers\ShipperController;
+use Mockery\Generator\StringManipulation\Pass\Pass;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -57,3 +60,5 @@ Route::get('parcelShow', [ParcelController::class, "showAll"]);
 Route::get('parcelShowById/{id}', [ParcelController::class, "show"])->name('parcelShowById');
 
 Route::delete('delete/{id}', [ParcelController::class, "deleteParcel"])->name('delete');
+
+Route::post('passengerPublish', [PassengerController::class, "store"]);
