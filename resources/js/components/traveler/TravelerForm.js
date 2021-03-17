@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { countriesData } from "../countries/data";
+import { useSelector } from "react-redux";
 import Select from "../select/Select";
 import Loader from "../../img/loader.gif";
 import DatePicker from "react-datepicker";
@@ -12,6 +13,8 @@ import { API_BASE_URL } from "../config/config";
 
 function TravelerForm() {
     const countrieOptions = Object.keys(countriesData);
+    const { isLoggedIn, user } = useSelector(state => state.auth);
+    const userId = user !== null ? user.data.id : "";
     const [traveler, setTraveler] = useState({
         countryFrom: "",
         cityFrom: "",
@@ -74,14 +77,20 @@ function TravelerForm() {
         formdata.append("cityFrom", traveler.cityFrom);
         formdata.append("countryTo", traveler.countryTo);
         formdata.append("cityTo", traveler.cityTo);
-        formdata.append("departureDate", traveler.departureDate);
-        formdata.append("dateOfReturn", traveler.dateOfReturn);
+        formdata.append(
+            "departureDate",
+            moment(traveler.departureDate).format("YYYY.MM.DD")
+        );
+        formdata.append(
+            "dateOfReturn",
+            moment(traveler.dateOfReturn).format("YYYY.MM.DD")
+        );
         formdata.append("onewayOrReturn", traveler.onewayOrReturn);
 
         setLoading(true);
         if (user !== null) {
             axios
-                .post(API_BASE_URL + "api/publish", formdata, {
+                .post(API_BASE_URL + "api/passengerPublish", formdata, {
                     headers: {
                         Authorization: `Bearer ${
                             user.token ? user.token : null
@@ -198,7 +207,7 @@ function TravelerForm() {
     return (
         <div id="travel" className="container pb-5">
             <h2 className="text-danger mb-3">{t("reservation_request")}</h2>
-            <form>
+            <form onSubmit={onSubmitHandler}>
                 <fieldset>
                     <div className="row">
                         <div className="col-lg-6 border-right border-danger">
