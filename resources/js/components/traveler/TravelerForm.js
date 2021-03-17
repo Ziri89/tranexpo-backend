@@ -66,7 +66,64 @@ function TravelerForm() {
         });
         ev.target.parentElement.style.display = "none";
     };
+    const onSubmitHandler = ev => {
+        ev.preventDefault();
 
+        let formdata = new FormData();
+        formdata.append("countryFrom", traveler.countryFrom);
+        formdata.append("cityFrom", traveler.cityFrom);
+        formdata.append("countryTo", traveler.countryTo);
+        formdata.append("cityTo", traveler.cityTo);
+        formdata.append("departureDate", traveler.departureDate);
+        formdata.append("dateOfReturn", traveler.dateOfReturn);
+        formdata.append("onewayOrReturn", traveler.onewayOrReturn);
+
+        setLoading(true);
+        if (user !== null) {
+            axios
+                .post(API_BASE_URL + "api/publish", formdata, {
+                    headers: {
+                        Authorization: `Bearer ${
+                            user.token ? user.token : null
+                        }`,
+                        Accept: "application/json",
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then(res => {
+                    setTraveler({
+                        countryFrom: "",
+                        cityFrom: "",
+                        countryTo: "",
+                        cityTo: "",
+                        departureDate: new Date(),
+                        dateOfReturn: null,
+                        onewayOrReturn: "A one-way ticket"
+                    });
+                    setSuccess(true);
+                    setMessage(`${t("successfully_added_your_goods")}`);
+                    setLoading(false);
+                    setTimeout(() => {
+                        location.reload();
+                    }, 3000);
+                    console.log(res);
+                })
+                .catch(err => {
+                    setTraveler({
+                        countryFrom: "",
+                        cityFrom: "",
+                        countryTo: "",
+                        cityTo: "",
+                        departureDate: new Date(),
+                        dateOfReturn: null,
+                        onewayOrReturn: "A one-way ticket"
+                    });
+                    setSuccess(false);
+                    setMessage(`${t("something_is_wrong")}`);
+                    setLoading(false);
+                });
+        }
+    };
     const countriesFrom = countrieOptions
         .filter(item => {
             return (
