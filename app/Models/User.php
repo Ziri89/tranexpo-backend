@@ -25,6 +25,7 @@ class User extends Authenticatable
         'country',
         'company_name',
         'zip_code',
+        'street',
         'password',
     ];
 

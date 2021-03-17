@@ -46,6 +46,11 @@ return [
             'provider' => 'shippers',
         ],
 
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+
         'api' => [
             'driver' => 'passport',
             'provider' => 'users',
@@ -81,6 +86,10 @@ return [
         'shippers' => [
             'driver' => 'eloquent',
             'model' => App\Models\Shipper::class,
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
         ],
 
         // 'users' => [

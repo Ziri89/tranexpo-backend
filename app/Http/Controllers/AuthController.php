@@ -17,6 +17,7 @@ class AuthController extends Controller
             'company_name' => '',
             'zip_code' => 'required|numeric',
             'city' => 'required',
+            'street' => 'required',
             'country' => 'required'
         ]);
 
@@ -29,6 +30,7 @@ class AuthController extends Controller
             'zip_code' => $request->zip_code, 
             'city' => $request->city, 
             'country' => $request->country, 
+            'street' => $request->street,
             'password' => bcrypt($request->password)
         ]);
 

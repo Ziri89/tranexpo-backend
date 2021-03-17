@@ -20,7 +20,7 @@ class ShipperController extends Controller
                 'phone'          =>        'required|numeric',
                 'password'       =>        'required|alpha_num|min:5',
                 'company_name'   =>        'required', 
-                'company_number' =>        'required',  
+                'company_number' =>        '',  
                 'vehicle_number' =>        'required|numeric',
                 'city'           =>        'required',
                 'country'           =>     'required',
@@ -56,4 +56,24 @@ class ShipperController extends Controller
         }
     }
     */
+    public function updateShipper(Request $request, $id){
+
+        $shipper = User::find($id);
+        $shipper->name = $request->input('name');
+        $shipper->email = $request->input('email');
+        $shipper->phone = $request->input('phone');
+        $shipper->city = $request->input('city');
+        $shipper->country = $request->input('country');
+        $shipper->company_name = $request->input('company_name');
+        $shipper->company_number = $request->input('company_number');
+        $shipper->vehicle_number = $request->input('vehicle_number');
+        $shipper->zip_code = $request->input('zip_code');
+        $shipper->startpay = $request->input('startPay');
+        $shipper->endPay = $request->input('endPay');
+        $shipper->password = $request->input('password');
+ 
+        $shipper->save();
+        return response()->json($shipper);
+ 
+     }
 }
