@@ -27,7 +27,7 @@ class AdminController extends Controller
 
         $inputs                 =           $request->all();
         $inputs['password']     =           bcrypt($inputs['password']);
-        $admin                =           Admin::create($inputs);
+        $admin                =             Admin::create($inputs);
 
         if(!is_null($admin)) {
             return response()->json(["status" => $this->sucess_status, "success" => true, "data" => $admin]);
