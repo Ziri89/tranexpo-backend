@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ParcelController;
 use App\Http\Controllers\PassengerController;
 use App\Http\Controllers\ShipperController;
+use App\Models\Admin;
 use Mockery\Generator\StringManipulation\Pass\Pass;
 
 /*
@@ -27,7 +29,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::post('registerShipper', [ShipperController::class, "registerShipper"]);
-
+Route::post('registerAdmin', [AdminController::class, "registerAdmin"]);
 /*Route::middleware('auth:api')->group(function() {
 });
 */
