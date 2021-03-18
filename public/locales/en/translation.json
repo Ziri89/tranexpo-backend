@@ -71,7 +71,7 @@
   "shipment_to": "Shipment to",
   "type_of_shipment": "Type of shipment",
   "weight_unit": "Weight/unit",
-  "posts_for_transport": "Posts for transport",
+  "posts_for_transport": "Goods transport posts",
   "package_plans": "Our packages",
   "your_country": "Your Country",
   "see_more": "See more",
@@ -86,5 +86,7 @@
   "submit_request": "Submit your request",
   "transport_of_goods": "Registration of transport of goods",
   "passenger_registration": "Passenger transport registration",
-  "street": "Street"
+  "street": "Street",
+  "passenger_posts": "Passenger transport posts",
+  "posts": "Posts"
 }

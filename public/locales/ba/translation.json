@@ -71,7 +71,7 @@
   "shipment_to": "Pošiljka do",
   "type_of_shipment": "Vrsta pošiljke",
   "weight_unit": "Težina / kom",
-  "posts_for_transport": "Postovi za transport",
+  "posts_for_transport": "Postovi za transport roba",
   "package_plans": "Naši paketi",
   "your_country": "Tvoja država",
   "see_more": "Vidi više",
@@ -86,5 +86,7 @@
   "submit_request": "Pošaljite vaš zahtjev",
   "transport_of_goods": "Registracija prevoza robe",
   "passenger_registration": "Prijava trasporta putnika",
-  "street": "Ulica"
+  "street": "Ulica",
+  "passenger_posts": "Postovi za prevoz putnika",
+  "posts": "Postovi"
 }

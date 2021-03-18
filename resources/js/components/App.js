@@ -19,6 +19,8 @@ import About from "./pages/About";
 import Footer from "./footer/Footer";
 import PackagesPlan from "./pages/PackagesPlan";
 import FreightPosts from "./pages/FreightPosts";
+import PassengersPosts from "./pages/PassengersPosts";
+import Posts from "./pages/Posts";
 
 const composeEnhancers =
     (window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
@@ -50,11 +52,17 @@ function App() {
                     <Route path={localesString + "/about"}>
                         <About />
                     </Route>
+                    <Route path={localesString + "/posts"}>
+                        <Posts />
+                    </Route>
                     <Route path={localesString + "/packages-plans"}>
                         <PackagesPlan />
                     </Route>
                     <Route path={localesString + "/freight-posts"}>
                         <FreightPosts />
+                    </Route>
+                    <Route path={localesString + "/passenger-posts"}>
+                        <PassengersPosts />
                     </Route>
                     <Route path={localesString + "/single-post/:id"}>
                         <SinglePost />

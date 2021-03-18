@@ -71,7 +71,7 @@
   "shipment_to": "Lieferung an",
   "type_of_shipment": "Art der Sendung",
   "weight_unit": "Gewichtseinheit",
-  "posts_for_transport": "Pfosten für den Transport",
+  "posts_for_transport": "Warentransportposten",
   "package_plans": "Unsere Pakete",
   "your_country": "Dein Land",
   "see_more": "Mehr sehen",
@@ -86,6 +86,8 @@
   "submit_request": "Senden Sie Ihre Anfrage",
   "transport_of_goods": "Registrierung des Warentransports",
   "passenger_registration": "Registrierung des Personenverkehrs",
-  "street": "Straße"
+  "street": "Straße",
+  "passenger_posts": "Personenbeförderungsposten",
+  "posts": "Beiträge"
 }
 

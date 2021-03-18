@@ -71,7 +71,7 @@
   "shipment_to": "Envoi à",
   "type_of_shipment": "Type d'expédition",
   "weight_unit": "Poids / unité",
-  "posts_for_transport": "Postes de transport",
+  "posts_for_transport": "Postes de transport de marchandises",
   "package_plans": "Nos forfaits",
   "your_country": "Votre pays",
   "see_more": "En savoir plus",
@@ -86,5 +86,7 @@
   "submit_request": "Soumettez votre demande",
   "transport_of_goods": "Enregistrement du transport de marchandises",
   "passenger_registration": "Enregistrement du transport de passagers",
-  "street": "Rue"
+  "street": "Rue",
+  "passenger_posts": "Postes de transport de passagers",
+  "posts": "Des postes"
 }
