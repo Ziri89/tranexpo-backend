@@ -62,3 +62,9 @@ Route::get('parcelShowById/{id}', [ParcelController::class, "show"])->name('parc
 Route::delete('delete/{id}', [ParcelController::class, "deleteParcel"])->name('delete');
 
 Route::post('passengerPublish', [PassengerController::class, "store"]);
+
+Route::get('passengerShow', [PassengerController::class, "showAll"]);
+
+Route::get('passengerShowById/{id}', [PassengerController::class, "show"])->name('passengerShowById');
+
+Route::delete('delete/{id}', [PassengerController::class, "deletePassenger"])->name('delete');
