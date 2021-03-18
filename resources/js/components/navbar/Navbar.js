@@ -10,7 +10,6 @@ import Logo from "../../img/logo.svg";
 const Navbar = () => {
     const { t, i18n } = useTranslation();
     const history = useHistory();
-    const { user } = useSelector(state => state.auth);
     const linkGenerator = link => {
         // if the current language is the default language dont add the lang prefix
         const languageLocale =
@@ -21,7 +20,7 @@ const Navbar = () => {
     };
 
     const dispatch = useDispatch();
-    const { isLoggedIn } = useSelector(state => state.auth);
+    const { isLoggedIn, user } = useSelector(state => state.auth);
     const logoutHandler = () => {
         dispatch(logout());
         history.push(linkGenerator("/login"));
@@ -65,6 +64,7 @@ const Navbar = () => {
                         <NavLink
                             className="nav-link"
                             to={linkGenerator("/transport-registration")}
+                            disabled={isLoggedIn === true ? true : false}
                         >
                             {t("transport_registration")}
                         </NavLink>
@@ -106,6 +106,7 @@ const Navbar = () => {
                         <NavLink
                             to={linkGenerator("/create-account")}
                             className="btn btn-danger btn-lg ml-3"
+                            disabled={isLoggedIn === true ? true : false}
                         >
                             {t("create_my_account")}
                         </NavLink>

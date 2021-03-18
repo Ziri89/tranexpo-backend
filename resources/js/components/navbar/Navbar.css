@@ -8,6 +8,16 @@
 .logout:hover {
     text-decoration: underline;
 }
+a[disabled] {
+    pointer-events: none;
+}
+.navbar-nav a[disabled] {
+    color: #ddd !important;
+}
+.login a[disabled] {
+    background-color: rgba(252, 130, 59, 0.521) !important;
+    border-color: rgba(252, 130, 59, 0.521) !important;
+}
 @media screen and (max-width: 1440px) {
     .nav-link {
         font-size: 17px;
