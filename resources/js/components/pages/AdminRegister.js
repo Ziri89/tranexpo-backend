@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 import { API_BASE_URL } from "../config/config";
 const AdminRegister = () => {
@@ -6,16 +7,30 @@ const AdminRegister = () => {
         email: "",
         password: ""
     });
-    useEffect(() => {
-        console.log(admin);
-    }, [admin]);
+    const submitAdmin = ev => {
+        ev.preventDefault();
+        axios
+            .post(API_BASE_URL + "api/registerAdmin", {
+                email: admin.email,
+                password: admin.password
+            })
+            .then(res => {
+                console.log(res);
+                setAdmin({
+                    email: "",
+                    password: ""
+                }).catch(err => {
+                    console.log(err);
+                });
+            });
+    };
     return (
         <div>
             <div className="container my-5">
                 <div className="row justify-content-center alogn-items-center">
                     <div className="card col-lg-6 py-4">
                         <div className="caed-body">
-                            <form>
+                            <form onSubmit={submitAdmin}>
                                 <div className="form-group">
                                     <label htmlFor="email">Email</label>
                                     <input
