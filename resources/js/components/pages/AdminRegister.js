@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { API_BASE_URL } from "../config/config";
 const AdminRegister = () => {
@@ -6,6 +6,9 @@ const AdminRegister = () => {
         email: "",
         password: ""
     });
+    useEffect(() => {
+        console.log(admin);
+    }, [admin]);
     return (
         <div>
             <div className="container my-5">
