@@ -19,8 +19,13 @@ const AdminRegister = () => {
                 setAdmin({
                     email: "",
                     password: ""
-                }).catch(err => {
-                    console.log(err);
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                setAdmin({
+                    email: "",
+                    password: ""
                 });
             });
     };
