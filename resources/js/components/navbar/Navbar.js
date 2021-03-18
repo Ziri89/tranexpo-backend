@@ -68,7 +68,7 @@ const Navbar = () => {
                         >
                             {t("transport_registration")}
                         </NavLink>
-                        {user !== null && user.data.company_number ? (
+                        {user !== null && user.data.vehicle_number ? (
                             <React.Fragment>
                                 <NavLink
                                     className="nav-link"

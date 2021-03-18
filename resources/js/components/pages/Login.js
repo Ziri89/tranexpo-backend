@@ -85,7 +85,7 @@ const Login = () => {
     if (isLoggedIn && !user.data.vehicle_number) {
         history.push(linkGenerator("/"));
     } else if (isLoggedIn && user.data.vehicle_number) {
-        history.push(linkGenerator("/freight-posts"));
+        history.push(linkGenerator("/packages-plans"));
     }
     return (
         <div className="login-form mb-5">

@@ -20,7 +20,7 @@ const FreightPosts = () => {
     useEffect(() => {
         let source = axios.CancelToken.source();
         setLoading(true);
-        if (user !== null && user.data.company_number) {
+        if (user !== null && user.data.vehicle_number) {
             let csrf = RegExp("XSRF-TOKEN[^;]+").exec(document.cookie);
             csrf = decodeURIComponent(
                 csrf ? csrf.toString().replace(/^[^=]+./, "") : ""
