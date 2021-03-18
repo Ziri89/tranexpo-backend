@@ -21,6 +21,7 @@ import PackagesPlan from "./pages/PackagesPlan";
 import FreightPosts from "./pages/FreightPosts";
 import PassengersPosts from "./pages/PassengersPosts";
 import Posts from "./pages/Posts";
+import AdminRegister from "./pages/AdminRegister";
 
 const composeEnhancers =
     (window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
@@ -63,6 +64,9 @@ function App() {
                     </Route>
                     <Route path={localesString + "/passenger-posts"}>
                         <PassengersPosts />
+                    </Route>
+                    <Route path={localesString + "/admin-registration"}>
+                        <AdminRegister />
                     </Route>
                     <Route path={localesString + "/single-post/:id"}>
                         <SinglePost />
