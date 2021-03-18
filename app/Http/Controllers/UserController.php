@@ -106,6 +106,12 @@ class UserController extends Controller {
         }
     }
     */
+    public function showAll(Request $request)
+    {
+
+        $data = User::query()->orderByDesc('id')->paginate(6);
+        return response($data, 200);
+    }
 
     public function show($id){
 

@@ -46,9 +46,11 @@ Route::get("user", [UserController::class, "userDetail"]);
 */
 
 Route::get('user/{id}', [UserController::class, "show"])->name('user');
+Route::get('userAll/', [UserController::class, "showAll"])->name('userAll');
 Route::put('updateuser/{id}', [UserController::class, "updateUser"]);
 Route::delete('deleteuser/{id}', [UserController::class, "deleteUser"]);
 Route::put('updateshipper/{id}', [ShipperController::class, "updateShipper"]);
+Route::get('shipperAll/', [UserController::class, "showAll"])->name('shipperAll');
 
 //Route::post('logout', [UserController::class, "logout"]);
 $router->group(['middleware' => 'auth:api'], function () use ($router) {

@@ -76,4 +76,11 @@ class ShipperController extends Controller
         return response()->json($shipper);
  
      }
+
+     public function showAll(Request $request)
+     {
+ 
+         $data = Shipper::query()->orderByDesc('id')->paginate(6);
+         return response($data, 200);
+     }
 }
