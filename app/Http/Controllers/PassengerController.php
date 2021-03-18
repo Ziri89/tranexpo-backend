@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Parcel;
+use App\Models\Passenger;
 use App\Models\User;
 use GuzzleHttp\Middleware;
 
