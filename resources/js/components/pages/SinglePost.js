@@ -22,7 +22,7 @@ const Posts = () => {
     useEffect(() => {
         let source = axios.CancelToken.source();
         setLoading(true);
-        if (user !== null && user.data.company_number) {
+        if (user !== null && user.data.vehicle_number) {
             axios
                 .get(`/api/parcelShowById/${id}`, {
                     headers: {
