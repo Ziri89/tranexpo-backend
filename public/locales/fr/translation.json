@@ -88,5 +88,6 @@
   "passenger_registration": "Enregistrement du transport de passagers",
   "street": "Rue",
   "passenger_posts": "Postes de transport de passagers",
-  "posts": "Des postes"
+  "posts": "Des postes",
+  "ticket": "Ticket de bus"
 }

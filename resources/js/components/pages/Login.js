@@ -81,8 +81,9 @@ const Login = () => {
                 : i18n.language;
         return languageLocale ? "/" + languageLocale + link : link;
     };
-
-    if (isLoggedIn && !user.data.vehicle_number) {
+    if (isLoggedIn && !user.data.country) {
+        history.push(linkGenerator("/admin-dashboard"));
+    } else if (isLoggedIn && !user.data.vehicle_number) {
         history.push(linkGenerator("/"));
     } else if (isLoggedIn && user.data.vehicle_number) {
         history.push(linkGenerator("/posts"));

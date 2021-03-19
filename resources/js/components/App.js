@@ -23,6 +23,7 @@ import PassengersPosts from "./pages/PassengersPosts";
 import Posts from "./pages/Posts";
 import AdminRegister from "./pages/AdminRegister";
 import AdminDashboard from "./pages/AdminDashboard";
+import TravelerPost from "./pages/TravelerSinglePost";
 
 const composeEnhancers =
     (window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
@@ -74,6 +75,9 @@ function App() {
                     </Route>
                     <Route path={localesString + "/single-post/:id"}>
                         <SinglePost />
+                    </Route>
+                    <Route path={localesString + "/traveler-single-post/:id"}>
+                        <TravelerPost />
                     </Route>
                 </Switch>
             </HashRouter>
