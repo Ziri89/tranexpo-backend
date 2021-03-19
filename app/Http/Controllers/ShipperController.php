@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use App\Models\User;
+//use App\Models\User;
 use App\Models\Shipper;
 
 class ShipperController extends Controller
@@ -58,7 +58,7 @@ class ShipperController extends Controller
     */
     public function updateShipper(Request $request, $id){
 
-        $shipper = User::find($id);
+        $shipper = Shipper::find($id);
         $shipper->name = $request->input('name');
         $shipper->email = $request->input('email');
         $shipper->phone = $request->input('phone');
