@@ -44,9 +44,6 @@ const Register = () => {
             [name]: value
         });
     };
-    useEffect(() => {
-        console.log(registrationData);
-    }, [registrationData]);
     const setValueCity = ev => {
         setRegistrationData({
             ...registrationData,

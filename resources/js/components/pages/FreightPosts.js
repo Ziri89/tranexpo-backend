@@ -38,7 +38,6 @@ const FreightPosts = () => {
                     }
                 })
                 .then(res => {
-                    console.log(res.data.links);
                     return res.data;
                 })
                 .then(data => {

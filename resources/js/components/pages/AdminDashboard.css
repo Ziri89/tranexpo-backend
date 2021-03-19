@@ -1,0 +1,13 @@
+#admin-panel main.row {
+    height: calc(100vh - 363px);
+}
+.article {
+    display: none;
+}
+.article.active {
+    display: block;
+}
+#admin-panel th,
+#admin-panel td {
+    font-size: 0.8rem;
+}
