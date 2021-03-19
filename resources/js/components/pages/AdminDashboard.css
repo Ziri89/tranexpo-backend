@@ -1,5 +1,6 @@
 #admin-panel main.row {
     height: calc(100vh - 363px);
+    min-height: 600px;
 }
 .article {
     display: none;

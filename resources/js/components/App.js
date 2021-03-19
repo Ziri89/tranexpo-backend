@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { HashRouter, Switch, Route } from "react-router-dom";
-import { Provider } from "react-redux";
+import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
+import { Provider, useSelector } from "react-redux";
 import { CookiesProvider } from "react-cookie";
 import { createStore, applyMiddleware, compose } from "redux";
 import allReducers from "./reducers";
@@ -35,6 +35,7 @@ const store = createStore(allReducers, enhancer);
 const localesString = "/:locale(de|en|fr|it|ba)?";
 export const baseUrl = i18n.language === "/de" ? "" : "/" + i18n.language;
 function App() {
+    const { user } = useSelector(state => state.auth);
     return (
         <div className="App">
             <HashRouter>

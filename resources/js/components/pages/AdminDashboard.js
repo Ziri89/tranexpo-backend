@@ -5,7 +5,7 @@ import Passengers from "../admin-components/Passengers";
 import "./AdminDashboard.css";
 
 const AdminPanel = () => {
-    const [active, setActive] = useState("publishers");
+    const [active, setActive] = useState("goods");
 
     const btnClickHandler = ev => {
         ev.preventDefault();
@@ -22,7 +22,7 @@ const AdminPanel = () => {
                     <aside className="col-2">
                         <h2>Izaberi pregled</h2>
                         <ul className="list-group bg-dark">
-                            <li className="list-group-item bg-transparent">
+                            {/*<li className="list-group-item bg-transparent">
                                 <button
                                     className="btn btn-danger btn-block"
                                     data-target="publishers"
@@ -39,7 +39,7 @@ const AdminPanel = () => {
                                 >
                                     Korisnici prevoznici
                                 </button>
-                            </li>
+                            </li>*/}
                             <li className="list-group-item bg-transparent">
                                 <button
                                     className="btn btn-danger btn-block"
@@ -61,7 +61,7 @@ const AdminPanel = () => {
                         </ul>
                     </aside>
                     <section className="col-10">
-                        <article
+                        {/*<article
                             id="publishers"
                             className={
                                 active === "publishers"
@@ -83,7 +83,7 @@ const AdminPanel = () => {
                         >
                             <h2 className="text-center">Prevoznici</h2>
                             <Carriers />
-                        </article>
+                        </article>*/}
                         <article
                             id="goods"
                             className={
@@ -93,7 +93,7 @@ const AdminPanel = () => {
                             }
                         >
                             <h2 className="text-center">
-                                Postovi za prevoz robe
+                                Postovi za prevoz tereta
                             </h2>
                             <Goods />
                         </article>

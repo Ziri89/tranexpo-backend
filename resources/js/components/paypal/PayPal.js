@@ -1,7 +1,26 @@
 import React, { useRef, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+import * as moment from "moment";
+import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 function PayPal(props) {
     const paypal = useRef();
+    const history = useHistory();
+    const today = new Date();
+    let expiresDate = new Date();
+    expiresDate.setMonth(expiresDate.getMonth() + props.limit);
+    const { user } = useSelector(state => state.auth);
+    const { i18n } = useTranslation();
+    const linkGenerator = link => {
+        // if the current language is the default language dont add the lang prefix
+        const languageLocale =
+            i18n.options.fallbackLng[0] === i18n.language
+                ? null
+                : i18n.language;
+        return languageLocale ? "/" + languageLocale + link : link;
+    };
     useEffect(() => {
         window.paypal
             .Buttons({
@@ -21,7 +40,26 @@ function PayPal(props) {
                 },
                 onApprove: async (data, actions) => {
                     const order = await actions.order.capture();
-                    console.log(order, data);
+                    const timeData = await {
+                        ...user.data,
+                        startPay: moment(today).format("YYYY-MM-DD"),
+                        endPay: moment(expiresDate).format("YYYY-MM-DD")
+                    };
+                    const req = await axios
+                        .put(`/api/updateshipper/${user.data.id}`, timeData, {
+                            headers: {
+                                Authorization: `Bearer ${
+                                    user.token ? user.token : null
+                                }`
+                            }
+                        })
+                        .then(res => {
+                            console.log("It's paid");
+                            history.push(linkGenerator("/posts"));
+                        })
+                        .catch(() => {
+                            console.log(err);
+                        });
                 },
                 onError: err => {
                     console.log(err);

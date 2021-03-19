@@ -184,7 +184,7 @@ const ShipmentForm = () => {
         formdata.append("checkTo", formData.checkTo);
         formdata.append(
             "shippingDate",
-            moment(formData.shippingDate).format("YYYY.MM.DD")
+            moment(formData.shippingDate).format("YYYY-MM-DD")
         );
         formdata.append("parcel", formData.parcel === true ? 1 : 0);
         formdata.append("envelope", formData.envelope === true ? 1 : 0);

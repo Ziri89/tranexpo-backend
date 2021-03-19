@@ -84,6 +84,14 @@ const Navbar = () => {
                                 </NavLink>
                             </React.Fragment>
                         ) : null}
+                        {user !== null && !user.data.country ? (
+                            <NavLink
+                                className="nav-link"
+                                to={linkGenerator("/admin-dashboard")}
+                            >
+                                Admin
+                            </NavLink>
+                        ) : null}
                     </div>
                     <div className="login">
                         {!isLoggedIn ? (

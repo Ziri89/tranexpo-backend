@@ -29,6 +29,7 @@ const Package = props => {
                         data-target={props.target}
                         data-price={props.price}
                         data-text={props.text}
+                        data-limit={props.limit}
                         onClick={props.click}
                     >
                         {t("bay_now")}

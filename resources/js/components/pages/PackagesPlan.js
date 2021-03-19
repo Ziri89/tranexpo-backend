@@ -6,13 +6,13 @@ import StoreHouse_4 from "../../img/storehous_4.jpg";
 import "./PackagePlans.css";
 import { useTranslation } from "react-i18next";
 import PayPal from "../paypal/PayPal";
-import { set } from "js-cookie";
 
 const PackagesPlan = () => {
     const { user } = useSelector(state => state.auth);
     const { t, i18n } = useTranslation();
     const [modal, setModal] = useState(false);
     const [packagePrice, setPackagePrice] = useState();
+    const [limit, setLimit] = useState(0);
     const [text, setText] = useState();
     const options = [
         {
@@ -58,6 +58,7 @@ const PackagesPlan = () => {
     const clickModalBtnHandler = ev => {
         setPackagePrice(ev.target.dataset.price);
         setText(ev.target.dataset.text);
+        setLimit(parseInt(ev.target.dataset.limit));
         setModal(!modal);
     };
     const content = options.map(item => {
@@ -71,6 +72,7 @@ const PackagesPlan = () => {
                 number={item.number}
                 time={item.time}
                 price={item.price}
+                limit={item.number}
                 target="paypal"
                 click={clickModalBtnHandler}
             />
@@ -92,6 +94,7 @@ const PackagesPlan = () => {
                     <PayPal
                         description={`${t("paypal-description")} ${text}`}
                         value={packagePrice}
+                        limit={limit}
                     />
                 </div>
             ) : null}
