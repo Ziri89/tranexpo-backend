@@ -35,7 +35,7 @@ Route::post('registerAdmin', [AdminController::class, "registerAdmin"]);
 */
 Route::post('register', [UserController::class, "registerUser"]);
 Route::post('login', [UserController::class, "loginUser"]);
-    
+
 
 
 //Route::get("shipper", [ShipperController::class, "shipperDetail"]);
@@ -63,7 +63,7 @@ Route::get('parcelShow', [ParcelController::class, "showAll"]);
 
 Route::get('parcelShowById/{id}', [ParcelController::class, "show"])->name('parcelShowById');
 
-Route::delete('delete/{id}', [ParcelController::class, "deleteParcel"])->name('delete');
+Route::delete('deleteParcel/{id}', [ParcelController::class, "deleteParcel"])->name('deleteParcel');
 
 Route::post('passengerPublish', [PassengerController::class, "store"]);
 
@@ -71,4 +71,4 @@ Route::get('passengerShow', [PassengerController::class, "showAll"]);
 
 Route::get('passengerShowById/{id}', [PassengerController::class, "show"])->name('passengerShowById');
 
-Route::delete('delete/{id}', [PassengerController::class, "deletePassenger"])->name('delete');
+Route::delete('deletePassenger/{id}', [PassengerController::class, "deletePassenger"])->name('deletePassenger');

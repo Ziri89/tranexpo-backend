@@ -98,7 +98,6 @@ const TravelerPost = () => {
     const onePost =
         post !== null && postOwner !== null ? (
             <OnePost
-                altText="Post Image"
                 person={postOwner.name}
                 email={postOwner.email}
                 phone={postOwner.phone}

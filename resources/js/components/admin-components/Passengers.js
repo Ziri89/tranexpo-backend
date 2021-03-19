@@ -124,7 +124,48 @@ const Passengers = () => {
                                       <td>{item.dateOfReturn}</td>
                                       <td>{item.onewayOrReturn}</td>
                                       <td>
-                                          <button type="button">X</button>
+                                          <button
+                                              type="button"
+                                              onClick={() => {
+                                                  if (
+                                                      user !== null &&
+                                                      !user.data.city
+                                                  ) {
+                                                      let csrf = RegExp(
+                                                          "XSRF-TOKEN[^;]+"
+                                                      ).exec(document.cookie);
+                                                      csrf = decodeURIComponent(
+                                                          csrf
+                                                              ? csrf
+                                                                    .toString()
+                                                                    .replace(
+                                                                        /^[^=]+./,
+                                                                        ""
+                                                                    )
+                                                              : ""
+                                                      );
+                                                      axios.delete(
+                                                          `/api/deletePassenger/${item.id}`,
+                                                          {
+                                                              headers: {
+                                                                  Accept:
+                                                                      "application/json",
+                                                                  "Content-Type":
+                                                                      "application/json",
+                                                                  "X-CSRF-TOKEN": csrf,
+                                                                  Authorization: `Bearer ${
+                                                                      user.token
+                                                                          ? user.token
+                                                                          : null
+                                                                  }`
+                                                              }
+                                                          }
+                                                      );
+                                                  }
+                                              }}
+                                          >
+                                              X
+                                          </button>
                                       </td>
                                   </tr>
                               );

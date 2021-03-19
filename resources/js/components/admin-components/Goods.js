@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 const Goods = () => {
     const [state, setState] = useState(null);
     const [paginationLinks, setPaginationLinks] = useState(null);
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
     const { user } = useSelector(state => state.auth);
     let [unmounted, setUnmounted] = useState(false);
     useEffect(() => {
@@ -15,7 +15,7 @@ const Goods = () => {
             csrf = decodeURIComponent(
                 csrf ? csrf.toString().replace(/^[^=]+./, "") : ""
             );
-            setLoading(true)
+            setLoading(true);
             axios
                 .get("/api/parcelShow", {
                     headers: {
@@ -30,11 +30,11 @@ const Goods = () => {
                 .then(res => {
                     setState(res.data.data);
                     setPaginationLinks(res.data.links);
-                    setLoading(false)
+                    setLoading(false);
                 })
                 .catch(err => {
                     console.log(err);
-                    setLoading(false)
+                    setLoading(false);
                 });
         }
 
@@ -46,7 +46,7 @@ const Goods = () => {
     useEffect(() => {
         console.log(state);
     }, [state]);
-const pagination = paginationLinks
+    const pagination = paginationLinks
         ? paginationLinks.map((item, key) => {
               return (
                   <li
@@ -139,7 +139,50 @@ const pagination = paginationLinks
                                       <td>{item.width}</td>
                                       <td>{item.height}</td>
                                       <td>{item.shippingDate}</td>
-                                      <td><button type="button">X</button></td>
+                                      <td>
+                                          <button
+                                              type="button"
+                                              onClick={() => {
+                                                  if (
+                                                      user !== null &&
+                                                      !user.data.city
+                                                  ) {
+                                                      let csrf = RegExp(
+                                                          "XSRF-TOKEN[^;]+"
+                                                      ).exec(document.cookie);
+                                                      csrf = decodeURIComponent(
+                                                          csrf
+                                                              ? csrf
+                                                                    .toString()
+                                                                    .replace(
+                                                                        /^[^=]+./,
+                                                                        ""
+                                                                    )
+                                                              : ""
+                                                      );
+                                                      axios.delete(
+                                                          `/api/deleteParcel/${item.id}`,
+                                                          {
+                                                              headers: {
+                                                                  Accept:
+                                                                      "application/json",
+                                                                  "Content-Type":
+                                                                      "application/json",
+                                                                  "X-CSRF-TOKEN": csrf,
+                                                                  Authorization: `Bearer ${
+                                                                      user.token
+                                                                          ? user.token
+                                                                          : null
+                                                                  }`
+                                                              }
+                                                          }
+                                                      );
+                                                  }
+                                              }}
+                                          >
+                                              X
+                                          </button>
+                                      </td>
                                   </tr>
                               );
                           })}
