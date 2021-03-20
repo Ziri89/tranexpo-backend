@@ -16,9 +16,15 @@ const ShipmentForm = () => {
     const countrieOptions = Object.keys(countriesData);
     const { isLoggedIn, user } = useSelector(state => state.auth);
     const userId = user !== null ? user.data.id : "";
-    //console.log(user.token);
-    //console.log("User ID: " + userId);
-    //console.log(user.data.id);
+    const { t, i18n } = useTranslation();
+    const linkGenerator = link => {
+        // if the current language is the default language dont add the lang prefix
+        const languageLocale =
+            i18n.options.fallbackLng[0] === i18n.language
+                ? null
+                : i18n.language;
+        return languageLocale ? "/" + languageLocale + link : link;
+    };
     const [formData, setFormData] = useState({
         countryFrom: "",
         cityFrom: "",
@@ -41,7 +47,7 @@ const ShipmentForm = () => {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [success, setSuccess] = useState(false);
-    const { t } = useTranslation();
+    
     useEffect(() => {
         if (user !== null) {
             if (Object.keys(user.data).includes("vehicle_number")) {
@@ -51,9 +57,6 @@ const ShipmentForm = () => {
             }
         }
     }, [isLoggedIn]);
-    useEffect(() => {
-        //console.log(formData.shippingDate);
-    }, [formData]);
     const fileInput = useRef();
     const hiddenInput = useRef();
     const formChangeHandler = ev => {
@@ -232,7 +235,6 @@ const ShipmentForm = () => {
                     setTimeout(() => {
                         location.reload();
                     }, 3000);
-                    console.log(res);
                 })
                 .catch(err => {
                     setFormData({

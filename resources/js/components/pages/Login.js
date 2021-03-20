@@ -15,7 +15,7 @@ import "./Login.css";
 const Login = () => {
     const form = useRef();
     const { t, i18n } = useTranslation();
-
+    const today = new Date();
     const required = value => {
         if (!value) {
             return (
@@ -86,7 +86,12 @@ const Login = () => {
     } else if (isLoggedIn && !user.data.vehicle_number) {
         history.push(linkGenerator("/"));
     } else if (isLoggedIn && user.data.vehicle_number) {
-        history.push(linkGenerator("/posts"));
+        if (user.data.endPay < today) {
+            history.push(linkGenerator("/packages-plans"));
+        }else {
+            history.push(linkGenerator("/posts"));
+        }
+        
     }
     return (
         <div className="login-form mb-5">

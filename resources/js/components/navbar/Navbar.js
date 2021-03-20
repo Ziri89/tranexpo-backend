@@ -10,6 +10,7 @@ import Logo from "../../img/logo.svg";
 const Navbar = () => {
     const { t, i18n } = useTranslation();
     const history = useHistory();
+    const today = new Date();
     const linkGenerator = link => {
         // if the current language is the default language dont add the lang prefix
         const languageLocale =
@@ -68,22 +69,22 @@ const Navbar = () => {
                         >
                             {t("transport_registration")}
                         </NavLink>
-                        {user !== null && user.data.vehicle_number ? (
-                            <React.Fragment>
+                        {user !== null && user.data.vehicle_number && (user.data.endPay > today) ? (
                                 <NavLink
                                     className="nav-link"
                                     to={linkGenerator("/posts")}
                                 >
                                     {t("posts")}
                                 </NavLink>
+                                ) : null}
+                        {user !== null && user.data.vehicle_number && (user.data.endPay < today) ? (
                                 <NavLink
                                     className="nav-link"
                                     to={linkGenerator("/packages-plans")}
                                 >
                                     {t("package_plans")}
                                 </NavLink>
-                            </React.Fragment>
-                        ) : null}
+                                ) : null}
                         {user !== null && !user.data.country ? (
                             <NavLink
                                 className="nav-link"

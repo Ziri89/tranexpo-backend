@@ -14,6 +14,13 @@ import { API_BASE_URL } from "../config/config";
 const Register = () => {
     const { t, i18n } = useTranslation();
     const countrieOptions = Object.keys(countriesData);
+    const linkGenerator = link => {
+        const languageLocale =
+            i18n.options.fallbackLng[0] === i18n.language
+                ? null
+                : i18n.language;
+        return languageLocale ? "/" + languageLocale + link : link;
+    };
     const [registrationData, setRegistrationData] = useState({
         name: "",
         email: "",
@@ -110,7 +117,7 @@ const Register = () => {
                             loading: false,
                             message: `${t("success_registration")}`
                         });
-                        history.push("/login");
+                        history.push(linkGenerator("/login"));
                     } else {
                         setRegistrationData({
                             ...registrationData,
