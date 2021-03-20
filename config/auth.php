@@ -40,23 +40,40 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'user' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+        'user-api'=>[
+            'driver'=>'passport',
+            'provider'=>'users',
+            'hash'=>false,
+        ],
 
         'shipper' => [
             'driver' => 'session',
             'provider' => 'shippers',
+        ],
+        'shipper-api'=>[
+            'driver'=>'passport',
+            'provider'=>'shippers',
+            'hash'=>false,
         ],
 
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+        'admin-api'=>[
+            'driver'=>'passport',
+            'provider'=>'admins',
+            'hash'=>false,
+        ],
 
         'api' => [
             'driver' => 'passport',
             'provider' => 'users',
-            'hash' => false,
         ],
-
 
     ],
 

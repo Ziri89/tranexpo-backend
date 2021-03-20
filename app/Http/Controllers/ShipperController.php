@@ -60,7 +60,7 @@ class ShipperController extends Controller
 
         $shipper = Shipper::find($id);
         $shipper->name = $request->input('name');
-        $shipper->email = $request->input('email');
+        //$shipper->email = $request->input('email');
         $shipper->phone = $request->input('phone');
         $shipper->city = $request->input('city');
         $shipper->country = $request->input('country');
@@ -68,9 +68,9 @@ class ShipperController extends Controller
         $shipper->company_number = $request->input('company_number');
         $shipper->vehicle_number = $request->input('vehicle_number');
         $shipper->zip_code = $request->input('zip_code');
-        $shipper->startpay = $request->input('startPay');
+        $shipper->startPay = $request->input('startPay');
         $shipper->endPay = $request->input('endPay');
-        $shipper->password = $request->input('password');
+        /////$shipper->password = $request->input('password');
  
         $shipper->save();
         return response()->json($shipper);
@@ -79,8 +79,25 @@ class ShipperController extends Controller
 
      public function showAll(Request $request)
      {
- 
+         
          $data = Shipper::query()->orderByDesc('id')->paginate(6);
          return response($data, 200);
      }
+
+     public function deleteShipper($id){
+
+        $user = Shipper::find($id);
+        if ($user) {
+            $user->delete();
+            return response()->json([
+                "user" => null,
+                "msg" => "Deleted successfully"
+            ], 204);
+        } else {
+            return response()->json([
+                "user" => null,
+                "msg" => "Something went wrong"
+            ], 400);
+        }
+    }
 }
