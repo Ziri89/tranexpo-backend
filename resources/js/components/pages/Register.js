@@ -264,7 +264,7 @@ const Register = () => {
                                             type="tel"
                                             id="phone"
                                             name="phone"
-                                            placeholder=""
+                                            placeholder="e.g. +4144XXXXXXX"
                                             className="form-control"
                                             value={registrationData.phone}
                                             onChange={onChangeHandler}

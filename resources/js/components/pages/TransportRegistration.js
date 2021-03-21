@@ -289,6 +289,7 @@ const TransportRegistration = () => {
                                             type="tel"
                                             id="phone"
                                             name="phone"
+                                            placeholder="e.g. +4144XXXXXXX"
                                             className="form-control"
                                             value={shipperReg.phone}
                                             onChange={onChangeHandler}

@@ -55,6 +55,7 @@ function PayPal(props) {
                         .then(res => {
                             console.log("It's paid");
                             history.push(linkGenerator("/posts"));
+                            window.location.reload();
                         })
                         .catch(() => {
                             console.log(err);
