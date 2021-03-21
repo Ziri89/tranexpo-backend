@@ -57,7 +57,7 @@ function PayPal(props) {
                             history.push(linkGenerator("/posts"));
                             window.location.reload();
                         })
-                        .catch(() => {
+                        .catch(err => {
                             console.log(err);
                         });
                 },
