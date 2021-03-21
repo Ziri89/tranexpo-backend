@@ -23,6 +23,8 @@ class Shipper extends Authenticatable
         'company_number',
         'vehicle_number',
         'zip_code',
+        'startPay',
+        'endPay',
         'password',
     ];
 

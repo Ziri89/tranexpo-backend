@@ -36,7 +36,11 @@ Route::post('registerAdmin', [AdminController::class, "registerAdmin"]);
 Route::post('register', [UserController::class, "registerUser"]);
 Route::post('login', [UserController::class, "loginUser"]);
 
+Route::group( ['prefix' => 'shipper','middleware' => ['auth:shipper-api'] ],function(){
 
+    Route::post('login', [UserController::class, "loginUser"]);
+    
+});  
 
 //Route::get("shipper", [ShipperController::class, "shipperDetail"]);
 /*
@@ -44,13 +48,17 @@ Route::middleware('auth:api')->group(function() {
 Route::get("user", [UserController::class, "userDetail"]);
 });
 */
-
+/*Route::group(['middleware' => 'auth:api'], function(){
+    Route::get('shipperAll', [ShipperController::class, "showAll"]);
+   });
+*/
 Route::get('user/{id}', [UserController::class, "show"])->name('user');
 Route::get('userAll/', [UserController::class, "showAll"])->name('userAll');
 Route::put('updateuser/{id}', [UserController::class, "updateUser"]);
 Route::delete('deleteuser/{id}', [UserController::class, "deleteUser"]);
 Route::put('updateshipper/{id}', [ShipperController::class, "updateShipper"]);
-Route::get('shipperAll/', [UserController::class, "showAll"])->name('shipperAll');
+Route::get('shipperAll/', [ShipperController::class, "showAll"])->name('shipperAll');
+Route::delete('deleteshipper/{id}', [ShipperController::class, "deleteShipper"]);
 
 //Route::post('logout', [UserController::class, "logout"]);
 $router->group(['middleware' => 'auth:api'], function () use ($router) {

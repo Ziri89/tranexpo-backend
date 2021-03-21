@@ -89,7 +89,7 @@ class ParcelController extends Controller
         return response($data, 200);
     }
 
-    public function delete($id)
+    public function deleteParcel($id)
     {
 
         $data = Parcel::find($id);

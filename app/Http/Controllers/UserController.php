@@ -68,7 +68,7 @@ class UserController extends Controller {
         } else {
             return 'auth fail';
         }
-    */
+    */ 
         if(Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])){
         $user      =      Auth::guard('web')->user();
         $token     =      $user->createToken('token')->accessToken;
@@ -147,7 +147,7 @@ class UserController extends Controller {
 
     }
     
-    public function delete($id){
+    public function deleteUser($id){
 
         $user = User::find($id);
         if ($user) {

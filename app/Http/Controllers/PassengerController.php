@@ -65,7 +65,7 @@ class PassengerController extends Controller
         return response($data, 200);
     }
 
-    public function delete($id)
+    public function deletePassenger($id)
     {
 
         $data = Passenger::find($id);
