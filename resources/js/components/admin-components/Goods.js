@@ -103,7 +103,7 @@ const Goods = () => {
                         <th scope="col">Grad polaska</th>
                         <th scope="col">Zemlja isporuke</th>
                         <th scope="col">Grad isporuke</th>
-                        <th scope="col">Status pošilajoca</th>
+                        <th scope="col">Status pošiljaoca</th>
                         <th scope="col">Status primaoca</th>
                         <th scope="col">Paket</th>
                         <th scope="col">Koverta</th>
