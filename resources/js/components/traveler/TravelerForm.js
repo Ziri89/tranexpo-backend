@@ -8,7 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import * as moment from "moment";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
-import './TravelerForm.css';
+import "./TravelerForm.css";
 
 import { API_BASE_URL } from "../config/config";
 
@@ -90,48 +90,57 @@ function TravelerForm() {
 
         setLoading(true);
         if (user !== null) {
-            axios
-                .post(API_BASE_URL + "api/passengerPublish", formdata, {
-                    headers: {
-                        Authorization: `Bearer ${
-                            user.token ? user.token : null
-                        }`,
-                        Accept: "application/json",
-                        "Content-Type": "application/json"
-                    }
-                })
-                .then(res => {
-                    setTraveler({
-                        countryFrom: "",
-                        cityFrom: "",
-                        countryTo: "",
-                        cityTo: "",
-                        departureDate: new Date(),
-                        dateOfReturn: null,
-                        onewayOrReturn: "A one-way ticket"
+            if (
+                traveler.countryFrom !== "" &&
+                traveler.cityFrom !== "" &&
+                traveler.countryTo !== "" &&
+                traveler.cityTo !== ""
+            ) {
+                axios
+                    .post(API_BASE_URL + "api/passengerPublish", formdata, {
+                        headers: {
+                            Authorization: `Bearer ${
+                                user.token ? user.token : null
+                            }`,
+                            Accept: "application/json",
+                            "Content-Type": "application/json"
+                        }
+                    })
+                    .then(res => {
+                        setTraveler({
+                            countryFrom: "",
+                            cityFrom: "",
+                            countryTo: "",
+                            cityTo: "",
+                            departureDate: new Date(),
+                            dateOfReturn: null,
+                            onewayOrReturn: "A one-way ticket"
+                        });
+                        setSuccess(true);
+                        setMessage(`${t("successfully_added_your_goods")}`);
+                        setLoading(false);
+                        setTimeout(() => {
+                            location.reload();
+                        }, 3000);
+                        console.log(res);
+                    })
+                    .catch(err => {
+                        setTraveler({
+                            countryFrom: "",
+                            cityFrom: "",
+                            countryTo: "",
+                            cityTo: "",
+                            departureDate: new Date(),
+                            dateOfReturn: null,
+                            onewayOrReturn: "A one-way ticket"
+                        });
+                        setSuccess(false);
+                        setMessage(`${t("something_is_wrong")}`);
+                        setLoading(false);
                     });
-                    setSuccess(true);
-                    setMessage(`${t("successfully_added_your_goods")}`);
-                    setLoading(false);
-                    setTimeout(() => {
-                        location.reload();
-                    }, 3000);
-                    console.log(res);
-                })
-                .catch(err => {
-                    setTraveler({
-                        countryFrom: "",
-                        cityFrom: "",
-                        countryTo: "",
-                        cityTo: "",
-                        departureDate: new Date(),
-                        dateOfReturn: null,
-                        onewayOrReturn: "A one-way ticket"
-                    });
-                    setSuccess(false);
-                    setMessage(`${t("something_is_wrong")}`);
-                    setLoading(false);
-                });
+            } else {
+                setMessage(`${t("field_with_stars")}`);
+            }
         }
     };
     const countriesFrom = countrieOptions

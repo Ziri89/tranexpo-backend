@@ -109,7 +109,6 @@ const Carriers = () => {
                         <th scope="col">Grad</th>
                         <th scope="col">Poštanski broj</th>
                         <th scope="col">Broj vozila</th>
-                        <th scope="col">Lozinka</th>
                         <th scope="col">Datum uplate paketa</th>
                         <th scope="col">Datum isteka pakeat</th>
                         <th scope="col">Obriši</th>
@@ -131,11 +130,52 @@ const Carriers = () => {
                                       <td>{item.city}</td>
                                       <td>{item.zip_code}</td>
                                       <td>{item.vehicle_number}</td>
-                                      <td>{item.password}</td>
                                       <td>{item.startPay}</td>
                                       <td>{item.endPay}</td>
                                       <td>
-                                          <button type="button">X</button>
+                                          <button
+                                              type="button"
+                                              onClick={ev => {
+                                                  if (
+                                                      user !== null &&
+                                                      !user.data.city
+                                                  ) {
+                                                      let csrf = RegExp(
+                                                          "XSRF-TOKEN[^;]+"
+                                                      ).exec(document.cookie);
+                                                      csrf = decodeURIComponent(
+                                                          csrf
+                                                              ? csrf
+                                                                    .toString()
+                                                                    .replace(
+                                                                        /^[^=]+./,
+                                                                        ""
+                                                                    )
+                                                              : ""
+                                                      );
+                                                      axios.delete(
+                                                          `/api/deleteshipper/${item.id}`,
+                                                          {
+                                                              headers: {
+                                                                  Accept:
+                                                                      "application/json",
+                                                                  "Content-Type":
+                                                                      "application/json",
+                                                                  "X-CSRF-TOKEN": csrf,
+                                                                  Authorization: `Bearer ${
+                                                                      user.token
+                                                                          ? user.token
+                                                                          : null
+                                                                  }`
+                                                              }
+                                                          }
+                                                      );
+                                                      ev.target.parentElement.parentElement.remove();
+                                                  }
+                                              }}
+                                          >
+                                              X
+                                          </button>
                                       </td>
                                   </tr>
                               );

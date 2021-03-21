@@ -126,7 +126,7 @@ const Passengers = () => {
                                       <td>
                                           <button
                                               type="button"
-                                              onClick={() => {
+                                              onClick={ev => {
                                                   if (
                                                       user !== null &&
                                                       !user.data.city
@@ -161,6 +161,7 @@ const Passengers = () => {
                                                               }
                                                           }
                                                       );
+                                                      ev.target.parentElement.parentElement.remove();
                                                   }
                                               }}
                                           >

@@ -5,7 +5,7 @@ import Passengers from "../admin-components/Passengers";
 import "./AdminDashboard.css";
 
 const AdminPanel = () => {
-    const [active, setActive] = useState("goods");
+    const [active, setActive] = useState("carriers");
 
     const btnClickHandler = ev => {
         ev.preventDefault();
@@ -31,6 +31,7 @@ const AdminPanel = () => {
                                     Korisnici objavljivači
                                 </button>
                             </li>
+                            */}
                             <li className="list-group-item bg-transparent">
                                 <button
                                     className="btn btn-danger btn-block"
@@ -39,7 +40,7 @@ const AdminPanel = () => {
                                 >
                                     Korisnici prevoznici
                                 </button>
-                            </li>*/}
+                            </li>
                             <li className="list-group-item bg-transparent">
                                 <button
                                     className="btn btn-danger btn-block"
@@ -73,6 +74,7 @@ const AdminPanel = () => {
                                 Objavljivači postova
                             </h2>
                         </article>
+                        */}
                         <article
                             id="carriers"
                             className={
@@ -83,7 +85,7 @@ const AdminPanel = () => {
                         >
                             <h2 className="text-center">Prevoznici</h2>
                             <Carriers />
-                        </article>*/}
+                        </article>
                         <article
                             id="goods"
                             className={
