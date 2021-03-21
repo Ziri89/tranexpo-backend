@@ -120,7 +120,7 @@ const TransportRegistration = () => {
                             loading: false,
                             message: `${t("success_registration")}`
                         });
-                        history.push(linkGenerator("/packages-plans"));
+                        history.push(linkGenerator("/login"));
                     } else {
                         setShipperReg({
                             ...shipperReg,
