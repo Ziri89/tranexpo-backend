@@ -11,6 +11,8 @@ const Navbar = () => {
     const { t, i18n } = useTranslation();
     const history = useHistory();
     const today = new Date();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
     const linkGenerator = link => {
         // if the current language is the default language dont add the lang prefix
         const languageLocale =
@@ -26,6 +28,24 @@ const Navbar = () => {
         dispatch(logout());
         history.push(linkGenerator("/login"));
     };
+    let userEndDate;
+    let userEndYear;
+    let userEndMonth;
+    if (user !== null) {
+        if (user.data.vehicle_number) {
+            userEndDate = user.data.endPay !== null ? user.data.endPay : "";
+            userEndYear =
+                user.data.endPay !== null ? userEndDate.slice(0, 4) : "";
+            userEndMonth =
+                user.data.endPay !== null ? userEndDate.slice(5, 7) : "";
+        }
+    }
+    console.log(
+        "Full Date: " + userEndDate,
+        "Year: " + userEndYear,
+        "Month: " + userEndMonth
+    );
+
     return (
         <nav className="navbar navbar-expand-xl navbar-light bg-light fixed-top">
             <div className="container-fluid">
@@ -69,22 +89,26 @@ const Navbar = () => {
                         >
                             {t("transport_registration")}
                         </NavLink>
-                        {user !== null && user.data.vehicle_number && (user.data.endPay > today) ? (
-                                <NavLink
-                                    className="nav-link"
-                                    to={linkGenerator("/posts")}
-                                >
-                                    {t("posts")}
-                                </NavLink>
-                                ) : null}
-                        {user !== null && user.data.vehicle_number && (user.data.endPay < today) ? (
-                                <NavLink
-                                    className="nav-link"
-                                    to={linkGenerator("/packages-plans")}
-                                >
-                                    {t("package_plans")}
-                                </NavLink>
-                                ) : null}
+                        {user !== null &&
+                        user.data.vehicle_number &&
+                        (year < userEndYear || month < userEndMonth) ? (
+                            <NavLink
+                                className="nav-link"
+                                to={linkGenerator("/posts")}
+                            >
+                                {t("posts")}
+                            </NavLink>
+                        ) : null}
+                        {user !== null &&
+                        user.data.vehicle_number &&
+                        (year > userEndYear || month >= userEndMonth) ? (
+                            <NavLink
+                                className="nav-link"
+                                to={linkGenerator("/packages-plans")}
+                            >
+                                {t("package_plans")}
+                            </NavLink>
+                        ) : null}
                         {user !== null && !user.data.country ? (
                             <NavLink
                                 className="nav-link"

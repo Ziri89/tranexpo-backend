@@ -13,7 +13,6 @@
     <script
         src="https://www.paypal.com/sdk/js?client-id=AdLvp7gnB2nrjtBF6bQ0gMx3BsVoCwQnypT7V-3PK0iQIJ-GwOXSl_n-Gpmt4G_h0fFPUy4Q7xdyb1ac&currency=EUR">
     </script>
-    <!--<script src="https://www.paypal.com/sdk/js?client-id=Abb-F1pDodxd694ER0mz3-tE1yi7AnhOsd4TWx9U0qaAvk4oponrqJRs&currency=EUR"></script>-->
 
 </head>
 

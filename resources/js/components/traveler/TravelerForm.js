@@ -10,7 +10,7 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import "./TravelerForm.css";
 
-import { API_BASE_URL } from "../config/config";
+//import { API_BASE_URL } from "../config/config";
 
 function TravelerForm() {
     const countrieOptions = Object.keys(countriesData);
@@ -97,7 +97,7 @@ function TravelerForm() {
                 traveler.cityTo !== ""
             ) {
                 axios
-                    .post(API_BASE_URL + "api/passengerPublish", formdata, {
+                    .post("api/passengerPublish", formdata, {
                         headers: {
                             Authorization: `Bearer ${
                                 user.token ? user.token : null

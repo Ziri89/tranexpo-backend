@@ -10,7 +10,7 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import "./ShipmentForm.css";
 
-import { API_BASE_URL } from "../config/config";
+//import { API_BASE_URL } from "../config/config";
 
 const ShipmentForm = () => {
     const countrieOptions = Object.keys(countriesData);
@@ -47,7 +47,7 @@ const ShipmentForm = () => {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [success, setSuccess] = useState(false);
-    
+
     useEffect(() => {
         if (user !== null) {
             if (Object.keys(user.data).includes("vehicle_number")) {
@@ -201,7 +201,7 @@ const ShipmentForm = () => {
         setLoading(true);
         if (user !== null) {
             axios
-                .post(API_BASE_URL + "api/publish", formdata, {
+                .post("api/publish", formdata, {
                     headers: {
                         Authorization: `Bearer ${
                             user.token ? user.token : null

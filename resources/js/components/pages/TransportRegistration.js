@@ -9,7 +9,7 @@ import Truck_6 from "../../img/truck_6.jpg";
 import Select from "../select/Select";
 import "./TransportRegistration.css";
 
-import { API_BASE_URL } from "../config/config";
+//import { API_BASE_URL } from "../config/config";
 
 const TransportRegistration = () => {
     const { t, i18n } = useTranslation();
@@ -40,7 +40,6 @@ const TransportRegistration = () => {
         phone_message: "",
         pass_message: "",
         company_name_message: "",
-        company_reg_num_message: "",
         vehicle_number_message: ""
     });
     const history = useHistory();
@@ -89,7 +88,7 @@ const TransportRegistration = () => {
                 loading: true
             });
             axios
-                .post(API_BASE_URL + "api/registerShipper", {
+                .post("api/registerShipper", {
                     name: shipperReg.name,
                     email: shipperReg.email,
                     company_name: shipperReg.company_name,

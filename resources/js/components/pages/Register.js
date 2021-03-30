@@ -9,7 +9,7 @@ import Banner from "../header/Banner";
 import Storehouse_3 from "../../img/storehous_3.jpg";
 import "./Register.css";
 
-import { API_BASE_URL } from "../config/config";
+//import { API_BASE_URL } from "../config/config";
 
 const Register = () => {
     const { t, i18n } = useTranslation();
@@ -89,7 +89,7 @@ const Register = () => {
                 loading: true
             });
             axios
-                .post(API_BASE_URL + "api/register", {
+                .post("api/register", {
                     name: registrationData.name,
                     email: registrationData.email,
                     company_name: registrationData.company_name,
