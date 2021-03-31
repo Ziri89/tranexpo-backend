@@ -91,7 +91,7 @@ const Navbar = () => {
                         </NavLink>
                         {user !== null &&
                         user.data.vehicle_number &&
-                        (year < userEndYear || month < userEndMonth) ? (
+                        (year < userEndYear || month <= userEndMonth) ? (
                             <NavLink
                                 className="nav-link"
                                 to={linkGenerator("/posts")}
@@ -101,7 +101,7 @@ const Navbar = () => {
                         ) : null}
                         {user !== null &&
                         user.data.vehicle_number &&
-                        (year > userEndYear || month >= userEndMonth) ? (
+                        (year > userEndYear || month > userEndMonth) ? (
                             <NavLink
                                 className="nav-link"
                                 to={linkGenerator("/packages-plans")}
