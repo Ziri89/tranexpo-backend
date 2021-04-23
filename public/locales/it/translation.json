@@ -90,5 +90,7 @@
     "passenger_posts": "Posti di trasporto passeggeri",
     "posts": "Messaggi",
     "ticket": "Biglietto dell'autobus",
-    "my_profile": "Il mio profilo"
+    "my_profile": "Il mio profilo",
+    "hello": "Ciao",
+    "about_title": "About TranExpo"
 }
