@@ -196,6 +196,7 @@ const TransportRegistration = () => {
                                             className="form-control"
                                             value={shipperReg.name}
                                             onChange={onChangeHandler}
+                                            autoComplete="off"
                                         />
                                         <p className="warning">
                                             {shipperReg.name_message}
@@ -220,6 +221,7 @@ const TransportRegistration = () => {
                                             className="form-control"
                                             value={shipperReg.email}
                                             onChange={onChangeHandler}
+                                            autoComplete="off"
                                         />
                                         <p className="warning">
                                             {shipperReg.email_message}
@@ -244,6 +246,7 @@ const TransportRegistration = () => {
                                             className="form-control"
                                             value={shipperReg.company_name}
                                             onChange={onChangeHandler}
+                                            autoComplete="off"
                                         />
                                         <p className="warning">
                                             {shipperReg.company_name_message}
@@ -268,6 +271,7 @@ const TransportRegistration = () => {
                                             className="form-control"
                                             value={shipperReg.company_number}
                                             onChange={onChangeHandler}
+                                            autoComplete="off"
                                         />
                                         <p className="warning">
                                             {shipperReg.company_reg_num_message}
@@ -292,6 +296,7 @@ const TransportRegistration = () => {
                                             className="form-control"
                                             value={shipperReg.phone}
                                             onChange={onChangeHandler}
+                                            autoComplete="off"
                                         />
                                         <p className="warning">
                                             {shipperReg.phone_message}
@@ -316,6 +321,7 @@ const TransportRegistration = () => {
                                             min="1"
                                             value={shipperReg.vehicle_number}
                                             onChange={onChangeHandler}
+                                            autoComplete="off"
                                         />
                                         <p className="warning">
                                             {shipperReg.vehicle_number_message}
@@ -361,6 +367,7 @@ const TransportRegistration = () => {
                                             value={shipperReg.city}
                                             onChange={onChangeHandler}
                                             options={cities}
+                                            autoComplete="off"
                                         />
                                         {/* <input
                                             type="text"
@@ -390,6 +397,7 @@ const TransportRegistration = () => {
                                             className="form-control"
                                             value={shipperReg.zip_code}
                                             onChange={onChangeHandler}
+                                            autoComplete="off"
                                         />
                                     </div>
                                 </div>
@@ -412,6 +420,7 @@ const TransportRegistration = () => {
                                             className="form-control"
                                             value={shipperReg.password}
                                             onChange={onChangeHandler}
+                                            autoComplete="off"
                                         />
                                         <p className="warning">
                                             {shipperReg.pass_message}

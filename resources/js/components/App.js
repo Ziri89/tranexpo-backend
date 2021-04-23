@@ -24,6 +24,7 @@ import Posts from "./pages/Posts";
 import AdminRegister from "./pages/AdminRegister";
 import AdminDashboard from "./pages/AdminDashboard";
 import TravelerPost from "./pages/TravelerSinglePost";
+import MyProfile from "./pages/MyProfile";
 
 const composeEnhancers =
     (window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
@@ -55,6 +56,9 @@ function App() {
                     </Route>
                     <Route path={localesString + "/about"}>
                         <About />
+                    </Route>
+                    <Route path={localesString + "/my-profile"}>
+                        <MyProfile />
                     </Route>
                     <Route path={localesString + "/posts"}>
                         <Posts />

@@ -197,6 +197,7 @@ const Register = () => {
                                             className="form-control"
                                             value={registrationData.name}
                                             onChange={onChangeHandler}
+                                            autoComplete="off"
                                         />
                                         <p className="warning">
                                             {registrationData.name_message}
@@ -221,6 +222,7 @@ const Register = () => {
                                             className="form-control"
                                             value={registrationData.email}
                                             onChange={onChangeHandler}
+                                            autoComplete="off"
                                         />
                                         <p className="warning">
                                             {registrationData.email_message}
@@ -247,6 +249,7 @@ const Register = () => {
                                                 registrationData.company_name
                                             }
                                             onChange={onChangeHandler}
+                                            autoComplete="off"
                                         />
                                     </div>
                                 </div>
@@ -268,6 +271,7 @@ const Register = () => {
                                             className="form-control"
                                             value={registrationData.phone}
                                             onChange={onChangeHandler}
+                                            autoComplete="off"
                                         />
                                         <p className="warning">
                                             {registrationData.phone_message}
@@ -316,6 +320,7 @@ const Register = () => {
                                             value={registrationData.city}
                                             onChange={onChangeHandler}
                                             options={cities}
+                                            autoComplete="off"
                                         />
                                         <p className="warning">
                                             {registrationData.city_message}
@@ -340,6 +345,7 @@ const Register = () => {
                                             className="form-control"
                                             value={registrationData.zip_code}
                                             onChange={onChangeHandler}
+                                            autoComplete="off"
                                         />
                                         <p className="warning">
                                             {registrationData.zip_cod_message}
@@ -364,6 +370,7 @@ const Register = () => {
                                             className="form-control"
                                             value={registrationData.street}
                                             onChange={onChangeHandler}
+                                            autoComplete="off"
                                         />
                                         <p className="warning">
                                             {registrationData.street_message}
@@ -389,6 +396,7 @@ const Register = () => {
                                             className="form-control"
                                             value={registrationData.password}
                                             onChange={onChangeHandler}
+                                            autoComplete="off"
                                         />
                                         <p className="warning">
                                             {registrationData.pass_message}
@@ -415,6 +423,7 @@ const Register = () => {
                                                 registrationData.password_confirm
                                             }
                                             onChange={onChangeHandler}
+                                            autoComplete="off"
                                         />
                                     </div>
                                 </div>

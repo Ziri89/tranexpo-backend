@@ -89,6 +89,14 @@ const Navbar = () => {
                         >
                             {t("transport_registration")}
                         </NavLink>
+                        {user !== null && (
+                            <NavLink
+                                className="nav-link"
+                                to={linkGenerator("/my-profile")}
+                            >
+                                {t("my_profile")}
+                            </NavLink>
+                        )}
                         {user !== null &&
                         user.data.vehicle_number &&
                         (year < userEndYear || month <= userEndMonth) ? (
