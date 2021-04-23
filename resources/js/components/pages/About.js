@@ -18,66 +18,48 @@ const About = () => {
                     <div className="col-12">
                         <div className="card">
                             <div className="card-body">
-                                <h2>KONTAKTADRESSE</h2>
-                                <ul className="list-unstyled">
-                                    <li>Tranexpo</li>
-                                    <li>Egliswilerstrasse 1</li>
-                                    <li>5703 Seon</li>
-                                    <li>Schweiz</li>
-                                    <li>tranexpo@gmx.ch</li>
-                                </ul>
-                                <h2>VERTRETUNGSBERECHTIGTE PERSONEN</h2>
-                                <ul className="list-unstyled">
-                                    <li>Elvis Dubica, Inhaber</li>
-                                    <li>Lukas Schulthess, Inhaber</li>
-                                </ul>
-                                <h2>HANDELSREGISTEREINTRAG</h2>
-                                <ul className="list-unstyled">
-                                    <li>Eingetragener Firmenname: Tranexpo</li>
-                                    <li>Nummer: CHE-380.368.052</li>
-                                </ul>
-                                <h2>HAFTUNGSAUSSCHLUSS</h2>
-                                <p className="text-justify">
-                                    Der Autor übernimmt keinerlei Gewähr
-                                    hinsichtlich der inhaltlichen Richtigkeit,
-                                    Genauigkeit, Aktualität, Zuverlässigkeit und
-                                    Vollständigkeit der Informationen.
-                                    Haftungsansprüche gegen den Autor wegen
-                                    Schäden materieller oder immaterieller Art,
-                                    welche aus dem Zugriff oder der Nutzung bzw.
-                                    Nichtnutzung der veröffentlichten
-                                    Informationen, durch Missbrauch der
-                                    Verbindung oder durch technische Störungen
-                                    entstanden sind, werden ausgeschlossen. Alle
-                                    Angebote sind unverbindlich. Der Autor
-                                    behält es sich ausdrücklich vor, Teile der
-                                    Seiten oder das gesamte Angebot ohne
-                                    gesonderte Ankündigung zu verändern, zu
-                                    ergänzen, zu löschen oder die
-                                    Veröffentlichung zeitweise oder endgültig
-                                    einzustellen.
-                                </p>
-                                <h2>HAFTUNG FÜR LINKS</h2>
-                                <p className="text-justify">
-                                    Verweise und Links auf Webseiten Dritter
-                                    liegen ausserhalb unseres
-                                    Verantwortungsbereichs Es wird jegliche
-                                    Verantwortung für solche Webseiten
-                                    abgelehnt. Der Zugriff und die Nutzung
-                                    solcher Webseiten erfolgen auf eigene Gefahr
-                                    des Nutzers oder der Nutzerin
-                                </p>
-                                <h2>URHEBERRECHTE</h2>
-                                <p className="text-justify">
-                                    Die Urheber- und alle anderen Rechte an
-                                    Inhalten, Bildern, Fotos oder anderen
-                                    Dateien auf der Website gehören
-                                    ausschliesslich der Firma Tranexpo oder den
-                                    speziell genannten Rechtsinhabern. Für die
-                                    Reproduktion jeglicher Elemente ist die
-                                    schriftliche Zustimmung der
-                                    Urheberrechtsträger im Voraus einzuholen.
-                                </p>
+                                <div className="mb-5">
+                                    <h2>{t("contact_address")}</h2>
+                                    <ul className="list-unstyled">
+                                        <li>{t("contact_name")}</li>
+                                        <li>{t("contact_street")}</li>
+                                        <li>{t("contact_city")}</li>
+                                        <li>{t("contact_state")}</li>
+                                        <li>{t("contact_email")}</li>
+                                    </ul>
+                                </div>
+                                <div className="mb-5">
+                                    <h2>{t("authorized_title")}</h2>
+                                    <ul className="list-unstyled">
+                                        <li>{t("authorized_person_1")}</li>
+                                        <li>{t("authorized_person_2")}</li>
+                                    </ul>
+                                </div>
+                                <div className="mb-5">
+                                    <h2>{t("register_title")}</h2>
+                                    <ul className="list-unstyled">
+                                        <li>{t("register_name")}</li>
+                                        <li>{t("register_num")}</li>
+                                    </ul>
+                                </div>
+                                <div className="mb-5">
+                                    <h2>{t("disclaimer_title")}</h2>
+                                    <p className="text-justify">
+                                        {t("disclaimer_text")}
+                                    </p>
+                                </div>
+                                <div className="mb-5">
+                                    <h2>{t("laibility_title")}</h2>
+                                    <p className="text-justify">
+                                        {t("laibility_text")}
+                                    </p>
+                                </div>
+                                <div className="mb-0">
+                                    <h2>{t("copyright_title")}</h2>
+                                    <p className="text-justify mb-0">
+                                        {t("copyright_text")}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>

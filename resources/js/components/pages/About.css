@@ -1,6 +1,10 @@
 #about .about {
     margin-top: -10%;
 }
+#about .about .card {
+    border: none;
+    border-radius: 20px;
+}
 @media screen and (max-width: 1360px) {
     #about .about {
         margin-top: -5%;
