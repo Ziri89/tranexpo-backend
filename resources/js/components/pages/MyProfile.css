@@ -2,3 +2,12 @@
     margin-top: -10%;
     z-index: 5;
 }
+.my-profile {
+    margin-bottom: 35px;
+}
+.my-profile dt {
+    font-size: 17px;
+}
+.my-profile dd {
+    font-size: 15px;
+}
