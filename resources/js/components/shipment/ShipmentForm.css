@@ -110,6 +110,22 @@ input::-webkit-inner-spin-button {
     color: #fff;
     max-width: 100%;
 }
+.optionContainer {
+    display: flex !important;
+    flex-wrap: wrap;
+    list-style: none;
+}
+.optionContainer li {
+    font-size: 0.8rem;
+    width: 50%;
+}
+.optionContainer li.highlight {
+    background: #ddd;
+}
+._3vt7_Mh4hRCFbp__dFqBCI li:hover {
+    background: #fc823c;
+}
+
 @media screen and (max-width: 768px) {
     .border-right.border-danger {
         border-right: none !important;

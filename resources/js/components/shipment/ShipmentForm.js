@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { countriesData } from "../countries/data";
+import { Multiselect } from "multiselect-react-dropdown";
 import Select from "../select/Select";
 import Loader from "../../img/loader.gif";
 import DatePicker from "react-datepicker";
@@ -9,6 +10,7 @@ import * as moment from "moment";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import "./ShipmentForm.css";
+import { isArrayLikeObject } from "lodash";
 
 //import { API_BASE_URL } from "../config/config";
 
@@ -47,6 +49,28 @@ const ShipmentForm = () => {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [success, setSuccess] = useState(false);
+    const [formPart, setFormPart] = useState(1);
+    const objectArray = [
+        { name: `${t("parcel")}`, key: "package", id: 1 },
+        { name: `${t("pallet")}`, key: "pallet", id: 2 },
+        { name: `${t("envelope")}`, key: "letter", id: 3 },
+        { name: `${t("bulky_goods")}`, key: "bulky goods", id: 4 },
+        { name: `${t("car_and_truck")}`, key: "car and truck", id: 5 },
+        { name: `${t("food")}`, key: "food", id: 6 },
+        { name: `${t("animals")}`, key: "animals", id: 7 },
+        { name: `${t("cool_and_frozen")}`, key: "cool and frozen", id: 8 },
+        { name: `${t("machinery")}`, key: "machinery", id: 9 },
+        { name: `${t("chemicals")}`, key: "chemicals", id: 10 }
+    ];
+    const costumStyle = {
+        chips: { background: "#fc823c" },
+        searchBox: {
+            border: "1px solid #ced4da",
+            fontSize: "0.8rem",
+            backgroundColor: "#fff",
+            borderRadius: "0.25rem"
+        }
+    };
 
     useEffect(() => {
         if (user !== null) {
@@ -271,7 +295,6 @@ const ShipmentForm = () => {
             });
         }
     };
-
     return (
         <div id="shipment" className="container pb-5">
             <form onSubmit={onSubmitHandler} encType="multipart/form-data">
@@ -438,121 +461,154 @@ const ShipmentForm = () => {
                                 {t("your_shipment")}
                             </h2>
                             <div className="row">
+                                <div className="col-12 col-xl-11">
+                                    <Multiselect
+                                        options={objectArray}
+                                        displayValue="name"
+                                        placeholder={t("type_of_goods")}
+                                        id="css_custom"
+                                        showCheckbox={true}
+                                        selectionLimit={1}
+                                        style={costumStyle}
+                                        onSelect={selectedList => {
+                                            console.log(selectedList);
+                                        }}
+                                    />
+                                </div>
+                                {[...Array(formPart)].map(
+                                    (v = undefined, i) => {
+                                        return (
+                                            <div className="col-12" key={i}>
+                                                <div className="form-row align-items-end">
+                                                    <div className="form-group col-md-2">
+                                                        <label
+                                                            htmlFor={`qty-${i}`}
+                                                        >
+                                                            {t("quantity")}
+                                                        </label>
+                                                        <input
+                                                            type="number"
+                                                            className="form-control"
+                                                            id={`qty-${i}`}
+                                                            name="quantity"
+                                                            min="1"
+                                                            step="1"
+                                                            value={
+                                                                formData.quantity
+                                                            }
+                                                            onChange={
+                                                                formChangeHandler
+                                                            }
+                                                        />
+                                                    </div>
+                                                    <div className="form-group col-md-2">
+                                                        <label
+                                                            htmlFor={`weight-${i}`}
+                                                        >
+                                                            {t("weight")} (kg)
+                                                        </label>
+                                                        <input
+                                                            type="number"
+                                                            className="form-control"
+                                                            id={`weight-${i}`}
+                                                            name="weight"
+                                                            placeholder={t(
+                                                                "unit"
+                                                            )}
+                                                            value={
+                                                                formData.weight
+                                                            }
+                                                            onChange={
+                                                                formChangeHandler
+                                                            }
+                                                        />
+                                                    </div>
+                                                    <div className="form-group col-md-3">
+                                                        <label>
+                                                            {t("dimensions")}{" "}
+                                                            (cm)
+                                                        </label>
+                                                        <input
+                                                            type="number"
+                                                            className="form-control"
+                                                            id="inputAddress"
+                                                            name="lenght"
+                                                            placeholder={t(
+                                                                "lenght"
+                                                            )}
+                                                            value={
+                                                                formData.lenght
+                                                            }
+                                                            onChange={
+                                                                formChangeHandler
+                                                            }
+                                                        />
+                                                    </div>
+                                                    <div className="form-group col-md-2">
+                                                        <input
+                                                            type="number"
+                                                            className="form-control"
+                                                            name="width"
+                                                            placeholder={t(
+                                                                "width"
+                                                            )}
+                                                            value={
+                                                                formData.width
+                                                            }
+                                                            onChange={
+                                                                formChangeHandler
+                                                            }
+                                                        />
+                                                    </div>
+                                                    <div className="form-group  col-md-2">
+                                                        <input
+                                                            type="number"
+                                                            className="form-control"
+                                                            id="inputCity"
+                                                            name="height"
+                                                            placeholder={t(
+                                                                "height"
+                                                            )}
+                                                            value={
+                                                                formData.height
+                                                            }
+                                                            onChange={
+                                                                formChangeHandler
+                                                            }
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        );
+                                    }
+                                )}
+                                <div className="col-12 col-md-11 text-right">
+                                    <button
+                                        className="btn btn-danger font-weight-bold mr-2"
+                                        type="button"
+                                        onClick={ev => {
+                                            ev.preventDefault();
+                                            if (formPart < 7) {
+                                                setFormPart(formPart + 1);
+                                            }
+                                        }}
+                                    >
+                                        + {t("add_parcel")}
+                                    </button>
+                                    <button
+                                        className="btn btn-danger font-weight-bold"
+                                        type="button"
+                                        onClick={ev => {
+                                            ev.preventDefault();
+                                            if (formPart > 1) {
+                                                setFormPart(formPart - 1);
+                                            }
+                                        }}
+                                    >
+                                        - {t("remove_parcel")}
+                                    </button>
+                                </div>
                                 <div className="col-12">
-                                    <div className="custom-control custom-checkbox custom-control-inline">
-                                        <input
-                                            type="checkbox"
-                                            id="parcel"
-                                            name="parcel"
-                                            className="custom-control-input"
-                                            checked={formData.parcel}
-                                            onChange={formChangeHandler}
-                                        />
-                                        <label
-                                            className="custom-control-label"
-                                            htmlFor="parcel"
-                                        >
-                                            {t("parcel")}
-                                        </label>
-                                    </div>
-                                    <div className="custom-control custom-checkbox custom-control-inline">
-                                        <input
-                                            type="checkbox"
-                                            id="envelope"
-                                            name="envelope"
-                                            className="custom-control-input"
-                                            checked={formData.envelope}
-                                            onChange={formChangeHandler}
-                                        />
-                                        <label
-                                            className="custom-control-label"
-                                            htmlFor="envelope"
-                                        >
-                                            {t("envelope")}
-                                        </label>
-                                    </div>
-                                    <div className="custom-control custom-checkbox custom-control-inline">
-                                        <input
-                                            type="checkbox"
-                                            id="pallet"
-                                            name="pallet"
-                                            className="custom-control-input"
-                                            checked={formData.pallet}
-                                            onChange={formChangeHandler}
-                                        />
-                                        <label
-                                            className="custom-control-label"
-                                            htmlFor="pallet"
-                                        >
-                                            {t("pallet")}
-                                        </label>
-                                    </div>
-                                    <div className="form-row align-items-end">
-                                        <div className="form-group col-md-2">
-                                            <label htmlFor="qty">
-                                                {t("quantity")}
-                                            </label>
-                                            <input
-                                                type="number"
-                                                className="form-control"
-                                                id="qty"
-                                                name="quantity"
-                                                min="1"
-                                                step="1"
-                                                value={formData.quantity}
-                                                onChange={formChangeHandler}
-                                            />
-                                        </div>
-                                        <div className="form-group col-md-2">
-                                            <label htmlFor="weight">
-                                                {t("weight")} (kg)
-                                            </label>
-                                            <input
-                                                type="number"
-                                                className="form-control"
-                                                id="weight"
-                                                name="weight"
-                                                placeholder={t("unit")}
-                                                value={formData.weight}
-                                                onChange={formChangeHandler}
-                                            />
-                                        </div>
-                                        <div className="form-group col-md-3">
-                                            <label>
-                                                {t("dimensions")} (cm)
-                                            </label>
-                                            <input
-                                                type="number"
-                                                className="form-control"
-                                                id="inputAddress"
-                                                name="lenght"
-                                                placeholder={t("lenght")}
-                                                value={formData.lenght}
-                                                onChange={formChangeHandler}
-                                            />
-                                        </div>
-                                        <div className="form-group col-md-2">
-                                            <input
-                                                type="number"
-                                                className="form-control"
-                                                name="width"
-                                                placeholder={t("width")}
-                                                value={formData.width}
-                                                onChange={formChangeHandler}
-                                            />
-                                        </div>
-                                        <div className="form-group  col-md-2">
-                                            <input
-                                                type="number"
-                                                className="form-control"
-                                                id="inputCity"
-                                                name="height"
-                                                placeholder={t("height")}
-                                                value={formData.height}
-                                                onChange={formChangeHandler}
-                                            />
-                                        </div>
-                                    </div>
                                     <div className="row">
                                         <div className="form-group col-12">
                                             <label htmlFor="image">

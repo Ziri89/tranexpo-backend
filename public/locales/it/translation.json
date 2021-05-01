@@ -13,8 +13,8 @@
     "ship_to": "Spedire a",
     "shipping_date": "Data di spedizione",
     "your_shipment": "La tua spedizione",
-    "parcel": "Pacco",
-    "envelope": "Busta",
+    "parcel": "Pacchi",
+    "envelope": "Lettere",
     "pallet": "Pallet",
     "quantity": "Quantità",
     "weight": "Peso",
@@ -111,5 +111,15 @@
     "laibility_text": "Riferimenti e collegamenti a siti Web di terzi sono al di fuori della nostra area di responsabilità Decliniamo qualsiasi responsabilità per tali siti. L'accesso e l'utilizzo di tali siti Web è a rischio dell'utente.",
     "copyright_title": "DIRITTO D'AUTORE",
     "copyright_text": "I diritti d'autore e tutti gli altri diritti su contenuti, immagini, foto o altri file sul sito web appartengono esclusivamente a Tranexpo o ai titolari dei diritti specificatamente nominati. Il consenso scritto del detentore del copyright deve essere ottenuto in anticipo per la riproduzione di qualsiasi elemento.",
-    "see_profile": "Il tuo profilo"
+    "see_profile": "Il tuo profilo",
+    "type_of_goods": "Tipo di merce",
+    "bulky_goods": "merci ingombranti",
+    "car_and_truck": "Auto e Camion",
+    "food": "Cibo",
+    "animals": "Animali",
+    "cool_and_frozen": "Alimenti refrigerati e congelati",
+    "machinery": "Macchinari",
+    "chemicals": "Sostanze Chimiche",
+    "add_parcel": "aggiungi una spedizione",
+    "remove_parcel": "rimuovere la spedizione"
 }
