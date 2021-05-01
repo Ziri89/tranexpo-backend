@@ -25,7 +25,7 @@ const MyProfile = () => {
             />
             <div className="container profile">
                 <div className="row">
-                    <div className="col-12 mb-4">
+                    <div className="col-12 mb-4 mb-3">
                         <div className="card">
                             <div className="card-body">
                                 <h2 className="text-center">
@@ -37,7 +37,7 @@ const MyProfile = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-6 col-lg-4">
+                    <div className="col-md-6 col-lg-4 mb-3">
                         <div className="card">
                             <div className="card-body">
                                 <dl>
@@ -70,7 +70,7 @@ const MyProfile = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-6 col-lg-4">
+                    <div className="col-md-6 col-lg-4 mb-3">
                         <div className="card">
                             <div className="card-body">
                                 <dl>
