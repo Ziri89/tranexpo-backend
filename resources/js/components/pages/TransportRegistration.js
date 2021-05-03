@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { Multiselect } from "multiselect-react-dropdown";
 import { useTranslation } from "react-i18next";
 import ReactFlagsSelect from "react-flags-select";
 import { countriesData } from "../countries/data-shortcode";
@@ -42,6 +43,27 @@ const TransportRegistration = () => {
         company_name_message: "",
         vehicle_number_message: ""
     });
+    const objectArray = [
+        { name: `${t("parcel")}`, key: "package", id: 1 },
+        { name: `${t("pallet")}`, key: "pallet", id: 2 },
+        { name: `${t("envelope")}`, key: "letter", id: 3 },
+        { name: `${t("bulky_goods")}`, key: "bulky goods", id: 4 },
+        { name: `${t("car_and_truck")}`, key: "car and truck", id: 5 },
+        { name: `${t("food")}`, key: "food", id: 6 },
+        { name: `${t("animals")}`, key: "animals", id: 7 },
+        { name: `${t("cool_and_frozen")}`, key: "cool and frozen", id: 8 },
+        { name: `${t("machinery")}`, key: "machinery", id: 9 },
+        { name: `${t("chemicals")}`, key: "chemicals", id: 10 }
+    ];
+    const costumStyle = {
+        chips: { background: "#fc823c" },
+        searchBox: {
+            border: "1px solid #ced4da",
+            fontSize: "0.8rem",
+            backgroundColor: "#fff",
+            borderRadius: "0.25rem"
+        }
+    };
     const history = useHistory();
     const onChangeHandler = ev => {
         const { name, value } = ev.target;
@@ -329,7 +351,7 @@ const TransportRegistration = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-md-6">
                                 <label
                                     htmlFor="country"
                                     className="text-danger"
@@ -350,7 +372,7 @@ const TransportRegistration = () => {
                                     searchable
                                 />
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-md-6">
                                 <div className="form-group">
                                     <label
                                         htmlFor="city"
@@ -369,18 +391,10 @@ const TransportRegistration = () => {
                                             options={cities}
                                             autoComplete="off"
                                         />
-                                        {/* <input
-                                            type="text"
-                                            id="city"
-                                            name="city"
-                                            className="form-control"
-                                            value={shipperReg.city}
-                                            onChange={onChangeHandler}
-                                        />*/}
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-md-6">
                                 <div className="form-group">
                                     <label
                                         htmlFor="zipcode"
@@ -402,7 +416,28 @@ const TransportRegistration = () => {
                                     </div>
                                 </div>
                             </div>
-
+                            <div className="col-md-6">
+                                <label
+                                    htmlFor="css_custom_input"
+                                    className="text-danger"
+                                >
+                                    {t("type_of_goods")}
+                                </label>
+                                <Multiselect
+                                    options={objectArray}
+                                    displayValue="name"
+                                    placeholder={t("type_of_goods")}
+                                    id="css_custom"
+                                    showArrow={true}
+                                    closeOnSelect={false}
+                                    avoidHighlightFirstOption={true}
+                                    showCheckbox={true}
+                                    style={costumStyle}
+                                    onSelect={selectedList => {
+                                        console.log(selectedList);
+                                    }}
+                                />
+                            </div>
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label

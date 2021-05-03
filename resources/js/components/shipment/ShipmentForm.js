@@ -10,7 +10,6 @@ import * as moment from "moment";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import "./ShipmentForm.css";
-import { isArrayLikeObject } from "lodash";
 
 //import { API_BASE_URL } from "../config/config";
 
@@ -469,6 +468,7 @@ const ShipmentForm = () => {
                                         id="css_custom"
                                         showCheckbox={true}
                                         selectionLimit={1}
+                                        avoidHighlightFirstOption={true}
                                         style={costumStyle}
                                         onSelect={selectedList => {
                                             console.log(selectedList);
@@ -490,7 +490,7 @@ const ShipmentForm = () => {
                                                             type="number"
                                                             className="form-control"
                                                             id={`qty-${i}`}
-                                                            name="quantity"
+                                                            name={`quantity-${i}`}
                                                             min="1"
                                                             step="1"
                                                             value={
@@ -511,7 +511,7 @@ const ShipmentForm = () => {
                                                             type="number"
                                                             className="form-control"
                                                             id={`weight-${i}`}
-                                                            name="weight"
+                                                            name={`weight-${i}`}
                                                             placeholder={t(
                                                                 "unit"
                                                             )}
@@ -532,7 +532,7 @@ const ShipmentForm = () => {
                                                             type="number"
                                                             className="form-control"
                                                             id="inputAddress"
-                                                            name="lenght"
+                                                            name={`lenght-${i}`}
                                                             placeholder={t(
                                                                 "lenght"
                                                             )}
@@ -548,7 +548,7 @@ const ShipmentForm = () => {
                                                         <input
                                                             type="number"
                                                             className="form-control"
-                                                            name="width"
+                                                            name={`width-${i}`}
                                                             placeholder={t(
                                                                 "width"
                                                             )}
@@ -565,7 +565,7 @@ const ShipmentForm = () => {
                                                             type="number"
                                                             className="form-control"
                                                             id="inputCity"
-                                                            name="height"
+                                                            name={`height-${i}`}
                                                             placeholder={t(
                                                                 "height"
                                                             )}

@@ -9,7 +9,7 @@ const year = date.getFullYear();
 const Footer = () => {
     const { t, i18n } = useTranslation();
     const lng = i18n.language;
-    console.log(lng);
+    //console.log(lng);
     return (
         <footer className="p-4 bg-dark text-white">
             <div className="container">

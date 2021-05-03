@@ -15,14 +15,14 @@ const AdminRegister = () => {
                 password: admin.password
             })
             .then(res => {
-                console.log(res);
+                //console.log(res);
                 setAdmin({
                     email: "",
                     password: ""
                 });
             })
             .catch(err => {
-                console.log(err);
+                //console.log(err);
                 setAdmin({
                     email: "",
                     password: ""

@@ -13,9 +13,6 @@ const LangBtn = () => {
                   .splice(-2)
                   .join("/")
             : curLocation.pathname.split("/").splice(-1);
-    useEffect(() => {
-        console.log(curLocation.pathname.indexOf("single-post"));
-    }, []);
 
     const { i18n } = useTranslation();
 

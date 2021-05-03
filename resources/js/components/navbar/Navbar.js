@@ -40,12 +40,6 @@ const Navbar = () => {
                 user.data.endPay !== null ? userEndDate.slice(5, 7) : "";
         }
     }
-    console.log(
-        "Full Date: " + userEndDate,
-        "Year: " + userEndYear,
-        "Month: " + userEndMonth
-    );
-
     return (
         <nav className="navbar navbar-expand-xl navbar-light bg-light fixed-top">
             <div className="container-fluid">

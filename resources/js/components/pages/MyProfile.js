@@ -47,6 +47,8 @@ const MyProfile = () => {
                                     <dd>Switzerland, Zurich</dd>
                                     <dt>{t("shipping_date")}</dt>
                                     <dd>04/25/2021</dd>
+                                    <dt>{t("type_of_goods")}</dt>
+                                    <dd>Car and Track</dd>
                                 </dl>
                                 <Link
                                     to={linkGenerator(`/single-post/some-id`)}
@@ -54,7 +56,7 @@ const MyProfile = () => {
                                 >
                                     {t("see_more")}
                                 </Link>
-                                <ReactStars
+                                {/*<ReactStars
                                     count={5}
                                     size={24}
                                     isHalf={true}
@@ -66,7 +68,7 @@ const MyProfile = () => {
                                     activeColor="#ffd700"
                                     value={4.5}
                                     edit={false}
-                                />
+                                />*/}
                             </div>
                         </div>
                     </div>
@@ -80,6 +82,8 @@ const MyProfile = () => {
                                     <dd>Switzerland, Zurich</dd>
                                     <dt>{t("shipping_date")}</dt>
                                     <dd>04/25/2021</dd>
+                                    <dt>{t("type_of_goods")}</dt>
+                                    <dd>Car and Track</dd>
                                 </dl>
                                 <Link
                                     to={linkGenerator(`/single-post/some-id`)}
@@ -87,7 +91,7 @@ const MyProfile = () => {
                                 >
                                     {t("see_more")}
                                 </Link>
-                                <ReactStars
+                                {/*<ReactStars
                                     count={5}
                                     size={24}
                                     isHalf={true}
@@ -99,7 +103,7 @@ const MyProfile = () => {
                                     activeColor="#ffd700"
                                     value={4}
                                     edit={false}
-                                />
+                                />*/}
                             </div>
                         </div>
                     </div>
@@ -113,6 +117,8 @@ const MyProfile = () => {
                                     <dd>Switzerland, Zurich</dd>
                                     <dt>{t("shipping_date")}</dt>
                                     <dd>04/25/2021</dd>
+                                    <dt>{t("type_of_goods")}</dt>
+                                    <dd>Car and Track</dd>
                                 </dl>
                                 <Link
                                     to={linkGenerator(`/single-post/some-id`)}
@@ -121,7 +127,7 @@ const MyProfile = () => {
                                     {t("see_more")}
                                 </Link>
 
-                                <ReactStars
+                                {/*<ReactStars
                                     count={5}
                                     size={24}
                                     isHalf={true}
@@ -133,7 +139,7 @@ const MyProfile = () => {
                                     activeColor="#ffd700"
                                     value={5}
                                     edit={false}
-                                />
+                                />*/}
                             </div>
                         </div>
                     </div>

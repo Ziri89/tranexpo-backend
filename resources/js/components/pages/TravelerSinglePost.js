@@ -32,7 +32,7 @@ const TravelerPost = () => {
                     }
                 })
                 .then(res => {
-                    console.log(res.data.data);
+                    //console.log(res.data.data);
                     return res.data.data;
                 })
                 .then(data => {
@@ -48,11 +48,11 @@ const TravelerPost = () => {
                         ticket: data.onewayOrReturn
                     });
                     setLoading(false);
-                    console.log(data);
+                    //console.log(data);
                 })
                 .catch(err => {
                     setErrMsg(`${t("")}`);
-                    console.log(err);
+                    //console.log(err);
                     setLoading(false);
                 });
         }
@@ -70,7 +70,7 @@ const TravelerPost = () => {
             axios
                 .get(`/api/user/${post.user_id}`)
                 .then(res => {
-                    console.log(res.data.user);
+                    //console.log(res.data.user);
 
                     setPostOwner({
                         ...postOwner,

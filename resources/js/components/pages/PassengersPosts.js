@@ -101,10 +101,10 @@ const PassengersPosts = () => {
                                       setPost(res.data.data);
                                       setPaginationLinks(res.data.links);
                                       setLoading(false);
-                                      console.log(paginationLinks);
+                                      //console.log(paginationLinks);
                                   })
                                   .catch(err => {
-                                      console.log(err);
+                                      //console.log(err);
                                       setLoading(false);
                                   });
                           }}

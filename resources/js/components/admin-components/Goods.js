@@ -33,7 +33,7 @@ const Goods = () => {
                     setLoading(false);
                 })
                 .catch(err => {
-                    console.log(err);
+                    //console.log(err);
                     setLoading(false);
                 });
         }
@@ -43,9 +43,6 @@ const Goods = () => {
             source.cancel("axios request cancelled");
         };
     }, []);
-    useEffect(() => {
-        console.log(state);
-    }, [state]);
     const pagination = paginationLinks
         ? paginationLinks.map((item, key) => {
               return (
@@ -75,10 +72,10 @@ const Goods = () => {
                                       setState(res.data.data);
                                       setPaginationLinks(res.data.links);
                                       setLoading(false);
-                                      console.log(paginationLinks);
+                                      //console.log(paginationLinks);
                                   })
                                   .catch(err => {
-                                      console.log(err);
+                                      //console.log(err);
                                       setLoading(false);
                                   });
                           }}

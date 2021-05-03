@@ -122,7 +122,7 @@ function TravelerForm() {
                         setTimeout(() => {
                             location.reload();
                         }, 3000);
-                        console.log(res);
+                        //console.log(res);
                     })
                     .catch(err => {
                         setTraveler({
