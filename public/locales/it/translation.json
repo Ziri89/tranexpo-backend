@@ -120,6 +120,13 @@
     "cool_and_frozen": "Alimenti refrigerati e congelati",
     "machinery": "Macchinari",
     "chemicals": "Sostanze Chimiche",
+    "people": "Persone",
     "add_parcel": "aggiungi una spedizione",
-    "remove_parcel": "rimuovere la spedizione"
+    "remove_parcel": "rimuovere la spedizione",
+    "carrier_profile": "Profilo portante",
+    "rate_the_carrier": "Valuta il corriere",
+    "comment": "Commento",
+    "carrier_information": "Informazioni sul vettore",
+    "ratings": "Giudizi",
+    "carrier_offers": "Offerte del vettore"
 }

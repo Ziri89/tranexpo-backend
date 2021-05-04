@@ -120,6 +120,13 @@
     "cool_and_frozen": "Frais et congelé",
     "machinery": "Machinerie",
     "chemicals": "Produits Chimiques",
+    "people": "Gens",
     "add_parcel": "ajouter un envoi",
-    "remove_parcel": "retirer l'envoi"
+    "remove_parcel": "retirer l'envoi",
+    "carrier_profile": "Profil de transporteur",
+    "rate_the_carrier": "Évaluez le transporteur",
+    "comment": "Commenter",
+    "carrier_information": "Profil de transporteur",
+    "ratings": "Évaluations",
+    "carrier_offers": "Offres des transporteurs"
 }

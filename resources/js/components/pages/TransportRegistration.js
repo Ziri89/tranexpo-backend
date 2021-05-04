@@ -53,7 +53,8 @@ const TransportRegistration = () => {
         { name: `${t("animals")}`, key: "animals", id: 7 },
         { name: `${t("cool_and_frozen")}`, key: "cool and frozen", id: 8 },
         { name: `${t("machinery")}`, key: "machinery", id: 9 },
-        { name: `${t("chemicals")}`, key: "chemicals", id: 10 }
+        { name: `${t("chemicals")}`, key: "chemicals", id: 10 },
+        { name: `${t("people")}`, key: "people", id: 11 }
     ];
     const costumStyle = {
         chips: { background: "#fc823c" },

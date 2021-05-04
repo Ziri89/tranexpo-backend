@@ -120,6 +120,13 @@
     "cool_and_frozen": "Hlađena i smrznuta Hrana",
     "machinery": "Mašine",
     "chemicals": "Hemikalije",
+    "people": "Putnike",
     "add_parcel": "dodajte pošiljku",
-    "remove_parcel": "uklonite pošiljku"
+    "remove_parcel": "uklonite pošiljku",
+    "carrier_profile": "Profil prevoznika",
+    "rate_the_carrier": "Ocijenite prevoznika",
+    "comment": "Komentar",
+    "carrier_information": "Informacije o prevozniku",
+    "ratings": "Ocjene",
+    "carrier_offers": "Ponude prevoznika"
 }

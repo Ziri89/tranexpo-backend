@@ -25,6 +25,8 @@ import AdminRegister from "./pages/AdminRegister";
 import AdminDashboard from "./pages/AdminDashboard";
 import TravelerPost from "./pages/TravelerSinglePost";
 import MyProfile from "./pages/MyProfile";
+import Carrier from "./pages/Carrier";
+import CarrierOffers from "./pages/CarrierOffers";
 
 const composeEnhancers =
     (window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
@@ -83,6 +85,12 @@ function App() {
                     </Route>
                     <Route path={localesString + "/traveler-single-post/:id"}>
                         <TravelerPost />
+                    </Route>
+                    <Route path={localesString + "/carrier-offers/"}>
+                        <CarrierOffers />
+                    </Route>
+                    <Route path={localesString + "/carrier/"}>
+                        <Carrier />
                     </Route>
                 </Switch>
             </HashRouter>

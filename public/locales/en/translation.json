@@ -120,6 +120,13 @@
     "cool_and_frozen": "Cool and Frozen",
     "machinery": "Machinery",
     "chemicals": "Chemicals",
+    "people": "People",
     "add_parcel": "add the shipment",
-    "remove_parcel": "remove the shipment"
+    "remove_parcel": "remove the shipment",
+    "carrier_profile": "Carrier profile",
+    "rate_the_carrier": "Rate the carrier",
+    "comment": "Comment",
+    "carrier_information": "Carrier information",
+    "ratings": "Ratings",
+    "carrier_offers": "Carrier Offers"
 }

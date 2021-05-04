@@ -120,6 +120,13 @@
     "cool_and_frozen": "Kühl & Gefriergut",
     "machinery": "Maschinen",
     "chemicals": "Chemikalien",
+    "people": "Personen",
     "add_parcel": "eine Sendung hinzufügen",
-    "remove_parcel": "Entfernen Sie die Sendung"
+    "remove_parcel": "Entfernen Sie die Sendung",
+    "carrier_profile": "Trägerprofil",
+    "rate_the_carrier": "Bewerten Sie den Träger",
+    "comment": "Kommentar",
+    "carrier_information": "Befördererinformation",
+    "ratings": "Bewertungen",
+    "carrier_offers": "Carrier Angebote"
 }

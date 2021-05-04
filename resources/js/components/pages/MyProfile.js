@@ -51,24 +51,11 @@ const MyProfile = () => {
                                     <dd>Car and Track</dd>
                                 </dl>
                                 <Link
-                                    to={linkGenerator(`/single-post/some-id`)}
+                                    to={linkGenerator(`/carrier-offers`)}
                                     className="btn btn-danger"
                                 >
                                     {t("see_more")}
                                 </Link>
-                                {/*<ReactStars
-                                    count={5}
-                                    size={24}
-                                    isHalf={true}
-                                    emptyIcon={<i className="far fa-star"></i>}
-                                    halfIcon={
-                                        <i className="fa fa-star-half-alt"></i>
-                                    }
-                                    fullIcon={<i className="fa fa-star"></i>}
-                                    activeColor="#ffd700"
-                                    value={4.5}
-                                    edit={false}
-                                />*/}
                             </div>
                         </div>
                     </div>
@@ -86,24 +73,11 @@ const MyProfile = () => {
                                     <dd>Car and Track</dd>
                                 </dl>
                                 <Link
-                                    to={linkGenerator(`/single-post/some-id`)}
+                                    to={linkGenerator(`/carrier-offers`)}
                                     className="btn btn-danger"
                                 >
                                     {t("see_more")}
                                 </Link>
-                                {/*<ReactStars
-                                    count={5}
-                                    size={24}
-                                    isHalf={true}
-                                    emptyIcon={<i className="far fa-star"></i>}
-                                    halfIcon={
-                                        <i className="fa fa-star-half-alt"></i>
-                                    }
-                                    fullIcon={<i className="fa fa-star"></i>}
-                                    activeColor="#ffd700"
-                                    value={4}
-                                    edit={false}
-                                />*/}
                             </div>
                         </div>
                     </div>
@@ -121,25 +95,11 @@ const MyProfile = () => {
                                     <dd>Car and Track</dd>
                                 </dl>
                                 <Link
-                                    to={linkGenerator(`/single-post/some-id`)}
+                                    to={linkGenerator(`/carrier-offers`)}
                                     className="btn btn-danger"
                                 >
                                     {t("see_more")}
                                 </Link>
-
-                                {/*<ReactStars
-                                    count={5}
-                                    size={24}
-                                    isHalf={true}
-                                    emptyIcon={<i className="far fa-star"></i>}
-                                    halfIcon={
-                                        <i className="fa fa-star-half-alt"></i>
-                                    }
-                                    fullIcon={<i className="fa fa-star"></i>}
-                                    activeColor="#ffd700"
-                                    value={5}
-                                    edit={false}
-                                />*/}
                             </div>
                         </div>
                     </div>
