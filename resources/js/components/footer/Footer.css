@@ -1,6 +1,7 @@
 footer {
     position: relative;
     z-index: 50;
+    margin-top: 10%;
 }
 footer h3 {
     font-size: 1.2rem;

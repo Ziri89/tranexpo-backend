@@ -7,7 +7,6 @@ import { useTranslation } from "react-i18next";
 const Posts = () => {
     const { t, i18n } = useTranslation();
     const linkGenerator = link => {
-      
         const languageLocale =
             i18n.options.fallbackLng[0] === i18n.language
                 ? null
@@ -23,7 +22,7 @@ const Posts = () => {
             />
             <div className="container my-5">
                 <div className="row">
-                    <div className="col-lg-6">
+                    <div className="col-lg-6 mb-3">
                         <Link
                             className="btn btn-danger btn-lg btn-block"
                             to={linkGenerator("/freight-posts")}
@@ -31,7 +30,7 @@ const Posts = () => {
                             {t("posts_for_transport")}
                         </Link>
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col-lg-6 mb-3">
                         <Link
                             className="btn btn-danger btn-lg btn-block"
                             to={linkGenerator("/passenger-posts")}

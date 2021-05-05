@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Form from "react-validation/build/form";
@@ -45,7 +45,6 @@ const Login = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-
     const onSubmitHandler = ev => {
         ev.preventDefault();
         setState({
@@ -78,27 +77,25 @@ const Login = () => {
     };
 
     const linkGenerator = link => {
-     
         const languageLocale =
             i18n.options.fallbackLng[0] === i18n.language
                 ? null
                 : i18n.language;
         return languageLocale ? "/" + languageLocale + link : link;
     };
-    
+
     if (isLoggedIn && !user.data.country) {
         history.push(linkGenerator("/admin-dashboard"));
     } else if (isLoggedIn && !user.data.vehicle_number) {
         history.push(linkGenerator("/"));
     } else if (isLoggedIn && user.data.vehicle_number) {
-        const thisDay = moment(today).format('YYYY-MM-DD');
-        const expire = moment(user.data.endPay).format('YYYY-MM-DD');
+        const thisDay = moment(today).format("YYYY-MM-DD");
+        const expire = moment(user.data.endPay).format("YYYY-MM-DD");
         if (expire < thisDay) {
             history.push(linkGenerator("/packages-plans"));
-        }else {
+        } else {
             history.push(linkGenerator("/posts"));
         }
-        
     }
     return (
         <div className="login-form mb-5">
