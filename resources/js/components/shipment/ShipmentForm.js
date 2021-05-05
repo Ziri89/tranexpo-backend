@@ -19,7 +19,7 @@ const ShipmentForm = () => {
     const userId = user !== null ? user.data.id : "";
     const { t, i18n } = useTranslation();
     const linkGenerator = link => {
-        // if the current language is the default language dont add the lang prefix
+        
         const languageLocale =
             i18n.options.fallbackLng[0] === i18n.language
                 ? null

@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink, Link, useHistory } from "react-router-dom";
 import LangBtn from "./LangBtn";
+import * as moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { logout } from "../actions/auth";
@@ -11,10 +12,8 @@ const Navbar = () => {
     const { t, i18n } = useTranslation();
     const history = useHistory();
     const today = new Date();
-    const month = today.getMonth() + 1;
-    const year = today.getFullYear();
     const linkGenerator = link => {
-        // if the current language is the default language dont add the lang prefix
+    
         const languageLocale =
             i18n.options.fallbackLng[0] === i18n.language
                 ? null
@@ -29,15 +28,11 @@ const Navbar = () => {
         history.push(linkGenerator("/login"));
     };
     let userEndDate;
-    let userEndYear;
-    let userEndMonth;
+    let thisDay;
     if (user !== null) {
-        if (user.data.vehicle_number) {
-            userEndDate = user.data.endPay !== null ? user.data.endPay : "";
-            userEndYear =
-                user.data.endPay !== null ? userEndDate.slice(0, 4) : "";
-            userEndMonth =
-                user.data.endPay !== null ? userEndDate.slice(5, 7) : "";
+        if (user.data.vehicle_number && user.data.endPay !== null) {
+            thisDay = moment(today).format('YYYY-MM-DD');
+            userEndDate = moment(user.data.endPay).format('YYYY-MM-DD');
         }
     }
     return (
@@ -83,7 +78,7 @@ const Navbar = () => {
                         >
                             {t("transport_registration")}
                         </NavLink>
-                        {user !== null && (
+                        {(user !== null && !user.data.vehicle_number) && (
                             <NavLink
                                 className="nav-link"
                                 to={linkGenerator("/my-profile")}
@@ -92,8 +87,7 @@ const Navbar = () => {
                             </NavLink>
                         )}
                         {user !== null &&
-                        user.data.vehicle_number &&
-                        (year < userEndYear || month <= userEndMonth) ? (
+                        user.data.vehicle_number &&  (thisDay < userEndDate) ? (
                             <NavLink
                                 className="nav-link"
                                 to={linkGenerator("/posts")}
@@ -103,7 +97,7 @@ const Navbar = () => {
                         ) : null}
                         {user !== null &&
                         user.data.vehicle_number &&
-                        (year > userEndYear || month > userEndMonth) ? (
+                        (thisDay > userEndDate) ? (
                             <NavLink
                                 className="nav-link"
                                 to={linkGenerator("/packages-plans")}

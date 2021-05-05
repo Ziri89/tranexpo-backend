@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
+import * as moment from "moment";
 import CheckButton from "react-validation/build/button";
 import { useTranslation } from "react-i18next";
 import { login } from "../actions/auth";
@@ -43,6 +44,8 @@ const Login = () => {
     const { message } = useSelector(state => state.message);
     const dispatch = useDispatch();
     const history = useHistory();
+
+
     const onSubmitHandler = ev => {
         ev.preventDefault();
         setState({
@@ -54,7 +57,7 @@ const Login = () => {
             dispatch(login(state.email, state.password))
                 .then(() => {
                     //console.log(response.data);
-                    window.location.reload();
+                    //window.location.reload();
                     setState({
                         ...state,
                         loading: false
@@ -73,20 +76,24 @@ const Login = () => {
             });
         }
     };
+
     const linkGenerator = link => {
-        // if the current language is the default language dont add the lang prefix
+     
         const languageLocale =
             i18n.options.fallbackLng[0] === i18n.language
                 ? null
                 : i18n.language;
         return languageLocale ? "/" + languageLocale + link : link;
     };
+    
     if (isLoggedIn && !user.data.country) {
         history.push(linkGenerator("/admin-dashboard"));
     } else if (isLoggedIn && !user.data.vehicle_number) {
         history.push(linkGenerator("/"));
     } else if (isLoggedIn && user.data.vehicle_number) {
-        if (user.data.endPay < today) {
+        const thisDay = moment(today).format('YYYY-MM-DD');
+        const expire = moment(user.data.endPay).format('YYYY-MM-DD');
+        if (expire < thisDay) {
             history.push(linkGenerator("/packages-plans"));
         }else {
             history.push(linkGenerator("/posts"));

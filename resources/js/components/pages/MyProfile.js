@@ -9,7 +9,7 @@ import "./MyProfile.css";
 const MyProfile = () => {
     const { t, i18n } = useTranslation();
     const linkGenerator = link => {
-        // if the current language is the default language dont add the lang prefix
+     
         const languageLocale =
             i18n.options.fallbackLng[0] === i18n.language
                 ? null
@@ -37,7 +37,7 @@ const MyProfile = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-6 col-lg-4">
+                    <div className="col-md-6 col-lg-4 mb-3">
                         <div className="card">
                             <div className="card-body">
                                 <dl>
@@ -59,7 +59,7 @@ const MyProfile = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-6 col-lg-4">
+                    <div className="col-md-6 col-lg-4 mb-3">
                         <div className="card">
                             <div className="card-body">
                                 <dl>
@@ -81,7 +81,7 @@ const MyProfile = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-6 col-lg-4">
+                    <div className="col-md-6 col-lg-4 mb-3">
                         <div className="card">
                             <div className="card-body">
                                 <dl>
