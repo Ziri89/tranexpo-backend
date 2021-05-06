@@ -10,7 +10,7 @@ import Loader from "../../img/img-loader.gif";
 import "./SinglePost.css";
 
 const Posts = () => {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const { user } = useSelector(state => state.auth);
     const [post, setPost] = useState(null);
     const [postOwner, setPostOwner] = useState(null);

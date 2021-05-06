@@ -422,12 +422,12 @@ const TransportRegistration = () => {
                                     htmlFor="css_custom_input"
                                     className="text-danger"
                                 >
-                                    {t("type_of_goods")}
+                                    {t("type_of_transport")}
                                 </label>
                                 <Multiselect
                                     options={objectArray}
                                     displayValue="name"
-                                    placeholder={t("type_of_goods")}
+                                    placeholder={t("type_of_transport")}
                                     id="css_custom"
                                     showArrow={true}
                                     closeOnSelect={false}

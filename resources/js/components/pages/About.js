@@ -5,7 +5,7 @@ import Storehous_1 from "../../img/storehous_1.jpg";
 import "./About.css";
 
 const About = () => {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     return (
         <section id="about">
             <Banner

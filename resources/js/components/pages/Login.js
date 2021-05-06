@@ -56,7 +56,7 @@ const Login = () => {
             dispatch(login(state.email, state.password))
                 .then(() => {
                     //console.log(response.data);
-                    //window.location.reload();
+                    window.location.reload();
                     setState({
                         ...state,
                         loading: false

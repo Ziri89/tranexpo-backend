@@ -1,15 +1,14 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import ReactStars from "react-rating-stars-component";
 import Banner from "../header/Banner";
 import Storehous_1 from "../../img/storehous_1.jpg";
+import Card from "../my-profile-card/Card";
 import "./MyProfile.css";
 
 const MyProfile = () => {
     const { t, i18n } = useTranslation();
     const linkGenerator = link => {
-     
         const languageLocale =
             i18n.options.fallbackLng[0] === i18n.language
                 ? null
@@ -38,70 +37,34 @@ const MyProfile = () => {
                         </div>
                     </div>
                     <div className="col-md-6 col-lg-4 mb-3">
-                        <div className="card">
-                            <div className="card-body">
-                                <dl>
-                                    <dt>{t("ship_from")}:</dt>
-                                    <dd>Bosnia and Hertzegovina, Sarajevo</dd>
-                                    <dt>{t("ship_to")}:</dt>
-                                    <dd>Switzerland, Zurich</dd>
-                                    <dt>{t("shipping_date")}</dt>
-                                    <dd>04/25/2021</dd>
-                                    <dt>{t("type_of_goods")}</dt>
-                                    <dd>Car and Track</dd>
-                                </dl>
-                                <Link
-                                    to={linkGenerator(`/carrier-offers`)}
-                                    className="btn btn-danger"
-                                >
-                                    {t("see_more")}
-                                </Link>
-                            </div>
-                        </div>
+                        <Card
+                            stateFrom="Bosnia and Hertzegovina"
+                            cityFrom="Sarajevo"
+                            stateTo="Switzerland"
+                            cityTo="Zurich"
+                            date="04/25/2021"
+                            type="Car and Track"
+                        />
                     </div>
                     <div className="col-md-6 col-lg-4 mb-3">
-                        <div className="card">
-                            <div className="card-body">
-                                <dl>
-                                    <dt>{t("ship_from")}:</dt>
-                                    <dd>Bosnia and Hertzegovina, Sarajevo</dd>
-                                    <dt>{t("ship_to")}:</dt>
-                                    <dd>Switzerland, Zurich</dd>
-                                    <dt>{t("shipping_date")}</dt>
-                                    <dd>04/25/2021</dd>
-                                    <dt>{t("type_of_goods")}</dt>
-                                    <dd>Car and Track</dd>
-                                </dl>
-                                <Link
-                                    to={linkGenerator(`/carrier-offers`)}
-                                    className="btn btn-danger"
-                                >
-                                    {t("see_more")}
-                                </Link>
-                            </div>
-                        </div>
+                        <Card
+                            stateFrom="Bosnia and Hertzegovina"
+                            cityFrom="Sarajevo"
+                            stateTo="Switzerland"
+                            cityTo="Zurich"
+                            date="04/25/2021"
+                            type="Car and Track"
+                        />
                     </div>
                     <div className="col-md-6 col-lg-4 mb-3">
-                        <div className="card">
-                            <div className="card-body">
-                                <dl>
-                                    <dt>{t("ship_from")}:</dt>
-                                    <dd>Bosnia and Hertzegovina, Sarajevo</dd>
-                                    <dt>{t("ship_to")}:</dt>
-                                    <dd>Switzerland, Zurich</dd>
-                                    <dt>{t("shipping_date")}</dt>
-                                    <dd>04/25/2021</dd>
-                                    <dt>{t("type_of_goods")}</dt>
-                                    <dd>Car and Track</dd>
-                                </dl>
-                                <Link
-                                    to={linkGenerator(`/carrier-offers`)}
-                                    className="btn btn-danger"
-                                >
-                                    {t("see_more")}
-                                </Link>
-                            </div>
-                        </div>
+                        <Card
+                            stateFrom="Bosnia and Hertzegovina"
+                            cityFrom="Sarajevo"
+                            stateTo="Switzerland"
+                            cityTo="Zurich"
+                            date="04/25/2021"
+                            type="Car and Track"
+                        />
                     </div>
                 </div>
             </div>

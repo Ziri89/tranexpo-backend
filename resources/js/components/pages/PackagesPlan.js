@@ -9,7 +9,7 @@ import PayPal from "../paypal/PayPal";
 
 const PackagesPlan = () => {
     const { user } = useSelector(state => state.auth);
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const [modal, setModal] = useState(false);
     const [packagePrice, setPackagePrice] = useState();
     const [limit, setLimit] = useState(0);

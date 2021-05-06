@@ -128,5 +128,10 @@
     "comment": "Kommentar",
     "carrier_information": "Befördererinformation",
     "ratings": "Bewertungen",
-    "carrier_offers": "Carrier Angebote"
+    "carrier_offers": "Carrier Angebote",
+    "see_offers": "Angebote anzeigen",
+    "reviews": "Bewertungen",
+    "direct_price": "Direkter Preis",
+    "type_of_transport": "Art des Transports",
+    "send": "Senden"
 }

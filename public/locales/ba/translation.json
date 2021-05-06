@@ -128,5 +128,10 @@
     "comment": "Komentar",
     "carrier_information": "Informacije o prevozniku",
     "ratings": "Ocjene",
-    "carrier_offers": "Ponude prevoznika"
+    "carrier_offers": "Ponude prevoznika",
+    "see_offers": "Vidi ponude",
+    "reviews": "Recenzija",
+    "direct_price": "Direktna cijena",
+    "type_of_transport": "Tip transporta",
+    "send": "Pošalji"
 }

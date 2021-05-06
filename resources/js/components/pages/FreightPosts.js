@@ -9,7 +9,7 @@ import Loader from "../../img/img-loader.gif";
 import "./Posts.css";
 
 const FreightPosts = () => {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     const { user } = useSelector(state => state.auth);
     const [post, setPost] = useState(null);
     const [paginationLinks, setPaginationLinks] = useState(null);

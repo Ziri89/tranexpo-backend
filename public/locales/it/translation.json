@@ -128,5 +128,10 @@
     "comment": "Commento",
     "carrier_information": "Informazioni sul vettore",
     "ratings": "Giudizi",
-    "carrier_offers": "Offerte del vettore"
+    "carrier_offers": "Offerte del vettore",
+    "see_offers": "Vedi le offerte",
+    "reviews": "recensioni",
+    "direct_price": "Prezzo diretto",
+    "type_of_transport": "Tipo di trasporto",
+    "send": "Spedire"
 }

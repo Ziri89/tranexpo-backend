@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 const TravelerPost = props => {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     return (
         <div className="single-post col-6 mb-4">
             <div className="card">

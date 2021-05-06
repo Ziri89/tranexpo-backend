@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 const Package = props => {
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
     return (
         <div className="col-lg-4 mb-4">
             <div className="card">

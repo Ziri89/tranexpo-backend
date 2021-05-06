@@ -128,5 +128,10 @@
     "comment": "Comment",
     "carrier_information": "Carrier information",
     "ratings": "Ratings",
-    "carrier_offers": "Carrier Offers"
+    "carrier_offers": "Carrier Offers",
+    "see_offers": "See offers",
+    "reviews": "Reviews",
+    "direct_price": "Direct price",
+    "type_of_transport": "Type of transport",
+    "send": "Send"
 }
