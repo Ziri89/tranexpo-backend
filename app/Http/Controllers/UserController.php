@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Auth\Events\Registered;
 use App\Models\User;
 
 class UserController extends Controller {
@@ -35,6 +36,8 @@ class UserController extends Controller {
         $inputs                 =           $request->all();
         $inputs['password']     =           bcrypt($inputs['password']);
         $user                   =           User::create($inputs);
+
+        event(new Registered($user));
 
         if(!is_null($user)) {
             return response()->json(["status" => $this->sucess_status, "success" => true, "data" => $user]);
