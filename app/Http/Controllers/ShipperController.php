@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Auth\Events\Registered;
 //use App\Models\User;
 use App\Models\Shipper;
 
@@ -36,6 +37,8 @@ class ShipperController extends Controller
         $inputs                 =           $request->all();
         $inputs['password']     =           bcrypt($inputs['password']);
         $shipper                =           Shipper::create($inputs);
+
+        
 
         if(!is_null($shipper)) {
             return response()->json(["status" => $this->sucess_status, "success" => true, "data" => $shipper]);
