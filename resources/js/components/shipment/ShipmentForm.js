@@ -19,7 +19,6 @@ const ShipmentForm = () => {
     const userId = user !== null ? user.data.id : "";
     const { t, i18n } = useTranslation();
     const linkGenerator = link => {
-        
         const languageLocale =
             i18n.options.fallbackLng[0] === i18n.language
                 ? null
@@ -34,14 +33,12 @@ const ShipmentForm = () => {
         cityTo: "",
         checkTo: "Residential",
         shippingDate: new Date(),
-        parcel: true,
-        envelope: false,
-        pallet: false,
-        quantity: "1",
-        weight: "",
-        lenght: "",
-        width: "",
-        height: "",
+        typeOfGoods: "",
+        quantity: [],
+        weight: [],
+        lenght: [],
+        width: [],
+        height: [],
         image: null
     });
     const [isUserShiper, setIsUserShiper] = useState(false);
@@ -80,6 +77,9 @@ const ShipmentForm = () => {
             }
         }
     }, [isLoggedIn]);
+    useEffect(() => {
+        console.log(formData);
+    }, [formData]);
     const fileInput = useRef();
     const hiddenInput = useRef();
     const formChangeHandler = ev => {
@@ -91,6 +91,7 @@ const ShipmentForm = () => {
             ...formData,
             [name]: value
         });
+        console.log(formData);
     };
 
     const setValueCountryFrom = ev => {
@@ -212,14 +213,12 @@ const ShipmentForm = () => {
             "shippingDate",
             moment(formData.shippingDate).format("YYYY-MM-DD")
         );
-        formdata.append("parcel", formData.parcel === true ? 1 : 0);
-        formdata.append("envelope", formData.envelope === true ? 1 : 0);
-        formdata.append("pallet", formData.pallet === true ? 1 : 0);
-        formdata.append("quantity", formData.quantity);
-        formdata.append("weight", formData.weight);
-        formdata.append("lenght", formData.lenght);
-        formdata.append("width", formData.width);
-        formdata.append("height", formData.height);
+        formdata.append("typeOfGoods", formData.typeOfGoods);
+        formdata.append("quantity", JSON.stringify(formData.quantity));
+        formdata.append("weight", JSON.stringify(formData.weight));
+        formdata.append("lenght", JSON.stringify(formData.lenght));
+        formdata.append("width", JSON.stringify(formData.width));
+        formdata.append("height", JSON.stringify(formData.height));
         formdata.append("user_id", hiddenInput.current.value);
         setLoading(true);
         if (user !== null) {
@@ -242,14 +241,12 @@ const ShipmentForm = () => {
                         cityTo: "",
                         checkTo: "Residential",
                         shippingDate: new Date(),
-                        parcel: 1,
-                        envelope: 0,
-                        pallet: 0,
-                        quantity: "1",
-                        weight: "",
-                        lenght: "",
-                        width: "",
-                        height: "",
+                        typeOfGoods: "",
+                        quantity: [],
+                        weight: [],
+                        lenght: [],
+                        width: [],
+                        height: [],
                         image: null
                     });
                     setSuccess(true);
@@ -268,14 +265,12 @@ const ShipmentForm = () => {
                         cityTo: "",
                         checkTo: "Residential",
                         shippingDate: new Date(),
-                        parcel: 1,
-                        envelope: 0,
-                        pallet: 0,
-                        quantity: "1",
-                        weight: "",
-                        lenght: "",
-                        width: "",
-                        height: "",
+                        typeOfGoods: "",
+                        quantity: [],
+                        weight: [],
+                        lenght: [],
+                        width: [],
+                        height: [],
                         image: null
                     });
                     setSuccess(false);
@@ -471,7 +466,15 @@ const ShipmentForm = () => {
                                         avoidHighlightFirstOption={true}
                                         style={costumStyle}
                                         onSelect={selectedList => {
-                                            console.log(selectedList);
+                                            setFormData({
+                                                ...formData,
+                                                typeOfGoods: JSON.stringify(
+                                                    selectedList
+                                                )
+                                            });
+                                            console.log(
+                                                JSON.stringify(selectedList)
+                                            );
                                         }}
                                     />
                                 </div>
@@ -493,12 +496,24 @@ const ShipmentForm = () => {
                                                             name={`quantity-${i}`}
                                                             min="1"
                                                             step="1"
-                                                            value={
-                                                                formData.quantity
-                                                            }
-                                                            onChange={
-                                                                formChangeHandler
-                                                            }
+                                                            placeholder="kom"
+                                                            onBlur={ev => {
+                                                                const target =
+                                                                    ev.target;
+                                                                const name =
+                                                                    target.name;
+                                                                const value =
+                                                                    target.value;
+                                                                setFormData({
+                                                                    ...formData,
+                                                                    quantity: [
+                                                                        ...formData.quantity,
+                                                                        {
+                                                                            [name]: value
+                                                                        }
+                                                                    ]
+                                                                });
+                                                            }}
                                                         />
                                                     </div>
                                                     <div className="form-group col-md-2">
@@ -515,12 +530,23 @@ const ShipmentForm = () => {
                                                             placeholder={t(
                                                                 "unit"
                                                             )}
-                                                            value={
-                                                                formData.weight
-                                                            }
-                                                            onChange={
-                                                                formChangeHandler
-                                                            }
+                                                            onBlur={ev => {
+                                                                const target =
+                                                                    ev.target;
+                                                                const name =
+                                                                    target.name;
+                                                                const value =
+                                                                    target.value;
+                                                                setFormData({
+                                                                    ...formData,
+                                                                    weight: [
+                                                                        ...formData.weight,
+                                                                        {
+                                                                            [name]: value
+                                                                        }
+                                                                    ]
+                                                                });
+                                                            }}
                                                         />
                                                     </div>
                                                     <div className="form-group col-md-3">
@@ -536,12 +562,23 @@ const ShipmentForm = () => {
                                                             placeholder={t(
                                                                 "lenght"
                                                             )}
-                                                            value={
-                                                                formData.lenght
-                                                            }
-                                                            onChange={
-                                                                formChangeHandler
-                                                            }
+                                                            onBlur={ev => {
+                                                                const target =
+                                                                    ev.target;
+                                                                const name =
+                                                                    target.name;
+                                                                const value =
+                                                                    target.value;
+                                                                setFormData({
+                                                                    ...formData,
+                                                                    lenght: [
+                                                                        ...formData.lenght,
+                                                                        {
+                                                                            [name]: value
+                                                                        }
+                                                                    ]
+                                                                });
+                                                            }}
                                                         />
                                                     </div>
                                                     <div className="form-group col-md-2">
@@ -552,12 +589,23 @@ const ShipmentForm = () => {
                                                             placeholder={t(
                                                                 "width"
                                                             )}
-                                                            value={
-                                                                formData.width
-                                                            }
-                                                            onChange={
-                                                                formChangeHandler
-                                                            }
+                                                            onBlur={ev => {
+                                                                const target =
+                                                                    ev.target;
+                                                                const name =
+                                                                    target.name;
+                                                                const value =
+                                                                    target.value;
+                                                                setFormData({
+                                                                    ...formData,
+                                                                    width: [
+                                                                        ...formData.width,
+                                                                        {
+                                                                            [name]: value
+                                                                        }
+                                                                    ]
+                                                                });
+                                                            }}
                                                         />
                                                     </div>
                                                     <div className="form-group  col-md-2">
@@ -569,12 +617,23 @@ const ShipmentForm = () => {
                                                             placeholder={t(
                                                                 "height"
                                                             )}
-                                                            value={
-                                                                formData.height
-                                                            }
-                                                            onChange={
-                                                                formChangeHandler
-                                                            }
+                                                            onBlur={ev => {
+                                                                const target =
+                                                                    ev.target;
+                                                                const name =
+                                                                    target.name;
+                                                                const value =
+                                                                    target.value;
+                                                                setFormData({
+                                                                    ...formData,
+                                                                    height: [
+                                                                        ...formData.height,
+                                                                        {
+                                                                            [name]: value
+                                                                        }
+                                                                    ]
+                                                                });
+                                                            }}
                                                         />
                                                     </div>
                                                 </div>
