@@ -25,7 +25,7 @@ class CreateParcelsTable extends Migration
             $table->boolean('parcel');
             $table->boolean('envelope');
             $table->boolean('pallet');
-            $table->string('image')->default('');
+            $table->string('image')->default('')->nullable();
             $table->integer('quantity');
             $table->integer('weight');
             $table->integer('lenght');
