@@ -8,7 +8,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ParcelController;
 use App\Http\Controllers\PassengerController;
 use App\Http\Controllers\ShipperController;
-use App\Http\Controllers\VerificationController;
 use App\Models\Admin;
 use Mockery\Generator\StringManipulation\Pass\Pass;
 
@@ -85,7 +84,7 @@ Route::delete('deletePassenger/{id}', [PassengerController::class, "deletePassen
 
 
 // Verify email
-Route::get('/email/verify/{id}/{hash}', [VerificationController::class, '__invoke'])
+Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
     ->middleware(['signed', 'throttle:6,1'])
     ->name('verification.verify');
 

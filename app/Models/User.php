@@ -52,11 +52,6 @@ class User extends Authenticatable implements MustVerifyEmail
     {
          return $this->hasMany(Parcel::class, 'user_id');
     }
-     
-    public function sendEmailVerificationNotification()
-    {
-         $this->notify(new \App\Notifications\CustomVerifyEmail);
-    }
 
    /* public function post()
     {
