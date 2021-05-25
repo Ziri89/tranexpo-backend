@@ -26,3 +26,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('parcel', function(){ return App\Models\Parcel::with('user')->get(); });
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Auth::routes(['verify' => true]);
+
+Route::get('/home', 'HomeController@index')->name('home');

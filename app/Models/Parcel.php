@@ -43,7 +43,6 @@ class Parcel extends Model
         $parcel->user_id = Auth::id();
     });
     }
-
     /*public function post()
     {
          return $this->hasMany('App\Models\Parcel');
