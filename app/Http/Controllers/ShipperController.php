@@ -23,8 +23,9 @@ class ShipperController extends Controller
                 'company_number' =>        '',  
                 'vehicle_number' =>        'required|numeric',
                 'city'           =>        'required',
-                'country'           =>     'required',
+                'country'        =>        'required',
                 'zip_code'       =>        'required|numeric',
+                'typeOfTransport'=>        'required',
 
             ]
         );
@@ -70,6 +71,7 @@ class ShipperController extends Controller
         $shipper->company_number = $request->input('company_number');
         $shipper->vehicle_number = $request->input('vehicle_number');
         $shipper->zip_code = $request->input('zip_code');
+        $shipper->typeOfTransport = $request->input('typeOfTransport');
         $shipper->startPay = $request->input('startPay');
         $shipper->endPay = $request->input('endPay');
         /////$shipper->password = $request->input('password');

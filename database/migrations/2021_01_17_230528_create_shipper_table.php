@@ -26,6 +26,7 @@ class CreateShipperTable extends Migration
             $table->string('company_number');
             $table->integer('vehicle_number');
             $table->string('zip_code');
+            $table->string('typeOfTransport');
             $table->rememberToken();
             $table->timestamps();
         });
