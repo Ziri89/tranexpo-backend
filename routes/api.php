@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ParcelController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\PassengerController;
 use App\Http\Controllers\ShipperController;
 use App\Models\Admin;
@@ -36,12 +37,12 @@ Route::post('registerAdmin', [AdminController::class, "registerAdmin"]);
 Route::post('register', [UserController::class, "registerUser"]);
 Route::post('login', [UserController::class, "loginUser"]);
 
-Route::group( ['prefix' => 'shipper','middleware' => ['auth:shipper-api'] ],function(){
+/*Route::group( ['prefix' => 'shipper','middleware' => ['auth:shipper-api'] ],function(){
 
     Route::post('login', [UserController::class, "loginUser"]);
     
 });  
-
+*/
 //Route::get("shipper", [ShipperController::class, "shipperDetail"]);
 /*
 Route::middleware('auth:api')->group(function() {

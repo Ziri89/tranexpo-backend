@@ -27,9 +27,7 @@ class ParcelController extends Controller
         $data->countryTo = $request->countryTo;
         $data->cityTo = $request->cityTo;
         $data->checkTo = $request->checkTo;
-        $data->parcel = $request->parcel;
-        $data->envelope = $request->envelope;
-        $data->pallet = $request->pallet;
+        $data->typeOfGoods = $request->typeOfGoods;
         $data->quantity = $request->quantity;
         $data->weight = $request->weight;
         $data->lenght = $request->lenght;
