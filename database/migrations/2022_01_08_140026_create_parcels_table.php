@@ -22,7 +22,7 @@ class CreateParcelsTable extends Migration
             $table->string('countryTo');
             $table->string('cityTo');
             $table->text('checkTo');
-            $table->boolean('typeOfGoods');
+            $table->text('typeOfGoods');
             $table->string('image')->default('')->nullable();
             $table->integer('quantity');
             $table->integer('weight');

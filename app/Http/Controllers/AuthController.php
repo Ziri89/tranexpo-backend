@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Model\User;
 use Illuminate\Http\Request;
-use Illuminate\Auth\Events\Registered;
 
 class AuthController extends Controller
 {

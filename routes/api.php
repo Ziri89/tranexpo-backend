@@ -3,14 +3,10 @@
 use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ParcelController;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\PassengerController;
 use App\Http\Controllers\ShipperController;
-use App\Models\Admin;
-use Mockery\Generator\StringManipulation\Pass\Pass;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +19,7 @@ use Mockery\Generator\StringManipulation\Pass\Pass;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
@@ -31,11 +27,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('registerShipper', [ShipperController::class, "registerShipper"]);
 Route::post('registerAdmin', [AdminController::class, "registerAdmin"]);
-/*Route::middleware('auth:api')->group(function() {
+
+Route::middleware('api')->group(function() {
+    Route::post('register', [UserController::class, "registerUser"]);
+    Route::post('login', [UserController::class, "loginUser"]);
 });
-*/
-Route::post('register', [UserController::class, "registerUser"]);
-Route::post('login', [UserController::class, "loginUser"]);
+
+
+
+
 
 /*Route::group( ['prefix' => 'shipper','middleware' => ['auth:shipper-api'] ],function(){
 
@@ -61,8 +61,7 @@ Route::put('updateshipper/{id}', [ShipperController::class, "updateShipper"]);
 Route::get('shipperAll/', [ShipperController::class, "showAll"])->name('shipperAll');
 Route::delete('deleteshipper/{id}', [ShipperController::class, "deleteShipper"]);
 
-//Route::post('logout', [UserController::class, "logout"]);
-$router->group(['middleware' => 'auth:api'], function () use ($router) {
+$router->group(['middleware' => 'api'], function () use ($router) {
     Route::get('logout', [UserController::class, 'logout']);
 });
 
@@ -83,14 +82,3 @@ Route::get('passengerShowById/{id}', [PassengerController::class, "show"])->name
 Route::delete('deletePassenger/{id}', [PassengerController::class, "deletePassenger"])->name('deletePassenger');
 
 
-
-// Verify email
-Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
-    ->middleware(['signed', 'throttle:6,1'])
-    ->name('verification.verify');
-
-// Resend link to verify email
-Route::post('/email/verify/resend', function (Request $request) {
-    $request->user()->sendEmailVerificationNotification();
-    return back()->with('message', 'Verification link sent!');
-})->middleware(['auth:api', 'throttle:6,1'])->name('verification.send');
