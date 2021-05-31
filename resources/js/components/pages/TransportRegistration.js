@@ -32,6 +32,7 @@ const TransportRegistration = () => {
         city: "",
         zip_code: "",
         vehicle_number: 1,
+        typeOfTransport: "",
         password: "",
         password_confirm: "",
         loading: false,
@@ -121,6 +122,7 @@ const TransportRegistration = () => {
                     country: shipperReg.country,
                     city: shipperReg.city,
                     zip_code: shipperReg.zip_code,
+                    typeOfTransport: shipperReg.typeOfTransport,
                     password: shipperReg.password
                 })
                 .then(res => {
@@ -136,6 +138,7 @@ const TransportRegistration = () => {
                             city: "",
                             country: "",
                             zip_code: "",
+                            typeOfTransport: "",
                             vehicle_number: 1,
                             password: "",
                             password_confirm: "",
@@ -435,7 +438,15 @@ const TransportRegistration = () => {
                                     showCheckbox={true}
                                     style={costumStyle}
                                     onSelect={selectedList => {
-                                        console.log(selectedList);
+                                        setShipperReg({
+                                            ...shipperReg,
+                                            typeOfTransport: JSON.stringify(
+                                                selectedList
+                                            )
+                                        });
+                                        console.log(
+                                            JSON.stringify(selectedList)
+                                        );
                                     }}
                                 />
                             </div>

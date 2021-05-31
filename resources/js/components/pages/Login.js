@@ -91,7 +91,10 @@ const Login = () => {
     } else if (isLoggedIn && user.data.vehicle_number) {
         const thisDay = moment(today).format("YYYY-MM-DD");
         const expire = moment(user.data.endPay).format("YYYY-MM-DD");
-        if (expire < thisDay) {
+        if (
+            expire < thisDay ||
+            (user.data.endPay === null && user.data.startPay === null)
+        ) {
             history.push(linkGenerator("/packages-plans"));
         } else {
             history.push(linkGenerator("/posts"));

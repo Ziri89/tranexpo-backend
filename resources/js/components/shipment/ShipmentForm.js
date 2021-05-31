@@ -254,7 +254,7 @@ const ShipmentForm = () => {
                     setLoading(false);
                     setTimeout(() => {
                         location.reload();
-                    }, 3000);
+                    }, 50000);
                 })
                 .catch(err => {
                     setFormData({
