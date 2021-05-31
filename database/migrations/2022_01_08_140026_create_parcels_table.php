@@ -24,11 +24,11 @@ class CreateParcelsTable extends Migration
             $table->text('checkTo');
             $table->text('typeOfGoods');
             $table->string('image')->default('')->nullable();
-            $table->integer('quantity');
-            $table->integer('weight');
-            $table->integer('lenght');
-            $table->integer('width');
-            $table->integer('height');
+            $table->string('quantity');
+            $table->string('weight');
+            $table->string('lenght');
+            $table->string('width');
+            $table->string('height');
             $table->date('shippingDate');
             $table->foreignId('user_id')->constrained('users')->nullable();
             $table->rememberToken();
