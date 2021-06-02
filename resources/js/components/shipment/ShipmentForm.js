@@ -254,7 +254,7 @@ const ShipmentForm = () => {
                     setLoading(false);
                     setTimeout(() => {
                         location.reload();
-                    }, 50000);
+                    }, 3000);
                 })
                 .catch(err => {
                     setFormData({
@@ -485,66 +485,53 @@ const ShipmentForm = () => {
                                                 <div className="form-row align-items-end">
                                                     <div className="form-group col-md-2">
                                                         <label
-                                                            htmlFor={`qty-${i}`}
+                                                            htmlFor={`qty-${i +
+                                                                1}`}
                                                         >
                                                             {t("quantity")}
                                                         </label>
                                                         <input
                                                             type="number"
                                                             className="form-control"
-                                                            id={`qty-${i}`}
-                                                            name={`quantity-${i}`}
-                                                            min="1"
-                                                            step="1"
+                                                            id={`qty-${i + 1}`}
+                                                            name={`quantity-${i +
+                                                                1}`}
                                                             placeholder="kom"
-                                                            onBlur={ev => {
-                                                                const target =
-                                                                    ev.target;
-                                                                const name =
-                                                                    target.name;
-                                                                const value =
-                                                                    target.value;
+                                                            onChange={ev => {
+                                                                let quantities = formData.quantity.slice();
+                                                                quantities[i] =
+                                                                    ev.target.value;
                                                                 setFormData({
                                                                     ...formData,
-                                                                    quantity: [
-                                                                        ...formData.quantity,
-                                                                        {
-                                                                            [name]: value
-                                                                        }
-                                                                    ]
+                                                                    quantity: quantities
                                                                 });
                                                             }}
                                                         />
                                                     </div>
                                                     <div className="form-group col-md-2">
                                                         <label
-                                                            htmlFor={`weight-${i}`}
+                                                            htmlFor={`weight-${i +
+                                                                1}`}
                                                         >
                                                             {t("weight")} (kg)
                                                         </label>
                                                         <input
                                                             type="number"
                                                             className="form-control"
-                                                            id={`weight-${i}`}
-                                                            name={`weight-${i}`}
+                                                            id={`weight-${i +
+                                                                1}`}
+                                                            name={`weight-${i +
+                                                                1}`}
                                                             placeholder={t(
                                                                 "unit"
                                                             )}
-                                                            onBlur={ev => {
-                                                                const target =
-                                                                    ev.target;
-                                                                const name =
-                                                                    target.name;
-                                                                const value =
-                                                                    target.value;
+                                                            onChange={ev => {
+                                                                let weights = formData.weight.slice();
+                                                                weights[i] =
+                                                                    ev.target.value;
                                                                 setFormData({
                                                                     ...formData,
-                                                                    weight: [
-                                                                        ...formData.weight,
-                                                                        {
-                                                                            [name]: value
-                                                                        }
-                                                                    ]
+                                                                    weight: weights
                                                                 });
                                                             }}
                                                         />
@@ -558,25 +545,18 @@ const ShipmentForm = () => {
                                                             type="number"
                                                             className="form-control"
                                                             id="inputAddress"
-                                                            name={`lenght-${i}`}
+                                                            name={`lenght-${i +
+                                                                1}`}
                                                             placeholder={t(
                                                                 "lenght"
                                                             )}
-                                                            onBlur={ev => {
-                                                                const target =
-                                                                    ev.target;
-                                                                const name =
-                                                                    target.name;
-                                                                const value =
-                                                                    target.value;
+                                                            onChange={ev => {
+                                                                let lenghts = formData.lenght.slice();
+                                                                lenghts[i] =
+                                                                    ev.target.value;
                                                                 setFormData({
                                                                     ...formData,
-                                                                    lenght: [
-                                                                        ...formData.lenght,
-                                                                        {
-                                                                            [name]: value
-                                                                        }
-                                                                    ]
+                                                                    lenght: lenghts
                                                                 });
                                                             }}
                                                         />
@@ -585,25 +565,18 @@ const ShipmentForm = () => {
                                                         <input
                                                             type="number"
                                                             className="form-control"
-                                                            name={`width-${i}`}
+                                                            name={`width-${i +
+                                                                1}`}
                                                             placeholder={t(
                                                                 "width"
                                                             )}
-                                                            onBlur={ev => {
-                                                                const target =
-                                                                    ev.target;
-                                                                const name =
-                                                                    target.name;
-                                                                const value =
-                                                                    target.value;
+                                                            onChange={ev => {
+                                                                let widths = formData.width.slice();
+                                                                widths[i] =
+                                                                    ev.target.value;
                                                                 setFormData({
                                                                     ...formData,
-                                                                    width: [
-                                                                        ...formData.width,
-                                                                        {
-                                                                            [name]: value
-                                                                        }
-                                                                    ]
+                                                                    width: widths
                                                                 });
                                                             }}
                                                         />
@@ -612,26 +585,18 @@ const ShipmentForm = () => {
                                                         <input
                                                             type="number"
                                                             className="form-control"
-                                                            id="inputCity"
-                                                            name={`height-${i}`}
+                                                            name={`height-${i +
+                                                                1}`}
                                                             placeholder={t(
                                                                 "height"
                                                             )}
-                                                            onBlur={ev => {
-                                                                const target =
-                                                                    ev.target;
-                                                                const name =
-                                                                    target.name;
-                                                                const value =
-                                                                    target.value;
+                                                            onChange={ev => {
+                                                                let heights = formData.height.slice();
+                                                                heights[i] =
+                                                                    ev.target.value;
                                                                 setFormData({
                                                                     ...formData,
-                                                                    height: [
-                                                                        ...formData.height,
-                                                                        {
-                                                                            [name]: value
-                                                                        }
-                                                                    ]
+                                                                    height: heights
                                                                 });
                                                             }}
                                                         />

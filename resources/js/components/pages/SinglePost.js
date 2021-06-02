@@ -46,19 +46,16 @@ const Posts = () => {
                         cityTo: data.cityTo,
                         checkTo: data.checkTo,
                         shippingDate: data.shippingDate,
-                        parcel: data.parcel === 1 ? `${t("parcel")}, ` : "",
-                        envelope:
-                            data.envelope === 1 ? `${t("envelope")}, ` : "",
-                        pallet: data.pallet === 1 ? `${t("pallet")}` : "",
-                        quantity: data.quantity,
-                        weight: data.weight,
-                        lenght: data.lenght,
-                        width: data.width,
-                        height: data.height,
+                        typeOfGoods: JSON.parse(data.typeOfGoods),
+                        quantity: JSON.parse(data.quantity),
+                        weight: JSON.parse(data.weight),
+                        lenght: JSON.parse(data.lenght),
+                        width: JSON.parse(data.width),
+                        height: JSON.parse(data.height),
                         image: data.image
                     });
                     setLoading(false);
-                    //console.log(data);
+                    console.log(data);
                 })
                 .catch(err => {
                     setErrMsg(`${t("")}`);
@@ -80,13 +77,12 @@ const Posts = () => {
             axios
                 .get(`/api/user/${post.user_id}`)
                 .then(res => {
-                    //console.log(res.data.user);
+                    console.log(res.data.user);
 
                     setPostOwner({
                         ...postOwner,
                         name: res.data.user.name,
-                        email: res.data.user.email,
-                        phone: res.data.user.phone,
+                        company: res.data.user.company_name,
                         loading: false
                     });
                 })
@@ -111,17 +107,27 @@ const Posts = () => {
                 image={`images/${post.image}`}
                 altText="Post Image"
                 person={postOwner.name}
-                email={postOwner.email}
-                phone={postOwner.phone}
+                company={postOwner.company}
                 from={`${post.countryFrom}, ${post.cityFrom}`}
                 to={`${post.countryTo}, ${post.cityTo}`}
                 date={post.shippingDate}
-                type={`${post.parcel} ${post.envelope} ${post.pallet}`}
-                quantity={post.quantity}
-                weight={post.weight}
-                lenght={post.lenght}
-                width={post.width}
-                height={post.height}
+                type={post.typeOfGoods[0].name}
+                quantity={post.quantity.map((item, key) => {
+                    return key + 1 + ": " + item + "kom, ";
+                })}
+                weight={post.weight.map((item, key) => {
+                    return key + 1 + ": " + item + "kg, ";
+                })}
+                lenght={post.lenght.map((item, key) => {
+                    return key + 1 + ": " + item + "cm, ";
+                })}
+                width={post.width.map((item, key) => {
+                    return key + 1 + ": " + item + "cm, ";
+                })}
+                height={post.height.map((item, key) => {
+                    return key + 1 + ": " + item + "cm" + ", ";
+                })}
+                shipperId={user.data.id}
             />
         ) : null;
 
