@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
-class UserController extends Controller {
+class UserController extends Controller
+{
 
     private $sucess_status = 200;
     
