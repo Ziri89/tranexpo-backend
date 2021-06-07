@@ -34,4 +34,10 @@ class Shipper extends Authenticatable
         'remember_token',
     ];
     
+    public function auction() 
+    {
+         return $this->hasMany(Auction::class, 'shipper_id');
+    }
+
+    
 }

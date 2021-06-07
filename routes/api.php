@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ParcelController;
 use App\Http\Controllers\PassengerController;
 use App\Http\Controllers\ShipperController;
+use App\Http\Controllers\AuctionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,4 +82,8 @@ Route::get('passengerShowById/{id}', [PassengerController::class, "show"])->name
 
 Route::delete('deletePassenger/{id}', [PassengerController::class, "deletePassenger"])->name('deletePassenger');
 
+Route::post('price', [AuctionController::class, 'store']);
 
+Route::get('priceShow', [AuctionController::class, "showAll"]);
+
+Route::get('priceShowById/{id}', [AuctionController::class, "show"])->name('priceShowById');
