@@ -62,7 +62,11 @@ const FreightPosts = () => {
                   return (
                       <ReducedPost
                           key={item.id}
-                          image={`images/${item.image}`}
+                          image={
+                              item.image
+                                  ? `images/${item.image}`
+                                  : `images/no-image.png`
+                          }
                           altText="Post Image"
                           from={`${item.countryFrom}, ${item.cityFrom}`}
                           to={`${item.countryTo}, ${item.cityTo}`}

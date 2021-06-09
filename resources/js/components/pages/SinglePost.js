@@ -17,6 +17,12 @@ const Posts = () => {
     const [loading, setLoading] = useState(false);
     const [errMsg, setErrMsg] = useState(null);
     const { id } = useParams();
+    const [applay, setApplay] = useState({
+        price: "",
+        shipperId: "",
+        message: "",
+        err: false
+    });
     //console.log(id);
     let [unmounted, setUnmounted] = useState(false);
     useEffect(() => {
@@ -55,7 +61,7 @@ const Posts = () => {
                         image: data.image
                     });
                     setLoading(false);
-                    console.log(data);
+                    // console.log(data);
                 })
                 .catch(err => {
                     setErrMsg(`${t("")}`);
@@ -101,10 +107,48 @@ const Posts = () => {
             });
         };
     }, [post]);
+    const applayForJobHanndler = ev => {
+        ev.preventDefault();
+        let formdata = new FormData();
+        formdata.append("price", applay.price);
+        formdata.append("shipper_id", applay.shipperId);
+        axios
+            .post("/api/price", formdata, {
+                headers: {
+                    Authorization: `Bearer ${user.token ? user.token : null}`,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(() => {
+                setApplay({
+                    ...applay,
+                    message: `${t("offer_submitted")}`,
+                    err: false
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                setApplay({
+                    ...applay,
+                    message: `${t("something_is_wrong")}`,
+                    err: true
+                });
+            });
+    };
+    const setPriceHandler = ev => {
+        const { value } = ev.target;
+        setApplay({
+            ...applay,
+            price: value
+        });
+    };
     const onePost =
         post !== null && postOwner !== null ? (
             <OnePost
-                image={`images/${post.image}`}
+                image={
+                    post.image ? `images/${post.image}` : `images/no-image.png`
+                }
                 altText="Post Image"
                 person={postOwner.name}
                 company={postOwner.company}
@@ -128,6 +172,11 @@ const Posts = () => {
                     return key + 1 + ": " + item + "cm" + ", ";
                 })}
                 shipperId={user.data.id}
+                onSubmit={applayForJobHanndler}
+                onChangePrice={setPriceHandler}
+                price={applay.price}
+                message={applay.message}
+                attrVal={applay.err ? "error" : "success"}
             />
         ) : null;
 

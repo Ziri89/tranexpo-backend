@@ -91,7 +91,7 @@ const ShipmentForm = () => {
             ...formData,
             [name]: value
         });
-        console.log(formData);
+        //console.log(formData);
     };
 
     const setValueCountryFrom = ev => {
@@ -202,7 +202,9 @@ const ShipmentForm = () => {
         ev.preventDefault();
 
         let formdata = new FormData();
-        formdata.append("image", formData.image, formData.image.name);
+        formData.image
+            ? formdata.append("image", formData.image, formData.image.name)
+            : formdata.append("image", null);
         formdata.append("countryFrom", formData.countryFrom);
         formdata.append("cityFrom", formData.cityFrom);
         formdata.append("checkFrom", formData.checkFrom);
@@ -280,12 +282,19 @@ const ShipmentForm = () => {
         }
     };
     const onImage = ev => {
-        if (ev.target.files[0].size > 3145728) {
-            setMessage(`${t("image_file_is_bigger")}`);
+        if (ev.target.files) {
+            if (ev.target.files[0].size > 3145728) {
+                setMessage(`${t("image_file_is_bigger")}`);
+            } else {
+                setFormData({
+                    ...formData,
+                    image: fileInput.current.files[0]
+                });
+            }
         } else {
             setFormData({
                 ...formData,
-                image: fileInput.current.files[0]
+                image: null
             });
         }
     };

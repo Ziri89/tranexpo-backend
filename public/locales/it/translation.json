@@ -134,5 +134,6 @@
     "direct_price": "Prezzo diretto",
     "type_of_transport": "Tipo di trasporto",
     "send": "Spedire",
-    "apply_for_job": "Candidati per un lavoro"
+    "apply_for_job": "Candidati per un lavoro",
+    "offer_submitted": "Hai inviato con successo un'offerta"
 }

@@ -33,3 +33,9 @@ button.text-danger:focus {
 hr {
     border-color: #fc6107 !important;
 }
+.success {
+    color: green;
+}
+.error {
+    color: red;
+}

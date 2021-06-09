@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 const ReducedPost = props => {
     const { t, i18n } = useTranslation();
     const linkGenerator = link => {
-       
         const languageLocale =
             i18n.options.fallbackLng[0] === i18n.language
                 ? null
@@ -19,6 +18,7 @@ const ReducedPost = props => {
                     alt={props.altText}
                     className="card-img-top"
                 />
+
                 <div className="card-body">
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item">

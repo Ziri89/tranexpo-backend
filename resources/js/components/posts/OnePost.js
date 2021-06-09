@@ -90,12 +90,16 @@ const Post = props => {
                         <div className="modal-body">
                             <form onSubmit={props.onSubmit}>
                                 <div className="form-group">
-                                    <label htmlFor="price">{t("price")}</label>
+                                    <label htmlFor="price">
+                                        {t("price")} (€)
+                                    </label>
                                     <input
                                         type="text"
                                         className="form-control"
                                         id="price"
                                         aria-describedby="price"
+                                        value={props.price}
+                                        onChange={props.onChangePrice}
                                     />
                                 </div>
                                 <div className="form-group">
@@ -108,11 +112,12 @@ const Post = props => {
                                 </div>
                                 <button
                                     type="submit"
-                                    className="btn btn-danger"
+                                    className="btn btn-danger mt-2"
                                 >
                                     {t("send")}
                                 </button>
                             </form>
+                            <p className={props.attrVal}>{props.message}</p>
                         </div>
                     </div>
                 </div>
