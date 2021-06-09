@@ -8,6 +8,7 @@ use App\Http\Controllers\ParcelController;
 use App\Http\Controllers\PassengerController;
 use App\Http\Controllers\ShipperController;
 use App\Http\Controllers\AuctionController;
+use App\Http\Controllers\RatingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +55,17 @@ Route::get("user", [UserController::class, "userDetail"]);
     Route::get('shipperAll', [ShipperController::class, "showAll"]);
    });
 */
+
+Route::get('/verified-only', function(Request $request){
+
+    dd('your are verified', $request->user()->name);
+})->middleware('auth:api','verified');
+
+Route::get('/email/resend', 'Api\VerificationController@resend')->name('verification.resend');
+
+Route::get('/email/verify/{id}/{hash}', 'Api\VerificationController@verify')->name('verification.verify');
+
+
 Route::get('user/{id}', [UserController::class, "show"])->name('user');
 Route::get('userAll/', [UserController::class, "showAll"])->name('userAll');
 Route::put('updateuser/{id}', [UserController::class, "updateUser"]);
@@ -87,3 +99,9 @@ Route::post('price', [AuctionController::class, 'store']);
 Route::get('priceShow', [AuctionController::class, "showAll"]);
 
 Route::get('priceShowById/{id}', [AuctionController::class, "show"])->name('priceShowById');
+
+Route::post('rate', [RatingController::class, 'store']);
+
+Route::get('rateShow', [RatingController::class, 'showAll']);
+
+Route::get('rateShowById/{id}', [RatingController::class, 'show'])->name('rateShowById');
