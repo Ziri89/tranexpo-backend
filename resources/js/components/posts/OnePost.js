@@ -95,7 +95,7 @@ const Post = props => {
                                         type="text"
                                         className="form-control"
                                         id="price"
-                                        aria-describedby="email"
+                                        aria-describedby="price"
                                     />
                                 </div>
                                 <div className="form-group">
