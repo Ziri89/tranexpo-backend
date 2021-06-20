@@ -15,6 +15,7 @@ class Auction extends Model
 
         'price',
         'shipper_id',
+        'user_id',
     ];
 
 

@@ -16,6 +16,7 @@ class Auction extends Model
         'stars',
         'comment',
         'user_id',
+        'shipper_id',
     ];
 
 
