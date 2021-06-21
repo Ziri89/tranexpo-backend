@@ -12,7 +12,8 @@ const Carrier = () => {
     const { t } = useTranslation();
     const [rate, setRate] = useState({
         stars: 0,
-        comment: ""
+        comment: "",
+        shipper_id: ""
     });
     useEffect(() => {
         console.log(rate);
@@ -41,15 +42,12 @@ const Carrier = () => {
 
                         <div className="col-12 col-lg-4">
                             <h2>{t("rate_the_carrier")}</h2>
-                            <form>
+                            <form onSubmit={""}>
                                 <ReactStars
                                     count={5}
                                     size={24}
-                                    isHalf={true}
+                                    isHalf={false}
                                     emptyIcon={<i className="far fa-star"></i>}
-                                    halfIcon={
-                                        <i className="fa fa-star-half-alt"></i>
-                                    }
                                     fullIcon={<i className="fa fa-star"></i>}
                                     activeColor="#ffd700"
                                     value={rate.stars}
@@ -76,6 +74,11 @@ const Carrier = () => {
                                             });
                                         }}
                                     ></textarea>
+                                    <input
+                                        type="hidden"
+                                        name="shipper_id"
+                                        value={rate.shiper_id}
+                                    />
                                 </div>
                                 <button
                                     type="submit"
