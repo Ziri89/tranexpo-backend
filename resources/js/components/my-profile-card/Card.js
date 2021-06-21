@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 function Card(props) {
-    const { stateFrom, cityFrom, stateTo, cityTo, date, type } = props;
+    const { stateFrom, cityFrom, stateTo, cityTo, date, type, url } = props;
     const { t, i18n } = useTranslation();
     const linkGenerator = link => {
         const languageLocale =
@@ -12,6 +12,7 @@ function Card(props) {
                 : i18n.language;
         return languageLocale ? "/" + languageLocale + link : link;
     };
+
     return (
         <div className="card">
             <div className="card-body">
@@ -29,10 +30,7 @@ function Card(props) {
                     <dt>{t("type_of_goods")}</dt>
                     <dd>{type}</dd>
                 </dl>
-                <Link
-                    to={linkGenerator(`/carrier-offers`)}
-                    className="btn btn-danger"
-                >
+                <Link to={linkGenerator(url)} className="btn btn-danger">
                     {t("see_offers")}
                 </Link>
             </div>

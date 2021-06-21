@@ -86,7 +86,7 @@ function App() {
                     <Route path={localesString + "/traveler-single-post/:id"}>
                         <TravelerPost />
                     </Route>
-                    <Route path={localesString + "/carrier-offers/"}>
+                    <Route path={localesString + "/carrier-offers/:id"}>
                         <CarrierOffers />
                     </Route>
                     <Route path={localesString + "/carrier/"}>
