@@ -97,19 +97,13 @@ const Post = props => {
                                         type="text"
                                         className="form-control"
                                         id="price"
+                                        name="price"
                                         aria-describedby="price"
                                         value={props.price}
                                         onChange={props.onChangePrice}
                                     />
                                 </div>
-                                <div className="form-group">
-                                    <input
-                                        type="hidden"
-                                        className="form-control"
-                                        aria-describedby="hidden"
-                                        value={props.shipperId}
-                                    />
-                                </div>
+
                                 <button
                                     type="submit"
                                     className="btn btn-danger mt-2"

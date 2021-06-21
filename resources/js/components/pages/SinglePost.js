@@ -20,6 +20,7 @@ const Posts = () => {
     const [applay, setApplay] = useState({
         price: "",
         shipperId: "",
+        parcelId: "",
         message: "",
         err: false
     });
@@ -38,7 +39,7 @@ const Posts = () => {
                     }
                 })
                 .then(res => {
-                    //console.log(res.data.data);
+                    console.log(res.data.data);
                     return res.data.data;
                 })
                 .then(data => {
@@ -58,7 +59,8 @@ const Posts = () => {
                         lenght: JSON.parse(data.lenght),
                         width: JSON.parse(data.width),
                         height: JSON.parse(data.height),
-                        image: data.image
+                        image: data.image,
+                        id: data.id
                     });
                     setLoading(false);
                     // console.log(data);
@@ -112,6 +114,7 @@ const Posts = () => {
         let formdata = new FormData();
         formdata.append("price", applay.price);
         formdata.append("shipper_id", applay.shipperId);
+        formdata.append("parcel_id", applay.parcelId);
         axios
             .post("/api/price", formdata, {
                 headers: {
@@ -138,11 +141,18 @@ const Posts = () => {
     };
     const setPriceHandler = ev => {
         const { value } = ev.target;
-        setApplay({
-            ...applay,
-            price: value
-        });
+        if (post !== null && user) {
+            setApplay({
+                ...applay,
+                price: value,
+                shipperId: user.data.id,
+                parcelId: post.id
+            });
+        }
     };
+    useEffect(() => {
+        console.log(applay);
+    }, [applay]);
     const onePost =
         post !== null && postOwner !== null ? (
             <OnePost
@@ -171,7 +181,6 @@ const Posts = () => {
                 height={post.height.map((item, key) => {
                     return key + 1 + ": " + item + "cm" + ", ";
                 })}
-                shipperId={user.data.id}
                 onSubmit={applayForJobHanndler}
                 onChangePrice={setPriceHandler}
                 price={applay.price}
