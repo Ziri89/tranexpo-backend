@@ -18,6 +18,7 @@ class CreateAuctionsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('price');
             $table->foreignId('shipper_id')->constrained('shippers');
+            $table->foreignId('parcel_id')->constrained('parcels');
             $table->rememberToken();
             $table->timestamps();
 
