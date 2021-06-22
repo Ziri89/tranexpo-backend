@@ -15,13 +15,19 @@ class Auction extends Model
 
         'price',
         'shipper_id',
-        'user_id',
+        'parcel_id',
     ];
 
 
     public function shipper() 
     {
          return $this->belongsTo(Shipperr::class, 'shipper_id');
+        
+    }
+
+    public function parcel()
+    {
+        return $this->belongsTo(Parcel::class, 'parcel_id');
     }
 
     protected static function booted()

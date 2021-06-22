@@ -38,6 +38,10 @@ class Shipper extends Authenticatable
     {
          return $this->hasMany(Auction::class, 'shipper_id');
     }
-
+    
+    public function price()
+    {
+        return $this->hasMany(Parcel::class, 'parcel_id');
+    }
     
 }

@@ -34,7 +34,11 @@ class Parcel extends Model
     {
          return $this->belongsTo(User::class, 'user_id');
     }
-
+    
+    public function shipper()
+    {
+        return $this->belongsTo(Shipper::class, 'shipper_id');
+    }
     protected static function booted()
     {
     static::creating(function ($parcel) {

@@ -22,7 +22,7 @@ class AuctionController extends Controller
         $data = new Auction;
         $data->price = $request->price;
         $data->shipper_id = Auth::user()->id;
-        $data->user_id = Auth::user()->id;
+        $data->parcel_id = $request->parcel_id;
         if ($data->save()) {
             return response()->json([
                 "data" => $data,
