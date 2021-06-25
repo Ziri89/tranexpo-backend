@@ -70,6 +70,7 @@ Route::get('user/{id}', [UserController::class, "show"])->name('user');
 Route::get('userAll/', [UserController::class, "showAll"])->name('userAll');
 Route::put('updateuser/{id}', [UserController::class, "updateUser"]);
 Route::delete('deleteuser/{id}', [UserController::class, "deleteUser"]);
+Route::get('shipper/{id}', [ShipperController::class, "show"])->name('shipper');
 Route::put('updateshipper/{id}', [ShipperController::class, "updateShipper"]);
 Route::get('shipperAll/', [ShipperController::class, "showAll"])->name('shipperAll');
 Route::delete('deleteshipper/{id}', [ShipperController::class, "deleteShipper"]);

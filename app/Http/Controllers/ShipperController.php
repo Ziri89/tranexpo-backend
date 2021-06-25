@@ -88,6 +88,23 @@ class ShipperController extends Controller
          return response($data, 200);
      }
 
+
+     public function show($id){
+
+        $shipper = Shipper::find($id);
+        if(!is_null($shipper)){
+            return response()->json([
+                "shipper" => $shipper,
+                "msg" => "Shipper ID"
+            ], 200);
+        }else{
+            return response()->json([
+                "user" => null,
+                "msg" => "Not found"
+            ], 404);
+        }
+     }
+
      public function deleteShipper($id){
 
         $user = Shipper::find($id);
