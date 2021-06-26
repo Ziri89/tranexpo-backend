@@ -11,8 +11,12 @@ const login = (email, password) => {
     });
 };
 
-const logout = () => {
-    localStorage.removeItem("user");
+const logout = id => {
+    return axios.post("api/logout", { id }).then(res => {
+        if (res.data.logout) {
+            localStorage.removeItem("user");
+        }
+    });
 };
 
 export default {
