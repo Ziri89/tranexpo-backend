@@ -15,9 +15,7 @@ const Carrier = () => {
         comment: "",
         shipper_id: ""
     });
-    useEffect(() => {
-        console.log(rate);
-    }, [rate]);
+
     return (
         <div className="carrier">
             <Banner

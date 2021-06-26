@@ -25,7 +25,6 @@ const MyProfile = () => {
     useEffect(() => {
         let source = axios.CancelToken.source();
         setLoading(true);
-
         axios
             .get("/api/parcelShow", {
                 headers: {
