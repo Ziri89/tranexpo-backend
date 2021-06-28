@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
-class Auction extends Model
+class Rating extends Model
 {
     use HasFactory, Notifiable;
 
