@@ -62,7 +62,7 @@ const CarrierOffers = () => {
                       company="Marti Gruppe"
                       city="Zurich"
                       zipCode="8050"
-                      rateNum="4.0"
+                      rateNum={4}
                       votersNum="6"
                       priceNum={item.price}
                       stars="4"
