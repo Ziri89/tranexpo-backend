@@ -17,40 +17,52 @@ const Carrier = () => {
         stars: 0,
         comment: "",
         shipper_id: 1,
-        user_id: 1
+        user_id: user !== null ? user.data.id : null
     });
     useEffect(() => {
         console.log(rate);
     }, [rate]);
     const ratingSubmitHandler = ev => {
         ev.preventDefault();
-        let formdata = new FormData();
-        formdata.append("stars", rate.stars);
-        formdata.append("comment", rate.comment);
-        formdata.append("shipper_id", rate.shipper_id);
-        formdata.append("user_id", rate.user_id);
-
-        axios
-            .post("api/rate", formdata, {
-                headers: {
-                    Authorization: `Bearer ${user.token ? user.token : null}`,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            })
-            .then(res => {
-                if (res) {
+        if (user !== null && !user.data.vehicle_number) {
+            let csrf = RegExp("XSRF-TOKEN[^;]+").exec(document.cookie);
+            csrf = decodeURIComponent(
+                csrf ? csrf.toString().replace(/^[^=]+./, "") : ""
+            );
+            let formdata = new FormData();
+            formdata.append("stars", rate.stars);
+            formdata.append("comment", rate.comment);
+            formdata.append("shipper_id", rate.shipper_id);
+            formdata.append("user_id", rate.user_id);
+            let myHeaders = new Headers();
+            myHeaders.append(
+                "Authorization",
+                `Bearer ${user !== null ? user.token : null}`
+            );
+            myHeaders.append("Cookie", csrf);
+            axios
+                .post("api/rate", formdata, { headers: myHeaders })
+                .then(res => {
+                    if (res) {
+                        console.log(res);
+                        setRate({
+                            stars: 0,
+                            comment: "",
+                            shipper_id: 1,
+                            user_id: user !== null ? user.data.id : null
+                        });
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
                     setRate({
                         stars: 0,
                         comment: "",
                         shipper_id: 1,
-                        user_id: user.id
+                        user_id: user !== null ? user.data.id : null
                     });
-                }
-            })
-            .catch(err => {
-                console.log(err);
-            });
+                });
+        }
     };
     return (
         <div className="carrier">
@@ -108,16 +120,6 @@ const Carrier = () => {
                                             });
                                         }}
                                     ></textarea>
-                                    <input
-                                        type="hidden"
-                                        name="shipper_id"
-                                        value={rate.shiper_id}
-                                    />
-                                    <input
-                                        type="hidden"
-                                        name="user_id"
-                                        value={rate.shiper_id}
-                                    />
                                 </div>
                                 <button
                                     type="submit"
