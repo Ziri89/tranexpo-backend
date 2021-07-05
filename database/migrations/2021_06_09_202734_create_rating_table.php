@@ -18,7 +18,6 @@ class CreateRatingTable extends Migration
             $table->bigIncrements('id');
             $table->string('stars');
             $table->string('comment');
-            $table->foreignId('user_id')->constrained('users');
             $table->foreignId('shipper_id')->constrained('shippers');
             $table->rememberToken();
             $table->timestamps();
