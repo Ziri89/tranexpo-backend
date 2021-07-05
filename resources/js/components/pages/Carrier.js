@@ -19,9 +19,6 @@ const Carrier = () => {
         shipper_id: 1,
         user_id: user !== null ? user.data.id : null
     });
-    useEffect(() => {
-        console.log(rate);
-    }, [rate]);
     const ratingSubmitHandler = ev => {
         ev.preventDefault();
         if (user !== null && !user.data.vehicle_number) {
@@ -44,7 +41,7 @@ const Carrier = () => {
                 .post("api/rate", formdata, { headers: myHeaders })
                 .then(res => {
                     if (res) {
-                        console.log(res);
+                        console.log(res.data);
                         setRate({
                             stars: 0,
                             comment: "",
