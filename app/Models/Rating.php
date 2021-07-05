@@ -15,14 +15,13 @@ class Rating extends Model
 
         'stars',
         'comment',
-        'user_id',
         'shipper_id',
     ];
 
 
-    public function user() 
+    public function shipper() 
     {
-         return $this->belongsTo(User::class, 'user_id');
+         return $this->belongsTo(Shipper::class, 'shipper_id');
     }
 
     protected static function booted()
