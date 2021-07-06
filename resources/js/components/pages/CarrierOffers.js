@@ -65,7 +65,7 @@ const CarrierOffers = () => {
                       rateNum={4}
                       votersNum="6"
                       priceNum={item.price}
-                      stars="4"
+                      stars={4}
                   />
               );
           })

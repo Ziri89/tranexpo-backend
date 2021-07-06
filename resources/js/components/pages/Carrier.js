@@ -37,16 +37,16 @@ const Carrier = () => {
             );
             myHeaders.append("Cookie", csrf);
             myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Accept", "application/json");
             axios
                 .post("api/rate", formdata, { headers: myHeaders })
                 .then(res => {
                     if (res) {
-                        console.log(res.data);
+                        console.log(res);
                         setRate({
                             stars: 0,
                             comment: "",
-                            shipper_id: 1,
-                            user_id: user !== null ? user.data.id : null
+                            shipper_id: 1
                         });
                     }
                 })
@@ -55,8 +55,7 @@ const Carrier = () => {
                     setRate({
                         stars: 0,
                         comment: "",
-                        shipper_id: 1,
-                        user_id: user !== null ? user.data.id : null
+                        shipper_id: 1
                     });
                 });
         }
