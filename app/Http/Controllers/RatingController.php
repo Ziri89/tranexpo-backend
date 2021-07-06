@@ -23,6 +23,7 @@ class RatingController extends Controller
         $data->stars = $request->stars;
         $data->comment = $request->comment;
         $data->user_id = Auth::user()->id;
+        $data->shipper_id = $request->shipper_id;
         if ($data->save()) {
             return response()->json([
                 "data" => $data,
