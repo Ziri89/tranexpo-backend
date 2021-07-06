@@ -36,6 +36,7 @@ const Carrier = () => {
                 `Bearer ${user !== null ? user.token : null}`
             );
             myHeaders.append("Cookie", csrf);
+            myHeaders.append("Content-Type", "application/json");
             axios
                 .post("api/rate", formdata, { headers: myHeaders })
                 .then(res => {
