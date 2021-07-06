@@ -16,12 +16,8 @@ const Carrier = () => {
     const [rate, setRate] = useState({
         stars: 0,
         comment: "",
-        shipper_id: 1,
-        user_id: user !== null ? user.data.id : null
+        shipper_id: 1
     });
-    useEffect(() => {
-        console.log(rate);
-    }, [rate]);
     const ratingSubmitHandler = ev => {
         ev.preventDefault();
         if (user !== null && !user.data.vehicle_number) {
@@ -33,7 +29,7 @@ const Carrier = () => {
             formdata.append("stars", rate.stars);
             formdata.append("comment", rate.comment);
             formdata.append("shipper_id", rate.shipper_id);
-            formdata.append("user_id", rate.user_id);
+            //formdata.append("user_id", rate.user_id);
             let myHeaders = new Headers();
             myHeaders.append(
                 "Authorization",
@@ -44,7 +40,7 @@ const Carrier = () => {
                 .post("api/rate", formdata, { headers: myHeaders })
                 .then(res => {
                     if (res) {
-                        console.log(res);
+                        console.log(res.data);
                         setRate({
                             stars: 0,
                             comment: "",
