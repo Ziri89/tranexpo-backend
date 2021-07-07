@@ -21,7 +21,7 @@ class Auction extends Model
 
     public function shipper() 
     {
-         return $this->belongsTo(Shipperr::class, 'shipper_id');
+         return $this->belongsTo(Shipper::class, 'shipper_id');
         
     }
 
