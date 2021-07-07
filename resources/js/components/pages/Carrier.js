@@ -39,7 +39,7 @@ const Carrier = () => {
             myHeaders.append("Content-Type", "application/json");
             myHeaders.append("Accept", "application/json");
             axios
-                .post("api/rate", formdata, { headers: myHeaders })
+                .post("/api/rate", formdata, { headers: myHeaders })
                 .then(res => {
                     if (res) {
                         console.log(res);
