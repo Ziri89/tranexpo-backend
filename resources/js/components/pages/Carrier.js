@@ -16,8 +16,42 @@ const Carrier = () => {
     const [rate, setRate] = useState({
         stars: 0,
         comment: "",
+        user_id: user.id,
         shipper_id: 1
     });
+    const [shipper, setShipper] = useState(null);
+    useEffect(() => {
+        axios
+            .get("/api/rateShowById/1", {
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${user.token ? user.token : null}`
+                }
+            })
+            .then(res => {
+                console.log(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }, []);
+    useEffect(() => {
+        axios
+            .get("/api/rateShow", {
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${user.token ? user.token : null}`
+                }
+            })
+            .then(res => {
+                console.log(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }, []);
     const ratingSubmitHandler = ev => {
         ev.preventDefault();
         if (user !== null && !user.data.vehicle_number) {
@@ -29,6 +63,7 @@ const Carrier = () => {
             formdata.append("stars", rate.stars);
             formdata.append("comment", rate.comment);
             formdata.append("shipper_id", rate.shipper_id);
+            formdata.append("user_id", rate.user_id);
             //formdata.append("user_id", rate.user_id);
             let myHeaders = new Headers();
             myHeaders.append(
@@ -60,6 +95,7 @@ const Carrier = () => {
                 });
         }
     };
+
     return (
         <div className="carrier">
             <Banner

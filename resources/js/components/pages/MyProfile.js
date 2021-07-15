@@ -47,7 +47,7 @@ const MyProfile = () => {
         };
     }, []);
     useEffect(() => {
-        console.log(state);
+        //console.log(state);
     }, [state]);
     const items =
         state !== null
