@@ -16,6 +16,8 @@ class Rating extends Model
         'stars',
         'comment',
         'shipper_id',
+        'user_id',
+
     ];
 
 
