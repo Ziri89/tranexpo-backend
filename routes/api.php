@@ -39,22 +39,6 @@ Route::middleware('api')->group(function() {
 
 
 
-/*Route::group( ['prefix' => 'shipper','middleware' => ['auth:shipper-api'] ],function(){
-
-    Route::post('login', [UserController::class, "loginUser"]);
-    
-});  
-*/
-//Route::get("shipper", [ShipperController::class, "shipperDetail"]);
-/*
-Route::middleware('auth:api')->group(function() {
-Route::get("user", [UserController::class, "userDetail"]);
-});
-*/
-/*Route::group(['middleware' => 'auth:api'], function(){
-    Route::get('shipperAll', [ShipperController::class, "showAll"]);
-   });
-*/
 
 Route::get('/verified-only', function(Request $request){
 
